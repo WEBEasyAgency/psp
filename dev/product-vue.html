@@ -9,21 +9,21 @@
 </head>
 <body>
     <div id="app">
-        <Header />
+        <app-header></app-header>
         <main class="main-page bg-[#F6F6F6]">
             <div class="pt-32 mb-12">
                 <div class="container">
-                    <div data-vue-component="ProductCalculator"></div>
+                    <product-calculator></product-calculator>
                 </div>
             </div>
-            <TechnologyAdvantages />
-            <Faq />
-            <SeoBlock />
-            <InstallationCases />
-            <Feedback />
+            <technology-advantages></technology-advantages>
+            <faq></faq>
+            <seo-block></seo-block>
+            <installation-cases></installation-cases>
+            <feedback></feedback>
         </main>
-        <Footer />
-        <PopupMenu />
+        <app-footer></app-footer>
+        <popup-menu></popup-menu>
     </div>
 
     <!-- Скрипты из layout (через public для dev и production) -->
@@ -33,25 +33,27 @@
     <!-- Vue скрипты -->
     <script type="module">
         import { createApp } from 'vue';
-        import Header from './src/widgets/Header.vue';
-        import TechnologyAdvantages from './src/widgets/TechnologyAdvantages.vue';
-        import Faq from './src/widgets/Faq.vue';
-        import SeoBlock from './src/widgets/SeoBlock.vue';
-        import InstallationCases from './src/widgets/InstallationCases.vue';
-        import Feedback from './src/widgets/Feedback.vue';
-        import Footer from './src/widgets/Footer.vue';
-        import PopupMenu from './src/widgets/PopupMenu.vue';
+        import Header from '@/entities/product/ui/Header.vue';
+        import TechnologyAdvantages from '@/entities/product/ui/TechnologyAdvantages.vue';
+        import Faq from '@/entities/product/ui/Faq.vue';
+        import SeoBlock from '@/entities/product/ui/SeoBlock.vue';
+        import InstallationCases from '@/entities/product/ui/InstallationCases.vue';
+        import Feedback from '@/entities/product/ui/Feedback.vue';
+        import Footer from '@/entities/product/ui/Footer.vue';
+        import PopupMenu from '@/entities/product/ui/PopupMenu.vue';
+        import ProductCalculator from '@/widgets/product/ProductCalculator.vue';
 
         const app = createApp({
             components: {
-                Header,
+                AppHeader: Header,
                 TechnologyAdvantages,
                 Faq,
                 SeoBlock,
                 InstallationCases,
                 Feedback,
-                Footer,
-                PopupMenu
+                AppFooter: Footer,
+                PopupMenu,
+                ProductCalculator
             }
         });
 

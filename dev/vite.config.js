@@ -2,8 +2,8 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import tailwindcss from '@tailwindcss/vite';
-import { resolve } from 'path';
-import { readFileSync } from 'fs';
+import { resolve, extname } from 'path';
+import { readFileSync, existsSync, statSync } from 'fs';
 
 // Функция для извлечения header/footer из существующего layout/index.html
 function extractLayoutParts() {
@@ -43,10 +43,40 @@ export default defineConfig(({ command }) => ({
         },
       },
     }),
+    {
+      name: 'serve-layout-files',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url.startsWith('/layout/')) {
+            // Удаляем query params если есть (например ?v=...)
+            const urlPath = req.url.split('?')[0];
+            const layoutPath = resolve(__dirname, '../layout', urlPath.replace('/layout/', ''));
+            
+            if (existsSync(layoutPath) && statSync(layoutPath).isFile()) {
+               const ext = extname(layoutPath);
+               let contentType = 'text/plain';
+               if (ext === '.js') contentType = 'application/javascript';
+               else if (ext === '.css') contentType = 'text/css';
+               else if (ext === '.png') contentType = 'image/png';
+               else if (ext === '.jpg') contentType = 'image/jpeg';
+               else if (ext === '.svg') contentType = 'image/svg+xml';
+               else if (ext === '.woff2') contentType = 'font/woff2';
+               else if (ext === '.woff') contentType = 'font/woff';
+               
+               res.setHeader('Content-Type', contentType);
+               res.end(readFileSync(layoutPath));
+               return;
+            }
+          }
+          next();
+        });
+      }
+    }
   ],
 
   resolve: {
     alias: {
+      'vue': 'vue/dist/vue.esm-bundler.js',
       '@': resolve(__dirname, 'src'),
       '@layout': resolve(__dirname, '../layout'),
     },
@@ -70,6 +100,13 @@ export default defineConfig(({ command }) => ({
     fs: {
       // Разрешаем доступ к родительской директории (для layout/)
       allow: ['..'],
+    },
+    proxy: {
+      '/backend': {
+        target: 'https://psp.realeasystudio.site',
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 
