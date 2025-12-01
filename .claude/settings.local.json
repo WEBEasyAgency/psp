@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(composer install:*)",
+      "Bash(composer require:*)",
+      "Bash(curl -s https://psp.realeasystudio.site/backend/api/calcs)",
+      "Bash(vendor/bin/phpunit:*)",
+      "Bash(curl:*)",
+      "Bash(php:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(dir:*)",
+      "Bash(cat:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

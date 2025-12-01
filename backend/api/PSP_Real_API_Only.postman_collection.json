@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "psp-real-api-only",
+		"name": "PSP Real API - Minimal Test",
+		"description": "Тесты только для реального API (5.188.117.42:9000)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /calcs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/calcs",
+					"host": ["{{base_url}}"],
+					"path": ["calcs"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /141/params (Объемные буквы)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/141/params",
+					"host": ["{{base_url}}"],
+					"path": ["141", "params"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /75/params (ID из Excel - Инкрустация)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/75/params",
+					"host": ["{{base_url}}"],
+					"path": ["75", "params"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /2/params",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/2/params",
+					"host": ["{{base_url}}"],
+					"path": ["2", "params"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /5/params (Рама для объемных букв)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/5/params",
+					"host": ["{{base_url}}"],
+					"path": ["5", "params"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /141/run (с id в params)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"id\": 54,\n      \"variable\": \"width\",\n      \"value\": 1500\n    },\n    {\n      \"id\": 55,\n      \"variable\": \"height\",\n      \"value\": 800\n    },\n    {\n      \"id\": 56,\n      \"variable\": \"quantity\",\n      \"value\": 2\n    }\n  ],\n  \"mat_select_params\": []\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/141/run",
+					"host": ["{{base_url}}"],
+					"path": ["141", "run"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /141/run (без id в params)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"variable\": \"width\",\n      \"value\": 1500\n    },\n    {\n      \"variable\": \"height\",\n      \"value\": 800\n    },\n    {\n      \"variable\": \"quantity\",\n      \"value\": 2\n    }\n  ],\n  \"mat_select_params\": []\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/141/run",
+					"host": ["{{base_url}}"],
+					"path": ["141", "run"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /75/run (ID из Excel - Инкрустация)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"id\": 54,\n      \"variable\": \"width\",\n      \"value\": 1000\n    },\n    {\n      \"id\": 55,\n      \"variable\": \"height\",\n      \"value\": 500\n    },\n    {\n      \"id\": 56,\n      \"variable\": \"quantity\",\n      \"value\": 1\n    }\n  ],\n  \"mat_select_params\": []\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/75/run",
+					"host": ["{{base_url}}"],
+					"path": ["75", "run"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /addCalc",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc_position_id\": 12345,\n  \"price_good\": 1500\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/addCalc",
+					"host": ["{{base_url}}"],
+					"path": ["addCalc"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /saveCalc",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc__id\": 12345,\n  \"clientId\": 1\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/saveCalc",
+					"host": ["{{base_url}}"],
+					"path": ["saveCalc"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /delCalc",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc_position_id\": 12345\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/delCalc",
+					"host": ["{{base_url}}"],
+					"path": ["delCalc"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /addLink",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc_id\": 12345,\n  \"link\": \"https://example.com/file.pdf\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/addLink",
+					"host": ["{{base_url}}"],
+					"path": ["addLink"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /addContact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"fio\": \"Иванов Иван Иванович\",\n  \"phone\": \"+7 (999) 123-45-67\",\n  \"email\": \"ivanov@example.com\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/addContact",
+					"host": ["{{base_url}}"],
+					"path": ["addContact"]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://5.188.117.42:9000/api",
+			"type": "string"
+		}
+	]
+}

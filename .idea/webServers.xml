@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d750a389-6160-454a-83db-ca65321d9312" name="PSP">
+        <fileTransfer rootFolder="/home/a/abrobe14/psp.realeasystudio.site/public_html" accessType="SFTP" host="psp.realeasystudio.site" port="22" sshConfigId="47de7ec0-96f7-49ce-be45-69908ddc1d25" sshConfig="abrobe14_psp@psp.realeasystudio.site:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

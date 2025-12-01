@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "psp-calc-api-001",
+		"name": "PSP Calc API - Mock",
+		"description": "Коллекция для тестирования mock API калькуляторов PSP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Получить список калькуляторов",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/calcs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"calcs"
+					]
+				},
+				"description": "Получение списка доступных калькуляторов"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Получить параметры калькулятора",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/1/params",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"params"
+					]
+				},
+				"description": "Получение параметров конкретного калькулятора по его ID"
+			},
+			"response": []
+		},
+		{
+			"name": "3. Выполнить расчёт",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\",\n  \"params\": [\n    {\n      \"id\": 54,\n      \"variable\": \"width\",\n      \"value\": 1000\n    },\n    {\n      \"id\": 55,\n      \"variable\": \"height\",\n      \"value\": 500\n    },\n    {\n      \"id\": 56,\n      \"variable\": \"quantity\",\n      \"value\": 2\n    }\n  ],\n  \"mat_select_params\": [\n    {\n      \"id\": 1,\n      \"variable\": \"mat_select\",\n      \"value\": 101\n    }\n  ]\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/1/run",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"run"
+					]
+				},
+				"description": "Выполнение расчёта с заданными параметрами"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Добавить расчёт в калькуляцию",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\",\n  \"calc_id\": 0,\n  \"calc_position_id\": 48490,\n  \"price_good\": 1260.00\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/1/add",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"add"
+					]
+				},
+				"description": "Добавление расчёта в калькуляцию. Если calc_id = 0, создаётся новая калькуляция"
+			},
+			"response": []
+		},
+		{
+			"name": "5. Сохранить калькуляцию",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\",\n  \"calc__id\": 41008167,\n  \"clientId\": 988\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/1/save",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"1",
+						"save"
+					]
+				},
+				"description": "Сохранение калькуляции для клиента"
+			},
+			"response": []
+		},
+		{
+			"name": "Полный флоу: Создание заказа",
+			"item": [
+				{
+					"name": "Шаг 1: Получить список калькуляторов",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.iCalcs && jsonData.iCalcs.length > 0) {",
+									"    pm.environment.set(\"calc_id\", jsonData.iCalcs[0].id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/calcs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"calcs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Шаг 2: Получить параметры",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{calc_id}}/params",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{calc_id}}",
+								"params"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Шаг 3: Выполнить расчёт",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"calc_position_id\", jsonData.calc_position_id);",
+									"pm.environment.set(\"price_good\", jsonData.price_good);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\",\n  \"params\": [\n    {\n      \"id\": 54,\n      \"variable\": \"width\",\n      \"value\": 1000\n    },\n    {\n      \"id\": 55,\n      \"variable\": \"height\",\n      \"value\": 500\n    }\n  ],\n  \"mat_select_params\": []\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{calc_id}}/run",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{calc_id}}",
+								"run"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Шаг 4: Добавить в калькуляцию",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"calc__id\", jsonData.calc_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\",\n  \"calc_id\": 0,\n  \"calc_position_id\": {{calc_position_id}},\n  \"price_good\": {{price_good}}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{calc_id}}/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{calc_id}}",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Шаг 5: Сохранить калькуляцию",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"user\",\n  \"pass\": \"password\",\n  \"calc__id\": {{calc__id}},\n  \"clientId\": 988\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{calc_id}}/save",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{calc_id}}",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Полный цикл создания заказа: от выбора калькулятора до сохранения"
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://psp.realeasystudio.site/backend/api",
+			"type": "string"
+		}
+	]
+}

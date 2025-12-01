@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Копии файлов из layout (синхронизируются через sync-layout.sh)
+public/layout/

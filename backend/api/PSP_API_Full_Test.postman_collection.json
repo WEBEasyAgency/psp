@@ -1,0 +1,1013 @@
+{
+	"info": {
+		"_postman_id": "psp-api-test-2024",
+		"name": "PSP API - Full Test Collection",
+		"description": "Полная коллекция для тестирования PSP API (реальный сервер и прокси) с корректными учетными данными",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Real API (5.188.117.42:9000)",
+			"item": [
+				{
+					"name": "GET /calcs - Get Calculators List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has iCalcs array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('iCalcs');",
+									"    pm.expect(jsonData.iCalcs).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"iCalcs contains calculator objects\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.iCalcs.length > 0) {",
+									"        pm.expect(jsonData.iCalcs[0]).to.have.property('id');",
+									"        pm.expect(jsonData.iCalcs[0]).to.have.property('name');",
+									"    }",
+									"});",
+									"",
+									"pm.test(\"Calculator 141 exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var calc141 = jsonData.iCalcs.find(c => c.id === 141);",
+									"    pm.expect(calc141).to.exist;",
+									"    pm.expect(calc141.name).to.equal('Объемные буквы');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{real_api_url}}/calcs",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"calcs"
+							]
+						},
+						"description": "Получение списка всех калькуляторов"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /141/params - Get Params (Объемные буквы)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test(\"Response has params\", function () {",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.have.property('params');",
+									"        pm.expect(jsonData).to.have.property('mat_select_params');",
+									"        console.log('✅ REAL API WORKS! Params:', JSON.stringify(jsonData.params, null, 2));",
+									"    });",
+									"} else {",
+									"    pm.test(\"Endpoint not implemented (404)\", function () {",
+									"        pm.expect(pm.response.text()).to.include('Not Found');",
+									"        console.log('❌ Real API returns 404 - endpoint not implemented');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/141/params",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"141",
+								"params"
+							]
+						},
+						"description": "Получение параметров калькулятора 'Объемные буквы' (ID 141) с корректными учетными данными"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /2/params - Get Params (ID 2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test(\"Response has params\", function () {",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.have.property('params');",
+									"        console.log('Params for calc 2:', JSON.stringify(jsonData.params, null, 2));",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/2/params",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"2",
+								"params"
+							]
+						},
+						"description": "Получение параметров калькулятора ID 2"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /5/params - Get Params (Рама для объемных букв)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test(\"Response has params\", function () {",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.have.property('params');",
+									"        console.log('Params for calc 5:', JSON.stringify(jsonData.params, null, 2));",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/5/params",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"5",
+								"params"
+							]
+						},
+						"description": "Получение параметров калькулятора 'Рама для объемных букв'"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /141/run - Run Calculation (с id в params)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test(\"Response has calc_position_id\", function () {",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.have.property('calc_position_id');",
+									"        pm.expect(jsonData).to.have.property('price_good');",
+									"        ",
+									"        pm.environment.set('calc_position_id', jsonData.calc_position_id);",
+									"        pm.environment.set('price_good', jsonData.price_good);",
+									"        ",
+									"        console.log('✅ Calculation successful!');",
+									"        console.log('ID:', jsonData.calc_position_id, 'Price:', jsonData.price_good);",
+									"    });",
+									"} else {",
+									"    console.log('❌ Endpoint not implemented');",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"id\": 54,\n      \"variable\": \"width\",\n      \"value\": 1500\n    },\n    {\n      \"id\": 55,\n      \"variable\": \"height\",\n      \"value\": 800\n    },\n    {\n      \"id\": 56,\n      \"variable\": \"quantity\",\n      \"value\": 2\n    }\n  ],\n  \"mat_select_params\": []\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/141/run",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"141",
+								"run"
+							]
+						},
+						"description": "Выполнение расчета (формат с id)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /141/run - Run Calculation (без id в params)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 404\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test(\"Response has calc_position_id\", function () {",
+									"        var jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.have.property('calc_position_id');",
+									"        pm.expect(jsonData).to.have.property('price_good');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"variable\": \"width\",\n      \"value\": 1500\n    },\n    {\n      \"variable\": \"height\",\n      \"value\": 800\n    },\n    {\n      \"variable\": \"quantity\",\n      \"value\": 2\n    }\n  ],\n  \"mat_select_params\": []\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/141/run",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"141",
+								"run"
+							]
+						},
+						"description": "Выполнение расчета (формат без id - RestApi New.yaml)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /addCalc - Add to Calculation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc_position_id\": {{calc_position_id}},\n  \"price_good\": {{price_good}}\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/addCalc",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"addCalc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /saveCalc - Save Calculation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc__id\": 12345,\n  \"clientId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/saveCalc",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"saveCalc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /delCalc - Delete Calculation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc_position_id\": {{calc_position_id}}\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/delCalc",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"delCalc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /addLink - Add File Link",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"calc_id\": 12345,\n  \"link\": \"https://example.com/file.pdf\"\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/addLink",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"addLink"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /addContact - Add Contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"fio\": \"Иванов Иван Иванович\",\n  \"phone\": \"+7 (999) 123-45-67\",\n  \"email\": \"ivanov@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{real_api_url}}/addContact",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"addContact"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Тесты для реального API на сервере 5.188.117.42:9000 с корректными учетными данными"
+		},
+		{
+			"name": "Proxy API (psp.realeasystudio.site)",
+			"item": [
+				{
+					"name": "GET /calcs - Get Calculators List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has iCalcs array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('iCalcs');",
+									"    console.log('Total calculators:', jsonData.iCalcs.length);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{proxy_api_url}}/calcs",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"calcs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /141/params - Get Params (Объемные буквы)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has params\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('params');",
+									"    pm.expect(jsonData).to.have.property('mat_select_params');",
+									"    ",
+									"    console.log('Params for calculator 141:');",
+									"    jsonData.params.forEach(p => {",
+									"        console.log(`  - ${p.variable}: ${p.caption} (id: ${p.id})`);",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/141/params",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"141",
+								"params"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /2/params - Get Params (ID 2)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has params\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('params');",
+									"    ",
+									"    console.log('Params for calculator 2:');",
+									"    jsonData.params.forEach(p => {",
+									"        console.log(`  - ${p.variable}: ${p.caption} (id: ${p.id})`);",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/2/params",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"2",
+								"params"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compare Params (ID 2 vs ID 141)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({",
+									"    url: pm.environment.get('proxy_api_url') + '/2/params',",
+									"    method: 'POST',",
+									"    header: { 'Content-Type': 'application/json' },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({",
+									"            db_id: 1,",
+									"            user: 'Online@1-erp.ru',",
+									"            pass: 'aS6Y-qs1cGXvHerl'",
+									"        })",
+									"    }",
+									"}, function (err, res) {",
+									"    if (!err) {",
+									"        pm.environment.set('calc2_params', res.text());",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Compare params between calculators\", function () {",
+									"    var calc141 = pm.response.json();",
+									"    var calc2 = JSON.parse(pm.environment.get('calc2_params'));",
+									"    ",
+									"    var areIdentical = JSON.stringify(calc141.params) === JSON.stringify(calc2.params);",
+									"    ",
+									"    if (areIdentical) {",
+									"        console.log('❌ WARNING: Calculators 2 and 141 return IDENTICAL params!');",
+									"        console.log('This indicates API is using MOCK data.');",
+									"    } else {",
+									"        console.log('✅ Different calculators return different params (Real API works!)');",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/141/params",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"141",
+								"params"
+							]
+						},
+						"description": "Сравнивает параметры разных калькуляторов для проверки mock/real режима"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /141/run - Run Calculation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has result\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('calc_position_id');",
+									"    pm.expect(jsonData).to.have.property('price_good');",
+									"    ",
+									"    pm.environment.set('calc_position_id', jsonData.calc_position_id);",
+									"    pm.environment.set('price_good', jsonData.price_good);",
+									"    ",
+									"    console.log('Calculation result:');",
+									"    console.log('  ID:', jsonData.calc_position_id);",
+									"    console.log('  Price:', jsonData.price_good, 'руб.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"id\": 54,\n      \"variable\": \"width\",\n      \"value\": 1500\n    },\n    {\n      \"id\": 55,\n      \"variable\": \"height\",\n      \"value\": 800\n    },\n    {\n      \"id\": 56,\n      \"variable\": \"quantity\",\n      \"value\": 2\n    }\n  ],\n  \"mat_select_params\": []\n}"
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/141/run",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"141",
+								"run"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Тесты для прокси API"
+		},
+		{
+			"name": "Alternative Request Formats",
+			"item": [
+				{
+					"name": "POST /141/params - Form Data (FAILS)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check response\", function () {",
+									"    console.log('Testing with form-urlencoded data');",
+									"    console.log('Response:', pm.response.text());",
+									"    ",
+									"    if (pm.response.code === 400) {",
+									"        console.log('❌ API does NOT accept form data - requires JSON');",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "db_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "Online@1-erp.ru",
+									"type": "text"
+								},
+								{
+									"key": "pass",
+									"value": "aS6Y-qs1cGXvHerl",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/141/params",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"141",
+								"params"
+							]
+						},
+						"description": "Тест с form-urlencoded данными (НЕ работает - API требует JSON)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /141/params - JSON Body (WORKS)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    console.log('✅ JSON format works correctly');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\"\n}"
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/141/params",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"141",
+								"params"
+							]
+						},
+						"description": "Тест с JSON в теле запроса (работает согласно спецификации)"
+					},
+					"response": []
+				},
+				{
+					"name": "Real API - Form Data Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check if real API accepts form data\", function () {",
+									"    console.log('Response:', pm.response.text());",
+									"    ",
+									"    if (pm.response.code === 404) {",
+									"        console.log('❌ Real API endpoint not implemented');",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "db_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "user",
+									"value": "Online@1-erp.ru",
+									"type": "text"
+								},
+								{
+									"key": "pass",
+									"value": "aS6Y-qs1cGXvHerl",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{real_api_url}}/141/params",
+							"host": [
+								"{{real_api_url}}"
+							],
+							"path": [
+								"141",
+								"params"
+							]
+						},
+						"description": "Проверка реального API с form data"
+					},
+					"response": []
+				}
+			],
+			"description": "Сравнение различных форматов запросов (JSON vs Form Data)"
+		},
+		{
+			"name": "ProductCalculator.vue Component Tests",
+			"item": [
+				{
+					"name": "Current Component Format (WRONG params)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"API responds (even with wrong params)\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Check response\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log('⚠️  Testing WRONG params format from ProductCalculator.vue');",
+									"    console.log('Result:', jsonData);",
+									"    console.log('These params do NOT match API schema!');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"variable\": \"letter_height\",\n      \"value\": 30\n    },\n    {\n      \"variable\": \"front_surface\",\n      \"value\": \"white\"\n    },\n    {\n      \"variable\": \"side_surface\",\n      \"value\": \"white\"\n    },\n    {\n      \"variable\": \"lighting\",\n      \"value\": \"eco\"\n    },\n    {\n      \"variable\": \"base_type\",\n      \"value\": \"none\"\n    }\n  ],\n  \"mat_select_params\": []\n}"
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/141/run",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"141",
+								"run"
+							]
+						},
+						"description": "Тест текущего формата компонента (неправильные параметры)"
+					},
+					"response": []
+				},
+				{
+					"name": "Correct Format (width, height, quantity)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct params work\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log('✅ Testing CORRECT params format');",
+									"    console.log('Result:', jsonData);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"db_id\": 1,\n  \"user\": \"Online@1-erp.ru\",\n  \"pass\": \"aS6Y-qs1cGXvHerl\",\n  \"params\": [\n    {\n      \"id\": 54,\n      \"variable\": \"width\",\n      \"value\": 1000\n    },\n    {\n      \"id\": 55,\n      \"variable\": \"height\",\n      \"value\": 500\n    },\n    {\n      \"id\": 56,\n      \"variable\": \"quantity\",\n      \"value\": 2\n    }\n  ],\n  \"mat_select_params\": []\n}"
+						},
+						"url": {
+							"raw": "{{proxy_api_url}}/141/run",
+							"host": [
+								"{{proxy_api_url}}"
+							],
+							"path": [
+								"141",
+								"run"
+							]
+						},
+						"description": "Тест правильного формата параметров"
+					},
+					"response": []
+				}
+			],
+			"description": "Тесты для проверки компонента ProductCalculator.vue"
+		}
+	],
+	"variable": [
+		{
+			"key": "real_api_url",
+			"value": "http://5.188.117.42:9000/api",
+			"type": "string"
+		},
+		{
+			"key": "proxy_api_url",
+			"value": "https://psp.realeasystudio.site/backend/api",
+			"type": "string"
+		},
+		{
+			"key": "calc_position_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "price_good",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

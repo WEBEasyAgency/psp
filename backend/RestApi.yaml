@@ -1,0 +1,355 @@
+openapi: 3.1.0
+info:
+  title: PSP Calc Api
+  version: '25.11.18'
+  description: API по работе с калькуляторами.
+  contact:
+    email: Support@ra-psp.ru
+servers:
+  - url: http://5.188.117.42:9000/api
+    description: Основной сервер
+paths:
+  /calcs:
+    get:
+      tags:
+        - Запросы на получение данных
+      summary: запрос на получение справочника калькуляторов
+      responses:
+        '200':
+          description: при успешном выполнении вы получите массив возможных калькуляторов
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  iCalcs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/iCalc'
+
+  /:id/params:
+    post:
+      tags:
+        - Запросы на получение данных 
+      summary: запрос на получение параметров калькулятора
+      requestBody:
+        content:
+          application/json:
+             schema:
+              type: object
+              required:
+                - db_id
+                - user
+                - pass
+              properties:
+                db_id:
+                  type: integer
+                  format: integer
+                  examples: [1]
+                  description: ID базы данных
+                user:
+                  type: string
+                  format: string
+                  examples: ["user"]
+                  description: Логин пользователя для подключения к БД
+                pass:
+                  type: string
+                  format: string
+                  examples: ["password"]
+                  description: Пароль пользователя для подключения к БД
+      responses:
+        '200':
+          description: при успешном выполнении вы получите список параметров запрашиваемого калькулятора
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    params:
+                      $ref: '#/components/schemas/param'                    
+                    mat_select_params:
+                      $ref: '#/components/schemas/mat_select_param'
+
+  /:id/run:
+    post:
+      tags:
+        - Запросы на добавление данных
+      summary: запрос на получение расчёта 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - db_id
+                - user
+                - pass
+                - params
+              properties:
+                db_id:
+                  type: integer
+                  format: integer
+                  examples: [1]
+                  description: ID базы данных
+                user:
+                  type: string
+                  format: string
+                  examples: ["user"]
+                  description: Логин пользователя для подключения к БД
+                pass:
+                  type: string
+                  format: string
+                  examples: ["password"]
+                  description: Пароль пользователя для подключения к БД
+                calc_position_id:
+                    type: integer
+                    format: integer
+                    examples: [48490]
+                    description: Идентификатор расчёта, если указан, расчёт пересоздаётся
+                params:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/param'
+                    description: Список параметров для расчёта
+                mat_select_params:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/mat_select_param'
+        required: true
+      responses:
+        '200':
+          description: при успешном выполнении вы получите идентификатор созданного расчёта и его стоимость
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  calc_position_id:
+                    type: integer
+                    format: integer
+                    examples: [48490]
+                    description: Идентификатор созданного расчёта
+                  price_good:
+                    type: integer
+                    format: integer
+                    examples: [1454]
+                    description: Рекомендованная стоимость расчёта
+     
+  /:id/add:
+    post:
+      tags:
+        - Запросы на добавление данных
+      summary: запрос на добавление расчёта в калькуляцию
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - db_id
+                - user
+                - pass
+                - calc_position_id
+                - price_good
+              properties:
+                db_id:
+                  type: integer
+                  format: integer
+                  examples: [1]
+                  description: ID базы данных
+                user:
+                  type: string
+                  format: string
+                  examples: ["user"]
+                  description: Логин пользователя для подключения к БД
+                pass:
+                  type: string
+                  format: string
+                  examples: ["password"]
+                  description: Пароль пользователя для подключения к БД
+                calc_id:
+                  type: integer
+                  format: integer
+                  examples: [48490]
+                  description: Идентификатор калькуляции, если = 0 или отсутствует, создаётся новая калькуляция
+                calc_position_id:
+                  type: integer
+                  format: integer
+                  examples: [48490]
+                  description: Идентификатор расчёта
+                price_good:
+                  type: number
+                  format: number
+                  examples: [1260.00]
+                  description: Сумма расчёта
+        required: true
+      responses:
+        '200':
+          description: при успешном выполнении вы получите идентификатор калькуляции
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  calc_id:
+                    type: integer
+                    format: integer
+                    examples: [41008167]
+                    description: Идентификатор калькуляции
+
+  /:id/save:
+    post:
+      tags:
+        - Запросы на добавление данных
+      summary: запрос на сохранение калькуляции
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - db_id
+                - user
+                - pass
+                - calc__id
+                - client_id
+              properties:
+                db_id:
+                  type: integer
+                  format: integer
+                  examples: [1]
+                  description: ID базы данных
+                user:
+                  type: string
+                  format: string
+                  examples: ["user"]
+                  description: Логин пользователя для подключения к БД
+                pass:
+                  type: string
+                  format: string
+                  examples: ["password"]
+                  description: Пароль пользователя для подключения к БД
+                calc__id:
+                  type: integer
+                  format: integer
+                  examples: [48490]
+                  description: Идентификатор калькуляции
+                clientId:
+                  type: integer
+                  format: integer
+                  examples: [988]
+                  description: Идентификатор клиента
+        required: true
+      responses:
+        '200':
+          description: при успешном выполнении вы получите идентификатор созданного заказа
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    format: string
+                    examples: ["OK"]
+                    description: Статус выполнения запроса
+     
+components:
+  schemas: 
+    iCalc:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: integer
+          examples: [15]
+          description: Идентификатор калькулятора
+        name:
+          type: string
+          format: string
+          examples: ["Led-модули"]
+          description: Наименование калькулятора
+
+    material:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: integer
+          examples: [15]
+          description: Идентификатор материала
+        name:
+          type: string
+          format: string
+          examples: ["ПВХ пластик 2мм"]
+          description: Наименование материала
+
+    param:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: integer
+          examples: [53]
+          description: Идентификатор параметра
+        variable:
+          type: string
+          format: string
+          examples: ["l_fig_frez"]
+        caption:
+          type: string
+          format: string
+          examples: ["Длина фигурной фрезеровки"]
+        type:
+          type: integer
+          format: integer
+          examples: [1]
+        default:
+          type: string
+          format: string
+          examples: ["0"]
+        value:
+          type: integer
+          format: integer
+          examples: [0]
+
+    mat_select_param:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: integer
+          examples: [53]
+          description: Идентификатор параметра
+        name:
+          type: string
+          format: string
+          examples: ["ПВХ пластик 2мм"]
+        in_prop_id:
+          type: integer
+          format: integer
+          examples: [0]
+        prop_id:
+          type: integer
+          format: integer
+          examples: [55]
+        mat_sel_link:
+          type: integer
+          format: integer
+          examples: [55]
+        mat_sel_link2:
+          type: integer
+          format: integer
+          examples: [0]
+        prop_type:
+          type: integer
+          format: integer
+          examples: [3]
+        variable:
+          type: string
+          format: string
+          examples: ["mat_select"]
+        materials:
+          type: array
+          items:
+            $ref: '#/components/schemas/material'

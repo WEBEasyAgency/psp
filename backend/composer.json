@@ -1,0 +1,22 @@
+{
+    "name": "psp/calc-api",
+    "description": "PSP Calculator API Mock",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "PSP\\": "api/src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"echo 'PSP Calc API installed successfully!';\""
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.4"
+    }
+}

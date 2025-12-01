@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSP - Калькулятор объемных букв</title>
+    <!-- Vue стили (включают layout через @import для правильной работы CSS Layers) -->
+    <link rel="stylesheet" href="/src/main.css">
+</head>
+<body>
+    <div id="app">
+        <Header />
+        <main class="main-page bg-[#F6F6F6]">
+            <div class="pt-32 mb-12">
+                <div class="container">
+                    <div data-vue-component="ProductCalculator"></div>
+                </div>
+            </div>
+            <TechnologyAdvantages />
+            <Faq />
+            <SeoBlock />
+            <InstallationCases />
+            <Feedback />
+        </main>
+        <Footer />
+        <PopupMenu />
+    </div>
+
+    <!-- Скрипты из layout (через public для dev и production) -->
+    <script src="/layout/js/libs.min.js"></script>
+    <script src="/layout/js/app.min.js"></script>
+
+    <!-- Vue скрипты -->
+    <script type="module">
+        import { createApp } from 'vue';
+        import Header from './src/widgets/Header.vue';
+        import TechnologyAdvantages from './src/widgets/TechnologyAdvantages.vue';
+        import Faq from './src/widgets/Faq.vue';
+        import SeoBlock from './src/widgets/SeoBlock.vue';
+        import InstallationCases from './src/widgets/InstallationCases.vue';
+        import Feedback from './src/widgets/Feedback.vue';
+        import Footer from './src/widgets/Footer.vue';
+        import PopupMenu from './src/widgets/PopupMenu.vue';
+
+        const app = createApp({
+            components: {
+                Header,
+                TechnologyAdvantages,
+                Faq,
+                SeoBlock,
+                InstallationCases,
+                Feedback,
+                Footer,
+                PopupMenu
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
