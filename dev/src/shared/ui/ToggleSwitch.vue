@@ -42,6 +42,7 @@ const toggle = () => {
 
 .toggle-switch {
   @apply flex items-center gap-2;
+  background: none;
 }
 
 .toggle-switch__track {

@@ -80,7 +80,7 @@ const updateValue = (e) => {
 @import "tailwindcss" reference;
 
 .number-input {
-  @apply flex flex-col gap-2;
+  @apply flex flex-col gap-2 xl:w-48;
 }
 
 .number-input__label {
@@ -88,18 +88,25 @@ const updateValue = (e) => {
 }
 
 .number-input__wrapper {
-  @apply bg-[#f6f6f6] rounded-2xl outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex items-center overflow-hidden;
+  @apply bg-[#f6f6f6] rounded-2xl outline outline-offset-[-1px] outline-slate-200 inline-flex items-center justify-between overflow-hidden;
 }
 
 .number-input__button {
-  @apply p-3 bg-white outline outline-1 outline-slate-200 flex items-center justify-center;
+  @apply p-3 bg-white outline outline-slate-200 flex items-center justify-center;
 }
 
 .number-input__field-wrapper {
-  @apply w-full inline-flex flex-col items-center justify-start gap-2;
+  @apply w-24 inline-flex flex-col items-center justify-center gap-2;
 }
 
 .number-input__field {
-  @apply w-full xl:w-24 h-6 text-center text-[#9494a7] text-base bg-transparent outline-none;
+  @apply w-full h-6 text-center text-[#9494a7] text-base bg-transparent outline-none py-0 appearance-none;
+  -moz-appearance: textfield;
+}
+
+.number-input__field::-webkit-outer-spin-button,
+.number-input__field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSP - Пластиковые вывески</title>
+    <link rel="stylesheet" href="/src/main.css">
+</head>
+<body>
+    <div id="app">
+        <app-header></app-header>
+        <main class="main-page bg-[#F6F6F6]">
+            <div class="pt-32 mb-12">
+                <div class="container">
+                    <calc-156
+                        :initial-images="[
+                            'img/Контент/Контент/2а Пластиковые вывески/23089148345_167d80903d_o.jpg',
+                            'img/Контент/Контент/2а Пластиковые вывески/49114475772_c42c47a558_o.jpg',
+                            'img/Контент/Контент/2а Пластиковые вывески/50326923033_1a0b7b8775_o.jpg',
+                            'img/Контент/Контент/2а Пластиковые вывески/50327074273_abbdf91c2a_o.jpg',
+                            'img/Контент/Контент/2а Пластиковые вывески/51012211607_a1762a46dc_o.jpg',
+                            'img/Контент/Контент/2а Пластиковые вывески/51648447265_a43d550bfc_o.jpg'
+                        ]"
+                    ></calc-156>
+                </div>
+            </div>
+            <technology-advantages></technology-advantages>
+            <faq></faq>
+            <seo-block></seo-block>
+            <installation-cases></installation-cases>
+            <feedback></feedback>
+        </main>
+        <app-footer></app-footer>
+        <popup-menu></popup-menu>
+    </div>
+
+    <script src="/layout/js/libs.min.js"></script>
+    <script src="/layout/js/app.min.js"></script>
+
+    <script type="module">
+        import { createApp } from 'vue';
+        import Header from '@/entities/product/ui/Header.vue';
+        import TechnologyAdvantages from '@/entities/product/ui/TechnologyAdvantages.vue';
+        import Faq from '@/entities/product/ui/Faq.vue';
+        import SeoBlock from '@/entities/product/ui/SeoBlock.vue';
+        import InstallationCases from '@/entities/product/ui/InstallationCases.vue';
+        import Feedback from '@/entities/product/ui/Feedback.vue';
+        import Footer from '@/entities/product/ui/Footer.vue';
+        import PopupMenu from '@/entities/product/ui/PopupMenu.vue';
+        import Calc156 from '@/widgets/product/calculators/Calc156.vue';
+
+        const app = createApp({
+            components: {
+                AppHeader: Header,
+                TechnologyAdvantages,
+                Faq,
+                SeoBlock,
+                InstallationCases,
+                Feedback,
+                AppFooter: Footer,
+                PopupMenu,
+                Calc156
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

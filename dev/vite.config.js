@@ -88,6 +88,9 @@ export default defineConfig(({ command }) => ({
       input: {
         main: resolve(__dirname, 'index.html'),
         product: resolve(__dirname, 'product.html'),
+        'product-155': resolve(__dirname, 'product-155.html'),
+        'sign-156': resolve(__dirname, 'sign-156.html'),
+        'sign-157': resolve(__dirname, 'sign-157.html'),
       },
     },
   },

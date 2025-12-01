@@ -31,48 +31,58 @@
                     <div class="catalog-menu">
                         <ul>
                             <li class="parent">
-                                <a href="#">Вывески</a>
+                                <a href="#">Объемные буквы</a>
                                 <ul class="child">
-                                    <li><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                    <li><a href="#">Вывеска из алюминиевого композита</a></li>
-                                    <li><a href="#">Вывеска из оргстекла</a></li>
+                                    <li><a href="/dev/dist/product.html">С бортом из алюминия</a></li>
+                                    <li><a href="/dev/dist/product-155.html">Со световым бортом</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
-                                <a href="#">Объемные буквы</a>
+                                <a href="#">Несветовые вывески</a>
                                 <ul class="child">
-                                    <li class="li"><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                    <li class="li"><a href="#">Вывеска из алюминиевого композита</a></li>
+                                    <li class="li"><a href="/dev/dist/sign-156.html">Пластиковые вывески</a></li>
+                                    <li class="li"><a href="/dev/dist/sign-157.html">Акриловые вывески</a></li>
+                                    <li class="li"><a href="#">Вывески из алюминиевого композита (скоро)</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#">Стенды</a>
                                 <ul class="child">
-                                    <li class="li"><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                    <li class="li"><a href="#">Вывеска из алюминиевого композита</a></li>
-                                    <li class="li"><a href="#">Вывеска из оргстекла</a></li>
+                                    <li class="li"><a href="#">Стенд из пластика с карманами (скоро)</a></li>
+                                    <li class="li"><a href="#">Стенд из оргстекла с карманами (скоро)</a></li>
+                                </ul>
+                            </li>
+                            <li class="parent">
+                                <a href="#">Наклейки</a>
+                                <ul class="child">
+                                    <li class="li"><a href="#">Маленькие наклейки с резкой (скоро)</a></li>
+                                    <li class="li"><a href="#">Аппликация на стекло (скоро)</a></li>
+                                    <li class="li"><a href="#">Печать на пленке самоклеющейся (скоро)</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#">Таблички</a>
                                 <ul class="child">
-                                    <li class="li"><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                    <li class="li"><a href="#">Вывеска из алюминиевого композита</a></li>
-                                    <li class="li"><a href="#">Вывеска из оргстекла</a></li>
+                                    <li class="li"><a href="#">Пластиковые таблички (скоро)</a></li>
+                                    <li class="li"><a href="#">Акриловые таблички (скоро)</a></li>
+                                    <li class="li"><a href="#">Таблички из композита (скоро)</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#">Баннеры</a>
                                 <ul class="child">
-                                    <li class="li"><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                    <li class="li"><a href="#">Вывеска из алюминиевого композита</a></li>
+                                    <li class="li"><a href="#">Баннер с люверсами (скоро)</a></li>
+                                    <li class="li"><a href="#">Баннер на раме (скоро)</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Найлейки</a></li>
-                            <li><a href="#">Флаги</a></li>
-                            <li><a href="#">Роллапы</a></li>
-                            <li><a href="#">Виндеры</a></li>
-                            <li><a href="#">Режим работы</a></li>
+                            <li class="parent">
+                                <a href="#">Режим работы</a>
+                                <ul class="child">
+                                    <li class="li"><a href="#">Режим работы акриловый Премиум (скоро)</a></li>
+                                    <li class="li"><a href="#">Режим работы пластиковый (скоро)</a></li>
+                                    <li class="li"><a href="#">Режим работы (наклейка) (скоро)</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <div class="popup-bg"></div>
@@ -80,12 +90,12 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a href="#">Объемные буквы</a></li>
+                            <li><a href="/dev/dist/product.html">Объемные буквы</a></li>
+                            <li><a href="/dev/dist/sign-156.html">Вывески</a></li>
                             <li><a href="#">Стенды</a></li>
-                            <li><a href="#">Таблички</a></li>
                             <li><a href="#">Наклейки</a></li>
+                            <li><a href="#">Таблички</a></li>
                             <li><a href="#">Баннеры</a></li>
-                            <li><a href="#">Флаги</a></li>
                             <li class="more-btn">
                                 <a href="#">
                                     Еще
@@ -98,8 +108,6 @@
                             </li>
                         </ul>
                         <ul class="more">
-                            <li><a href="#">Роллапы</a></li>
-                            <li><a href="#">Виндеры</a></li>
                             <li><a href="#">Режим работы</a></li>
                         </ul>
                     </nav>

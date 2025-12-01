@@ -590,20 +590,8 @@ if (!$calc_position_id || !$price_good) {
 
 			if (!saveRes.ok) throw new Error('Ошибка сохранения заказа');
 
-			// Успех!
-			messageDiv.style.display = 'block';
-			messageDiv.style.backgroundColor = '#d4edda';
-			messageDiv.style.color = '#155724';
-			messageDiv.style.border = '1px solid #c3e6cb';
-			messageDiv.innerHTML = `
-				<strong>Заказ успешно оформлен!</strong><br>
-				Номер калькуляции: ${calc_id}<br>
-				Номер клиента: ${client_id}<br>
-				Мы свяжемся с вами в ближайшее время.
-			`;
-
-			// Очищаем форму
-			this.reset();
+			// Успех! Перенаправляем на страницу благодарности
+			window.location.href = `thanx.php?calc_id=${calc_id}&client_id=${client_id}`;
 
 		} catch (error) {
 			messageDiv.style.display = 'block';

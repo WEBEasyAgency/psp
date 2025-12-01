@@ -11,28 +11,39 @@
       </div>
     </div>
     <div class="radio-group__options">
-      <button
-        v-for="option in options"
-        :key="option.value"
-        @click="selectOption(option.value)"
-        type="button"
-        class="radio-group__option"
+      <div 
+        v-for="option in options" 
+        :key="option.value" 
+        class="radio-group__item"
       >
-        <svg v-if="modelValue === option.value" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2.5" y="2.5" width="11" height="11" rx="5.5" fill="white" />
-          <rect x="2.5" y="2.5" width="11" height="11" rx="5.5" stroke="#3C7BBB" stroke-width="5" />
-        </svg>
-        <svg v-else width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="white" />
-          <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#94A3B8" />
-        </svg>
-        <div
-          class="radio-group__option-text"
-          :class="modelValue === option.value ? 'radio-group__option-text--active' : ''"
+        <button
+          @click="selectOption(option.value)"
+          type="button"
+          class="radio-group__option"
         >
-          {{ option.label }}
-        </div>
-      </button>
+          <svg v-if="modelValue === option.value" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.5" y="2.5" width="11" height="11" rx="5.5" fill="white" />
+            <rect x="2.5" y="2.5" width="11" height="11" rx="5.5" stroke="#3C7BBB" stroke-width="5" />
+          </svg>
+          <svg v-else width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="white" />
+            <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" stroke="#94A3B8" />
+          </svg>
+          <div
+            class="radio-group__option-text"
+            :class="modelValue === option.value ? 'radio-group__option-text--active' : ''"
+          >
+            {{ option.label }}
+          </div>
+        </button>
+        
+        <!-- Слот для дополнительного контента под опцией -->
+        <slot 
+          name="details" 
+          :option="option" 
+          :isActive="modelValue === option.value"
+        ></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -84,11 +95,15 @@ const selectOption = (value) => {
 }
 
 .radio-group__options {
-  @apply flex flex-col gap-3;
+  @apply flex flex-col gap-4.5;
+}
+
+.radio-group__item {
+  @apply flex flex-col gap-2;
 }
 
 .radio-group__option {
-  @apply inline-flex  bg-none gap-2 text-left;
+  @apply inline-flex  bg-none gap-2 text-left items-start;
   background: none;
 }
 

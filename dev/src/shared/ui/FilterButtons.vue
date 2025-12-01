@@ -17,7 +17,10 @@
         @click="selectOption(option.value)"
         type="button"
         class="filter-buttons__button"
-        :class="modelValue === option.value ? 'filter-buttons__button--active' : ''"
+        :class="[
+          modelValue === option.value ? 'filter-buttons__button--active' : '',
+          fullWidthButtons ? 'filter-buttons__button--full-width' : ''
+        ]"
       >
         <div class="filter-buttons__button-text">{{ option.label }}</div>
       </button>
@@ -34,6 +37,10 @@ const props = defineProps({
     required: true
   },
   hasHelp: {
+    type: Boolean,
+    default: false
+  },
+  fullWidthButtons: {
     type: Boolean,
     default: false
   }
@@ -82,7 +89,7 @@ const selectOption = (value) => {
 
 @media (min-width: 1280px) {
   .filter-buttons__button {
-    @apply h-11 px-4 py-2;
+    @apply h-11 px-4.5 py-2;
   }
 }
 
@@ -92,5 +99,9 @@ const selectOption = (value) => {
 
 .filter-buttons__button-text {
   @apply text-[13px] leading-[18.20px];
+}
+
+.filter-buttons__button--full-width {
+  @apply flex-grow;
 }
 </style>

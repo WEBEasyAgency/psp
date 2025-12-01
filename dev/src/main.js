@@ -3,7 +3,10 @@ import './main.css';
 
 // Карта компонентов для импорта
 const componentPaths = {
-  'ProductCalculator': () => import('./widgets/product/ProductCalculator.vue'),
+  'Calc146': () => import('./widgets/product/calculators/Calc146.vue'),
+  'Calc155': () => import('./widgets/product/calculators/Calc155.vue'),
+  'Calc156': () => import('./widgets/product/calculators/Calc156.vue'),
+  'Calc157': () => import('./widgets/product/calculators/Calc157.vue'),
 };
 
 // Автоматически монтируем все компоненты с атрибутом data-vue-component

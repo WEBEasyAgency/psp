@@ -91,24 +91,25 @@ const nextImage = () => {
 }
 
 .image-gallery__thumbnails {
-  @apply w-full inline-flex items-center gap-3;
+  @apply w-full inline-flex items-center justify-between gap-3;
 }
 
 .image-gallery__arrow {
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center flex-shrink-0; /* Prevent shrinking/growing */
   background: none;
 }
 
 .image-gallery__thumbnail {
-  @apply w-[73px] rounded-lg inline-flex flex-col overflow-hidden;
+  @apply rounded-lg flex-1 min-w-0 overflow-hidden; /* flex-1 for equal width */
   @apply opacity-50 cursor-pointer transition-opacity;
+  @apply h-[73px] flex items-center justify-center;
 }
 
 .image-gallery__thumbnail--active {
-  @apply opacity-100 outline outline-[3px] outline-offset-[-3px] outline-[#f6f6f6];
+  @apply !opacity-100;
 }
 
 .image-gallery__thumbnail-image {
-  @apply w-full h-auto;
+  @apply w-full h-full object-cover; /* Image fills container, covers any extra space */
 }
 </style>
