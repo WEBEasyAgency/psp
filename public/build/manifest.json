@@ -1,0 +1,64 @@
+{
+  "_vue.esm-bundler-DyuoG_LR.js": {
+    "file": "assets/vue.esm-bundler-DyuoG_LR.js",
+    "name": "vue.esm-bundler"
+  },
+  "public/fonts/Inter-Bold.woff2": {
+    "file": "assets/Inter-Bold-CQHYVgG_.woff2",
+    "src": "public/fonts/Inter-Bold.woff2"
+  },
+  "public/fonts/Inter-Medium.woff2": {
+    "file": "assets/Inter-Medium-D5YUpoRx.woff2",
+    "src": "public/fonts/Inter-Medium.woff2"
+  },
+  "public/fonts/Inter-Regular.woff2": {
+    "file": "assets/Inter-Regular-6EfshmZx.woff2",
+    "src": "public/fonts/Inter-Regular.woff2"
+  },
+  "public/img/dest/how-order.png": {
+    "file": "assets/how-order-DMdsaM4h.png",
+    "src": "public/img/dest/how-order.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CnbUT32U.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CAiCLEjY.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/pages/home.js": {
+    "file": "assets/home-BJewwvK1.js",
+    "name": "home",
+    "src": "resources/js/pages/home.js",
+    "isEntry": true,
+    "imports": [
+      "_vue.esm-bundler-DyuoG_LR.js"
+    ]
+  },
+  "resources/js/pages/welcome.js": {
+    "file": "assets/welcome-BcBcPdk_.js",
+    "name": "welcome",
+    "src": "resources/js/pages/welcome.js",
+    "isEntry": true,
+    "imports": [
+      "_vue.esm-bundler-DyuoG_LR.js"
+    ],
+    "css": [
+      "assets/welcome-B-x3ws2P.css"
+    ],
+    "assets": [
+      "assets/Inter-Regular-6EfshmZx.woff2",
+      "assets/Inter-Bold-CQHYVgG_.woff2",
+      "assets/Inter-Medium-D5YUpoRx.woff2",
+      "assets/how-order-DMdsaM4h.png"
+    ]
+  }
+}
