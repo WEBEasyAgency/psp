@@ -110,8 +110,8 @@
 								</div>
 								<div class="text">
 									<ul>
-										<li><a href="/dev/dist/product.html">С бортом из алюминия</a></li>
-										<li><a href="/dev/dist/product-155.html">Со световым бортом</a></li>
+										<li><a href="/product/1">С бортом из алюминия</a></li>
+										<li><a href="/product/155">Со световым бортом</a></li>
 									</ul>
 								</div>
 								<div class="num">01</div>
@@ -125,8 +125,8 @@
 								</div>
 								<div class="text">
 									<ul>
-										<li><a href="/dev/dist/sign-156.html">Пластиковые вывески</a></li>
-										<li><a href="/dev/dist/sign-157.html">Акриловые вывески</a></li>
+										<li><a href="/product/156">Пластиковые вывески</a></li>
+										<li><a href="/product/157">Акриловые вывески</a></li>
 										<li><a href="#">Вывески из алюминиевого композита (скоро)</a></li>
 									</ul>
 								</div>

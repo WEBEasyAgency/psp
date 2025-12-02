@@ -33,15 +33,15 @@
                             <li class="parent">
                                 <a href="#">Объемные буквы</a>
                                 <ul class="child">
-                                    <li><a href="/dev/dist/product.html">С бортом из алюминия</a></li>
-                                    <li><a href="/dev/dist/product-155.html">Со световым бортом</a></li>
+                                    <li><a href="/product/1">С бортом из алюминия</a></li>
+                                    <li><a href="/product/155">Со световым бортом</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#">Несветовые вывески</a>
                                 <ul class="child">
-                                    <li class="li"><a href="/dev/dist/sign-156.html">Пластиковые вывески</a></li>
-                                    <li class="li"><a href="/dev/dist/sign-157.html">Акриловые вывески</a></li>
+                                    <li class="li"><a href="/product/156">Пластиковые вывески</a></li>
+                                    <li class="li"><a href="/product/157">Акриловые вывески</a></li>
                                     <li class="li"><a href="#">Вывески из алюминиевого композита (скоро)</a></li>
                                 </ul>
                             </li>
@@ -90,8 +90,8 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a href="/dev/dist/product.html">Объемные буквы</a></li>
-                            <li><a href="/dev/dist/sign-156.html">Вывески</a></li>
+                            <li><a href="/product/1">Объемные буквы</a></li>
+                            <li><a href="/product/156">Вывески</a></li>
                             <li><a href="#">Стенды</a></li>
                             <li><a href="#">Наклейки</a></li>
                             <li><a href="#">Таблички</a></li>
