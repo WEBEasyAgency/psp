@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Главная страница
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 // Страницы продуктов/калькуляторов (добавим позже)
