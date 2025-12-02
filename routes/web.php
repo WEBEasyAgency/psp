@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Главная страница
+// Главная страница - временный редирект на старую версию
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/layout/index-new.html');
 });
 
 // Страницы калькуляторов

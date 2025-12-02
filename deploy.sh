@@ -52,11 +52,22 @@ chmod -R 775 storage bootstrap/cache 2>/dev/null || true
 
 echo ""
 echo "🔗 Creating symlinks for static resources..."
+# Remove old symlinks if they exist
+rm -f img css js fonts build 2>/dev/null || true
+# Create correct symlinks from root to public/
 ln -sf public/img img 2>/dev/null || true
 ln -sf public/css css 2>/dev/null || true
 ln -sf public/js js 2>/dev/null || true
 ln -sf public/fonts fonts 2>/dev/null || true
 ln -sf public/build build 2>/dev/null || true
+
+echo ""
+echo "📸 Ensuring images are in public/img..."
+# If old img/Контент exists at root and public/img/Контент doesn't, copy it
+if [ -d "img/Контент" ] && [ ! -L "img" ] && [ ! -d "public/img/Контент" ]; then
+    echo "Copying images from root img/ to public/img/"
+    cp -r img/Контент public/img/ 2>/dev/null || true
+fi
 
 echo ""
 echo "✅ Deployment completed successfully!"

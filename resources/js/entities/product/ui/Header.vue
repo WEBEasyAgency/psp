@@ -33,7 +33,7 @@
                             <li class="parent">
                                 <a href="#">Объемные буквы</a>
                                 <ul class="child">
-                                    <li><a href="/product/1">С бортом из алюминия</a></li>
+                                    <li><a href="/product/146">С бортом из алюминия</a></li>
                                     <li><a href="/product/155">Со световым бортом</a></li>
                                 </ul>
                             </li>
@@ -42,20 +42,20 @@
                                 <ul class="child">
                                     <li class="li"><a href="/product/156">Пластиковые вывески</a></li>
                                     <li class="li"><a href="/product/157">Акриловые вывески</a></li>
-                                    <li class="li"><a href="#">Вывески из алюминиевого композита (скоро)</a></li>
+                                    <li class="li"><a href="/product/158">Вывески из алюминиевого композита</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#">Стенды</a>
                                 <ul class="child">
-                                    <li class="li"><a href="#">Стенд из пластика с карманами (скоро)</a></li>
+                                    <li class="li"><a href="/product/151">Стенд из пластика с карманами</a></li>
                                     <li class="li"><a href="#">Стенд из оргстекла с карманами (скоро)</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#">Наклейки</a>
                                 <ul class="child">
-                                    <li class="li"><a href="#">Маленькие наклейки с резкой (скоро)</a></li>
+                                    <li class="li"><a href="/product/154">Маленькие наклейки с резкой</a></li>
                                     <li class="li"><a href="#">Аппликация на стекло (скоро)</a></li>
                                     <li class="li"><a href="#">Печать на пленке самоклеющейся (скоро)</a></li>
                                 </ul>
@@ -63,9 +63,9 @@
                             <li class="parent">
                                 <a href="#">Таблички</a>
                                 <ul class="child">
-                                    <li class="li"><a href="#">Пластиковые таблички (скоро)</a></li>
-                                    <li class="li"><a href="#">Акриловые таблички (скоро)</a></li>
-                                    <li class="li"><a href="#">Таблички из композита (скоро)</a></li>
+                                    <li class="li"><a href="/product/159">Пластиковые таблички</a></li>
+                                    <li class="li"><a href="/product/160">Акриловые таблички</a></li>
+                                    <li class="li"><a href="/product/161">Таблички из композита</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
@@ -90,11 +90,11 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a href="/product/1">Объемные буквы</a></li>
+                            <li><a href="/product/146">Объемные буквы</a></li>
                             <li><a href="/product/156">Вывески</a></li>
-                            <li><a href="#">Стенды</a></li>
-                            <li><a href="#">Наклейки</a></li>
-                            <li><a href="#">Таблички</a></li>
+                            <li><a href="/product/151">Стенды</a></li>
+                            <li><a href="/product/154">Наклейки</a></li>
+                            <li><a href="/product/159">Таблички</a></li>
                             <li><a href="#">Баннеры</a></li>
                             <li class="more-btn">
                                 <a href="#">
