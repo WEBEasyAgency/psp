@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSP Calc - Онлайн калькулятор рекламных конструкций</title>
+
+    {{-- Стили из layout --}}
+    <link rel="stylesheet" href="{{ asset('css/libs.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
+
+    {{-- Vite для Vue компонентов --}}
     @vite('resources/js/pages/welcome.js')
 </head>
 <body>
@@ -347,5 +353,9 @@
 
     <!-- Footer Vue Component -->
     <div id="footer-app"></div>
+
+    {{-- Скрипты из layout --}}
+    <script src="{{ asset('js/libs.min.js') }}"></script>
+    <script src="{{ asset('js/app.min.js') }}"></script>
 </body>
 </html>
