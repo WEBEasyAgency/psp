@@ -38,5 +38,3 @@
 @push('scripts')
 @vite('resources/js/pages/home.js')
 @endpush
-
-{{-- Deployment test: 2025-12-02 --}}
