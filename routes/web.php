@@ -54,6 +54,30 @@ Route::get('/product/{id}', function ($id) {
                 '/img/Контент/Контент/2б Акриловые вывески/48486969462_0d3ec8fdd7_o.jpg',
                 '/img/Контент/Контент/2б Акриловые вывески/51582631172_66eb51796c_o.jpg'
             ]
+        ],
+        158 => [
+            'title' => 'PSP - Плоские вывески из алюминиевого композита',
+            'images' => ['/img/placeholder.jpg']
+        ],
+        151 => [
+            'title' => 'PSP - Стенд из пластика с карманами',
+            'images' => ['/img/placeholder.jpg']
+        ],
+        154 => [
+            'title' => 'PSP - Маленькие наклейки',
+            'images' => ['/img/placeholder.jpg']
+        ],
+        159 => [
+            'title' => 'PSP - Пластиковые таблички',
+            'images' => ['/img/placeholder.jpg']
+        ],
+        160 => [
+            'title' => 'PSP - Акриловые таблички',
+            'images' => ['/img/placeholder.jpg']
+        ],
+        161 => [
+            'title' => 'PSP - Табличка из композита',
+            'images' => ['/img/placeholder.jpg']
         ]
     ];
 
@@ -66,7 +90,7 @@ Route::get('/product/{id}', function ($id) {
         'title' => $calculators[$id]['title'],
         'images' => $calculators[$id]['images']
     ]);
-})->where('id', '146|155|156|157');
+})->where('id', '146|155|156|157|158|151|154|159|160|161');
 
 // Страница оформления заказа
 Route::get('/order', function (Illuminate\Http\Request $request) {
