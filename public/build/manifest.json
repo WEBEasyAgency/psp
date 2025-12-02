@@ -20,7 +20,7 @@
     "src": "public/img/dest/how-order.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-vv9xPpij.css",
+    "file": "assets/app-CnbUT32U.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -44,7 +44,7 @@
     ]
   },
   "resources/js/pages/welcome.js": {
-    "file": "assets/welcome-Ctk3RCm_.js",
+    "file": "assets/welcome-BcBcPdk_.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.js",
     "isEntry": true,
@@ -52,7 +52,7 @@
       "_vue.esm-bundler-DyuoG_LR.js"
     ],
     "css": [
-      "assets/welcome-6SSKS0oB.css"
+      "assets/welcome-B-x3ws2P.css"
     ],
     "assets": [
       "assets/Inter-Regular-6EfshmZx.woff2",
