@@ -12,6 +12,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/pages/home.js',
                 'resources/js/pages/welcome.js',
+                'resources/js/pages/order.js',
+                'resources/js/pages/thanx.js',
             ],
             refresh: true,
         }),
