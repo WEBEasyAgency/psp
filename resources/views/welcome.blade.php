@@ -16,7 +16,7 @@
     <!-- Header Vue Component -->
     <div id="header-app"></div>
 
-    <!-- Middle sections from layout -->
+	<main class="main-page">
 		<section class="top-block">
 			<div class="container">
 				<div class="top-img"><img src="/img/dest/top-text.svg" alt=""></div>
@@ -350,6 +350,7 @@
 
     <!-- Feedback Gallery Vue Component -->
     <div id="feedback-app"></div>
+	</main>
 
     <!-- Footer Vue Component -->
     <div id="footer-app"></div>
