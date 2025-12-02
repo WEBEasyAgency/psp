@@ -20,7 +20,9 @@
       "Bash(ssh:*)",
       "Bash(ssh-keygen:*)",
       "Bash(git add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebFetch(domain:psp.realeasystudio.site)",
+      "Bash(md5sum:*)"
     ],
     "deny": [],
     "ask": []
