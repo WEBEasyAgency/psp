@@ -139,9 +139,8 @@ mv layout/js public/js/
 mv layout/img public/img/
 mv layout/fonts public/fonts/
 
-# Удалить старые каталоги
-rm -rf layout/
-rm -rf dev/
+# НЕ удалять старые каталоги для обратной совместимости на случай если что-то пойдёт не так
+
 ```
 
 #### 1.3 Обновить `vite.config.js`
