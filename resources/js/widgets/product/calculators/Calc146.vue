@@ -212,7 +212,7 @@ const orderLink = computed(() => {
     price: calculationResult.value.price_good,
     desc: `Объемные буквы (${actualLetterCount.value} ${getLetterWord(actualLetterCount.value)}, высота ${calculatorData.sr_h}см)`
   })
-  return `/layout/order.php?${params.toString()}`
+  return `/order?${params.toString()}`
 })
 
 const fetchCalculatorParams = async () => {

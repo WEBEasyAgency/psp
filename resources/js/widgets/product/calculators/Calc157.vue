@@ -175,7 +175,7 @@ const orderLink = computed(() => {
     price: calculationResult.value.price_good,
     desc: `Акриловая вывеска ${calculatorData.w}x${calculatorData.h}см`
   })
-  return `/layout/order.php?${params.toString()}`
+  return `/order?${params.toString()}`
 })
 
 const fetchCalculatorParams = async () => {
