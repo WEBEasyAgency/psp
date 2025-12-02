@@ -50,6 +50,13 @@ echo "📊 Verifying storage permissions..."
 chmod -R 775 storage bootstrap/cache 2>/dev/null || true
 
 echo ""
+echo "🔗 Creating symlinks for static resources..."
+ln -sf public/img img 2>/dev/null || true
+ln -sf public/css css 2>/dev/null || true
+ln -sf public/js js 2>/dev/null || true
+ln -sf public/fonts fonts 2>/dev/null || true
+
+echo ""
 echo "✅ Deployment completed successfully!"
 echo ""
 echo "📝 Note: Frontend assets (public/build/) should be built locally and deployed via git"

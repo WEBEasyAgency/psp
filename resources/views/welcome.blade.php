@@ -13,7 +13,7 @@
     <!-- Middle sections from layout -->
 		<section class="top-block">
 			<div class="container">
-				<div class="top-img"><img src="img/dest/top-text.svg" alt=""></div>
+				<div class="top-img"><img src="/img/dest/top-text.svg" alt=""></div>
 				<div class="text-block">
 					<div class="title">
 						Онлайн расчет <span>наружной рекламы</span>
@@ -21,13 +21,13 @@
 					<div class="line">
 						<picture>
 							<source media="(max-width: 1000px)" srcset="img/dest/top-line-375.svg">
-							<img src="img/dest/top-line.svg" alt="">
+							<img src="/img/dest/top-line.svg" alt="">
 						</picture>
 					</div>
 					<div class="feed-btn-block">
 						<div class="feed-block">
 							<div class="faces">
-								<div class="img"><img src="img/dest/top-faces.png" alt=""></div>
+								<div class="img"><img src="/img/dest/top-faces.png" alt=""></div>
 								<div class="feed-text">
 									<div class="num">2500+</div>
 									<div class="caption">довольных пользователей</div>
@@ -72,7 +72,7 @@
 				<div class="img-block">
 					<picture>
 						<source media="(max-width: 1000px)" srcset="img/dest/top-img-375.png">
-						<img src="img/dest/top-img.png" alt="">
+						<img src="/img/dest/top-img.png" alt="">
 					</picture>
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 							<div class="inner">
 								<div class="name-block">
 									<div class="name">Объемные буквы</div>
-									<div class="img"><img src="img/dest/type7.jpg" alt=""></div>
+									<div class="img"><img src="/img/dest/type7.jpg" alt=""></div>
 								</div>
 								<div class="text">
 									<ul>
@@ -115,7 +115,7 @@
 							<div class="inner">
 								<div class="name-block">
 									<div class="name">Несветовые вывески</div>
-									<div class="img"><img src="img/dest/type1.jpg" alt=""></div>
+									<div class="img"><img src="/img/dest/type1.jpg" alt=""></div>
 								</div>
 								<div class="text">
 									<ul>
@@ -131,7 +131,7 @@
 							<div class="inner">
 								<div class="name-block">
 									<div class="name">Стенды</div>
-									<div class="img"><img src="img/dest/type3.jpg" alt=""></div>
+									<div class="img"><img src="/img/dest/type3.jpg" alt=""></div>
 								</div>
 								<div class="text">
 									<ul>
@@ -146,7 +146,7 @@
 							<div class="inner">
 								<div class="name-block">
 									<div class="name">Наклейки</div>
-									<div class="img"><img src="img/dest/type5.jpg" alt=""></div>
+									<div class="img"><img src="/img/dest/type5.jpg" alt=""></div>
 								</div>
 								<div class="text">
 									<ul>
@@ -162,7 +162,7 @@
 							<div class="inner">
 								<div class="name-block">
 									<div class="name">Таблички</div>
-									<div class="img"><img src="img/dest/type3.jpg" alt=""></div>
+									<div class="img"><img src="/img/dest/type3.jpg" alt=""></div>
 								</div>
 								<div class="text">
 									<ul>
@@ -178,7 +178,7 @@
 							<div class="inner">
 								<div class="name-block">
 									<div class="name">Баннеры</div>
-									<div class="img"><img src="img/dest/type4.jpg" alt=""></div>
+									<div class="img"><img src="/img/dest/type4.jpg" alt=""></div>
 								</div>
 								<div class="text">
 									<ul>
@@ -193,7 +193,7 @@
 							<div class="inner">
 								<div class="name-block">
 									<div class="name">Режим работы</div>
-									<div class="img"><img src="img/dest/type2.jpg" alt=""></div>
+									<div class="img"><img src="/img/dest/type2.jpg" alt=""></div>
 								</div>
 								<div class="text">
 									<ul>
@@ -234,7 +234,7 @@
 					<div class="col-12 col-sm-6 img-block">
 						<div class="img">
 							<picture>
-								<img src="img/dest/advantages-img.png" alt="">
+								<img src="/img/dest/advantages-img.png" alt="">
 							</picture>
 						</div>
 						<div class="advantages-img-text img-text1">
