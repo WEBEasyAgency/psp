@@ -4,11 +4,11 @@
 @layer reset, utilities, components;
 
 /* Reset из libs.min.css - самый низкий приоритет */
-@import "../../layout/css/libs.min.css" layer(reset);
+@import "../../public/css/libs.min.css" layer(reset);
 
 /* Стили приложения из app.min.css - подключаем ДО Tailwind */
 /* Но без универсального селектора * чтобы не перебивать Tailwind */
-@import "../../layout/css/app.min.css" layer(reset);
+@import "../../public/css/app.min.css" layer(reset);
 
 /* Tailwind utilities (без Preflight - используем reset из layout) */
 @import "tailwindcss/theme" layer(utilities);
