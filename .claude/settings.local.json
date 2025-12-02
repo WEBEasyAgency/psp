@@ -14,9 +14,16 @@
       "Bash(cat:*)",
       "Bash(sudo apt-get install:*)",
       "Bash(node --version)",
-      "Bash(npm --version:*)"
+      "Bash(npm --version:*)",
+      "Bash(git commit:*)",
+      "Bash(ssh abrobe14_psp@psp.realeasystudio.site 'cd /home/a/abrobe14/psp.realeasystudio.site && mkdir -p backup_old && mv public_html/backend public_html/dev public_html/layout public_html/dist backup_old/ 2>/dev/null; cd public_html && git pull origin main --allow-unrelated-histories')",
+      "Bash(ssh:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "spinnerTipsEnabled": false
 }

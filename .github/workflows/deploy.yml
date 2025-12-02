@@ -50,6 +50,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/a/abrobe14/psp.realeasystudio.site/public_html
-            git fetch origin main
-            git reset --hard origin/main
+            git pull origin main
             bash deploy.sh
