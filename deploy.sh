@@ -32,8 +32,9 @@ echo "✅ PHP version: $($PHP -v | head -1)"
 echo "✅ Composer version: $($PHP $COMPOSER --version --no-ansi | head -1)"
 
 echo ""
-echo "📥 Git status..."
-git status --short
+echo "📥 Updating code from git..."
+git fetch origin main
+git reset --hard origin/main
 
 echo ""
 echo "📦 Installing/updating Composer dependencies..."
