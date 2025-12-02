@@ -4,14 +4,39 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PSP Calc API is a dual-mode API service for calculator endpoints with a frontend landing page. The project is deployed at `https://psp.realeasystudio.site/` and consists of:
+PSP Calc API is a Laravel 12 + Vue 3 application for online calculator services. The project is deployed at `https://psp.realeasystudio.site/` and consists of:
 
 - **Backend API**: PHP-based proxy that can operate in mock mode (returns hardcoded data) or real mode (proxies to remote API at `http://5.188.117.42:9000/api`)
-- **Frontend**: Static HTML landing page with minified CSS/JS assets
+- **Frontend**: Laravel 12 + Vue 3 application with Vite build system
+- **Legacy Assets**: Original static HTML/CSS/JS from `/layout` directory (still accessible)
 
 ## Common Commands
 
-### Backend Development
+### Laravel + Vue Development
+
+```bash
+# Install PHP dependencies
+composer install
+
+# Install Node dependencies
+npm install
+
+# Build frontend assets for production
+npm run build
+
+# Development build with hot reload
+npm run dev
+
+# Generate application key (after .env setup)
+php artisan key:generate
+
+# Clear Laravel caches
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+```
+
+### Backend Development (Legacy API in /backend)
 
 ```bash
 # Install PHP dependencies (includes Guzzle HTTP client and PHPUnit)
@@ -27,10 +52,6 @@ vendor/bin/phpunit tests/ApiClientTest.php
 
 # Test API endpoint remotely
 curl https://psp.realeasystudio.site/backend/api/calcs
-
-# Run local PHP development server (if needed)
-cd backend/api
-php -S localhost:8000
 ```
 
 ### Testing with cURL
@@ -139,7 +160,176 @@ Frontend is a simple static site - no build process required.
 
 ## Deployment
 
-Project is automatically synchronized with remote server at `https://psp.realeasystudio.site/`. All code changes are reflected immediately without manual deployment steps.
+### Remote Server Environment (BeGet Hosting)
+
+**Important:** BeGet shared hosting has specific limitations and requirements:
+
+- **PHP CLI Default**: 5.6.40 (too old for Laravel)
+- **PHP 8.4 Path**: `/usr/local/bin/php8.4` (must be used explicitly)
+- **Composer**: Installed locally at `~/bin/composer` (version 2.9.2)
+- **Node.js**: May not be available - build frontend locally
+- **Document Root**: `/home/a/abrobe14/psp.realeasystudio.site/public_html`
+- **Web PHP**: 8.4.6 (configured in control panel)
+
+### SSH Access
+
+```bash
+# Connect to remote server
+ssh abrobe14_psp@psp.realeasystudio.site
+
+# Note: You're automatically in public_html directory
+pwd  # Output: /home/a/abrobe14/psp.realeasystudio.site/public_html
+```
+
+### Deployment Workflow
+
+#### Option 1: Manual Deployment via deploy.sh
+
+```bash
+# On remote server via SSH
+ssh abrobe14_psp@psp.realeasystudio.site
+bash deploy.sh
+```
+
+The `deploy.sh` script automatically:
+1. Pulls latest code from git (`git pull origin main`)
+2. Installs/updates Composer dependencies with PHP 8.4
+3. Clears Laravel caches
+4. Verifies storage permissions
+
+**Note:** Frontend assets (`public/build/`) must be built locally and committed to git.
+
+#### Option 2: Automated Deployment (Recommended)
+
+Create a GitHub Action workflow (`.github/workflows/deploy.yml`):
+
+```yaml
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Build frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit built assets
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add public/build -f
+          git commit -m "Build frontend assets" || echo "No changes"
+          git push
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: psp.realeasystudio.site
+          username: abrobe14_psp
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/a/abrobe14/psp.realeasystudio.site/public_html
+            bash deploy.sh
+```
+
+#### Option 3: Manual Deployment Steps
+
+```bash
+# 1. Local: Build frontend
+npm run build
+
+# 2. Local: Commit and push (including built assets if not in .gitignore)
+git add .
+git commit -m "Your changes"
+git push origin main
+
+# 3. Remote: Pull and deploy
+ssh abrobe14_psp@psp.realeasystudio.site 'bash deploy.sh'
+
+# Or step-by-step:
+ssh abrobe14_psp@psp.realeasystudio.site
+git pull origin main
+/usr/local/bin/php8.4 ~/bin/composer install --no-dev --optimize-autoloader
+/usr/local/bin/php8.4 artisan config:clear
+```
+
+### Running PHP Commands on Remote Server
+
+Always use PHP 8.4 explicitly on BeGet:
+
+```bash
+# ❌ Wrong - uses PHP 5.6
+php artisan migrate
+
+# ✅ Correct - uses PHP 8.4
+/usr/local/bin/php8.4 artisan migrate
+
+# ❌ Wrong - uses PHP 5.6 with Composer
+composer install
+
+# ✅ Correct - uses PHP 8.4 with Composer
+/usr/local/bin/php8.4 ~/bin/composer install
+```
+
+### Important Configuration Notes
+
+1. **Session Driver**: Set to `file` in `.env` (not database) because SQLite is not configured
+   ```bash
+   SESSION_DRIVER=file
+   ```
+
+2. **Application Key**: Must be generated on remote server
+   ```bash
+   /usr/local/bin/php8.4 artisan key:generate
+   ```
+
+3. **Laravel Entry Point**: Root `index.php` proxies to `public/index.php`
+   ```php
+   <?php
+   require __DIR__.'/public/index.php';
+   ```
+
+4. **Git Ignore**: `vendor/` and `node_modules/` are in `.gitignore` (installed on server)
+   `public/build/` can be either committed or deployed separately via rsync
+
+### Troubleshooting Deployment
+
+**Problem:** "No application encryption key"
+```bash
+ssh abrobe14_psp@psp.realeasystudio.site
+/usr/local/bin/php8.4 artisan key:generate
+```
+
+**Problem:** Composer shows PHP 5.6 errors
+```bash
+# Use explicit PHP 8.4 path
+/usr/local/bin/php8.4 ~/bin/composer install
+```
+
+**Problem:** Frontend not updating
+```bash
+# Build locally and commit
+npm run build
+git add public/build
+git commit -m "Update frontend assets"
+git push
+
+# Or rsync directly
+rsync -avz public/build/ abrobe14_psp@psp.realeasystudio.site:public/build/
+```
 
 ## API Specification
 
