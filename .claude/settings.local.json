@@ -11,7 +11,10 @@
       "Bash(npm install)",
       "Bash(npm run build:*)",
       "Bash(dir:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(sudo apt-get install:*)",
+      "Bash(node --version)",
+      "Bash(npm --version:*)"
     ],
     "deny": [],
     "ask": []

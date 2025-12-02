@@ -1,0 +1,481 @@
+/*
+ * Порядок слоёв определяет приоритет (от низкого к высокому)
+ */
+@layer reset, utilities, components;
+
+/* Reset из libs.min.css - самый низкий приоритет */
+@import "../../layout/css/libs.min.css" layer(reset);
+
+/* Стили приложения из app.min.css - подключаем ДО Tailwind */
+/* Но без универсального селектора * чтобы не перебивать Tailwind */
+@import "../../layout/css/app.min.css" layer(reset);
+
+/* Tailwind utilities (без Preflight - используем reset из layout) */
+@import "tailwindcss/theme" layer(utilities);
+@import "tailwindcss/utilities" layer(utilities);
+
+/* Продублируем медиа-запросы из app.min.css на слое ниже utilities */
+/* Мобильная версия (max-width: 767.9px) */
+@layer utilities {
+    @media screen and (max-width: 767.9px) {
+        .hidden-m {
+            display: none !important;
+        }
+    }
+
+    /* Tablet + (min-width: 768px) */
+    @media screen and (min-width: 768px) {
+        .col-sx-1 {
+            width: 8.3333333333% !important;
+        }
+
+        .col-sx-2 {
+            width: 16.666666666% !important;
+        }
+
+        .col-sx-3 {
+            width: 25% !important;
+        }
+
+        .col-sx-4 {
+            width: 33.33333333% !important;
+        }
+
+        .col-sx-5 {
+            width: 41.666666667% !important;
+        }
+
+        .col-sx-6 {
+            width: 50% !important;
+        }
+
+        .col-sx-7 {
+            width: 58.333333333% !important;
+        }
+
+        .col-sx-8 {
+            width: 66.666666667% !important;
+        }
+
+        .col-sx-9 {
+            width: 75% !important;
+        }
+
+        .col-sx-10 {
+            width: 83.333333333% !important;
+        }
+
+        .col-sx-11 {
+            width: 91.666666667% !important;
+        }
+
+        .col-sx-12 {
+            width: 100% !important;
+        }
+
+        .hidden-sx {
+            display: none !important;
+        }
+    }
+
+    /* Small desktop (min-width: 1024px) */
+    @media screen and (min-width: 1024px) {
+        .col-sm-1 {
+            width: 8.3333333333% !important;
+        }
+
+        .col-sm-2 {
+            width: 16.666666666% !important;
+        }
+
+        .col-sm-3 {
+            width: 25% !important;
+        }
+
+        .col-sm-4 {
+            width: 33.33333333% !important;
+        }
+
+        .col-sm-5 {
+            width: 41.666666667% !important;
+        }
+
+        .col-sm-6 {
+            width: 50% !important;
+        }
+
+        .col-sm-7 {
+            width: 58.333333333% !important;
+        }
+
+        .col-sm-8 {
+            width: 66.666666667% !important;
+        }
+
+        .col-sm-9 {
+            width: 75% !important;
+        }
+
+        .col-sm-10 {
+            width: 83.333333333% !important;
+        }
+
+        .col-sm-11 {
+            width: 91.666666667% !important;
+        }
+
+        .col-sm-12 {
+            width: 100% !important;
+        }
+
+        .hidden-sm {
+            display: none !important;
+        }
+    }
+
+    /* Medium desktop (min-width: 1281px) */
+    @media screen and (min-width: 1281px) {
+        .col-md-1 {
+            width: 8.3333333333% !important;
+        }
+
+        .col-md-2 {
+            width: 16.666666666% !important;
+        }
+
+        .col-md-3 {
+            width: 25% !important;
+        }
+
+        .col-md-4 {
+            width: 33.33333333% !important;
+        }
+
+        .col-md-5 {
+            width: 41.666666667% !important;
+        }
+
+        .col-md-6 {
+            width: 50% !important;
+        }
+
+        .col-md-7 {
+            width: 58.333333333% !important;
+        }
+
+        .col-md-8 {
+            width: 66.666666667% !important;
+        }
+
+        .col-md-9 {
+            width: 75% !important;
+        }
+
+        .col-md-10 {
+            width: 83.333333333% !important;
+        }
+
+        .col-md-11 {
+            width: 91.666666667% !important;
+        }
+
+        .col-md-12 {
+            width: 100% !important;
+        }
+
+        .hidden-md {
+            display: none !important;
+        }
+    }
+
+    /* Large desktop (min-width: 1770px) */
+    @media screen and (min-width: 1770px) {
+        .col-lg-1 {
+            width: 8.3333333333% !important;
+        }
+
+        .col-lg-2 {
+            width: 16.666666666% !important;
+        }
+
+        .col-lg-3 {
+            width: 25% !important;
+        }
+
+        .col-lg-4 {
+            width: 33.33333333% !important;
+        }
+
+        .col-lg-5 {
+            width: 41.666666667% !important;
+        }
+
+        .col-lg-6 {
+            width: 50% !important;
+        }
+
+        .col-lg-7 {
+            width: 58.333333333% !important;
+        }
+
+        .col-lg-8 {
+            width: 66.666666667% !important;
+        }
+
+        .col-lg-9 {
+            width: 75% !important;
+        }
+
+        .col-lg-10 {
+            width: 83.333333333% !important;
+        }
+
+        .col-lg-11 {
+            width: 91.666666667% !important;
+        }
+
+        .col-lg-12 {
+            width: 100% !important;
+        }
+    }
+}
+
+@layer components {
+    /* Медиа-запросы для компонентов из app.min.css */
+    @media only screen and (max-width: 900px) {
+        footer .menu-block {
+            width: 100% !important;
+            margin-top: 48px !important;
+            row-gap: 33px !important;
+            flex-wrap: wrap !important;
+        }
+    }
+}
+
+/* Ваши кастомные стили */
+@layer components {
+    .container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 12px;
+        max-width: 1424px;
+    }
+
+    /* FAQ Component */
+    .faq__section {
+        @apply mb-12;
+    }
+
+    .faq__container {
+        @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
+    }
+
+    .faq__card {
+        @apply self-stretch flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-16 py-4 lg:py-16 px-4 lg:px-16 bg-white rounded-3xl lg:rounded-[32px];
+    }
+
+    .faq__column-left {
+        @apply flex flex-col justify-start items-start gap-5 lg:w-[520px];
+    }
+
+    .faq__header {
+        @apply self-stretch flex flex-col justify-start items-start gap-4;
+    }
+
+    .faq__badge {
+        @apply px-2 py-1 bg-[#e6eef8] rounded-xl inline-flex justify-center items-center gap-1;
+    }
+
+    .faq__badge-text {
+        @apply justify-start text-[#1e3552] text-xs font-normal font-['Inter'] leading-[14.40px];
+    }
+
+    .faq__title-wrapper {
+        @apply self-stretch justify-start;
+    }
+
+    .faq__title-primary {
+        @apply text-[#1e3552] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
+    }
+
+    .faq__title-secondary {
+        @apply text-[#2c619d] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
+    }
+
+    .faq__description {
+        @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-4;
+    }
+
+    .faq__list {
+        @apply self-stretch flex flex-col justify-start items-start gap-4 lg:w-[630px];
+    }
+
+    /* FAQ Item & Interactive Elements */
+    .faq__item {
+        @apply self-stretch px-4 lg:px-8 py-4 lg:py-6 rounded-3xl bg-white outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col justify-start items-start gap-4;
+        transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq__summary {
+        @apply self-stretch inline-flex justify-start items-center gap-4 cursor-pointer select-none;
+    }
+
+    .faq__icon {
+        @apply size-9 bg-[#f6f6f6] pt-1 rounded-xl flex justify-center items-center gap-2.5 transition-colors flex-shrink-0;
+        transition: background-color 0.4s ease;
+    }
+
+    .faq__icon svg {
+        @apply transition-transform duration-300;
+    }
+
+    .faq__icon svg path {
+        transition: stroke 0.4s ease;
+    }
+
+    .faq__question {
+        @apply flex-1 justify-start text-[#170f49] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
+    }
+
+    /* Smooth Grid Animation */
+    .faq__answer-wrapper {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+    }
+
+    .faq__answer-inner {
+        overflow: hidden;
+    }
+
+    .faq__answer-container {
+        @apply self-stretch pl-[52px] inline-flex justify-start items-start gap-2.5;
+        padding-top: 0.625rem; /* gap-2.5 equivalent roughly, adding top padding here for spacing */
+    }
+
+    /* Remove gap from parent when closed to prevent jumpiness, or handle spacing differently. 
+       Original flex gap-4 handled spacing between summary and answer.
+       When closed, answer height is 0, but gap might remain if not handled.
+       The .faq__item has flex gap-4. If answer-wrapper is 0 height, gap still exists if it has children?
+       Actually, if wrapper is 0 height, gap appears visually. 
+       Let's remove gap from .faq__item and use margin on the wrapper or padding inside.
+    */
+    .faq__item {
+        gap: 0; /* Override default gap */
+    }
+
+    .faq__summary {
+        margin-bottom: 0;
+        transition: margin-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq__item.is-open .faq__summary {
+        margin-bottom: 1rem; /* gap-4 equivalent */
+    }
+
+    .faq__answer-text {
+        @apply flex-1 justify-start text-slate-900 text-sm lg:text-base font-normal font-['Inter'] leading-5 lg:leading-[22.40px];
+    }
+
+    /* FAQ States */
+    .faq__item.is-open {
+        background: linear-gradient(141deg, rgba(193, 205, 217, 0.4) 0%, rgba(235, 240, 243, 0.4) 100%);
+    }
+
+    .faq__item.is-open .faq__answer-wrapper {
+        grid-template-rows: 1fr;
+    }
+
+    .faq__item.is-open .faq__icon {
+        @apply bg-[#3c7bbb];
+    }
+
+    .faq__item.is-open .faq__icon svg {
+        @apply rotate-180;
+    }
+
+    .faq__item.is-open .faq__icon svg path {
+        stroke: white;
+    }
+
+    .faq__item.is-open .faq__summary {
+        color: #2c619d;
+        transition: color 0.4s ease;
+    }
+
+    /* SEO Block Component */
+    .seo__section {
+        @apply mb-12;
+    }
+
+    .seo__container {
+        @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
+    }
+
+    .seo__wrapper {
+        @apply w-full lg:w-[1400px] flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-16;
+    }
+
+    .seo__left-column {
+        @apply w-full lg:w-[576px] flex flex-col justify-start items-start gap-8 lg:gap-16;
+    }
+
+    .seo__title {
+        @apply w-full lg:w-[594px] justify-start text-[#1e3552] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
+    }
+
+    .seo__subtitle {
+        @apply w-full justify-start text-[#1e3552] text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
+    }
+
+    .seo__text {
+        @apply w-full lg:w-[694px] justify-start text-slate-500 text-base font-normal font-['Inter'] leading-[22.40px];
+    }
+
+    /* Technology Advantages Component */
+    .tech__section {
+        @apply mb-12;
+    }
+
+    .tech__container {
+        @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
+    }
+
+    .tech__wrapper {
+        @apply w-full lg:w-[1400px] p-6 lg:p-0 rounded-3xl lg:rounded-3xl flex flex-col lg:inline-flex justify-start items-start gap-6 lg:gap-16 lg:py-8;
+    }
+
+    .tech__title {
+        @apply self-stretch justify-start text-[#1e3552] text-lg lg:text-5xl font-medium font-['Inter'] leading-[21.60px] lg:leading-[48px] line-clamp-4;
+    }
+
+    .tech__list {
+        @apply w-full lg:self-stretch flex flex-col xl:flex-row flex-wrap justify-start items-start gap-5 lg:gap-6;
+    }
+
+    .tech__item {
+        @apply flex-1 flex justify-start items-start gap-3;
+    }
+
+    .tech__item--alt {
+        @apply self-stretch lg:flex-1 inline-flex justify-start items-start gap-3;
+    }
+
+    .tech__icon-wrapper {
+        @apply size-7 lg:size-9 bg-[#3c7bbb] rounded-[999px] flex justify-center items-center gap-2.5 flex-shrink-0;
+    }
+
+    .tech__content {
+        @apply flex-1 flex flex-col justify-start items-start gap-2 lg:gap-3;
+    }
+
+    .tech__item-title {
+        @apply self-stretch justify-start text-[#282828] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-4;
+    }
+
+    .tech__item-text {
+        @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-2;
+    }
+}
+    
