@@ -235,23 +235,35 @@ onUnmounted(() => {
 </script>
 
 <style>
-.catalog-mobile-menu .menu li.parent {
+.catalog-menu .menu li.parent {
   position: relative;
 }
 
-.catalog-mobile-menu .menu li.parent .child {
+.catalog-menu .menu li.parent .child {
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s;
+  position: absolute;
+  left: 100%;
+  top: -16px;
+  padding-left: 24px;
 }
 
-.catalog-mobile-menu .menu li.parent .child:hover {
+.catalog-menu .menu li.parent .child:hover {
   opacity: 1;
   pointer-events: all;
 }
 
-.catalog-mobile-menu .menu li.parent > a:hover ~ .child {
+.catalog-menu .menu li.parent > a:hover ~ .child {
   opacity: 1;
   pointer-events: all;
+}
+
+.catalog-menu .menu li.parent .child ul {
+  width: 343px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
+  padding: 16px;
 }
 </style>
