@@ -103,7 +103,7 @@ const selectOption = (value) => {
 }
 
 .radio-group__option {
-  @apply inline-flex  bg-none gap-2 text-left items-start;
+  @apply inline-flex bg-none gap-2 text-left items-start justify-start;
   background: none;
 }
 
