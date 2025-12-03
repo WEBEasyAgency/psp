@@ -374,7 +374,7 @@ onMounted(fetchCalculatorParams)
 }
 
 .calculator__sub-options {
-  @apply flex flex-col gap-4 mt-2 ;
+  @apply flex justify-between gap-4 mt-2 ;
 }
 
 .calculator__services {
