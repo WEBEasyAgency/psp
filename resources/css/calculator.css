@@ -68,39 +68,34 @@
 
 /* Filter/Option buttons states */
 .filter-buttons__button {
-    /* Default state */
+    /* 1. Default state */
     background-color: #f6f6f6 !important;
     color: #1e3552 !important;
     transition: all 0.2s !important;
 }
 
-/* Hover state (только для невыбранных) */
+/* 2. Hover state (невыбранная кнопка при наведении) */
 .filter-buttons__button:hover:not(.filter-buttons__button--active):not(:disabled) {
+    background-color: #f6f6f6 !important;
+    color: #1e3552 !important;
     opacity: 0.5 !important;
 }
 
-/* Active state (выбранная кнопка) */
+/* 3. Active state (выбранная кнопка) */
 .filter-buttons__button--active {
     background-color: #c8dbef !important;
     color: #244d80 !important;
 }
 
-/* Active-hover state (наведение на выбранную кнопку) */
+/* 4. Active+Hover state (наведение на выбранную кнопку) */
 .filter-buttons__button--active:hover:not(:disabled) {
     background-color: #3c7bbb !important;
     color: white !important;
 }
 
-/* Active-pressed state (клик по выбранной кнопке) */
-.filter-buttons__button--active:active {
+/* 5. Disable state */
+.filter-buttons__button:disabled {
     background-color: #244d80 !important;
     color: white !important;
-}
-
-/* Disabled state (остается default вид, но заблокирована) */
-.filter-buttons__button:disabled {
-    background-color: #f6f6f6 !important;
-    color: #1e3552 !important;
-    opacity: 0.5 !important;
     cursor: not-allowed !important;
 }
