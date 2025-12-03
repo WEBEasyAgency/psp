@@ -1,1 +1,0 @@
-import{z as e,H as a,y as t}from"./main-j0bNpBMw.js";import{F as o,I as s}from"./InstallationCases-CADDe4r4.js";document.getElementById("header-app")&&e(a).mount("#header-app");document.getElementById("footer-app")&&e(t).mount("#footer-app");document.getElementById("feedback-app")&&e(o).mount("#feedback-app");document.getElementById("cases-app")&&e(s).mount("#cases-app");

@@ -477,5 +477,160 @@
     .tech__item-text {
         @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-2;
     }
+
+    /* Calculator Component Styles */
+
+    /* Calculator background - mobile version */
+    @media screen and (max-width: 767.9px) {
+        .calculator {
+            @apply bg-white rounded-3xl;
+        }
+    }
+
+    /* Calculator calculate button - prevent text wrapping */
+    .calculator__calculate-btn {
+        white-space: nowrap;
+    }
+
+    /* Input States */
+    /* Default state */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+        @apply h-12 p-3 bg-[#f6f6f6] rounded-2xl;
+        @apply outline outline-1 outline-offset-[-1px] outline-slate-200;
+        @apply text-slate-500 text-base font-normal font-['Inter'] leading-[22.40px];
+        @apply transition-all duration-200;
+    }
+
+    /* Hover/Focus state */
+    input[type="text"]:hover,
+    input[type="number"]:hover,
+    input[type="email"]:hover,
+    input[type="tel"]:hover,
+    select:hover,
+    textarea:hover,
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+        @apply outline-[#6198cf];
+        @apply text-slate-700;
+    }
+
+    /* Active state (when typing) */
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    select:focus,
+    textarea:focus {
+        @apply bg-white;
+        @apply text-[#282828];
+    }
+
+    /* Edited state (has value) */
+    input[type="text"]:not(:placeholder-shown),
+    input[type="number"]:not(:placeholder-shown),
+    input[type="email"]:not(:placeholder-shown),
+    input[type="tel"]:not(:placeholder-shown),
+    select:not(:placeholder-shown),
+    textarea:not(:placeholder-shown) {
+        @apply text-[#2d2b2c];
+    }
+
+    /* Disabled state */
+    input[type="text"]:disabled,
+    input[type="number"]:disabled,
+    input[type="email"]:disabled,
+    input[type="tel"]:disabled,
+    select:disabled,
+    textarea:disabled {
+        @apply bg-[#f6f6f6];
+        @apply outline-slate-200;
+        @apply text-slate-500;
+        @apply cursor-not-allowed;
+        @apply opacity-60;
+    }
+
+    /* Button States */
+    /* Filter/Option buttons (used in calculators) */
+    .filter-button,
+    button[class*="filter"],
+    button[class*="option"] {
+        @apply h-11 px-4 py-2 bg-[#f6f6f6] rounded-lg;
+        @apply inline-flex justify-center items-center gap-1;
+        @apply text-[#1e3552] text-sm font-normal font-['Inter'] leading-5;
+        @apply transition-all duration-200;
+        @apply cursor-pointer;
+    }
+
+    /* Hover state for filter buttons */
+    .filter-button:hover,
+    button[class*="filter"]:hover,
+    button[class*="option"]:hover {
+        @apply opacity-50;
+    }
+
+    /* Active state for filter buttons */
+    .filter-button.active,
+    .filter-button[aria-pressed="true"],
+    button[class*="filter"].active,
+    button[class*="option"].active {
+        @apply bg-[#c8dbef];
+        @apply text-[#244d80];
+    }
+
+    /* Active-hover state */
+    .filter-button.active:hover,
+    .filter-button[aria-pressed="true"]:hover,
+    button[class*="filter"].active:hover,
+    button[class*="option"].active:hover {
+        @apply bg-[#3c7bbb];
+        @apply text-white;
+    }
+
+    /* Active pressed state */
+    .filter-button.active:active,
+    button[class*="filter"].active:active,
+    button[class*="option"].active:active {
+        @apply bg-[#244d80];
+        @apply text-white;
+    }
+
+    /* Disabled state for filter buttons */
+    .filter-button:disabled,
+    button[class*="filter"]:disabled,
+    button[class*="option"]:disabled {
+        @apply opacity-50;
+        @apply cursor-not-allowed;
+    }
+
+    /* Primary/Calculate buttons */
+    .calculator__calculate-btn,
+    button[class*="calculate"],
+    button[class*="primary"] {
+        @apply bg-[#3c7bbb];
+        @apply text-white;
+        @apply transition-all duration-200;
+    }
+
+    .calculator__calculate-btn:hover,
+    button[class*="calculate"]:hover,
+    button[class*="primary"]:hover {
+        @apply bg-[#244d80];
+    }
+
+    .calculator__calculate-btn:disabled,
+    button[class*="calculate"]:disabled,
+    button[class*="primary"]:disabled {
+        @apply opacity-50;
+        @apply cursor-not-allowed;
+    }
 }
     
