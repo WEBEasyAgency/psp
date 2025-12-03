@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSP Calc - Онлайн калькулятор рекламных конструкций</title>
 
-    <link rel="stylesheet" href="{{ asset('layout/css/libs.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('layout/css/app.min.css') }}">
+    <link rel="stylesheet" href="/layout/css/libs.min.css">
+    <link rel="stylesheet" href="/layout/css/app.min.css">
 
     {{-- Vite для Vue компонентов и CSS --}}
     @vite(['resources/js/pages/home.js'])
