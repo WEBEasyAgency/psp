@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="catalog-btn">
-                    <a href="#" class="btn btn-catalog" :class="{ active: isCatalogOpen }" @click.prevent="toggleCatalog">
+                    <a href="#" class="btn btn-catalog" @click="toggleCatalog">
 							<span class="b-catalog">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M5 17H13M5 12H19M5 7H13" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,7 +28,7 @@
 								</svg>
 							</span>
                     </a>
-                    <div class="catalog-menu" v-show="isCatalogOpen">
+                    <div class="catalog-menu">
                         <ul>
                             <li class="parent">
                                 <a href="#">Вывески</a>
@@ -85,7 +85,7 @@
                             <li><a href="#">Режим работы</a></li>
                         </ul>
                     </div>
-                    <div class="popup-bg" v-show="isCatalogOpen" @click="closeCatalog"></div>
+                    <div class="popup-bg"></div>
                 </div>
                 <div class="menu">
                     <nav>
@@ -97,7 +97,7 @@
                             <li><a href="#">Баннеры</a></li>
                             <li><a href="#">Флаги</a></li>
                             <li class="more-btn">
-                                <a href="#" :class="{ active: isMoreMenuOpen }" @click.prevent="toggleMoreMenu">
+                                <a href="#" @click="toggleMoreMenu">
                                     Еще
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17 12C17 12.5523 17.4477 13 18 13C18.5523 13 19 12.5523 19 12C19 11.4477 18.5523 11 18 11C17.4477 11 17 11.4477 17 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -107,7 +107,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="more" v-show="isMoreMenuOpen">
+                        <ul class="more">
                             <li><a href="#">Роллапы</a></li>
                             <li><a href="#">Виндеры</a></li>
                             <li><a href="#">Режим работы</a></li>
@@ -161,51 +161,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+import $ from 'jquery'
 
 // Define emits
 const emit = defineEmits(['toggle-burger'])
-
-// Reactive state
-const isCatalogOpen = ref(false)
-const isMoreMenuOpen = ref(false)
-
-// Catalog menu toggle
-const toggleCatalog = () => {
-  isCatalogOpen.value = !isCatalogOpen.value
-}
-
-const closeCatalog = () => {
-  isCatalogOpen.value = false
-}
-
-// More menu toggle
-const toggleMoreMenu = () => {
-  isMoreMenuOpen.value = !isMoreMenuOpen.value
-}
 
 // Burger menu toggle - emit event to parent
 const toggleBurgerMenu = () => {
   emit('toggle-burger')
 }
-
-// Close menu on click outside
-const handleClickOutside = (e) => {
-  // Close "More" menu
-  const moreMenu = document.querySelector('.menu .more')
-  const moreBtn = document.querySelector('.menu .more-btn a')
-  if (moreMenu && moreBtn && !moreMenu.contains(e.target) && !moreBtn.contains(e.target)) {
-    isMoreMenuOpen.value = false
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('mouseup', handleClickOutside)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('mouseup', handleClickOutside)
-})
 
 // Icon handlers (placeholder for future implementation)
 const handleAccountClick = () => {
@@ -222,6 +187,55 @@ const handleCartClick = () => {
   console.log('Cart clicked')
   // TODO: Open cart modal or navigate to cart page
 }
+
+// Catalog menu toggle (jQuery implementation from original)
+const toggleCatalog = (e) => {
+  e.preventDefault()
+  const $btn = $(e.currentTarget)
+  if ($btn.hasClass('active')) {
+    $btn.removeClass('active').parents('.catalog-btn').find('.catalog-menu').fadeOut(300)
+    $('.popup-bg').fadeOut(300)
+  } else {
+    $btn.addClass('active').parents('.catalog-btn').find('.catalog-menu').fadeIn(300)
+    $('.popup-bg').fadeIn(300)
+  }
+}
+
+// More menu toggle (jQuery implementation from original)
+const toggleMoreMenu = (e) => {
+  e.preventDefault()
+  const $btn = $(e.currentTarget)
+  if ($btn.hasClass('active')) {
+    $btn.removeClass('active').parents('.menu').find('.more').fadeOut(300)
+  } else {
+    $btn.addClass('active').parents('.menu').find('.more').fadeIn(300)
+  }
+}
+
+onMounted(() => {
+  // Close popup background on click
+  $('.popup-bg').on('click', function() {
+    $('.btn-catalog').removeClass('active')
+    $('.catalog-menu').fadeOut(300).find('.parent a').removeClass('active')
+    $('.catalog-menu .child').fadeOut(300)
+    $('.popup-bg').fadeOut(300)
+  })
+
+  // Close "More" menu on click outside
+  $(document).mouseup(function(e) {
+    const $div = $('.menu .more')
+    const $btn = $('.menu .more-btn a')
+    if (!$div.is(e.target) && !$btn.is(e.target) && $div.has(e.target).length === 0) {
+      $div.fadeOut(300)
+      $btn.removeClass('active')
+    }
+  })
+})
+
+onUnmounted(() => {
+  $('.popup-bg').off('click')
+  $(document).off('mouseup')
+})
 </script>
 
 <style scoped>
