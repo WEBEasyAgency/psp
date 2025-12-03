@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="/layout/css/libs.min.css">
 	<link rel="stylesheet" href="/layout/css/app.min.css">
 
+	{{-- Общие UI компоненты --}}
+	@vite('resources/css/ui-components.css')
+
 	{{-- Vite для Vue компонентов --}}
 	@vite('resources/js/pages/order.js')
 </head>

@@ -132,6 +132,15 @@
       "product.css"
     ]
   },
+  "resources/css/ui-components.css": {
+    "file": "assets/ui-components-DTPiCTRL.css",
+    "src": "resources/css/ui-components.css",
+    "isEntry": true,
+    "name": "ui-components",
+    "names": [
+      "ui-components.css"
+    ]
+  },
   "resources/js/app.js": {
     "file": "assets/app-CAiCLEjY.js",
     "name": "app",

@@ -10,6 +10,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/product.css',
+                'resources/css/ui-components.css',
                 'resources/css/libs.min.css',
                 'resources/css/app.min.css',
                 'resources/js/app.js',
