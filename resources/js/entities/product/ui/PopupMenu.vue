@@ -1,8 +1,8 @@
 <template>
-  <div class="popupmenu" @click.self="handleClose">
+  <div class="popupmenu">
         <div class="inner">
             <div class="catalog-btn">
-                <a href="#" @click.prevent="handleCatalogClick">
+                <a href="#">
 					<span class="cat-icon">
 						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M4.16699 14.1663H10.8337M4.16699 9.99967H15.8337M4.16699 5.83301H10.8337" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -76,8 +76,8 @@
                 <div class="mail"><a href="mailto:order@ra-psp.ru">order@ra-psp.ru</a></div>
             </div>
         </div>
-        <div class="catalog-mobile-menu" :class="{ active: isCatalogOpen }">
-            <div class="back" @click="closeCatalog">
+        <div class="catalog-mobile-menu">
+            <div class="back">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -86,9 +86,9 @@
             <div class="menu">
                 <ul>
                     <li class="parent">
-                        <a href="#" @click.prevent="toggleParent($event)">Вывески</a>
+                        <a href="#">Вывески</a>
                         <div class="child">
-                            <div class="child-back" @click="closeChild($event)">
+                            <div class="child-back">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -102,9 +102,9 @@
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#" @click.prevent="toggleParent($event)">Объемные буквы</a>
+                        <a href="#">Объемные буквы</a>
                         <div class="child">
-                            <div class="child-back" @click="closeChild($event)">
+                            <div class="child-back">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -117,9 +117,9 @@
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#" @click.prevent="toggleParent($event)">Стенды</a>
+                        <a href="#">Стенды</a>
                         <div class="child">
-                            <div class="child-back" @click="closeChild($event)">
+                            <div class="child-back">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -133,9 +133,9 @@
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#" @click.prevent="toggleParent($event)">Таблички</a>
+                        <a href="#">Таблички</a>
                         <div class="child">
-                            <div class="child-back" @click="closeChild($event)">
+                            <div class="child-back">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -149,9 +149,9 @@
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#" @click.prevent="toggleParent($event)">Баннеры</a>
+                        <a href="#">Баннеры</a>
                         <div class="child">
-                            <div class="child-back" @click="closeChild($event)">
+                            <div class="child-back">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -175,37 +175,62 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+import $ from 'jquery'
 
 const emit = defineEmits(['close'])
-
-const isCatalogOpen = ref(false)
 
 const handleClose = () => {
   emit('close')
 }
 
-const handleCatalogClick = () => {
-  isCatalogOpen.value = true
-}
+onMounted(() => {
+  // Catalog button click
+  $('.popupmenu .catalog-btn a').on('click', function(e) {
+    e.preventDefault()
+    $(this).parents('.popupmenu').find('.catalog-mobile-menu').slideDown(300)
+  })
 
-const closeCatalog = () => {
-  isCatalogOpen.value = false
-}
+  // Back button to close catalog
+  $('.catalog-mobile-menu .back').on('click', function(e) {
+    e.preventDefault()
+    $(this).parents('.catalog-mobile-menu').slideUp(300)
+  })
 
-const toggleParent = (e) => {
-  const parent = e.target.closest('.parent')
-  if (parent) {
-    parent.classList.toggle('active')
-  }
-}
+  // Parent menu item click - open child
+  $('.catalog-mobile-menu .menu li.parent>a').on('click', function(e) {
+    e.preventDefault()
+    $(this).parents('.parent').find('.child').slideDown(300)
+  })
 
-const closeChild = (e) => {
-  const parent = e.target.closest('.parent')
-  if (parent) {
-    parent.classList.remove('active')
-  }
-}
+  // Child back button
+  $('.catalog-mobile-menu .child .child-back').on('click', function(e) {
+    e.preventDefault()
+    $(this).parents('.child').slideUp(300)
+  })
+
+  // Click outside to close
+  $(document).mouseup(function(e) {
+    const $div = $('.popupmenu')
+    const $btn = $('.burger')
+    if (!$div.is(e.target) && !$btn.is(e.target) &&
+        $div.has(e.target).length === 0 && $btn.has(e.target).length === 0) {
+      $div.slideUp(300)
+      $btn.removeClass('active')
+      $('.catalog-mobile-menu .child').hide()
+      $('.catalog-mobile-menu').hide()
+      emit('close')
+    }
+  })
+})
+
+onUnmounted(() => {
+  $('.popupmenu .catalog-btn a').off('click')
+  $('.catalog-mobile-menu .back').off('click')
+  $('.catalog-mobile-menu .menu li.parent>a').off('click')
+  $('.catalog-mobile-menu .child .child-back').off('click')
+  $(document).off('mouseup')
+})
 </script>
 
 <style scoped>
