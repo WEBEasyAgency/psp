@@ -10,6 +10,8 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/product.css',
+                'resources/css/libs.min.css',
+                'resources/css/app.min.css',
                 'resources/js/app.js',
                 'resources/js/pages/home.js',
                 'resources/js/pages/welcome.js',
@@ -42,6 +44,15 @@ export default defineConfig({
         alias: {
             'vue': 'vue/dist/vue.esm-bundler.js',
             '@': resolve(__dirname, 'resources/js'),
+        },
+    },
+    server: {
+        proxy: {
+            '/backend': {
+                target: 'https://psp.realeasystudio.site',
+                changeOrigin: true,
+                secure: false,
+            },
         },
     },
 });

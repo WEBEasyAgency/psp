@@ -1,16 +1,6 @@
-import { createApp } from 'vue';
+import { createApp } from 'vue'
+import Home from './Home.vue'
+import '../main.css'
 
-// Пример простого Vue компонента для главной страницы
-const HomeApp = {
-    data() {
-        return {
-            message: 'Vue 3 работает на Laravel!'
-        }
-    },
-    mounted() {
-        console.log('Home page Vue app mounted');
-    }
-};
-
-const app = createApp(HomeApp);
-app.mount('#home-app');
+const app = createApp(Home)
+app.mount('#app')

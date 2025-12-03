@@ -1,10 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
-// Главная страница - временный редирект на старую версию
+// Proxy для backend API в development режиме
+if (config('app.env') === 'local') {
+    Route::any('backend/{path}', function ($path) {
+        $request = request();
+        $fullPath = $request->path();
+        $url = 'https://psp.realeasystudio.site/' . $fullPath;
+
+        try {
+            $response = Http::timeout(30)
+                ->withoutVerifying()
+                ->send($request->method(), $url, [
+                    'body' => $request->getContent(),
+                ]);
+
+            return response($response->body(), $response->status())
+                ->header('Content-Type', $response->header('Content-Type'))
+                ->header('Access-Control-Allow-Origin', '*');
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    })->where('path', '.*')->middleware(\Illuminate\Routing\Middleware\SubstituteBindings::class);
+}
+
+// Главная страница
 Route::get('/', function () {
-    return redirect('/layout/index-new.html');
+    return view('welcome');
 });
 
 // Страницы калькуляторов

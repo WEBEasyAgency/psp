@@ -12,7 +12,6 @@
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/CLAUDE.md" />
-            <excludedPath path="/layout" />
           </excludedPaths>
         </serverdata>
       </paths>

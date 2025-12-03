@@ -1,0 +1,117 @@
+<template>
+  <section class="feedback-block">
+    <div class="container">
+      <div class="title-block">
+        <h2>Отзывы</h2>
+        <div class="arrows">
+          <div class="prev" @click="slidePrev">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 16L10 12L14 8" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="next" @click="slideNext">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 8L14 12L10 16" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="rating-block">
+        <div class="caption">Отлично</div>
+        <div class="rating">
+          <div class="star" v-for="n in 5" :key="n">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.33496 10.3363C2.02171 10.0466 2.19187 9.5229 2.61557 9.47267L8.61914 8.76058C8.79182 8.7401 8.94181 8.63166 9.01465 8.47376L11.5469 2.98397C11.7256 2.59654 12.2764 2.59646 12.4551 2.9839L14.9873 8.47365C15.0601 8.63155 15.2092 8.74028 15.3818 8.76075L21.3857 9.47267C21.8094 9.5229 21.9791 10.0468 21.6659 10.3364L17.2278 14.4414C17.1001 14.5595 17.0433 14.7352 17.0771 14.9058L18.255 20.8355C18.3382 21.2539 17.8928 21.5782 17.5205 21.3698L12.2451 18.4161C12.0934 18.3312 11.9091 18.3316 11.7573 18.4165L6.48144 21.369C6.10913 21.5774 5.66294 21.2539 5.74609 20.8354L6.92414 14.9061C6.95803 14.7356 6.90134 14.5594 6.77367 14.4414L2.33496 10.3363Z" fill="#F88B2C"/>
+            </svg>
+          </div>
+        </div>
+        <div class="rating-text"><span>4,75</span> основано на <span>816</span> отзывах</div>
+      </div>
+      <Swiper
+        :modules="modules"
+        :slides-per-view="'auto'"
+        :space-between="12"
+        class="feedback-slider"
+        @swiper="onSwiper"
+      >
+        <SwiperSlide v-for="(feedback, index) in feedbacks" :key="index">
+          <div class="inner">
+            <div class="name-block">
+              <div class="name">{{ feedback.name }}</div>
+              <div class="rating">
+                <div class="star" v-for="n in 5" :key="n">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.33496 10.3363C2.02171 10.0466 2.19187 9.5229 2.61557 9.47267L8.61914 8.76058C8.79182 8.7401 8.94181 8.63166 9.01465 8.47376L11.5469 2.98397C11.7256 2.59654 12.2764 2.59646 12.4551 2.9839L14.9873 8.47365C15.0601 8.63155 15.2092 8.74028 15.3818 8.76075L21.3857 9.47267C21.8094 9.5229 21.9791 10.0468 21.6659 10.3364L17.2278 14.4414C17.1001 14.5595 17.0433 14.7352 17.0771 14.9058L18.255 20.8355C18.3382 21.2539 17.8928 21.5782 17.5205 21.3698L12.2451 18.4161C12.0934 18.3312 11.9091 18.3316 11.7573 18.4165L6.48144 21.369C6.10913 21.5774 5.66294 21.2539 5.74609 20.8354L6.92414 14.9061C6.95803 14.7356 6.90134 14.5594 6.77367 14.4414L2.33496 10.3363Z" fill="#F88B2C"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="caption">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 9.99981L11 13.9998L8.99995 11.9998M13.246 3.45879L14.467 4.49929C14.7746 4.76143 15.1566 4.91991 15.5594 4.95206L17.1585 5.0795C18.0986 5.15452 18.8453 5.9008 18.9204 6.84093L19.0475 8.44024C19.0797 8.8431 19.2387 9.22559 19.5008 9.53319L20.5409 10.7538C21.1526 11.4716 21.1527 12.5275 20.541 13.2454L19.5009 14.4662C19.2388 14.7738 19.08 15.1564 19.0478 15.5593L18.9199 17.1583C18.8449 18.0984 18.0993 18.8452 17.1591 18.9202L15.5595 19.0478C15.1567 19.08 14.7744 19.2381 14.4667 19.5002L13.246 20.5407C12.5282 21.1525 11.4717 21.1526 10.7539 20.5409L9.53316 19.5003C9.22555 19.2382 8.84325 19.0798 8.44038 19.0477L6.84077 18.9202C5.90064 18.8452 5.15505 18.0986 5.08003 17.1585L4.9521 15.5594C4.91995 15.1565 4.76111 14.7742 4.49898 14.4666L3.45894 13.2454C2.84721 12.5276 2.84693 11.472 3.45865 10.7542L4.49963 9.53301C4.76176 9.22541 4.91908 8.84311 4.95122 8.44024L5.07915 6.84112C5.15417 5.90099 5.90192 5.15442 6.84205 5.0794L8.43989 4.95196C8.84276 4.91981 9.22525 4.76146 9.53285 4.49932L10.754 3.45879C11.4718 2.84707 12.5282 2.84707 13.246 3.45879Z" stroke="#6198CF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Подтвержденный покупатель
+            </div>
+            <div class="text">{{ feedback.text }}</div>
+            <div class="date-place">{{ feedback.location }}, {{ feedback.date }}</div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation } from 'swiper/modules'
+import 'swiper/css'
+
+const modules = [Navigation]
+const swiperInstance = ref(null)
+
+const onSwiper = (swiper) => {
+  swiperInstance.value = swiper
+}
+
+const slidePrev = () => {
+  swiperInstance.value?.slidePrev()
+}
+
+const slideNext = () => {
+  swiperInstance.value?.slideNext()
+}
+
+const feedbacks = [
+  {
+    name: 'Иванов Иван',
+    text: 'Эта платформа — чудо!',
+    location: 'Самара',
+    date: '5 дней назад'
+  },
+  {
+    name: 'Мария, С',
+    text: 'Удобно делать расчет, не нужно по сто раз созваниваться с менеджером. Не навязывают услуги и делают в срок.',
+    location: 'Самара',
+    date: '6 дней назад'
+  },
+  {
+    name: 'Сергей М.',
+    text: 'Регулярно заказываем приличный объем наружной рекламы, очень удобно видеть свои предыдущие заказы и просто повторять их, так же можно планировать бюджет',
+    location: 'Самара',
+    date: '10 дней назад'
+  },
+  {
+    name: 'Иванов Иван',
+    text: 'Эта платформа — чудо!',
+    location: 'Самара',
+    date: '5 дней назад'
+  },
+  {
+    name: 'Мария, С',
+    text: 'Удобно делать расчет, не нужно по сто раз созваниваться с менеджером. Не навязывают услуги и делают в срок.',
+    location: 'Самара',
+    date: '6 дней назад'
+  }
+]
+</script>

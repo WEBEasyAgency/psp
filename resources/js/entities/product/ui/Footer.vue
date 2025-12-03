@@ -55,8 +55,8 @@
                         <div class="copy">© 2025 — Copyright PSP online</div>
                         <div class="policy"><a href="#" target="_blank">Политика конфиденциальности</a></div>
                     </div>
-                    <div class="to-top">
-                        <a href="#">
+                    <div class="to-top" :class="{ visible: showToTop }" ref="toTopBtn">
+                        <a href="#" @click.prevent="scrollToTop">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 17V7M12 7L8 11M12 7L16 11" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -68,12 +68,60 @@
     </footer>
 </template>
 
-<script>
-export default {
-  name: 'Footer'
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const showToTop = ref(false)
+const toTopBtn = ref(null)
+
+const handleScroll = () => {
+  // Show button when scrolled down more than 300px
+  showToTop.value = window.scrollY > 300
 }
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+  // Initial check
+  handleScroll()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <style scoped>
-/* Стили можно добавить здесь, если они специфичны для этого компонента */
+.to-top {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
+}
+
+.to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.to-top a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.to-top svg {
+  transition: transform 0.2s ease;
+}
+
+.to-top:hover svg {
+  transform: translateY(-2px);
+}
 </style>
