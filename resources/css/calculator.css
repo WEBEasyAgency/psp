@@ -33,6 +33,8 @@
 }
 
 /* Input States для всех калькуляторов */
+
+/* Текстовые инпуты */
 .input {
     color: #64748b !important; /* slate-500 */
     transition: color 0.2s !important;
@@ -62,6 +64,42 @@
 
 .input:disabled {
     color: #64748b !important; /* slate-500 */
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+/* NumberInput - обертка с рамкой */
+.number-input__wrapper {
+    transition: all 0.2s !important;
+}
+
+/* Hover/Focus state для NumberInput */
+.number-input__wrapper:hover,
+.number-input__wrapper:has(.number-input__field:focus) {
+    outline-color: #6198cf !important;
+}
+
+/* Active state (при фокусе на инпуте) */
+.number-input__wrapper:has(.number-input__field:focus) {
+    background-color: white !important;
+}
+
+/* NumberInput - само поле с цифрой */
+.number-input__field {
+    color: #64748b !important; /* slate-500 - default */
+    transition: color 0.2s !important;
+}
+
+.number-input__field:hover {
+    color: #475569 !important; /* slate-700 */
+}
+
+.number-input__field:focus {
+    color: #282828 !important;
+}
+
+.number-input__field:disabled {
+    color: #64748b !important;
     cursor: not-allowed !important;
     opacity: 0.6 !important;
 }
