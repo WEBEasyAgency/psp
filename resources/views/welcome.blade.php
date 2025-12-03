@@ -14,5 +14,10 @@
 <body>
     <!-- Vue App Root -->
     <div id="app"></div>
+
+    {{-- Библиотеки (Swiper и др.) --}}
+    <script src="{{ asset('js/libs.min.js') }}"></script>
+    {{-- app.min.js: обработчики отвязываются в Vue onMounted --}}
+    <script src="{{ asset('js/app.min.js') }}"></script>
 </body>
 </html>

@@ -6,8 +6,8 @@
 	<title>Оформление заказа</title>
 
 	{{-- Стили из layout --}}
-	<link rel="stylesheet" href="{{ asset('css/libs.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
+	<link rel="stylesheet" href="/layout/css/libs.min.css">
+	<link rel="stylesheet" href="/layout/css/app.min.css">
 
 	{{-- Vite для Vue компонентов --}}
 	@vite('resources/js/pages/order.js')
@@ -129,8 +129,9 @@
 	<!-- Footer Vue Component -->
 	<div id="footer-app"></div>
 
-	{{-- Скрипты из layout --}}
+	{{-- Библиотеки (Swiper и др.) --}}
 	<script src="{{ asset('js/libs.min.js') }}"></script>
+	{{-- app.min.js: обработчики отвязываются в Vue onMounted --}}
 	<script src="{{ asset('js/app.min.js') }}"></script>
 	<script>
 	// Обработка формы заказа

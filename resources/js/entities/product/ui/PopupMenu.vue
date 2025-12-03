@@ -76,7 +76,7 @@
                 <div class="mail"><a href="mailto:order@ra-psp.ru">order@ra-psp.ru</a></div>
             </div>
         </div>
-        <div class="catalog-mobile-menu catalog-menu">
+        <div class="catalog-mobile-menu">
             <div class="back">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -185,44 +185,54 @@ const handleClose = () => {
 }
 
 onMounted(() => {
-  // Catalog button click
-  $('.popupmenu .catalog-btn a').on('click', function(e) {
-    e.preventDefault()
-    $(this).parents('.popupmenu').find('.catalog-mobile-menu').slideDown(300)
-  })
+  // КОСТЫЛЬ: Отвязываем обработчики app.min.js и навешиваем свои с задержкой
+  setTimeout(() => {
+    // Отвязываем ВСЕ обработчики из app.min.js
+    $('.burger').off('click')
+    $('.popupmenu .catalog-btn a').off('click')
+    $('.catalog-mobile-menu .back').off('click')
+    $('.catalog-mobile-menu .menu li.parent>a').off('click')
+    $('.catalog-mobile-menu .child .child-back').off('click')
 
-  // Back button to close catalog
-  $('.catalog-mobile-menu .back').on('click', function(e) {
-    e.preventDefault()
-    $(this).parents('.catalog-mobile-menu').slideUp(300)
-  })
+    // Навешиваем СВОИ обработчики
+    // Catalog button click
+    $('.popupmenu .catalog-btn a').on('click', function(e) {
+      e.preventDefault()
+      $(this).parents('.popupmenu').find('.catalog-mobile-menu').slideDown(300)
+    })
 
-  // Parent menu item click - open child
-  $('.catalog-mobile-menu .menu li.parent>a').on('click', function(e) {
-    e.preventDefault()
-    console.log('Parent clicked')
-    $(this).parents('.parent').find('.child').slideDown(300)
-  })
+    // Back button to close catalog
+    $('.catalog-mobile-menu .back').on('click', function(e) {
+      e.preventDefault()
+      $(this).parents('.catalog-mobile-menu').slideUp(300)
+    })
 
-  // Child back button
-  $('.catalog-mobile-menu .child .child-back').on('click', function(e) {
-    e.preventDefault()
-    $(this).parents('.child').slideUp(300)
-  })
+    // Parent menu item click - open child
+    $('.catalog-mobile-menu .menu li.parent>a').on('click', function(e) {
+      e.preventDefault()
+      $(this).parents('.parent').find('.child').fadeIn(300)
+    })
 
-  // Click outside to close
-  $(document).mouseup(function(e) {
-    const $div = $('.popupmenu')
-    const $btn = $('.burger')
-    if (!$div.is(e.target) && !$btn.is(e.target) &&
-        $div.has(e.target).length === 0 && $btn.has(e.target).length === 0) {
-      $div.slideUp(300)
-      $btn.removeClass('active')
-      $('.catalog-mobile-menu .child').hide()
-      $('.catalog-mobile-menu').hide()
-      emit('close')
-    }
-  })
+    // Child back button
+    $('.catalog-mobile-menu .child .child-back').on('click', function(e) {
+      e.preventDefault()
+      $(this).parents('.child').fadeOut(300)
+    })
+
+    // Click outside to close
+    $(document).mouseup(function(e) {
+      const $div = $('.popupmenu')
+      const $btn = $('.burger')
+      if (!$div.is(e.target) && !$btn.is(e.target) &&
+          $div.has(e.target).length === 0 && $btn.has(e.target).length === 0) {
+        $div.slideUp(300)
+        $btn.removeClass('active')
+        $('.catalog-mobile-menu .child').hide()
+        $('.catalog-mobile-menu').hide()
+        emit('close')
+      }
+    })
+  }, 100)
 })
 
 onUnmounted(() => {
@@ -235,6 +245,7 @@ onUnmounted(() => {
 </script>
 
 <style>
+/* Desktop catalog menu styles */
 .catalog-menu .menu li.parent {
   position: relative;
 }
@@ -265,5 +276,41 @@ onUnmounted(() => {
   border-radius: 16px;
   box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
   padding: 16px;
+}
+
+/* Mobile catalog menu styles */
+.catalog-mobile-menu .menu .child {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  z-index: 10;
+}
+
+.catalog-mobile-menu .menu .child .child-back {
+  display: grid;
+  grid-template-columns: 24px auto;
+  padding: 16px 20px;
+  background-color: var(--light-gray);
+  border-radius: 12px;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.catalog-mobile-menu .menu .child .child-back span {
+  text-align: center;
+}
+
+.catalog-mobile-menu .menu .child ul {
+  margin-top: 12px;
+}
+
+.catalog-mobile-menu .menu .child ul li a {
+  display: block;
+  padding: 17px 16px;
+  color: var(--black);
+  border: none;
 }
 </style>

@@ -213,23 +213,33 @@ const toggleMoreMenu = (e) => {
 }
 
 onMounted(() => {
-  // Close popup background on click
-  $('.popup-bg').on('click', function() {
-    $('.btn-catalog').removeClass('active')
-    $('.catalog-menu').fadeOut(300).find('.parent a').removeClass('active')
-    $('.catalog-menu .child').fadeOut(300)
-    $('.popup-bg').fadeOut(300)
-  })
+  // КОСТЫЛЬ: Отвязываем обработчики app.min.js и навешиваем свои с задержкой
+  setTimeout(() => {
+    // Отвязываем ВСЕ обработчики из app.min.js
+    $('.btn-catalog').off('click')
+    $('.more-btn a').off('click')
+    $('.catalog-menu .parent a').off('click')
+    $('.popup-bg').off('click')
 
-  // Close "More" menu on click outside
-  $(document).mouseup(function(e) {
-    const $div = $('.menu .more')
-    const $btn = $('.menu .more-btn a')
-    if (!$div.is(e.target) && !$btn.is(e.target) && $div.has(e.target).length === 0) {
-      $div.fadeOut(300)
-      $btn.removeClass('active')
-    }
-  })
+    // Навешиваем СВОИ обработчики
+    // Close popup background on click
+    $('.popup-bg').on('click', function() {
+      $('.btn-catalog').removeClass('active')
+      $('.catalog-menu').fadeOut(300).find('.parent a').removeClass('active')
+      $('.catalog-menu .child').fadeOut(300)
+      $('.popup-bg').fadeOut(300)
+    })
+
+    // Close "More" menu on click outside
+    $(document).mouseup(function(e) {
+      const $div = $('.menu .more')
+      const $btn = $('.menu .more-btn a')
+      if (!$div.is(e.target) && !$btn.is(e.target) && $div.has(e.target).length === 0) {
+        $div.fadeOut(300)
+        $btn.removeClass('active')
+      }
+    })
+  }, 100)
 })
 
 onUnmounted(() => {
