@@ -197,25 +197,11 @@ onMounted(() => {
     $(this).parents('.catalog-mobile-menu').slideUp(300)
   })
 
-  // Parent menu item hover - show child on mouseenter
-  $('.catalog-mobile-menu .menu li.parent').on('mouseenter', function() {
-    $(this).find('.child').slideDown(300)
-  })
-
-  // Parent menu item hover - hide child on mouseleave
-  $('.catalog-mobile-menu .menu li.parent').on('mouseleave', function() {
-    $(this).find('.child').slideUp(300)
-  })
-
-  // Parent menu item click - open child (for touch devices)
+  // Parent menu item click - open child
   $('.catalog-mobile-menu .menu li.parent>a').on('click', function(e) {
     e.preventDefault()
-    const $child = $(this).parents('.parent').find('.child')
-    if ($child.is(':visible')) {
-      $child.slideUp(300)
-    } else {
-      $child.slideDown(300)
-    }
+    console.log('Parent clicked')
+    $(this).parents('.parent').find('.child').slideDown(300)
   })
 
   // Child back button
@@ -242,13 +228,30 @@ onMounted(() => {
 onUnmounted(() => {
   $('.popupmenu .catalog-btn a').off('click')
   $('.catalog-mobile-menu .back').off('click')
-  $('.catalog-mobile-menu .menu li.parent').off('mouseenter mouseleave')
   $('.catalog-mobile-menu .menu li.parent>a').off('click')
   $('.catalog-mobile-menu .child .child-back').off('click')
   $(document).off('mouseup')
 })
 </script>
 
-<style scoped>
-/* Стили можно добавить здесь, если они специфичны для этого компонента */
+<style>
+.catalog-mobile-menu .menu li.parent {
+  position: relative;
+}
+
+.catalog-mobile-menu .menu li.parent .child {
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+
+.catalog-mobile-menu .menu li.parent .child:hover {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.catalog-mobile-menu .menu li.parent > a:hover ~ .child {
+  opacity: 1;
+  pointer-events: all;
+}
 </style>

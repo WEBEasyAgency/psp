@@ -1,0 +1,1 @@
+.catalog-mobile-menu .menu li.parent{position:relative}.catalog-mobile-menu .menu li.parent .child{opacity:0;pointer-events:none;transition:all .3s}.catalog-mobile-menu .menu li.parent .child:hover{opacity:1;pointer-events:all}.catalog-mobile-menu .menu li.parent>a:hover~.child{opacity:1;pointer-events:all}
