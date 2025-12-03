@@ -63,16 +63,28 @@ BASE_URL="https://psp.realeasystudio.site/backend/api"
 # Get list of calculators
 curl ${BASE_URL}/calcs
 
-# Get calculator parameters
-curl -X POST ${BASE_URL}/1/params \
+# Get calculator parameters (note the /calc/ prefix)
+curl -X POST ${BASE_URL}/calc/146/params \
   -H "Content-Type: application/json" \
   -d '{"db_id": 1, "user": "user", "pass": "password"}'
 
 # Run calculation
-curl -X POST ${BASE_URL}/1/run \
+curl -X POST ${BASE_URL}/calc/146/run \
   -H "Content-Type: application/json" \
-  -d '{"db_id": 1, "user": "user", "pass": "password", "params": [{"id": 54, "variable": "width", "value": 1000}], "mat_select_params": []}'
+  -d '{"db_id": 1, "user": "user", "pass": "password", "params": [{"variable": "w", "type": 1, "value": 1.5}], "mat_select_params": []}'
 ```
+
+**Available Calculator IDs:**
+- **146**: Объемные буквы с бортом из алюминия
+- **155**: Объемные буквы со световым бортом
+- **156**: Пластиковые вывески
+- **157**: Акриловые вывески
+- **158**: Вывески из композита
+- **151**: Стенд из пластика с карманами
+- **154**: Маленькие наклейки
+- **159**: Пластиковые таблички
+- **160**: Акриловые таблички
+- **161**: Таблички из композита
 
 ### Postman Testing
 
@@ -143,20 +155,124 @@ All POST endpoints validate required fields and return 400 errors if missing.
 
 ### Frontend Structure
 
+**Laravel + Vue 3 Application:**
+
 ```
-layout/
-├── index.html           # Static landing page
-├── css/
-│   ├── libs.min.css     # Minified vendor CSS
-│   └── app.min.css      # Minified application CSS
+resources/
 ├── js/
-│   ├── libs.min.js      # Minified vendor JS
-│   └── app.min.js       # Minified application JS
-├── fonts/               # Inter font family (Regular, Medium, Bold)
-└── img/dest/            # Image assets
+│   ├── pages/                    # Page entry points
+│   │   ├── welcome.js            # Welcome page
+│   │   ├── order.js              # Order page
+│   │   ├── thanx.js              # Thank you page
+│   │   ├── product-146.js        # Объемные буквы с бортом из алюминия
+│   │   ├── product-155.js        # Объемные буквы со световым бортом
+│   │   ├── product-156.js        # Пластиковые вывески
+│   │   ├── product-157.js        # Акриловые вывески
+│   │   ├── product-158.js        # Вывески из композита
+│   │   ├── product-151.js        # Стенд из пластика с карманами
+│   │   ├── product-154.js        # Маленькие наклейки
+│   │   ├── product-159.js        # Пластиковые таблички
+│   │   ├── product-160.js        # Акриловые таблички
+│   │   └── product-161.js        # Таблички из композита
+│   ├── widgets/product/calculators/  # Calculator Vue components
+│   │   ├── Calc146.vue           # Объемные буквы с бортом
+│   │   ├── Calc155.vue           # Объемные буквы со световым бортом
+│   │   ├── Calc156.vue           # Пластиковые вывески
+│   │   ├── Calc157.vue           # Акриловые вывески
+│   │   ├── Calc158.vue           # Композитные вывески
+│   │   ├── Calc151.vue           # Стенд с карманами
+│   │   ├── Calc154.vue           # Наклейки
+│   │   ├── Calc159.vue           # Пластиковые таблички
+│   │   ├── Calc160.vue           # Акриловые таблички
+│   │   └── Calc161.vue           # Композитные таблички
+│   ├── entities/product/ui/      # Shared product page components
+│   │   ├── Header.vue            # Navigation header
+│   │   ├── Footer.vue            # Footer
+│   │   ├── TechnologyAdvantages.vue
+│   │   ├── InstallationCases.vue # Image slider with installation examples
+│   │   ├── Faq.vue
+│   │   ├── SeoBlock.vue
+│   │   ├── Feedback.vue
+│   │   └── PopupMenu.vue
+│   ├── shared/ui/                # Reusable UI components
+│   │   ├── NumberInput.vue
+│   │   ├── FilterButtons.vue
+│   │   ├── ToggleSwitch.vue
+│   │   ├── RadioGroup.vue
+│   │   └── Button.vue
+│   └── main.css                  # Global styles
+├── views/
+│   ├── welcome.blade.php         # Welcome page template
+│   ├── order.blade.php           # Order page template
+│   ├── thanx.blade.php           # Thank you page template
+│   └── product.blade.php         # Generic product/calculator template
+└── css/
+    ├── app.css
+    └── product.css
+
+routes/
+└── web.php                       # Route definitions with calculator metadata
+
+public/
+├── build/                        # Vite compiled assets (auto-generated)
+└── img/
+    ├── Контент/Контент/          # Product images organized by category
+    │   ├── 1а Объемные буквы с бортом из алюминия/
+    │   ├── 1б Объемные буквы со световым бортом/
+    │   ├── 2а Пластиковые вывески/
+    │   ├── 2б Акриловые вывески/
+    │   ├── 2в Плоские вывески из композита/
+    │   ├── 3а Стенд из пластика с карманами/
+    │   ├── 4а Маленькие наклейки с резкой/
+    │   ├── 5а Пластиковые таблички/
+    │   ├── 5б Акриловые таблички/
+    │   ├── 5в Таблички из композита/
+    │   ├── 6а Баннер с люверсами/
+    │   ├── 7а Режим работы акриловый Премиум/
+    │   ├── 7б Режим работы пластиковый/
+    │   └── 7в Режим работы (наклейка)/
+    └── dest/                     # General assets
+
+layout/                           # Legacy static site (still accessible)
+├── index-new.html                # Current static homepage (temporary redirect)
+├── css/, js/, fonts/, img/       # Static assets
 ```
 
-Frontend is a simple static site - no build process required.
+**Key Frontend Concepts:**
+
+1. **Calculator Architecture**: Each calculator (146-161) has:
+   - Dedicated Vue component (`Calc{ID}.vue`) with business logic
+   - Dedicated entry point (`product-{ID}.js`) for Vite
+   - Route definition in `routes/web.php` with title and image gallery
+   - All share the same Blade template (`product.blade.php`)
+
+2. **Calculator Component Structure**:
+   ```javascript
+   // Each Calc component follows this pattern:
+   - Reactive data for form inputs
+   - API call to /backend/api/calc/{ID}/params for field definitions
+   - API call to /backend/api/calc/{ID}/run for price calculation
+   - Type mapping: 1=numeric, 2=boolean, 5=select/options
+   ```
+
+3. **Image Path Convention**: All images must use absolute paths starting with `/img/...`
+   - Correct: `:src="'/img/Контент/Контент/...'"`
+   - Incorrect: `:src="'img/Контент/Контент/...'"` (relative path fails)
+
+4. **Symlink Structure**: `deploy.sh` creates symlinks from root to `public/` directory:
+   ```bash
+   img -> public/img
+   css -> public/css
+   js -> public/js
+   fonts -> public/fonts
+   build -> public/build
+   ```
+
+5. **Build Process**:
+   - Run `npm run build` locally before deployment
+   - Vite generates hashed assets in `public/build/`
+   - Commit built assets to git for deployment
+   - GitHub Actions auto-deploys on push to main
 
 ## Deployment
 
@@ -351,15 +467,64 @@ PHPUnit test suite is located in `backend/tests/`:
 
 Run tests from `backend/` directory using `vendor/bin/phpunit`.
 
+## Current Project Status
+
+**Live Pages:**
+- https://psp.realeaststudio.site/ → Redirects to `/layout/index-new.html` (temporary)
+- https://psp.realeasystudio.site/product/146 - Объемные буквы с бортом из алюминия
+- https://psp.realeasystudio.site/product/155 - Объемные буквы со световым бортом
+- https://psp.realeasystudio.site/product/156 - Пластиковые вывески
+- https://psp.realeasystudio.site/product/157 - Акриловые вывески
+- https://psp.realeasystudio.site/product/158 - Вывески из композита
+- https://psp.realeasystudio.site/product/151 - Стенд из пластика с карманами
+- https://psp.realeasystudio.site/product/154 - Маленькие наклейки
+- https://psp.realeasystudio.site/product/159 - Пластиковые таблички
+- https://psp.realeasystudio.site/product/160 - Акриловые таблички
+- https://psp.realeasystudio.site/product/161 - Таблички из композита
+- https://psp.realeasystudio.site/order - Order page
+- https://psp.realeaststudio.site/thanx - Thank you page
+
+**Deployment:**
+- GitHub Actions configured for automatic deployment on push to main
+- Builds frontend assets and triggers `deploy.sh` on server
+- All images served via symlink structure from `public/img/`
+
 ## Migration Status & Future Plans
 
 **Completed:**
 - ✅ Real API integration via Guzzle HTTP client (`ApiClient` class)
 - ✅ Dual-mode system (mock/real) with runtime switching
 - ✅ PHPUnit test coverage for core components
+- ✅ 10 calculator pages implemented with Vue 3 components
+- ✅ Image galleries configured for all calculator pages
+- ✅ InstallationCases slider with category-based images
+- ✅ Order and Thank You pages
+- ✅ Automated deployment via GitHub Actions
 
 **Planned:**
-1. Laravel framework migration (routes → `routes/api.php`, classes → controllers)
-2. Database persistence for caching/logging
-3. Authentication layer (Laravel Sanctum for API tokens)
-4. Request/response logging system
+1. Replace temporary homepage redirect with permanent Vue-based homepage
+2. Laravel framework migration (routes → `routes/api.php`, classes → controllers)
+3. Database persistence for caching/logging
+4. Authentication layer (Laravel Sanctum for API tokens)
+5. Request/response logging system
+
+## Common Issues & Solutions
+
+**Issue: Images not loading (404 errors)**
+- **Cause**: Relative paths (`img/...`) instead of absolute paths (`/img/...`)
+- **Solution**: Always use absolute paths starting with `/` in Vue templates
+- **Check**: `deploy.sh` creates correct symlinks: `img -> public/img`
+
+**Issue: Calculator not fetching parameters**
+- **Cause**: Wrong API endpoint format (missing `/calc/` prefix)
+- **Solution**: Use `/backend/api/calc/{ID}/params` not `/backend/api/{ID}/params`
+
+**Issue: Changes not appearing on live site**
+- **Cause**: Frontend assets not rebuilt or GitHub Actions failed
+- **Solution**: Run `npm run build` locally, commit `public/build/`, and push
+- **Verify**: Check GitHub Actions workflow status
+
+**Issue: Symlinks broken after deployment**
+- **Cause**: Recursive symlinks or incorrect symlink direction
+- **Solution**: `deploy.sh` removes old symlinks and creates fresh ones
+- **Command**: `ssh ... 'bash deploy.sh'` to manually trigger
