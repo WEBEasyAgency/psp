@@ -312,8 +312,12 @@
 
     /* FAQ Item & Interactive Elements */
     .faq__item {
-        @apply self-stretch px-4 lg:px-8 py-4 lg:py-6 rounded-3xl bg-white outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col justify-start items-start gap-4;
+        @apply self-stretch px-4 lg:px-8 py-4 lg:py-6 rounded-3xl bg-white outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col justify-start items-start gap-4 hover:bg-[#e6eef8];
         transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    }
+    .faq__item:hover {
+        background: linear-gradient(267deg, rgba(193, 205, 217, 0.44) -0.89%, rgba(235, 240, 244, 0.44) 97.9%);
     }
 
     .faq__summary {
@@ -354,11 +358,11 @@
         padding-top: 0.625rem; /* gap-2.5 equivalent roughly, adding top padding here for spacing */
     }
 
-    /* Remove gap from parent when closed to prevent jumpiness, or handle spacing differently. 
+    /* Remove gap from parent when closed to prevent jumpiness, or handle spacing differently.
        Original flex gap-4 handled spacing between summary and answer.
        When closed, answer height is 0, but gap might remain if not handled.
        The .faq__item has flex gap-4. If answer-wrapper is 0 height, gap still exists if it has children?
-       Actually, if wrapper is 0 height, gap appears visually. 
+       Actually, if wrapper is 0 height, gap appears visually.
        Let's remove gap from .faq__item and use margin on the wrapper or padding inside.
     */
     .faq__item {
@@ -478,4 +482,3 @@
         @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-2;
     }
 }
-    

@@ -100,16 +100,18 @@ const nextImage = () => {
 }
 
 .image-gallery__thumbnail {
-  @apply rounded-lg flex-1 min-w-0 overflow-hidden; /* flex-1 for equal width */
+  @apply rounded-lg overflow-hidden;
   @apply opacity-50 cursor-pointer transition-opacity;
-  @apply h-[73px] flex items-center justify-center;
+  @apply w-12 h-[33px] flex-shrink-0; /* Фиксированные размеры превью */
+  @apply inline-flex flex-col justify-start items-start;
 }
 
 .image-gallery__thumbnail--active {
   @apply !opacity-100;
+  @apply outline outline-[3px] outline-offset-[-3px] outline-[#f6f6f6];
 }
 
 .image-gallery__thumbnail-image {
-  @apply w-full h-full object-cover; /* Image fills container, covers any extra space */
+  @apply w-full h-full object-cover;
 }
 </style>

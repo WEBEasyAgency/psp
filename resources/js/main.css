@@ -316,6 +316,12 @@
         transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    .faq__item:hover {
+        background: linear-gradient(267deg, rgba(193, 205, 217, 0.44) -0.89%, rgba(235, 240, 244, 0.44) 97.9%);
+    }
+    .is-open.faq__item:hover {
+        background: linear-gradient(267deg, rgba(235, 240, 244, 0.44) -0.89%, rgba(193, 205, 217, 0.44) 97.9%);
+    }
     .faq__summary {
         @apply self-stretch inline-flex justify-start items-center gap-4 cursor-pointer select-none;
     }
@@ -337,6 +343,8 @@
         @apply flex-1 justify-start text-[#170f49] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
     }
 
+
+
     /* Smooth Grid Animation */
     .faq__answer-wrapper {
         display: grid;
@@ -354,11 +362,11 @@
         padding-top: 0.625rem; /* gap-2.5 equivalent roughly, adding top padding here for spacing */
     }
 
-    /* Remove gap from parent when closed to prevent jumpiness, or handle spacing differently. 
+    /* Remove gap from parent when closed to prevent jumpiness, or handle spacing differently.
        Original flex gap-4 handled spacing between summary and answer.
        When closed, answer height is 0, but gap might remain if not handled.
        The .faq__item has flex gap-4. If answer-wrapper is 0 height, gap still exists if it has children?
-       Actually, if wrapper is 0 height, gap appears visually. 
+       Actually, if wrapper is 0 height, gap appears visually.
        Let's remove gap from .faq__item and use margin on the wrapper or padding inside.
     */
     .faq__item {
@@ -389,6 +397,9 @@
 
     .faq__item.is-open .faq__icon {
         @apply bg-[#3c7bbb];
+    }
+    .faq__item.is-open:hover .faq__icon {
+        @apply bg-[#244D80];
     }
 
     .faq__item.is-open .faq__icon svg {
@@ -479,7 +490,6 @@
     }
 
     /* Calculator Component Styles */
-
     /* Calculator background - mobile version */
     @media screen and (max-width: 767.9px) {
         .calculator {
@@ -633,4 +643,3 @@
         @apply cursor-not-allowed;
     }
 }
-    
