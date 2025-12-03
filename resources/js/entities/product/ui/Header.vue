@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="catalog-btn">
-                    <a href="#" class="btn btn-catalog" @click.prevent="toggleCatalog">
+                    <a href="#" class="btn btn-catalog" :class="{ active: isCatalogOpen }" @click.prevent="toggleCatalog">
 							<span class="b-catalog">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M5 17H13M5 12H19M5 7H13" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -97,7 +97,7 @@
                             <li><a href="/product/159">Таблички</a></li>
                             <li><a href="#">Баннеры</a></li>
                             <li class="more-btn">
-                                <a href="#" @click.prevent="toggleMoreMenu">
+                                <a href="#" :class="{ active: isMoreMenuOpen }" @click.prevent="toggleMoreMenu">
                                     Еще
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17 12C17 12.5523 17.4477 13 18 13C18.5523 13 19 12.5523 19 12C19 11.4477 18.5523 11 18 11C17.4477 11 17 11.4477 17 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -143,7 +143,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="burger" @click="toggleBurgerMenu">
+                <div class="burger" :class="{ active: isBurgerOpen }" @click="toggleBurgerMenu">
                     <span class="normal" v-show="!isBurgerOpen">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 5.67578C3 5.26157 3.33579 4.92578 3.75 4.92578H20.25C20.6642 4.92578 21 5.26157 21 5.67578C21 6.08999 20.6642 6.42578 20.25 6.42578H3.75C3.33579 6.42578 3 6.08999 3 5.67578Z" fill="#2C619D"/>
@@ -165,7 +165,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 // Reactive state
 const isCatalogOpen = ref(false)
@@ -190,6 +190,24 @@ const toggleMoreMenu = () => {
 const toggleBurgerMenu = () => {
   isBurgerOpen.value = !isBurgerOpen.value
 }
+
+// Close menu on click outside
+const handleClickOutside = (e) => {
+  // Close "More" menu
+  const moreMenu = document.querySelector('.menu .more')
+  const moreBtn = document.querySelector('.menu .more-btn a')
+  if (moreMenu && moreBtn && !moreMenu.contains(e.target) && !moreBtn.contains(e.target)) {
+    isMoreMenuOpen.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('mouseup', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('mouseup', handleClickOutside)
+})
 
 // Icon handlers (placeholder for future implementation)
 const handleAccountClick = () => {
