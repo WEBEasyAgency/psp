@@ -83,19 +83,17 @@ const selectOption = (value) => {
 }
 
 .filter-buttons__button {
-  @apply h-7 px-2 py-1 rounded-lg flex items-center justify-center gap-1 transition-colors;
-  @apply bg-[#f6f6f6] text-[#1e3552];
+  @apply h-7 px-2 py-1 rounded-lg flex items-center justify-center gap-1;
+  /* Цвета управляются глобально из calculator.css */
 }
 
 @media (min-width: 1280px) {
   .filter-buttons__button {
-    @apply h-11 px-4.5 py-2;
+    @apply h-11 px-4 py-2;
   }
 }
 
-.filter-buttons__button--active {
-  @apply bg-[#3c7bbb] text-white;
-}
+/* Состояния кнопок управляются глобально из calculator.css */
 
 .filter-buttons__button-text {
   @apply text-[13px] leading-[18.20px];
