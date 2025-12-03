@@ -4,7 +4,7 @@
         <div class="header-inner">
             <div class="flex">
                 <div class="logo-block">
-                    <div class="logo"><a href="#"><img src="/img/dest/logo.svg" alt=""></a></div>
+                    <div class="logo"><a href="/"><img src="/img/dest/logo.svg" alt=""></a></div>
                     <div class="city">
                         <a href="#">
                             <span>Самара</span>

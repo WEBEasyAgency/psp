@@ -70,76 +70,75 @@ const constructionTypes = [
     name: 'Несветовые вывески',
     image: '/img/dest/type1.jpg',
     links: [
-      { text: 'Вывеска из ПВХ-пластика', url: '#' },
-      { text: 'Вывеска из алюминиевого композита', url: '#' },
-      { text: 'Вывеска из оргстекла', url: '#' }
+      { text: 'Вывеска из ПВХ-пластика', url: '/product/156' },
+      { text: 'Вывеска из алюминиевого композита', url: '/product/158' },
+      { text: 'Вывеска из оргстекла', url: '/product/157' }
     ]
   },
   {
     name: 'Режим работы',
     image: '/img/dest/type2.jpg',
     links: [
-      { text: 'Вывеска из ПВХ-пластика', url: '#' },
-      { text: 'Вывеска из алюминиевого композита', url: '#' }
+      { text: 'Режим работы (скоро)', url: '#' }
     ]
   },
   {
     name: 'Таблички',
     image: '/img/dest/type3.jpg',
     links: [
-      { text: 'Вывеска из ПВХ-пластика', url: '#' },
-      { text: 'Вывеска из алюминиевого композита', url: '#' },
-      { text: 'Вывеска из оргстекла', url: '#' }
+      { text: 'Пластиковые таблички', url: '/product/159' },
+      { text: 'Акриловые таблички', url: '/product/160' },
+      { text: 'Таблички из композита', url: '/product/161' }
     ]
   },
   {
     name: 'Баннеры',
     image: '/img/dest/type4.jpg',
     links: [
-      { text: 'Вывеска из ПВХ-пластика', url: '#' },
-      { text: 'Вывеска из алюминиевого композита', url: '#' }
+      { text: 'Баннеры (скоро)', url: '#' }
     ]
   },
   {
     name: 'Наклейки',
     image: '/img/dest/type5.jpg',
     links: [
-      { text: 'Все наклейки', url: '#' }
+      { text: 'Маленькие наклейки', url: '/product/154' }
     ]
   },
   {
     name: 'Постеры',
     image: '/img/dest/type6.jpg',
     links: [
-      { text: 'Все постеры', url: '#' }
+      { text: 'Постеры (скоро)', url: '#' }
     ]
   },
   {
     name: 'Объемные буквы',
     image: '/img/dest/type7.jpg',
     links: [
-      { text: 'Все объемные буквы', url: '#' }
+      { text: 'С бортом из алюминия', url: '/product/146' },
+      { text: 'Со световым бортом', url: '/product/155' }
     ]
   },
   {
     name: 'Флаги',
     image: '/img/dest/type8.jpg',
     links: [
-      { text: 'Все флаги', url: '#' }
+      { text: 'Флаги (скоро)', url: '#' }
     ]
   },
   {
     name: 'Роллапы',
     image: '/img/dest/type9.jpg',
     links: [
-      { text: 'Все роллапы', url: '#' }
+      { text: 'Роллапы (скоро)', url: '#' }
     ]
   },
   {
     name: 'Виндеры',
     image: '/img/dest/type10.jpg',
     links: [
-      { text: 'Все виндеры', url: '#' }
+      { text: 'Виндеры (скоро)', url: '#' }
     ]
   }
 ]
