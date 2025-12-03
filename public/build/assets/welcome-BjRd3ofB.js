@@ -1,0 +1,1 @@
+import{A as e,y as a,z as t}from"./main-dUce44l8.js";import{F as o,I as s}from"./InstallationCases-D1cTMD82.js";document.getElementById("header-app")&&e(a).mount("#header-app");document.getElementById("footer-app")&&e(t).mount("#footer-app");document.getElementById("feedback-app")&&e(o).mount("#feedback-app");document.getElementById("cases-app")&&e(s).mount("#cases-app");

@@ -238,6 +238,39 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
-/* Стили можно добавить здесь, если они специфичны для этого компонента */
+<style>
+header .header-inner .catalog-btn .catalog-menu ul li.parent {
+  position: relative;
+}
+
+header .header-inner .catalog-btn .catalog-menu ul li.parent .child {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: all 0.3s;
+  left: 100%;
+  top: -16px;
+  padding-left: 24px;
+}
+
+header .header-inner .catalog-btn .catalog-menu ul li.parent .child:hover {
+  display: block;
+  opacity: 1;
+  pointer-events: all;
+}
+
+header .header-inner .catalog-btn .catalog-menu ul li.parent > a:hover ~ .child {
+  display: block;
+  opacity: 1;
+  pointer-events: all;
+}
+
+header .header-inner .catalog-btn .catalog-menu ul li.parent .child ul {
+  width: 343px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
+  padding: 16px;
+}
 </style>
