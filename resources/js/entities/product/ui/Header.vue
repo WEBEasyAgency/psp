@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="catalog-btn">
-                    <a href="#" class="btn btn-catalog" @click="toggleCatalog">
+                    <a href="#" class="btn btn-catalog">
 							<span class="b-catalog">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M5 17H13M5 12H19M5 7H13" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -34,9 +34,9 @@
                                 <a href="#">Вывески</a>
                                 <div class="child">
                                     <ul>
-                                        <li><a href="/product/156">Вывеска из ПВХ-пластика</a></li>
-                                        <li><a href="/product/158">Вывеска из алюминиевого композита</a></li>
-                                        <li><a href="/product/157">Вывеска из оргстекла</a></li>
+                                        <li><a href="/product/156" @click="handleLinkClick">Вывеска из ПВХ-пластика</a></li>
+                                        <li><a href="/product/158" @click="handleLinkClick">Вывеска из алюминиевого композита</a></li>
+                                        <li><a href="/product/157" @click="handleLinkClick">Вывеска из оргстекла</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -44,8 +44,8 @@
                                 <a href="#">Объемные буквы</a>
                                 <div class="child">
                                     <ul>
-                                        <li class="li"><a href="/product/146">С бортом из алюминия</a></li>
-                                        <li class="li"><a href="/product/155">Со световым бортом</a></li>
+                                        <li class="li"><a href="/product/146" @click="handleLinkClick">С бортом из алюминия</a></li>
+                                        <li class="li"><a href="/product/155" @click="handleLinkClick">Со световым бортом</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -53,9 +53,9 @@
                                 <a href="#">Стенды</a>
                                 <div class="child">
                                     <ul>
-                                        <li><a href="/product/151">Стенд из пластика с карманами</a></li>
-                                        <li><a href="#">Стенд из алюминиевого композита</a></li>
-                                        <li><a href="#">Стенд из оргстекла</a></li>
+                                        <li><a href="/product/151" @click="handleLinkClick">Стенд из пластика с карманами</a></li>
+                                        <li><a href="#" @click="handleLinkClick">Стенд из алюминиевого композита</a></li>
+                                        <li><a href="#" @click="handleLinkClick">Стенд из оргстекла</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -63,9 +63,9 @@
                                 <a href="#">Таблички</a>
                                 <div class="child">
                                     <ul>
-                                        <li><a href="/product/159">Пластиковые таблички</a></li>
-                                        <li><a href="/product/160">Акриловые таблички</a></li>
-                                        <li><a href="/product/161">Таблички из композита</a></li>
+                                        <li><a href="/product/159" @click="handleLinkClick">Пластиковые таблички</a></li>
+                                        <li><a href="/product/160" @click="handleLinkClick">Акриловые таблички</a></li>
+                                        <li><a href="/product/161" @click="handleLinkClick">Таблички из композита</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -73,8 +73,8 @@
                                 <a href="#">Баннеры</a>
                                 <div class="child">
                                     <ul>
-                                        <li class="li"><a href="#">Баннер с люверсами</a></li>
-                                        <li class="li"><a href="#">Баннер на раме</a></li>
+                                        <li class="li"><a href="#" @click="handleLinkClick">Баннер с люверсами</a></li>
+                                        <li class="li"><a href="#" @click="handleLinkClick">Баннер на раме</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -164,97 +164,25 @@
 import { onMounted, onUnmounted } from 'vue'
 import $ from 'jquery'
 
-// Define emits
-const emit = defineEmits(['toggle-burger'])
-
-// Burger menu toggle - emit event to parent
-const toggleBurgerMenu = () => {
-  emit('toggle-burger')
-}
-
-// Icon handlers (placeholder for future implementation)
-const handleAccountClick = () => {
-  console.log('Account clicked')
-  // TODO: Open account modal or navigate to account page
-}
-
-const handleSearchClick = () => {
-  console.log('Search clicked')
-  // TODO: Open search modal or navigate to search page
-}
-
-const handleCartClick = () => {
-  console.log('Cart clicked')
-  // TODO: Open cart modal or navigate to cart page
-}
-
-// Catalog menu toggle (jQuery implementation from original)
-const toggleCatalog = (e) => {
+// Link click handler - программный переход
+const handleLinkClick = (e) => {
   e.preventDefault()
-  const $btn = $(e.currentTarget)
-  if ($btn.hasClass('active')) {
-    $btn.removeClass('active').parents('.catalog-btn').find('.catalog-menu').fadeOut(300)
-    $('.popup-bg').fadeOut(300)
-  } else {
-    $btn.addClass('active').parents('.catalog-btn').find('.catalog-menu').fadeIn(300)
-    $('.popup-bg').fadeIn(300)
+  e.stopImmediatePropagation()
+  const href = e.currentTarget.getAttribute('href')
+  if (href && href !== '#') {
+    window.location.href = href
   }
 }
 
-// More menu toggle (jQuery implementation from original)
-const toggleMoreMenu = (e) => {
-  e.preventDefault()
-  const $btn = $(e.currentTarget)
-  if ($btn.hasClass('active')) {
-    $btn.removeClass('active').parents('.menu').find('.more').fadeOut(300)
-  } else {
-    $btn.addClass('active').parents('.menu').find('.more').fadeIn(300)
-  }
-}
-
-onMounted(() => {
-  // КОСТЫЛЬ: Отвязываем обработчики app.min.js и навешиваем свои с задержкой
-  setTimeout(() => {
-    // Отвязываем ВСЕ обработчики из app.min.js
-    $('.btn-catalog').off('click')
-    $('.more-btn a').off('click')
-    $('.catalog-menu .parent a').off('click')
-    $('.popup-bg').off('click')
-
-    // Навешиваем СВОИ обработчики
-    // Close popup background on click
-    $('.popup-bg').on('click', function() {
-      $('.btn-catalog').removeClass('active')
-      $('.catalog-menu').fadeOut(300).find('.parent a').removeClass('active')
-      $('.catalog-menu .child').fadeOut(300)
-      $('.popup-bg').fadeOut(300)
-    })
-
-    // Close "More" menu on click outside
-    $(document).mouseup(function(e) {
-      const $div = $('.menu .more')
-      const $btn = $('.menu .more-btn a')
-      if (!$div.is(e.target) && !$btn.is(e.target) && $div.has(e.target).length === 0) {
-        $div.fadeOut(300)
-        $btn.removeClass('active')
-      }
-    })
-  }, 100)
-})
-
-onUnmounted(() => {
-  $('.popup-bg').off('click')
-  $(document).off('mouseup')
-})
 </script>
 
-<style>
-header .header-inner .catalog-btn .catalog-menu ul li.parent {
+<style scoped>
+/* Стили для hover на child menu - копия из layout/css/main.scss строки 186-207 */
+.catalog-btn .catalog-menu ul li.parent {
   position: relative;
 }
 
-header .header-inner .catalog-btn .catalog-menu ul li.parent .child {
-  display: block;
+.catalog-btn .catalog-menu ul li.parent .child {
   opacity: 0;
   pointer-events: none;
   position: absolute;
@@ -264,19 +192,17 @@ header .header-inner .catalog-btn .catalog-menu ul li.parent .child {
   padding-left: 24px;
 }
 
-header .header-inner .catalog-btn .catalog-menu ul li.parent .child:hover {
-  display: block;
+.catalog-btn .catalog-menu ul li.parent .child:hover {
   opacity: 1;
   pointer-events: all;
 }
 
-header .header-inner .catalog-btn .catalog-menu ul li.parent > a:hover ~ .child {
-  display: block;
+.catalog-btn .catalog-menu ul li.parent > a:hover ~ .child {
   opacity: 1;
   pointer-events: all;
 }
 
-header .header-inner .catalog-btn .catalog-menu ul li.parent .child ul {
+.catalog-btn .catalog-menu ul li.parent .child ul {
   width: 343px;
   background-color: #ffffff;
   border-radius: 16px;

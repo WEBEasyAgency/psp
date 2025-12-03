@@ -185,7 +185,7 @@ const handleClose = () => {
 }
 
 onMounted(() => {
-  // КОСТЫЛЬ: Отвязываем обработчики app.min.js и навешиваем свои с задержкой
+  // КОСТЫЛЬ: Ждём пока $(document).ready() в app.min.js точно выполнится
   setTimeout(() => {
     // Отвязываем ВСЕ обработчики из app.min.js
     $('.burger').off('click')
