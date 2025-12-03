@@ -76,7 +76,7 @@
                 <div class="mail"><a href="mailto:order@ra-psp.ru">order@ra-psp.ru</a></div>
             </div>
         </div>
-        <div class="catalog-mobile-menu">
+        <div class="catalog-mobile-menu catalog-menu">
             <div class="back">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
