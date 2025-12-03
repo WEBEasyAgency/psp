@@ -1,59 +1,201 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PSP Calc - Online Calculator Services
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel 12 + Vue 3 приложение для онлайн-калькуляторов печатной продукции.
 
-## About Laravel
+🌐 **Production:** https://psp.realeasystudio.site/
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Требования
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **PHP 8.1+** (рекомендуется 8.4)
+- **Composer 2.0+**
+- **Node.js 20+** и npm
+- **Git**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Быстрый старт
 
-## Learning Laravel
+### 1. Клонирование репозитория
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+```bash
+git clone https://github.com/WEBEasyAgency/psp.git
+cd psp
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Установка зависимостей
 
-## Laravel Sponsors
+```bash
+# PHP зависимости
+composer install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Node.js зависимости
+npm install
+```
 
-### Premium Partners
+### 3. Настройка окружения
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+# Копировать .env файл
+cp .env.example .env
 
-## Contributing
+# Сгенерировать ключ приложения
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Запуск development серверов
 
-## Code of Conduct
+**Важно:** Нужно запустить **два сервера одновременно** в разных терминалах.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Терминал 1 - Laravel сервер:**
+```bash
+php artisan serve
+```
+Доступен на: http://localhost:8000
 
-## Security Vulnerabilities
+**Терминал 2 - Vite dev server (Hot Module Replacement):**
+```bash
+npm run dev
+```
+Работает на: http://localhost:5173 (автоматически подключается к Laravel)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Открыть приложение
 
-## License
+Открой в браузере: **http://localhost:8000**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Доступные страницы
+
+### Калькуляторы
+- http://localhost:8000/product/146 - Объемные буквы с бортом из алюминия
+- http://localhost:8000/product/155 - Объемные буквы со световым бортом
+- http://localhost:8000/product/156 - Пластиковые вывески
+- http://localhost:8000/product/157 - Акриловые вывески
+- http://localhost:8000/product/158 - Вывески из композита
+- http://localhost:8000/product/151 - Стенд из пластика с карманами
+- http://localhost:8000/product/154 - Маленькие наклейки
+- http://localhost:8000/product/159 - Пластиковые таблички
+- http://localhost:8000/product/160 - Акриловые таблички
+- http://localhost:8000/product/161 - Таблички из композита
+
+### Другие страницы
+- http://localhost:8000/order - Страница заказа
+- http://localhost:8000/thanx - Страница благодарности
+- http://localhost:8000/ - Главная (временный редирект на /layout/index-new.html)
+
+## Структура проекта
+
+```
+psp/
+├── resources/
+│   ├── js/
+│   │   ├── pages/              # Entry points для каждой страницы
+│   │   ├── widgets/product/calculators/  # Vue компоненты калькуляторов
+│   │   ├── entities/product/ui/  # Общие компоненты страниц
+│   │   └── shared/ui/          # Переиспользуемые UI компоненты
+│   └── views/                  # Blade шаблоны
+├── routes/
+│   └── web.php                 # Определения роутов
+├── public/
+│   ├── build/                  # Скомпилированные Vite assets
+│   └── img/                    # Изображения продуктов
+└── backend/
+    └── api/                    # Legacy PHP API (прокси к внешнему API)
+```
+
+## Разработка
+
+### Hot Module Replacement (HMR)
+
+При работающем Vite dev server (`npm run dev`) любые изменения в Vue компонентах автоматически отображаются в браузере без перезагрузки страницы.
+
+**Пример workflow:**
+1. Открой http://localhost:8000/product/146
+2. Измени `resources/js/widgets/product/calculators/Calc146.vue`
+3. Сохрани файл
+4. Изменения мгновенно применятся в браузере
+
+### Сборка для продакшена
+
+```bash
+npm run build
+```
+
+Собранные assets будут в `public/build/` и готовы к деплою.
+
+## API
+
+Калькуляторы взаимодействуют с backend API:
+
+- **GET** `/backend/api/calcs` - Список калькуляторов
+- **POST** `/backend/api/calc/{id}/params` - Параметры калькулятора
+- **POST** `/backend/api/calc/{id}/run` - Расчет стоимости
+
+**Пример запроса:**
+```bash
+curl -X POST "http://localhost:8000/backend/api/calc/146/params" \
+  -H "Content-Type: application/json" \
+  -d '{"db_id": 1, "user": "user", "pass": "password"}'
+```
+
+## Деплой
+
+Проект автоматически деплоится через **GitHub Actions** при push в ветку `main`.
+
+Деплой включает:
+1. Сборку frontend assets (`npm run build`)
+2. Коммит собранных файлов
+3. SSH подключение к серверу
+4. Выполнение `deploy.sh` на production сервере
+
+## Troubleshooting
+
+### Ошибка "could not find driver (Connection: sqlite)"
+
+Это означает, что в системных переменных окружения установлены старые значения.
+
+**Решение:**
+```bash
+unset SESSION_DRIVER CACHE_STORE DB_CONNECTION
+php artisan serve
+```
+
+Или перезапусти терминал.
+
+### Vite dev server не подключается
+
+Убедись что:
+1. `npm run dev` запущен и показывает "ready"
+2. В консоли браузера нет ошибок подключения к localhost:5173
+3. Оба сервера (Laravel и Vite) работают одновременно
+
+### Изменения не применяются
+
+Попробуй:
+```bash
+# Очистить Laravel кеши
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+
+# Пересобрать Vite
+npm run build
+```
+
+## Технологии
+
+- **Backend:** Laravel 12, PHP 8.4
+- **Frontend:** Vue 3 (Composition API), Vite 7
+- **Styling:** Tailwind CSS, Custom CSS
+- **API Client:** Fetch API
+- **Deployment:** GitHub Actions, BeGet Hosting
+
+## Документация
+
+Подробная документация доступна в [CLAUDE.md](CLAUDE.md) - включает:
+- Архитектуру приложения
+- Структуру калькуляторов
+- Конфигурацию деплоя
+- API спецификацию
+- Частые проблемы и решения
+
+## Лицензия
+
+Proprietary - все права защищены.
