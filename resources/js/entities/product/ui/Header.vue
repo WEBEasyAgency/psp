@@ -28,7 +28,7 @@
 								</svg>
 							</span>
                     </a>
-                    <div class="catalog-menu" :class="{ active: isCatalogOpen }">
+                    <div class="catalog-menu" v-show="isCatalogOpen">
                         <ul>
                             <li class="parent">
                                 <a href="#">Вывески</a>
@@ -85,7 +85,7 @@
                             <li><a href="#">Режим работы</a></li>
                         </ul>
                     </div>
-                    <div class="popup-bg" :class="{ active: isCatalogOpen }" @click="closeCatalog"></div>
+                    <div class="popup-bg" v-show="isCatalogOpen" @click="closeCatalog"></div>
                 </div>
                 <div class="menu">
                     <nav>
@@ -107,7 +107,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <ul class="more" :class="{ active: isMoreMenuOpen }">
+                        <ul class="more" v-show="isMoreMenuOpen">
                             <li><a href="#">Роллапы</a></li>
                             <li><a href="#">Виндеры</a></li>
                             <li><a href="#">Режим работы</a></li>
