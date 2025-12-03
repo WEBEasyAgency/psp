@@ -197,10 +197,25 @@ onMounted(() => {
     $(this).parents('.catalog-mobile-menu').slideUp(300)
   })
 
-  // Parent menu item click - open child
+  // Parent menu item hover - show child on mouseenter
+  $('.catalog-mobile-menu .menu li.parent').on('mouseenter', function() {
+    $(this).find('.child').slideDown(300)
+  })
+
+  // Parent menu item hover - hide child on mouseleave
+  $('.catalog-mobile-menu .menu li.parent').on('mouseleave', function() {
+    $(this).find('.child').slideUp(300)
+  })
+
+  // Parent menu item click - open child (for touch devices)
   $('.catalog-mobile-menu .menu li.parent>a').on('click', function(e) {
     e.preventDefault()
-    $(this).parents('.parent').find('.child').slideDown(300)
+    const $child = $(this).parents('.parent').find('.child')
+    if ($child.is(':visible')) {
+      $child.slideUp(300)
+    } else {
+      $child.slideDown(300)
+    }
   })
 
   // Child back button
@@ -227,6 +242,7 @@ onMounted(() => {
 onUnmounted(() => {
   $('.popupmenu .catalog-btn a').off('click')
   $('.catalog-mobile-menu .back').off('click')
+  $('.catalog-mobile-menu .menu li.parent').off('mouseenter mouseleave')
   $('.catalog-mobile-menu .menu li.parent>a').off('click')
   $('.catalog-mobile-menu .child .child-back').off('click')
   $(document).off('mouseup')
