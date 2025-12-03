@@ -402,6 +402,7 @@
         @apply bg-[#244D80];
     }
 
+
     .faq__item.is-open .faq__icon svg {
         @apply rotate-180;
     }
