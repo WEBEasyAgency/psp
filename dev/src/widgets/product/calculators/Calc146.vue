@@ -305,7 +305,7 @@ onMounted(fetchCalculatorParams)
 @import "tailwindcss" reference;
 
 .calculator {
-  @apply self-stretch inline-flex flex-col justify-start items-start gap-6;
+  @apply self-stretch inline-flex flex-col justify-start items-start gap-6 mt-8;
 }
 
 @media (min-width: 1280px) {
