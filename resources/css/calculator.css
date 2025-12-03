@@ -93,9 +93,16 @@
     color: white !important;
 }
 
-/* 5. Disable state */
-.filter-buttons__button:disabled {
+/* Active+Pressed state (клик на выбранную кнопку) */
+.filter-buttons__button--active:active {
     background-color: #244d80 !important;
     color: white !important;
+}
+
+/* 5. Disable state */
+.filter-buttons__button:disabled {
+    background-color: #f6f6f6 !important;
+    color: #1e3552 !important;
+    opacity: 0.5 !important;
     cursor: not-allowed !important;
 }
