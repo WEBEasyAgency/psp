@@ -68,3 +68,9 @@
 <script setup>
 // No JS needed - static content
 </script>
+
+<style scoped>
+.order-instruction .instruction-inner {
+  background-image: url('/img/dest/how-order.png');
+}
+</style>
