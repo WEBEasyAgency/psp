@@ -1,1 +1,0 @@
-import{c as e}from"./vue.esm-bundler-CEIYghK7.js";import{H as p,F as t}from"./Footer-1a4-z9ci.js";document.getElementById("header-app")&&e(p).mount("#header-app");document.getElementById("footer-app")&&e(t).mount("#footer-app");

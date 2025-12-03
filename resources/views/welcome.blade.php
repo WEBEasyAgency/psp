@@ -6,7 +6,7 @@
     <title>PSP Calc - Онлайн калькулятор рекламных конструкций</title>
 
     {{-- Vite для Vue компонентов и CSS --}}
-    @vite(['resources/css/libs.min.css', 'resources/css/app.min.css', 'resources/js/pages/home.js'])
+    @vite(['resources/js/pages/home.js'])
 </head>
 <body>
     <!-- Vue App Root -->
