@@ -1,8 +1,8 @@
 <template>
-  <div class="popupmenu">
+  <div class="popupmenu" @click.self="handleClose">
         <div class="inner">
             <div class="catalog-btn">
-                <a href="#">
+                <a href="#" @click.prevent="handleCatalogClick">
 					<span class="cat-icon">
 						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M4.16699 14.1663H10.8337M4.16699 9.99967H15.8337M4.16699 5.83301H10.8337" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -20,7 +20,7 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="/">
                                 Главная
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10 8L14 12L10 16" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,14 +70,14 @@
                     </ul>
                 </nav>
             </div>
-            <div class="descriptor">Производство наружной и интерьерной рекламы</div>
+            <div class="descriptor">Производство наружной и интерьерной рекламы</div>
             <div class="contacts-block">
-                <div class="phone"><a href="tel:+74951288876">+7 (495) 128-88-76</a></div>
+                <div class="phone"><a href="tel:+78462113710">+7 (846) 211-3710</a></div>
                 <div class="mail"><a href="mailto:order@ra-psp.ru">order@ra-psp.ru</a></div>
             </div>
         </div>
-        <div class="catalog-mobile-menu">
-            <div class="back">
+        <div class="catalog-mobile-menu" :class="{ active: isCatalogOpen }">
+            <div class="back" @click="closeCatalog">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -86,86 +86,84 @@
             <div class="menu">
                 <ul>
                     <li class="parent">
-                        <a href="#">Вывески</a>
+                        <a href="#" @click.prevent="toggleParent($event)">Вывески</a>
                         <div class="child">
-                            <div class="child-back">
+                            <div class="child-back" @click="closeChild($event)">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span>Вывески</span>
                             </div>
                             <ul>
-                                <li><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                <li><a href="#">Вывеска из алюминиевого композита</a></li>
-                                <li><a href="#">Вывеска из оргстекла</a></li>
+                                <li><a href="/product/156">Вывеска из ПВХ-пластика</a></li>
+                                <li><a href="/product/158">Вывеска из алюминиевого композита</a></li>
+                                <li><a href="/product/157">Вывеска из оргстекла</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#">Объемные буквы</a>
+                        <a href="#" @click.prevent="toggleParent($event)">Объемные буквы</a>
                         <div class="child">
-                            <div class="child-back">
+                            <div class="child-back" @click="closeChild($event)">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span>Объемные буквы</span>
                             </div>
                             <ul>
-                                <li><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                <li><a href="#">Вывеска из алюминиевого композита</a></li>
-                                <li><a href="#">Вывеска из оргстекла</a></li>
+                                <li><a href="/product/146">С бортом из алюминия</a></li>
+                                <li><a href="/product/155">Со световым бортом</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#">Стенды</a>
+                        <a href="#" @click.prevent="toggleParent($event)">Стенды</a>
                         <div class="child">
-                            <div class="child-back">
+                            <div class="child-back" @click="closeChild($event)">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span>Стенды</span>
                             </div>
                             <ul>
-                                <li><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                <li><a href="#">Вывеска из алюминиевого композита</a></li>
-                                <li><a href="#">Вывеска из оргстекла</a></li>
+                                <li><a href="/product/151">Стенд из пластика с карманами</a></li>
+                                <li><a href="#">Стенд из алюминиевого композита</a></li>
+                                <li><a href="#">Стенд из оргстекла</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#">Таблички</a>
+                        <a href="#" @click.prevent="toggleParent($event)">Таблички</a>
                         <div class="child">
-                            <div class="child-back">
+                            <div class="child-back" @click="closeChild($event)">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span>Таблички</span>
                             </div>
                             <ul>
-                                <li><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                <li><a href="#">Вывеска из алюминиевого композита</a></li>
-                                <li><a href="#">Вывеска из оргстекла</a></li>
+                                <li><a href="/product/159">Пластиковые таблички</a></li>
+                                <li><a href="/product/160">Акриловые таблички</a></li>
+                                <li><a href="/product/161">Таблички из композита</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="parent">
-                        <a href="#">Баннеры</a>
+                        <a href="#" @click.prevent="toggleParent($event)">Баннеры</a>
                         <div class="child">
-                            <div class="child-back">
+                            <div class="child-back" @click="closeChild($event)">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 <span>Баннеры</span>
                             </div>
                             <ul>
-                                <li><a href="#">Вывеска из ПВХ-пластика</a></li>
-                                <li><a href="#">Вывеска из алюминиевого композита</a></li>
-                                <li><a href="#">Вывеска из оргстекла</a></li>
+                                <li><a href="#">Баннер с люверсами</a></li>
+                                <li><a href="#">Баннер на раме</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li><a href="#">Найлейки</a></li>
+                    <li><a href="/product/154">Наклейки</a></li>
                     <li><a href="#">Флаги</a></li>
                     <li><a href="#">Роллапы</a></li>
                     <li><a href="#">Виндеры</a></li>
@@ -176,9 +174,37 @@
     </div>
 </template>
 
-<script>
-export default {
-  name: 'PopupMenu'
+<script setup>
+import { ref } from 'vue'
+
+const emit = defineEmits(['close'])
+
+const isCatalogOpen = ref(false)
+
+const handleClose = () => {
+  emit('close')
+}
+
+const handleCatalogClick = () => {
+  isCatalogOpen.value = true
+}
+
+const closeCatalog = () => {
+  isCatalogOpen.value = false
+}
+
+const toggleParent = (e) => {
+  const parent = e.target.closest('.parent')
+  if (parent) {
+    parent.classList.toggle('active')
+  }
+}
+
+const closeChild = (e) => {
+  const parent = e.target.closest('.parent')
+  if (parent) {
+    parent.classList.remove('active')
+  }
 }
 </script>
 

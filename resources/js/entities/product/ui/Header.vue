@@ -91,11 +91,11 @@
                     <nav>
                         <ul>
                             <li><a href="/product/146">Объемные буквы</a></li>
-                            <li><a href="/product/156">Вывески</a></li>
                             <li><a href="/product/151">Стенды</a></li>
-                            <li><a href="/product/154">Наклейки</a></li>
                             <li><a href="/product/159">Таблички</a></li>
+                            <li><a href="/product/154">Наклейки</a></li>
                             <li><a href="#">Баннеры</a></li>
+                            <li><a href="#">Флаги</a></li>
                             <li class="more-btn">
                                 <a href="#" :class="{ active: isMoreMenuOpen }" @click.prevent="toggleMoreMenu">
                                     Еще
@@ -108,6 +108,8 @@
                             </li>
                         </ul>
                         <ul class="more" :class="{ active: isMoreMenuOpen }">
+                            <li><a href="#">Роллапы</a></li>
+                            <li><a href="#">Виндеры</a></li>
                             <li><a href="#">Режим работы</a></li>
                         </ul>
                     </nav>
@@ -143,18 +145,12 @@
                         </a>
                     </div>
                 </div>
-                <div class="burger" :class="{ active: isBurgerOpen }" @click="toggleBurgerMenu">
-                    <span class="normal" v-show="!isBurgerOpen">
+                <div class="burger" @click="toggleBurgerMenu">
+                    <span class="normal">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3 5.67578C3 5.26157 3.33579 4.92578 3.75 4.92578H20.25C20.6642 4.92578 21 5.26157 21 5.67578C21 6.08999 20.6642 6.42578 20.25 6.42578H3.75C3.33579 6.42578 3 6.08999 3 5.67578Z" fill="#2C619D"/>
                             <path d="M3 11.6758C3 11.2616 3.33579 10.9258 3.75 10.9258H20.25C20.6642 10.9258 21 11.2616 21 11.6758C21 12.09 20.6642 12.4258 20.25 12.4258H3.75C3.33579 12.4258 3 12.09 3 11.6758Z" fill="#2C619D"/>
                             <path d="M3 18.6758C3 18.2616 3.33579 17.9258 3.75 17.9258H20.25C20.6642 17.9258 21 18.2616 21 18.6758C21 19.09 20.6642 19.4258 20.25 19.4258H3.75C3.33579 19.4258 3 19.09 3 18.6758Z" fill="#2C619D"/>
-                        </svg>
-                    </span>
-                    <span class="close" v-show="isBurgerOpen">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.46967 5.45611C5.76256 5.16322 6.23744 5.16322 6.53033 5.45611L18.1976 17.1234C18.4905 17.4163 18.4905 17.8911 18.1976 18.184C17.9047 18.4769 17.4298 18.4769 17.1369 18.184L5.46967 6.51677C5.17678 6.22388 5.17678 5.749 5.46967 5.45611Z" fill="white"/>
-                            <path d="M5.53033 18.4561C5.23744 18.1632 5.23744 17.6883 5.53033 17.3955L17.1976 5.72819C17.4905 5.4353 17.9654 5.4353 18.2583 5.72819C18.5511 6.02108 18.5511 6.49596 18.2583 6.78885L6.59099 18.4561C6.2981 18.749 5.82322 18.749 5.53033 18.4561Z" fill="white"/>
                         </svg>
                     </span>
                 </div>
@@ -167,10 +163,12 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
+// Define emits
+const emit = defineEmits(['toggle-burger'])
+
 // Reactive state
 const isCatalogOpen = ref(false)
 const isMoreMenuOpen = ref(false)
-const isBurgerOpen = ref(false)
 
 // Catalog menu toggle
 const toggleCatalog = () => {
@@ -186,9 +184,9 @@ const toggleMoreMenu = () => {
   isMoreMenuOpen.value = !isMoreMenuOpen.value
 }
 
-// Burger menu toggle
+// Burger menu toggle - emit event to parent
 const toggleBurgerMenu = () => {
-  isBurgerOpen.value = !isBurgerOpen.value
+  emit('toggle-burger')
 }
 
 // Close menu on click outside
