@@ -5,19 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Оформление заказа</title>
 
-	{{-- Стили из layout --}}
+	{{-- Сторонние CSS --}}
 	<link rel="stylesheet" href="/layout/css/libs.min.css">
 	<link rel="stylesheet" href="/layout/css/app.min.css">
-
-	{{-- Общие UI компоненты --}}
-	@vite('resources/css/ui-components.css')
-
-	{{-- Vite для Vue компонентов --}}
-	@vite('resources/js/pages/order.js')
 </head>
 <body>
-	<!-- Header Vue Component -->
-	<div id="header-app"></div>
+	<!-- Header Blade Component -->
+	<x-layout.header />
 
 	<main class="order-page inner-page">
 		<section class="breadcrumbs">
@@ -129,13 +123,13 @@
 		</section>
 	</main>
 
-	<!-- Footer Vue Component -->
-	<div id="footer-app"></div>
+	<!-- Footer Blade Component -->
+	<x-product.footer />
 
 	{{-- Библиотеки (Swiper и др.) --}}
-	<script src="{{ asset('js/libs.min.js') }}"></script>
-	{{-- app.min.js: обработчики отвязываются в Vue onMounted --}}
-	<script src="{{ asset('js/app.min.js') }}"></script>
+	<script src="/layout/js/libs.min.js"></script>
+	{{-- app.min.js: инициализация Swiper слайдеров и другие обработчики --}}
+	<script src="/layout/js/app.min.js"></script>
 	<script>
 	// Обработка формы заказа
 	document.getElementById('orderForm').addEventListener('submit', async function(e) {

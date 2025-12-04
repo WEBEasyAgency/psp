@@ -16,8 +16,6 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/pages/home.js',
                 'resources/js/pages/welcome.js',
-                'resources/js/pages/order.js',
-                'resources/js/pages/thanx.js',
                 'resources/js/pages/product-146.js',
                 'resources/js/pages/product-155.js',
                 'resources/js/pages/product-156.js',

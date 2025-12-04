@@ -1,13 +1,8 @@
 /*
  * Порядок слоёв определяет приоритет (от низкого к высокому)
+ * libs.min.css и app.min.css подключаются напрямую в product.blade.php
  */
-@layer reset, utilities, components;
-
-/* Reset из libs.min.css - самый низкий приоритет */
-@import "../../public/css/libs.min.css" layer(reset);
-
-/* Стили приложения из app.min.css - подключаем ДО Tailwind */
-@import "../../public/css/app.min.css" layer(reset);
+@layer utilities, components;
 
 /* Tailwind utilities (без Preflight - используем reset из layout) */
 @import "tailwindcss/theme" layer(utilities);

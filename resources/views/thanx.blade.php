@@ -5,16 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Спасибо за заказ</title>
 
-	{{-- Стили из layout --}}
+	{{-- Сторонние CSS --}}
 	<link rel="stylesheet" href="/layout/css/libs.min.css">
 	<link rel="stylesheet" href="/layout/css/app.min.css">
-
-	{{-- Vite для Vue компонентов --}}
-	@vite('resources/js/pages/thanx.js')
 </head>
 <body class="gray-bg">
 	<!-- Header Vue Component -->
-	<div id="header-app"></div>
+	<x-layout.header />
 
 	<main class="thanx-page inner-page">
 		<section class="breadcrumbs">
@@ -56,12 +53,12 @@
 		</section>
 	</main>
 
-	<!-- Footer Vue Component -->
-	<div id="footer-app"></div>
+	<!-- Footer Blade Component -->
+	<x-product.footer />
 
 	{{-- Библиотеки (Swiper и др.) --}}
-	<script src="{{ asset('js/libs.min.js') }}"></script>
-	{{-- app.min.js: обработчики отвязываются в Vue onMounted --}}
-	<script src="{{ asset('js/app.min.js') }}"></script>
+	<script src="/layout/js/libs.min.js"></script>
+	{{-- app.min.js: инициализация Swiper слайдеров и другие обработчики --}}
+	<script src="/layout/js/app.min.js"></script>
 </body>
 </html>
