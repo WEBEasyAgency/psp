@@ -61,6 +61,18 @@ ln -sf public/js js 2>/dev/null || true
 ln -sf public/fonts fonts 2>/dev/null || true
 ln -sf public/build build 2>/dev/null || true
 
+# Create symlinks for favicon files
+echo "🎨 Creating symlinks for favicon files..."
+rm -f favicon.ico favicon.svg apple-touch-icon.png favicon-96x96.png site.webmanifest web-app-manifest-192x192.png web-app-manifest-512x512.png 2>/dev/null || true
+ln -sf public/favicon.ico favicon.ico 2>/dev/null || true
+ln -sf public/favicon.svg favicon.svg 2>/dev/null || true
+ln -sf public/apple-touch-icon.png apple-touch-icon.png 2>/dev/null || true
+ln -sf public/favicon-96x96.png favicon-96x96.png 2>/dev/null || true
+ln -sf public/site.webmanifest site.webmanifest 2>/dev/null || true
+ln -sf public/web-app-manifest-192x192.png web-app-manifest-192x192.png 2>/dev/null || true
+ln -sf public/web-app-manifest-512x512.png web-app-manifest-512x512.png 2>/dev/null || true
+echo "✅ Created favicon symlinks"
+
 # Create symlink from public/layout to layout (legacy directory)
 rm -f public/layout 2>/dev/null || true
 ln -sf ../layout public/layout 2>/dev/null || true
