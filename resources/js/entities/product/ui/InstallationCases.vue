@@ -19,7 +19,7 @@
       
       <div class="tabs-body">
         <div class="tab active" style="display: block;">
-          <div class="cases-slider">
+          <div class="cases-slider-vue">
             <Swiper
               :modules="modules"
               :slides-per-view="'auto'"
@@ -74,14 +74,37 @@ const images = computed(() => {
 </script>
 
 <style scoped>
-/* Стили скопированы и адаптированы из оригинального CSS/LESS если нужно, 
-   но в данном проекте стили похоже глобальные (product.css). 
-   Оставляем структуру классов для совместимости. */
-   
+/* Стили скопированы и адаптированы из оригинального CSS/LESS */
 .cases-block {
     /* Ensure visibility if global styles rely on tabs */
 }
 .tab.active {
     display: block;
+}
+
+.cases-slider-vue {
+    margin-top: 32px;
+}
+.cases-slider-vue :deep(.swiper-slide) {
+    max-width: 692px;
+}
+@media only screen and (max-width: 768px) {
+    .cases-slider-vue :deep(.swiper-slide) {
+        max-width: 241px;
+    }
+}
+.cases-slider-vue :deep(.swiper-slide .img) {
+    height: 460px;
+}
+@media only screen and (max-width: 768px) {
+    .cases-slider-vue :deep(.swiper-slide .img) {
+        height: 160px;
+    }
+}
+.cases-slider-vue :deep(.swiper-slide img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
 }
 </style>
