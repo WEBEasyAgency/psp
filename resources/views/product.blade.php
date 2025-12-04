@@ -49,7 +49,7 @@
         </div>
 
         <div class="bg-white">
-            <x-product.feedback/>
+            <x-home.feedback-slider/>
         </div>
     </main>
     <x-product.footer/>
