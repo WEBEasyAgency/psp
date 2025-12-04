@@ -213,7 +213,7 @@
 
 		try {
 			// 1. Создаём контакт
-			const contactRes = await fetch('/backend/api/addContact', {
+			const contactRes = await fetch('/backend/api/calc/addContact', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
@@ -231,7 +231,7 @@
 			const client_id = contactData.clientId;
 
 			// 2. Добавляем расчёт в калькуляцию
-			const calcRes = await fetch('/backend/api/addCalc', {
+			const calcRes = await fetch('/backend/api/calc/addCalc', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
@@ -248,7 +248,7 @@
 			const calc_id = calcData.calc_id;
 
 			// 3. Сохраняем калькуляцию
-			const saveRes = await fetch('/backend/api/saveCalc', {
+			const saveRes = await fetch('/backend/api/calc/saveCalc', {
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
