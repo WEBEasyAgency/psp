@@ -71,6 +71,7 @@
                 <ToggleSwitch v-model="calculatorData.tape" label="Двусторонний скотч" />
                 <ToggleSwitch v-model="calculatorData.drills" label="Отверстия по углам" />
                 <ToggleSwitch v-model="calculatorData.round" label="Скругление углов" />
+                <ToggleSwitch v-model="calculatorData.doubleside" label="Изображение с двух сторон" />
             </div>
         </div>
 
@@ -138,7 +139,8 @@ const calculatorData = reactive({
   tape: false,
   drills: false,
   round: false,
-  
+  doubleside: false,
+
   services: {
     design: false,
     installation: false,
@@ -219,6 +221,7 @@ const calculatePrice = async () => {
         { variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0 },
         { variable: 'drills', type: 2, value: calculatorData.drills ? 1 : 0 },
         { variable: 'round', type: 2, value: calculatorData.round ? 1 : 0 },
+        { variable: 'doubleside', type: 2, value: calculatorData.doubleside ? 1 : 0 },
     ]
 
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {

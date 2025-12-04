@@ -47,17 +47,41 @@
             <!-- <p class="text-sm text-gray-500">Примечание по материалам...</p> -->
         </div>
 
-        <!-- Секция 3: Опции (Чекбоксы) -->
+        <!-- Секция 3: Карманы -->
+        <div class="calculator__params">
+          <div class="calculator__services-header">
+            <span class="calculator__services-label">Плоские карманы</span>
+          </div>
+          <div class="calculator__dims-row">
+            <NumberInput v-model="calculatorData.a4" label="Карман А4" :min="0" :max="50" />
+            <NumberInput v-model="calculatorData.a3" label="Карман А3" :min="0" :max="50" />
+          </div>
+          <div class="calculator__dims-row">
+            <NumberInput v-model="calculatorData.a5" label="Карман А5" :min="0" :max="50" />
+            <NumberInput v-model="calculatorData.a6" label="Карман А6" :min="0" :max="50" />
+          </div>
+
+          <div class="calculator__services-header">
+            <span class="calculator__services-label">Объемные карманы</span>
+          </div>
+          <div class="calculator__dims-row">
+            <NumberInput v-model="calculatorData.a4o" label="Карман А4" :min="0" :max="50" />
+            <NumberInput v-model="calculatorData.a5o" label="Карман А5" :min="0" :max="50" />
+          </div>
+          <div class="calculator__dims-row">
+            <NumberInput v-model="calculatorData.aEo" label="Карман Евро" :min="0" :max="50" />
+            <NumberInput v-model="calculatorData.aVo" label="Карман для визиток" :min="0" :max="50" />
+          </div>
+        </div>
+
+        <!-- Секция 4: Опции (Чекбоксы) -->
         <div class="calculator__services">
             <div class="calculator__services-header">
               <span class="calculator__services-label">Параметры изготовления</span>
             </div>
             <div class="calculator__services-list">
-                <!-- Жестко прописанные тогглы, привязанные к данным -->
-                <ToggleSwitch v-model="calculatorData.tape" label="Двусторонний скотч" />
-                <ToggleSwitch v-model="calculatorData.drills" label="Отверстия по углам" />
-                <ToggleSwitch v-model="calculatorData.doubleside" label="Двусторонняя печать" />
-                <ToggleSwitch v-model="calculatorData.need_Nielsen" label="Профиль Nielsen" />
+                <ToggleSwitch v-model="calculatorData.need_Nielsen" label="Профиль Nielsen по периметру" />
+                <ToggleSwitch v-model="calculatorData.perekid" label="Перекидная система" />
             </div>
         </div>
 
@@ -114,13 +138,21 @@ const calculatorData = reactive({
   w: 100,
   h: 50,
   num: 1,
-  // Специфичные поля для 156
+  // Карманы плоские
+  a4: 0,
+  a3: 0,
+  a5: 0,
+  a6: 0,
+  // Карманы объемные
+  a4o: 0,
+  a5o: 0,
+  aEo: 0,
+  aVo: 0,
+  // Опции
   mat_select_in3: null, // ID выбранного материала
-  tape: false,
-  drills: false,
-  doubleside: false,
   need_Nielsen: false,
-  
+  perekid: false,
+
   services: {
     design: false,
     installation: false,
@@ -194,10 +226,19 @@ const calculatePrice = async () => {
         { variable: 'w', type: 1, value: calculatorData.w },
         { variable: 'h', type: 1, value: calculatorData.h },
         { variable: 'num', type: 1, value: calculatorData.num },
-        { variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0 },
-        { variable: 'drills', type: 2, value: calculatorData.drills ? 1 : 0 },
-        { variable: 'doubleside', type: 2, value: calculatorData.doubleside ? 1 : 0 },
+        // Карманы плоские
+        { variable: 'a4', type: 1, value: calculatorData.a4 },
+        { variable: 'a3', type: 1, value: calculatorData.a3 },
+        { variable: 'a5', type: 1, value: calculatorData.a5 },
+        { variable: 'a6', type: 1, value: calculatorData.a6 },
+        // Карманы объемные
+        { variable: 'a4o', type: 1, value: calculatorData.a4o },
+        { variable: 'a5o', type: 1, value: calculatorData.a5o },
+        { variable: 'aEo', type: 1, value: calculatorData.aEo },
+        { variable: 'aVo', type: 1, value: calculatorData.aVo },
+        // Опции
         { variable: 'need_Nielsen', type: 2, value: calculatorData.need_Nielsen ? 1 : 0 },
+        { variable: 'perekid', type: 2, value: calculatorData.perekid ? 1 : 0 },
     ]
 
     // Собираем mat_select_params

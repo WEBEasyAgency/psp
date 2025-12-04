@@ -53,11 +53,10 @@
               <span class="calculator__services-label">Параметры изготовления</span>
             </div>
             <div class="calculator__services-list">
-                <!-- Жестко прописанные тогглы, привязанные к данным -->
+                <ToggleSwitch v-model="calculatorData.doubleside" label="Изображение с двух сторон" />
+                <ToggleSwitch v-model="calculatorData.round" label="Скругление углов" />
                 <ToggleSwitch v-model="calculatorData.tape" label="Двусторонний скотч" />
-                <ToggleSwitch v-model="calculatorData.drills" label="Отверстия по углам" />
-                <ToggleSwitch v-model="calculatorData.doubleside" label="Двусторонняя печать" />
-                <ToggleSwitch v-model="calculatorData.need_Nielsen" label="Профиль Nielsen" />
+                <ToggleSwitch v-model="calculatorData.need_Nielsen" label="Обрамление профилем Нильсен по периметру" />
             </div>
         </div>
 
@@ -114,13 +113,12 @@ const calculatorData = reactive({
   w: 100,
   h: 50,
   num: 1,
-  // Специфичные поля для 156
   mat_select_in3: null, // ID выбранного материала
-  tape: false,
-  drills: false,
   doubleside: false,
+  round: false,
+  tape: false,
   need_Nielsen: false,
-  
+
   services: {
     design: false,
     installation: false,
@@ -194,9 +192,9 @@ const calculatePrice = async () => {
         { variable: 'w', type: 1, value: calculatorData.w },
         { variable: 'h', type: 1, value: calculatorData.h },
         { variable: 'num', type: 1, value: calculatorData.num },
-        { variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0 },
-        { variable: 'drills', type: 2, value: calculatorData.drills ? 1 : 0 },
         { variable: 'doubleside', type: 2, value: calculatorData.doubleside ? 1 : 0 },
+        { variable: 'round', type: 2, value: calculatorData.round ? 1 : 0 },
+        { variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0 },
         { variable: 'need_Nielsen', type: 2, value: calculatorData.need_Nielsen ? 1 : 0 },
     ]
 

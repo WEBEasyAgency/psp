@@ -32,28 +32,7 @@
           <NumberInput v-model="calculatorData.num" label="Количество" :min="1" :max="100" />
         </div>
 
-        <!-- Секция 2: Материал (Толщина) - ТУТ МЕНЯТЬ ПОРЯДОК ЕСЛИ НУЖНО -->
-        <div class="calculator__options">
-            <FilterButtons
-                v-if="options.komp_color"
-                v-model="calculatorData.komp_color"
-                label="Цвет композита"
-                :options="options.komp_color"
-                :has-help="true"
-            />
-            <FilterButtons
-                v-if="options.dist_derzh"
-                v-model="calculatorData.dist_derzh"
-                label="Дистанционные держатели"
-                :options="options.dist_derzh"
-                :has-help="true"
-            />
-
-            <!-- Сюда можно вставить любой текст -->
-            <!-- <p class="text-sm text-gray-500">Примечание по материалам...</p> -->
-        </div>
-
-        <!-- Секция 3: Опции (Чекбоксы) -->
+        <!-- Секция 2: Опции (Чекбоксы) -->
         <div class="calculator__services">
             <div class="calculator__services-header">
               <span class="calculator__services-label">Параметры изготовления</span>
@@ -61,7 +40,6 @@
             <div class="calculator__services-list">
                 <ToggleSwitch v-model="calculatorData.doubleside" label="Изображение с двух сторон" />
                 <ToggleSwitch v-model="calculatorData.drills" label="Отверстия по углам" />
-                <ToggleSwitch v-model="calculatorData.tape" label="Двусторонний скотч" />
                 <ToggleSwitch v-model="calculatorData.round" label="Скругление углов" />
             </div>
         </div>
@@ -109,22 +87,16 @@ const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
 
-const options = reactive({
-    komp_color: [],
-    dist_derzh: []
-})
+const options = reactive({})
 
 const calculatorData = reactive({
   w: 1,
   h: 1,
   num: 1,
-  komp_color: null,
   doubleside: false,
   drills: false,
-  tape: false,
   round: false,
-  dist_derzh: null,
-  
+
   services: {
     design: false,
     installation: false,
@@ -184,12 +156,9 @@ const calculatePrice = async () => {
         { variable: 'w', type: 1, value: calculatorData.w },
         { variable: 'h', type: 1, value: calculatorData.h },
         { variable: 'num', type: 1, value: calculatorData.num },
-        { variable: 'komp_color', type: 5, value: calculatorData.komp_color || 0 },
-        { variable: 'doubleside', type: 2, value: calculatorData.doubleside ? 1 : 0 },
         { variable: 'drills', type: 2, value: calculatorData.drills ? 1 : 0 },
-        { variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0 },
         { variable: 'round', type: 2, value: calculatorData.round ? 1 : 0 },
-        { variable: 'dist_derzh', type: 5, value: calculatorData.dist_derzh || 0 },
+        { variable: 'doubleside', type: 2, value: calculatorData.doubleside ? 1 : 0 },
     ]
 
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
