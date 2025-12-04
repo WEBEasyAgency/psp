@@ -28,7 +28,7 @@
             </div>
             <div class="rating-text"><span>4,75</span> основано на <span>816</span> отзывах</div>
         </div>
-        <div class="feedback-slider">
+        <div class="feedback-slider swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="inner">
