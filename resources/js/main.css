@@ -477,7 +477,7 @@
 }
 
 .tech__title {
-    @apply self-stretch justify-start text-[#1e3552] text-2xl leading-6  lg:text-5xl font-medium font-['Inter'] xl:leading-[21.60px] lg:leading-[48px] line-clamp-4;
+    @apply self-stretch justify-start text-[#1e3552] text-2xl leading-6  lg:text-5xl font-medium font-['Inter'] lg:!leading-[48px] line-clamp-4;
 }
 
 .tech__list {
