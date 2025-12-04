@@ -94,7 +94,7 @@
 				</div>
 				<div class="order-block">
 					<div class="grid">
-{{--						<div class="left-block">--}}
+						<div class="left-block">
 {{--							<div class="design-price">--}}
 {{--								<div class="title">--}}
 {{--									Требуется дизайн?--}}
@@ -131,7 +131,12 @@
 {{--									<div class="val" id="totalPrice">{{ number_format($price_good, 0, ',', ' ') }} ₽</div>--}}
 {{--								</div>--}}
 {{--							</div>--}}
-{{--						</div>--}}
+                            <style>
+                                .left-block {
+                                    border: none;
+                                }
+                            </style>
+						</div>
 						<div class="right-block">
 							<div class="name">
                                 <h4>{{ $description }}</h4>
