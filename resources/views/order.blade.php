@@ -132,7 +132,7 @@
 {{--								</div>--}}
 {{--							</div>--}}
                             <style>
-                                .left-block {
+                                .order-form .order-block .left-block {
                                     border: none;
                                 }
                             </style>
