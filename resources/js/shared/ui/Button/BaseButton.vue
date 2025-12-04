@@ -47,11 +47,11 @@ const props = defineProps({
     /**
      * Визуальный стиль кнопки: 'primary', 'secondary', 'outline'
      */
-    variant: { type: String, default: 'primary' }, 
+    variant: { type: String, default: 'primary' },
     /**
      * Размер кнопки: 'sm', 'md', 'lg'
      */
-    size: { type: String, default: 'md' }, 
+    size: { type: String, default: 'md' },
     /**
      * Если true, контент кнопки остается видимым при загрузке (по умолчанию скрывается)
      */
@@ -75,9 +75,9 @@ const handleClick = (event) => {
 </script>
 
 <style scoped>
-/* 
-  Мы используем @reference, чтобы получить доступ к переменным и утилитам Tailwind 
-  из основного файла стилей. 
+/*
+  Мы используем @reference, чтобы получить доступ к переменным и утилитам Tailwind
+  из основного файла стилей.
   ПУТЬ ДОЛЖЕН БЫТЬ ОТНОСИТЕЛЬНЫМ!
 */
 @reference "../../../../css/app.css";
@@ -118,7 +118,7 @@ const handleClick = (event) => {
    Variants (Colors)
    Добавляйте новые цвета здесь. Именование: .btn--{variant}
    ========================================================================== */
-   
+
 /* Primary: Синяя заливка */
 .btn--primary {
     @apply bg-[#3c7bbb] text-white;
@@ -140,10 +140,29 @@ const handleClick = (event) => {
 
 /* Outline: Прозрачная с синей рамкой */
 .btn--outline {
-    @apply bg-transparent border-2 border-[#3c7bbb] text-[#3c7bbb];
+    @apply bg-transparent border-2 border-[#3c7bbb] text-[#3c7bbb] py-1;
 }
 .btn--outline:hover:not(:disabled) {
-    @apply bg-[#3c7bbb] text-white;
+    @apply bg-[#e6eef8] text-[#1e3552];
+}
+
+/* Filled: Белая с серой рамкой (как secondary), но с конкретными стилями из макета */
+.btn--filled {
+    @apply bg-white border border-slate-200 text-[#1e3552] outline-1 outline-offset-[-1px] outline-slate-200;
+}
+.btn--filled:hover:not(:disabled) {
+    @apply border-[#3c7bbb] text-[#3c7bbb] outline-[#3c7bbb];
+}
+
+/* Success: Зеленая заливка (для "Перейти в корзину") */
+.btn--success {
+    @apply bg-green-500 text-white;
+}
+.btn--success:hover:not(:disabled) {
+    @apply bg-green-600;
+}
+.btn--success:active:not(:disabled) {
+    @apply bg-green-700;
 }
 
 /* Loading Spinner */

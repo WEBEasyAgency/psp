@@ -7,6 +7,8 @@
 /* Tailwind utilities (без Preflight - используем reset из layout) */
 @import "tailwindcss/theme" layer(utilities);
 @import "tailwindcss/utilities" layer(utilities);
-
+.feedback-block {
+    @apply bg-white;
+}
 /* Глобальные стили калькуляторов - применяются ко ВСЕМ калькуляторам */
 @import "./calculator.css";

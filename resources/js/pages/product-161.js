@@ -9,6 +9,7 @@ import Calc161 from '../widgets/product/calculators/Calc161.vue';
 const app = createApp({
     components: {
         Faq,
+        InstallationCases,
         Calc161
     }
 });

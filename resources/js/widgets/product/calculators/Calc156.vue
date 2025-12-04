@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <!-- Секция 4: Услуги (Статичные) -->
+        <!--
         <div class="calculator__services">
           <div class="calculator__services-header">
             <span class="calculator__services-label">Дополнительные услуги</span>
@@ -72,6 +72,7 @@
             <ToggleSwitch v-model="calculatorData.services.delivery" label="Доставка" />
           </div>
         </div>
+        -->
 
                 <!-- Итого и Кнопки -->
                 <CalculatorAction 
