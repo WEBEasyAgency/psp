@@ -43,5 +43,32 @@
     <script src="/layout/js/libs.min.js"></script>
     {{-- app.min.js: инициализация Swiper слайдеров и другие обработчики --}}
     <script src="/layout/js/app.min.js"></script>
+
+    {{-- Переинициализация cases-slider с lazy loading --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Уничтожаем старый экземпляр Swiper для cases-slider
+            if (window.swiper2 && typeof window.swiper2.destroy === 'function') {
+                window.swiper2.destroy(true, true);
+            }
+
+            // Создаём новый с lazy loading
+            window.swiper2 = new Swiper(".cases-slider", {
+                slidesPerView: "auto",
+                spaceBetween: 12,
+                navigation: {
+                    nextEl: ".cases-block .next",
+                    prevEl: ".cases-block .prev",
+                },
+                lazy: {
+                    loadPrevNext: true,
+                    loadPrevNextAmount: 2,
+                    loadOnTransitionStart: true,
+                },
+                preloadImages: false,
+                watchSlidesProgress: true,
+            });
+        });
+    </script>
 </body>
 </html>

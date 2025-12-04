@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ImageController;
 
 // Proxy для backend API в development режиме
 if (config('app.env') === 'local') {
@@ -184,3 +185,13 @@ Route::get('/thanx', function (Illuminate\Http\Request $request) {
         'client_id' => (int)$client_id
     ]);
 });
+
+// Image optimization routes
+// Serve optimized images with WebP support
+Route::get('/optimized-img/{path}', [ImageController::class, 'serveOptimized'])
+    ->where('path', '.*')
+    ->name('image.optimized');
+
+// Admin route to batch convert all gallery images to WebP
+Route::get('/admin/generate-webp', [ImageController::class, 'generateWebPBatch'])
+    ->name('image.generate-webp');
