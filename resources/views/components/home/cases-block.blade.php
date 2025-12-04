@@ -82,31 +82,31 @@
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2а Пластиковые вывески/50326923033_1a0b7b8775_o.jpg" alt="Пластиковая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2а Пластиковые вывески/50327074273_abbdf91c2a_o.jpg" alt="Пластиковая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2а Пластиковые вывески/51012211607_a1762a46dc_o.jpg" alt="Пластиковая вывеска"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2а Пластиковые вывески/51283880642_1a69e88f24_o.jpg" alt="Пластиковая вывеска"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2а Пластиковые вывески/52607095086_6a8d46e2d1_o.jpg" alt="Пластиковая вывеска"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2а Пластиковые вывески/51648447265_a43d550bfc_o.jpg" alt="Пластиковая вывеска"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2а Пластиковые вывески/51648447555_c0621fce4a_o.jpg" alt="Пластиковая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/16847450486_35d84a77fe_o.jpg" alt="Акриловая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/22023633003_98a75f9fd9_o.jpg" alt="Акриловая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/22318269463_cdeef563bb_o.jpg" alt="Акриловая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/33574144425_355482d55c_o.jpg" alt="Акриловая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/48486969462_0d3ec8fdd7_o.jpg" alt="Акриловая вывеска"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/50325871178_8b6e0a1f6b_o.jpg" alt="Акриловая вывеска"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/52363916091_8f34e09bb8_o.jpg" alt="Акриловая вывеска"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/53581033319_eb9ce19a2c_o.jpg" alt="Акриловая вывеска"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/51582631172_66eb51796c_o.jpg" alt="Акриловая вывеска"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/52066583105_279ee94cbb_o.jpg" alt="Акриловая вывеска"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2б Акриловые вывески/52209171668_29e57691a3_o.jpg" alt="Акриловая вывеска"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/16686147848_e4353f76ff_o.jpg" alt="Вывеска из композита"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/31711020146_67159a643b_o.jpg" alt="Вывеска из композита"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/33794191934_3c356123c9_o.jpg" alt="Вывеска из композита"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/34637459515_4856a80d2b_o.jpg" alt="Вывеска из композита"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/46831431645_1ed4b7a2a1_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/48486855777_f73cea3d47_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/48612916772_b91e1e49f3_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/50325848448_b6e1c2afc8_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/50571439101_21d1d42f06_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/51283928082_8c5d098e70_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/51591355558_d34be3cf07_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/52336084615_3d13b1def5_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/52605843637_3277ba6294_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/53579682552_e94e7aeb99_o.jpg" alt="Вывеска из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/53581061804_e10d0831a3_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/49114232146_d1252ee571_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/50093330793_40edc68e35_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/50094298117_e6ed2208f5_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/50445868678_395230901e_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/51039878578_5d87c9bdfa_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/51286652553_051e9eba8f_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/52132181837_fed3747b62_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/52280604776_eeb3f49c1d_4k.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/52680179519_eac0bf9900_o.jpg" alt="Вывеска из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/2в Плоские вывески из композита/53718001428_035e91fba2_o.jpg" alt="Вывеска из композита"></div></div>
                     </div>
                 </div>
             </div>
@@ -114,24 +114,27 @@
             <div class="tab" id="case3">
                 <div class="cases-slider">
                     <div class="swiper-wrapper">
+                        <!-- 5а Пластиковые таблички: 6 files -->
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5а Пластиковые таблички/23075475772_de27ae5c7b_o.jpg" alt="Пластиковая табличка"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5а Пластиковые таблички/34785816593_5898b087bc_o.jpg" alt="Пластиковая табличка"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5а Пластиковые таблички/34951581673_b4bca5d84b_o.jpg" alt="Пластиковая табличка"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5а Пластиковые таблички/51283828242_9005b6bbc0_o.jpg" alt="Пластиковая табличка"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5а Пластиковые таблички/51932303642_28a8abd163_o.jpg" alt="Пластиковая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5а Пластиковые таблички/52552987375_32e0aed076_o.jpg" alt="Пластиковая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5а Пластиковые таблички/52938237875_c2be4afe57_o.jpg" alt="Пластиковая табличка"></div></div>
+                        <!-- 5б Акриловые таблички: 8 files -->
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/50272135301_569f6b1955_o.jpg" alt="Акриловая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/51591354243_d5eb85b9ab_o.jpg" alt="Акриловая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/51591364748_a37e9e9a3d_o.jpg" alt="Акриловая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/52335972268_5cdb59d7b0_o.jpg" alt="Акриловая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/52552983960_d065af1158_o.jpg" alt="Акриловая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/52906972703_a9c0a4bf3f_o.jpg" alt="Акриловая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/53579708002_8d07e0ab6f_o.jpg" alt="Акриловая табличка"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/53875011172_2ea54e29e0_o.jpg" alt="Акриловая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/50272306437_5db77d2430_o.jpg" alt="Акриловая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/52002072755_abb128782f_o.jpg" alt="Акриловая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/52521320053_508125f25e_o.jpg" alt="Акриловая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/52646809870_6193e10f3b_o.jpg" alt="Акриловая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/52957750036_6072c83aa2_o.jpg" alt="Акриловая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/53613060122_81799e71b3_o.jpg" alt="Акриловая табличка"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5б Акриловые таблички/53614378250_68d29db34b_o.jpg" alt="Акриловая табличка"></div></div>
+                        <!-- 5в Таблички из композита: 4 files -->
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5в Таблички из композита/48825862332_19b43b4425_o.jpg" alt="Табличка из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5в Таблички из композита/50272115416_a35c8f5f46_o.jpg" alt="Табличка из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5в Таблички из композита/52335980593_5a0c2c7e6d_o.jpg" alt="Табличка из композита"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5в Таблички из композита/52906981843_4aaf86acfc_o.jpg" alt="Табличка из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5в Таблички из композита/50148462698_3cd409c7c1_o.jpg" alt="Табличка из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5в Таблички из композита/51079188127_12d2522148_o.jpg" alt="Табличка из композита"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/5в Таблички из композита/52002083305_e3e7115001_o.jpg" alt="Табличка из композита"></div></div>
                     </div>
                 </div>
             </div>
@@ -139,13 +142,14 @@
             <div class="tab" id="case4">
                 <div class="cases-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/46840638405_d85e4b24d5_o.jpg" alt="Стенд из пластика с карманами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/50273976448_0e929e8cb3_o.jpg" alt="Стенд из пластика с карманами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/51931287407_cce2ad57e7_o.jpg" alt="Стенд из пластика с карманами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/52335897708_37f9f15541_o.jpg" alt="Стенд из пластика с карманами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/52552993255_78d4085d10_o.jpg" alt="Стенд из пластика с карманами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/54165531917_68b6f15e65_o.jpg" alt="Стенд из пластика с карманами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/54818068803_1a66b05fc6_o.jpg" alt="Стенд из пластика с карманами"></div></div>
+                        <!-- 3а Стенд из пластика с карманами: 7 files -->
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/37263521521_b80ca89b57_o.jpg" alt="Стенд из пластика с карманами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/39847521063_1f7d773afb_o.jpg" alt="Стенд из пластика с карманами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/40915607732_27b75876b3_o.jpg" alt="Стенд из пластика с карманами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/46853160704_80892b52a7_o.jpg" alt="Стенд из пластика с карманами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/50273976978_6561b53bc0_o.jpg" alt="Стенд из пластика с карманами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/51673158290_2e877fcf95_o.jpg" alt="Стенд из пластика с карманами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/3а Стенд из пластика с карманами/52938226010_6ce7c8c8c8_o.jpg" alt="Стенд из пластика с карманами"></div></div>
                     </div>
                 </div>
             </div>
@@ -153,11 +157,12 @@
             <div class="tab" id="case5">
                 <div class="cases-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/48623083917_93d2b1f652_o.jpg" alt="Маленькие наклейки"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/50273941778_fc1f8d7838_o.jpg" alt="Маленькие наклейки"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/52037661066_89c7dd89a0_o.jpg" alt="Маленькие наклейки"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/52335928633_c0c4ab0b3d_o.jpg" alt="Маленькие наклейки"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/52590861651_8b5d7a2a22_o.jpg" alt="Маленькие наклейки"></div></div>
+                        <!-- 4а Маленькие наклейки с резкой: 5 PNG files -->
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/367e63b1-80fa-4210-8edb-5458e3aacbfa.png" alt="Маленькие наклейки"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/ChatGPT Image 28 нояб. 2025 г., 13_28_17.png" alt="Маленькие наклейки"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/ChatGPT Image 28 нояб. 2025 г., 13_58_03.png" alt="Маленькие наклейки"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/ChatGPT Image 28 нояб. 2025 г., 14_07_28.png" alt="Маленькие наклейки"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/4а Маленькие наклейки с резкой/наклейки.png" alt="Маленькие наклейки"></div></div>
                     </div>
                 </div>
             </div>
@@ -165,14 +170,15 @@
             <div class="tab" id="case6">
                 <div class="cases-slider">
                     <div class="swiper-wrapper">
+                        <!-- 6а Баннер с люверсами: 8 files -->
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/16273839373_d324754cb2_o.jpg" alt="Баннер с люверсами"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/16686328448_77576d2073_o.jpg" alt="Баннер с люверсами"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/16870935415_1098f7bd86_o.jpg" alt="Баннер с люверсами"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/18203584830_25a8ccb898_o.jpg" alt="Баннер с люверсами"></div></div>
                         <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/29572176037_98d4c44e7d_o.jpg" alt="Баннер с люверсами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/48623126492_5a62ff1ecd_o.jpg" alt="Баннер с люверсами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/49966889866_d1bcd0be7e_o.jpg" alt="Баннер с люверсами"></div></div>
-                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/52605824487_a04e38ff02_o.jpg" alt="Баннер с люверсами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/32804705877_c40ac660fa_o.jpg" alt="Баннер с люверсами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/49047655023_366ec3dee3_o.jpg" alt="Баннер с люверсами"></div></div>
+                        <div class="swiper-slide"><div class="img"><img src="/img/Контент/Контент/6а Баннер с люверсами/49048145481_cdf9f33a66_o.jpg" alt="Баннер с люверсами"></div></div>
                     </div>
                 </div>
             </div>
