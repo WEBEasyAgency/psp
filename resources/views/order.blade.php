@@ -228,7 +228,7 @@
 				throw new Error(`Ошибка создания контакта: ${errorData}`);
 			}
 			const contactData = await contactRes.json();
-			const client_id = contactData.clientId;
+			const client_id = contactData.client_id;
 
 			// 2. Добавляем расчёт в калькуляцию
 			const calcRes = await fetch('/backend/api/calc/addCalc', {
