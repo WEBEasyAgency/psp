@@ -7,6 +7,8 @@
 
     {{-- Vite для Vue компонентов (libs и app в @layer components через main.css) --}}
     @vite(['resources/js/pages/home.js'])
+    <link rel="stylesheet" href="/layout/css/libs.min.css">
+    <link rel="stylesheet" href="/layout/css/app.min.css">
 </head>
 <body>
     <div class="main-page">
