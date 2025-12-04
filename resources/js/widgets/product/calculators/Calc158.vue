@@ -79,32 +79,12 @@
         </div>
 
         <!-- Итого и Кнопки -->
-        <div class="calculator__action" :class="{ 'calculator__action--with-result': calculationResult }">
-           <div class="calculator__info">Проверьте параметры и нажмите «Рассчитать стоимость».</div>
-           
-           <div class="calculator__action-buttons">
-            <button v-if="calculationResult" @click="calculatePrice" :disabled="isCalculating" class="calculator__update-btn">
-              <span v-if="isCalculating">Обновление...</span>
-              <span v-else>Обновить расчет</span>
-            </button>
-            
-             <div v-if="calculationResult" class="result-box">
-              <div class="result-row">
-                <div class="result-label">Итого:</div>
-                <div class="result-value">{{ calculationResult.price_good }} ₽</div>
-              </div>
-            </div>
-
-            <button v-if="!calculationResult" @click="calculatePrice" :disabled="isCalculating" class="calculator__calculate-btn">
-              <span v-if="isCalculating">Расчёт...</span>
-              <span v-else>Рассчитать стоимость</span>
-            </button>
-
-             <a v-if="calculationResult" :href="orderLink" class="calculator__order-btn">
-              <div class="btn-content">Заказать</div>
-            </a>
-          </div>
-        </div>
+        <CalculatorAction 
+            :result="calculationResult" 
+            :loading="isCalculating" 
+            :order-link="orderLink" 
+            @calculate="calculatePrice" 
+        />
          <div v-if="error" class="calculator__error">{{ error }}</div>
       </div>
     </div>
@@ -117,6 +97,7 @@ import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
+import CalculatorAction from './components/CalculatorAction.vue'
 
 const props = defineProps({
   initialImages: { type: Array, default: () => [] }
@@ -219,7 +200,10 @@ const calculatePrice = async () => {
       })
     })
 
-    if (!response.ok) throw new Error('Ошибка расчета')
+    if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Ошибка расчета')
+    }
     calculationResult.value = await response.json()
 
   } catch (err) {

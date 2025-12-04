@@ -30,6 +30,47 @@ class ApiClient {
     }
 
     /**
+     * Обработка ошибок Guzzle
+     * Пытается извлечь сообщение об ошибке из тела ответа
+     */
+    private function handleGuzzleError(GuzzleException $e, $contextMessage) {
+        $message = $e->getMessage(); // Fallback message
+
+        // Check if we have a response
+        if (method_exists($e, 'getResponse') && $e->getResponse()) {
+            try {
+                $response = $e->getResponse();
+                $response->getBody()->rewind();
+                $body = $response->getBody()->getContents();
+                
+                if (!empty($body)) {
+                    $json = json_decode($body, true);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        // Try typical error fields
+                        if (!empty($json['error'])) {
+                            $message = is_string($json['error']) ? $json['error'] : json_encode($json['error'], JSON_UNESCAPED_UNICODE);
+                        } elseif (!empty($json['message'])) {
+                            $message = is_string($json['message']) ? $json['message'] : json_encode($json['message'], JSON_UNESCAPED_UNICODE);
+                        } elseif (!empty($json['detail'])) {
+                            $message = is_string($json['detail']) ? $json['detail'] : json_encode($json['detail'], JSON_UNESCAPED_UNICODE);
+                        }
+                    } else {
+                        // Not JSON, maybe plain text error?
+                        // Use body if it's reasonably short (e.g. < 1000 chars)
+                        if (strlen($body) < 1000) {
+                            $message = strip_tags($body);
+                        }
+                    }
+                }
+            } catch (\Exception $ex) {
+                // Ignore errors during error handling, continue with default message
+            }
+        }
+
+        throw new \Exception($message);
+    }
+
+    /**
      * Получение списка калькуляторов
      * GET /calcs
      *
@@ -41,7 +82,7 @@ class ApiClient {
             $response = $this->client->get('calcs');
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to fetch calculators: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to fetch calculators');
         }
     }
 
@@ -61,7 +102,7 @@ class ApiClient {
             ]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to fetch calculator parameters: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to fetch calculator parameters');
         }
     }
 
@@ -81,7 +122,7 @@ class ApiClient {
             ]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to run calculation: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to run calculation');
         }
     }
 
@@ -100,7 +141,7 @@ class ApiClient {
             ]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to add to calculation: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to add to calculation');
         }
     }
 
@@ -119,7 +160,7 @@ class ApiClient {
             ]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to save calculation: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to save calculation');
         }
     }
 
@@ -138,7 +179,7 @@ class ApiClient {
             ]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to delete calculation: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to delete calculation');
         }
     }
 
@@ -157,7 +198,7 @@ class ApiClient {
             ]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to add link: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to add link');
         }
     }
 
@@ -176,7 +217,7 @@ class ApiClient {
             ]);
             return json_decode($response->getBody()->getContents(), true);
         } catch (GuzzleException $e) {
-            throw new \Exception('Failed to add contact: ' . $e->getMessage());
+            $this->handleGuzzleError($e, 'Failed to add contact');
         }
     }
 

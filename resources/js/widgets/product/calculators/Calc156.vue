@@ -1,7 +1,7 @@
 <template>
   <div class="calculator">
     <h1 class="calculator__title">Пластиковые вывески</h1>
-    
+
     <div class="calculator__content">
       <!-- Левая колонка: Галерея -->
       <div class="calculator__left">
@@ -22,7 +22,7 @@
 
       <!-- Правая колонка: Параметры -->
       <div class="calculator__right">
-        
+
         <!-- Секция 1: Размеры и количество -->
         <div class="calculator__params">
           <div class="calculator__dims-row">
@@ -73,35 +73,14 @@
           </div>
         </div>
 
-        <!-- Итого и Кнопки -->
-        <div class="calculator__action" :class="{ 'calculator__action--with-result': calculationResult }">
-           <div class="calculator__info">Проверьте параметры и нажмите «Рассчитать стоимость».</div>
-           
-           <div class="calculator__action-buttons">
-            <button v-if="calculationResult" @click="calculatePrice" :disabled="isCalculating" class="calculator__update-btn">
-              <span v-if="isCalculating">Обновление...</span>
-              <span v-else>Обновить расчет</span>
-            </button>
-            
-             <div v-if="calculationResult" class="result-box">
-              <div class="result-row">
-                <div class="result-label">Итого:</div>
-                <div class="result-value">{{ calculationResult.price_good }} ₽</div>
-              </div>
-            </div>
-
-            <button v-if="!calculationResult" @click="calculatePrice" :disabled="isCalculating" class="calculator__calculate-btn">
-              <span v-if="isCalculating">Расчёт...</span>
-              <span v-else>Рассчитать стоимость</span>
-            </button>
-
-             <a v-if="calculationResult" :href="orderLink" class="calculator__order-btn">
-              <div class="btn-content">Заказать</div>
-            </a>
-          </div>
-        </div>
-         <div v-if="error" class="calculator__error">{{ error }}</div>
-      </div>
+                <!-- Итого и Кнопки -->
+                <CalculatorAction 
+                    :result="calculationResult" 
+                    :loading="isCalculating" 
+                    :order-link="orderLink" 
+                    @calculate="calculatePrice" 
+                />
+                 <div v-if="error" class="calculator__error">{{ error }}</div>      </div>
     </div>
   </div>
 </template>
@@ -112,6 +91,7 @@ import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
+import CalculatorAction from './components/CalculatorAction.vue'
 
 const props = defineProps({
   initialImages: { type: Array, default: () => [] }
@@ -138,7 +118,7 @@ const calculatorData = reactive({
   drills: false,
   doubleside: false,
   need_Nielsen: false,
-  
+
   services: {
     design: false,
     installation: false,
@@ -191,7 +171,7 @@ const fetchCalculatorParams = async () => {
             // Имя материала часто длинное "ПВХ пластик 3мм", нам может быть нужно сократить или оставить как есть
             const opts = p.materials.map(m => ({ value: m.id, label: m.name }))
             options[p.variable] = opts
-            
+
             // Дефолт
             if (opts.length > 0) {
                 calculatorData[p.variable] = opts[0].value
@@ -206,7 +186,7 @@ const fetchCalculatorParams = async () => {
 const calculatePrice = async () => {
   try {
     isCalculating.value = true
-    
+
     // Собираем params
     const params = [
         { variable: 'w', type: 1, value: calculatorData.w },
@@ -236,7 +216,10 @@ const calculatePrice = async () => {
       })
     })
 
-    if (!response.ok) throw new Error('Ошибка расчета')
+    if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Ошибка расчета')
+    }
     calculationResult.value = await response.json()
 
   } catch (err) {

@@ -595,7 +595,7 @@ button[class*="option"] {
     @apply h-11 px-4 py-2 bg-[#f6f6f6] rounded-lg;
     @apply inline-flex justify-center items-center gap-1;
     @apply text-[#1e3552] text-sm font-normal font-['Inter'] leading-5;
-    @apply transition-all duration-200;
+    @apply transition-all duration-100;
     @apply cursor-pointer;
 }
 
@@ -661,3 +661,4 @@ button[class*="primary"]:disabled {
 @apply opacity-50;
 @apply cursor-not-allowed;
 }
+

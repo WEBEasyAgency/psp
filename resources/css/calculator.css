@@ -2,7 +2,8 @@
  * Глобальные стили для всех калькуляторов
  * Этот файл применяется ко ВСЕМ компонентам калькуляторов (146-161)
  */
-
+@import "tailwindcss/theme" layer(utilities);
+@import "tailwindcss/utilities" layer(utilities);
 /* Основные стили калькулятора */
 .calculator {
     @apply self-stretch inline-flex flex-col justify-start items-start gap-6 mt-8;
@@ -91,7 +92,7 @@
 }
 
 .calculator__sub-options {
-    @apply flex flex-col gap-4 pl-4 mt-2;
+    @apply flex flex-col justify-between xl:flex-row flex-wrap gap-4 pl-4 mt-2 mb-4;
 }
 
 .calculator__services {
@@ -164,6 +165,8 @@
 .calculator__order-btn {
     white-space: nowrap !important;
     transition: background-color 0.2s, color 0.2s !important;
+    @apply h-14 px-6 py-4 bg-[#3c7bbb] rounded-xl inline-flex justify-center items-center gap-2;
+
 }
 
 .calculator__calculate-btn:hover,
@@ -255,7 +258,7 @@
     /* 1. Default state - серый */
     background-color: #f6f6f6 !important;
     color: #1e3552 !important;
-    transition: all 0.2s !important;
+    transition: all 0.5s !important;
 }
 
 /* 2. Hover state - голубой с синим текстом */
@@ -274,6 +277,7 @@
 .filter-buttons__button--active:hover:not(:disabled) {
     background-color: #244d80 !important;
     color: white !important;
+    opacity: 1 !important;
 }
 
 /* 5. Disable state - серый полупрозрачный */
