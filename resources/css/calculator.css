@@ -25,8 +25,8 @@
     @apply !mt-8;
 }
 .calculator__title {
-    @apply text-[#1e3552] text-[64px] font-medium font-['Inter'] leading-[64px] xl:whitespace-nowrap;
-    letter-spacing: -1.2px;
+    @apply text-[#1e3552] text-[64px] font-medium font-['Inter'] leading-[64px] xl:whitespace-nowrap bg-white;
+    letter-spacing: -1.2px ;
 }
 
 .calculator__content {
