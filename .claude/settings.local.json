@@ -30,7 +30,13 @@
       "Bash(done)",
       "Bash(do echo \"=== Calculator $id ===\" curl -s -X POST \"https://psp.realeasystudio.site/backend/api/calc/$id/params\" -H \"Content-Type: application/json\" -d '{\"\"\"\"db_id\"\"\"\": 1, \"\"\"\"user\"\"\"\": \"\"\"\"user\"\"\"\", \"\"\"\"pass\"\"\"\": \"\"\"\"password\"\"\"\"}')",
       "Bash(git checkout:*)",
-      "Bash(ln:*)"
+      "Bash(ln:*)",
+      "Bash(for id in 146 155 156 157 158 151 154 159 160 161)",
+      "Bash(do)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(ls \"public/img/Контент/Контент/7в Режим работы (наклейка)\")",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
