@@ -1,5 +1,5 @@
 <template>
-  <section class="construction-type">
+  <section id="construction-slider" class="construction-type">
     <div class="container">
       <div class="title-block">
         <h2>Выберите тип конструкции для расчета стоимости</h2>

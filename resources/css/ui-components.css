@@ -12,16 +12,14 @@ input[type="checkbox"] {
     height: 24px !important;
     background-color: #f6f6f6 !important;
     border: 1.5px solid #cbd5e1 !important; /* slate-300 */
-    border-radius: 4px !important;
+    border-radius: 5px !important;
     cursor: pointer !important;
     position: relative !important;
     transition: all 0.2s !important;
     flex-shrink: 0 !important;
 }
 
-input[type="checkbox"]:hover {
-    border-color: #6198cf !important;
-}
+    border-color: #3C7BBB !important;
 
 input[type="checkbox"]:checked {
     background-color: #3c7bbb !important;
@@ -70,14 +68,14 @@ input[type="checkbox"]:disabled {
     min-width: 24px !important;
     background-color: #f6f6f6 !important;
     border: 1.5px solid #cbd5e1 !important;
-    border-radius: 4px !important;
+    border-radius: 5px !important;
     cursor: pointer !important;
     position: relative !important;
     transition: all 0.2s !important;
 }
 
 .checkbox input[type="checkbox"]:hover + .check {
-    border-color: #6198cf !important;
+    border-color: #3C7BBB !important;
 }
 
 .checkbox input[type="checkbox"]:checked + .check {

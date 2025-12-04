@@ -36,7 +36,7 @@
                 <div class="btn-block">
                     <div class="btn-text">Узнайте стоимость онлайн за 5 минут и без регистрации</div>
                     <a href="#online-order" class="btn btn-white link">Как это работает</a>
-                    <a href="#" class="btn">Выбрать продукт</a>
+                    <a href="#construction-slider" class="btn">Выбрать продукт</a>
                 </div>
             </div>
         </div>

@@ -8,6 +8,64 @@
 	{{-- Сторонние CSS --}}
 	<link rel="stylesheet" href="/layout/css/libs.min.css">
 	<link rel="stylesheet" href="/layout/css/app.min.css">
+	<style>
+/* BEGIN Checkbox Overrides for Order Page */
+.checkbox {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+}
+
+.checkbox input[type="checkbox"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.checkbox input[type="checkbox"] + .check {
+    display: block !important;
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    background-color: #f6f6f6 !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    transition: all 0.2s !important;
+    flex-shrink: 0 !important;
+}
+
+.checkbox input[type="checkbox"]:hover + .check {
+    border-color: #3C7BBB !important;
+}
+
+.checkbox input[type="checkbox"]:checked + .check {
+    background-color: #3c7bbb !important;
+    border-color: #3c7bbb !important;
+}
+
+.checkbox input[type="checkbox"]:checked + .check::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 16px !important;
+    height: 16px !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.667 8L5.967 11.3L13.038 4.229' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+.checkbox input[type="checkbox"]:disabled + .check {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+/* END Checkbox Overrides for Order Page */
+	</style>
 </head>
 <body>
 	<!-- Header Blade Component -->
@@ -100,7 +158,7 @@
 									<label class="checkbox">
 										<input type="checkbox" name="consent" required="required">
 										<span class="check"></span>
-										<span class="label">Я даю согласие на обработку моих персональных данных ООО 'Компания' (ИНН 0000000000) в целях обработки заявки и обратной связи. Политика конфиденциальности — по <a href="#" target="_blank">ссылке</a></span>
+										<span class="label">Я даю согласие на обработку моих персональных данных ИП Лыков П.С. (ИНН 631921444166) в целях обработки заявки и обратной связи. Политика конфиденциальности — по <a href="https://ra-psp.ru/policy/" target="_blank">ссылке</a>, политику обработки персональных данных — по <a href="https://ra-psp.ru/politika-v-otnoshenii-obrabotki-personalnyh-dannyh/" target="_blank">ссылке</a>.</span>
 									</label>
 								</div>
 								<div class="btn-block">
