@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSP Calc - Онлайн калькулятор рекламных конструкций</title>
 
+    <x-layout.favicon />
+
     {{-- Vite для Vue компонентов (libs и app в @layer components через main.css) --}}
     @vite(['resources/js/pages/home.js'])
     <link rel="stylesheet" href="/layout/css/libs.min.css">

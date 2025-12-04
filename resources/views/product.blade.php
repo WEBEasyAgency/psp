@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
 
+    <x-layout.favicon />
+
     {{-- Vite для Tailwind БЕЗ Preflight (libs и app в @layer components) --}}
     @vite('resources/css/product.css')
 </head>

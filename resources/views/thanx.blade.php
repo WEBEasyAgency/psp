@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Спасибо за заказ</title>
 
+	<x-layout.favicon />
+
 	{{-- Сторонние CSS --}}
 	<link rel="stylesheet" href="/layout/css/libs.min.css">
 	<link rel="stylesheet" href="/layout/css/app.min.css">
