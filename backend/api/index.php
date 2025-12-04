@@ -156,13 +156,18 @@ $router->post('/calc/addLink', function() use ($config) {
 
 // POST /calc/addContact - добавление контакта клиента (NEW API)
 $router->post('/calc/addContact', function() use ($config) {
-    $input = json_decode(file_get_contents('php://input'), true);
+    $rawInput = file_get_contents('php://input');
+    $input = json_decode($rawInput, true);
+
+    // Отладка: логируем полученные данные
+    error_log("addContact raw input: " . $rawInput);
+    error_log("addContact parsed input: " . print_r($input, true));
 
     // Валидация обязательных полей
     $required = ['fio'];
     foreach ($required as $field) {
         if (!isset($input[$field])) {
-            Response::error("Missing required field: $field", 400);
+            Response::error("Missing required field: $field. Received: " . json_encode($input), 400);
         }
     }
 

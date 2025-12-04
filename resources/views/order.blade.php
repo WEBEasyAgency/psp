@@ -217,16 +217,16 @@
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
-					db_id: 1,
-					user: 'user',
-					pass: 'password',
 					fio,
 					phone,
 					email
 				})
 			});
 
-			if (!contactRes.ok) throw new Error('Ошибка создания контакта');
+			if (!contactRes.ok) {
+				const errorData = await contactRes.text();
+				throw new Error(`Ошибка создания контакта: ${errorData}`);
+			}
 			const contactData = await contactRes.json();
 			const client_id = contactData.clientId;
 
@@ -235,15 +235,15 @@
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
-					db_id: 1,
-					user: 'user',
-					pass: 'password',
 					calc_position_id,
 					price_good
 				})
 			});
 
-			if (!calcRes.ok) throw new Error('Ошибка добавления расчёта');
+			if (!calcRes.ok) {
+				const errorData = await calcRes.text();
+				throw new Error(`Ошибка добавления расчёта: ${errorData}`);
+			}
 			const calcData = await calcRes.json();
 			const calc_id = calcData.calc_id;
 
@@ -252,15 +252,15 @@
 				method: 'POST',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
-					db_id: 1,
-					user: 'user',
-					pass: 'password',
-					calc__id: calc_id,
-					clientId: client_id
+					calc_id: calc_id,
+					client_id: client_id
 				})
 			});
 
-			if (!saveRes.ok) throw new Error('Ошибка сохранения заказа');
+			if (!saveRes.ok) {
+				const errorData = await saveRes.text();
+				throw new Error(`Ошибка сохранения заказа: ${errorData}`);
+			}
 
 			// Успех! Перенаправляем на страницу благодарности
 			window.location.href = `/thanx?calc_id=${calc_id}&client_id=${client_id}`;
