@@ -133,7 +133,7 @@
 							</div>
                             <style>
                                 .file {
-                                    display: none;
+                                    display: none !important;
                                 }
                             </style>
 						</div>
