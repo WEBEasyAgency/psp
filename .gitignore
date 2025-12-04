@@ -27,3 +27,6 @@ GITHUB_DEPLOY_KEY.txt
 
 # Legacy layout directory (managed separately by another developer)
 /layout
+
+# Symlink to legacy layout
+/public/layout

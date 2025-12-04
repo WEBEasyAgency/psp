@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
 
-    {{-- CSS из dev (импортирует layout CSS + Tailwind) --}}
+    {{-- Vite для Tailwind БЕЗ Preflight (libs и app в @layer components) --}}
     @vite('resources/css/product.css')
 </head>
 <body>
     <div id="app">
-        <app-header></app-header>
+        <x-layout.header />
         <main class="main-page bg-[#F6F6F6]">
             <section class="breadcrumbs pt-32">
                 <div class="container">
@@ -34,20 +34,20 @@
                     ></calc-{{ $calculatorId }}>
                 </div>
             </div>
-            <technology-advantages></technology-advantages>
+            <x-product.technology-advantages />
             <faq></faq>
-            <seo-block></seo-block>
-            <installation-cases></installation-cases>
-            <feedback></feedback>
+            <x-product.seo-block />
+            <x-product.installation-cases />
+            <x-product.feedback />
         </main>
-        <app-footer></app-footer>
-        <popup-menu></popup-menu>
+        <x-product.footer />
+        <x-layout.popup-menu />
     </div>
 
     {{-- Библиотеки (Swiper и др.) --}}
-    <script src="{{ asset('js/libs.min.js') }}"></script>
-    {{-- app.min.js: обработчики отвязываются в Vue onMounted --}}
-    <script src="{{ asset('js/app.min.js') }}"></script>
+    <script src="/layout/js/libs.min.js"></script>
+    {{-- app.min.js: инициализация Swiper слайдеров и другие обработчики --}}
+    <script src="/layout/js/app.min.js"></script>
 
     {{-- Vue приложение --}}
     @vite('resources/js/pages/product-' . $calculatorId . '.js')

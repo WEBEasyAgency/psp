@@ -61,6 +61,11 @@ ln -sf public/js js 2>/dev/null || true
 ln -sf public/fonts fonts 2>/dev/null || true
 ln -sf public/build build 2>/dev/null || true
 
+# Create symlink from public/layout to layout (legacy directory)
+rm -f public/layout 2>/dev/null || true
+ln -sf ../layout public/layout 2>/dev/null || true
+echo "✅ Created symlink: public/layout -> ../layout"
+
 echo ""
 echo "📸 Ensuring images are in public/img..."
 # If old img/Контент exists at root and public/img/Контент doesn't, copy it

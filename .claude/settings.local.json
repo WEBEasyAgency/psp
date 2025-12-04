@@ -29,7 +29,8 @@
       "Bash(do echo \"=== Calculator $id ===\")",
       "Bash(done)",
       "Bash(do echo \"=== Calculator $id ===\" curl -s -X POST \"https://psp.realeasystudio.site/backend/api/calc/$id/params\" -H \"Content-Type: application/json\" -d '{\"\"\"\"db_id\"\"\"\": 1, \"\"\"\"user\"\"\"\": \"\"\"\"user\"\"\"\", \"\"\"\"pass\"\"\"\": \"\"\"\"password\"\"\"\"}')",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(ln:*)"
     ],
     "deny": [],
     "ask": []

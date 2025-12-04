@@ -1,8 +1,12 @@
 import { createApp } from 'vue'
-import Home from './Home.vue'
-import '../main.css'
-import '../../css/libs.min.css'
-import '../../css/app.min.css'
 
-const app = createApp(Home)
-app.mount('#app')
+// Импорт только Vue компонента ConstructionTypeSlider
+// Header, PopupMenu теперь Blade компоненты
+// CasesBlock, FeedbackSlider, ClientsSlider перенесены на Blade + app.min.js
+import ConstructionTypeSlider from '../shared/ui/ConstructionTypeSlider.vue'
+
+// Монтирование Construction Type Slider
+if (document.getElementById('construction-slider-app')) {
+    const constructionApp = createApp(ConstructionTypeSlider)
+    constructionApp.mount('#construction-slider-app')
+}

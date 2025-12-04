@@ -249,35 +249,3 @@ const calculatePrice = async () => {
 onMounted(fetchCalculatorParams)
 </script>
 
-<style scoped>
-@import "tailwindcss" reference;
-
-.calculator { @apply self-stretch inline-flex flex-col justify-start items-start gap-6; }
-@media (min-width: 1280px) { .calculator { @apply w-[1400px] p-16 bg-white rounded-[32px] inline-flex flex-col justify-start items-start gap-16; } }
-.calculator__title { @apply text-[#1e3552] text-[64px] font-medium font-['Inter'] leading-[64px] xl:whitespace-nowrap; letter-spacing: -1.2px; }
-.calculator__content { @apply flex-col inline-flex justify-between items-start xl:flex-row gap-4 xl:gap-[74px] w-full; }
-.calculator__left { @apply flex flex-col w-full xl:w-[568px]; }
-.calculator__right { @apply flex flex-col w-full xl:w-[624px] gap-8; }
-.calculator__params { @apply flex flex-col gap-6; }
-.calculator__dims-row { @apply flex flex-col xl:flex-row gap-4; }
-.calculator__options { @apply flex flex-col gap-8; }
-.calculator__services { @apply flex flex-col gap-4; }
-.calculator__services-list { @apply flex flex-wrap gap-4; }
-.calculator__services-label { @apply text-[#2d2b2c] text-base font-medium; }
-.calculator__action { @apply p-4 bg-[#f6f6f6] rounded-2xl flex flex-col gap-4; }
-@media (min-width: 1280px) { 
-    .calculator__action { @apply p-8 flex-row items-center justify-between; }
-    .calculator__action--with-result { @apply flex-col items-start; }
-    .calculator__action--with-result .calculator__action-buttons { @apply grid grid-cols-2 gap-4 w-full; }
-}
-.calculator__action-buttons { @apply flex flex-col gap-2 w-full xl:w-auto; }
-@media (min-width: 1280px) { .calculator__action-buttons { @apply flex-row; } }
-.calculator__info { @apply text-slate-500 text-sm xl:text-base; }
-.calculator__calculate-btn, .calculator__update-btn, .calculator__order-btn { @apply h-12 xl:h-14 px-6 bg-[#3c7bbb] rounded-xl flex justify-center items-center text-white text-base font-normal w-full cursor-pointer; }
-.calculator__update-btn { @apply bg-white border-2 border-[#3c7bbb] text-[#3c7bbb]; }
-.calculator__error { @apply p-4 bg-red-50 text-red-800 rounded-xl; }
-.result-box { @apply self-stretch h-14 px-6 bg-[#e6eef8] rounded-xl outline outline-offset-[-1px] outline-[#98bce1] inline-flex flex-col justify-center items-center gap-1; }
-.result-row { @apply self-stretch inline-flex justify-between items-center; }
-.result-label { @apply justify-start text-slate-500 text-xs font-medium font-['Inter'] uppercase leading-4 tracking-wide; }
-.result-value { @apply justify-start text-[#282828] text-lg font-medium font-['Inter'] leading-[25.20px]; }
-</style>

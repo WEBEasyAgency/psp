@@ -1,18 +1,37 @@
 /*
- * Порядок слоёв определяет приоритет (от низкого к высокому)
+ * Main CSS с Tailwind БЕЗ Preflight
+ * Сторонние CSS (libs.min.css, app.min.css) подключаются напрямую в Blade шаблонах
  */
-@layer reset, utilities, components;
 
-/* Reset из libs.min.css - самый низкий приоритет */
-@import "../../public/css/libs.min.css" layer(reset);
+/* Tailwind БЕЗ Preflight */
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
 
-/* Стили приложения из app.min.css - подключаем ДО Tailwind */
-/* Но без универсального селектора * чтобы не перебивать Tailwind */
-@import "../../public/css/app.min.css" layer(reset);
+/* Оригинальные CSS в слое components для низкого приоритета */
+@import "../../layout/css/libs.min.css" layer(components);
+@import "../../layout/css/app.min.css" layer(components);
 
-/* Tailwind utilities (без Preflight - используем reset из layout) */
-@import "tailwindcss/theme" layer(utilities);
-@import "tailwindcss/utilities" layer(utilities);
+/* Проблемные reset-селекторы в Tailwind layer для низкого приоритета */
+@layer utilities {
+    /* Из app.min.css */
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+
+    /* Из libs.min.css */
+    abbr, address, article, aside, audio, b, blockquote, body, body div, caption, cite, code, dd, del, details, dfn, dl, dt, em, fieldset, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, small, span, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, ul, var, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font-weight: 400;
+        vertical-align: baseline;
+        background: transparent;
+    }
+}
 
 /* Продублируем медиа-запросы из app.min.css на слое ниже utilities */
 /* Мобильная версия (max-width: 767.9px) */
@@ -252,395 +271,393 @@
     }
 }
 
-/* Ваши кастомные стили */
-@layer components {
-    .container {
-        width: 100%;
-        margin: 0 auto;
-        padding: 0 12px;
-        max-width: 1424px;
-    }
-
-    /* FAQ Component */
-    .faq__section {
-        @apply mb-12;
-    }
-
-    .faq__container {
-        @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
-    }
-
-    .faq__card {
-        @apply self-stretch flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-16 py-4 lg:py-16 px-4 lg:px-16 bg-white rounded-3xl lg:rounded-[32px];
-    }
-
-    .faq__column-left {
-        @apply flex flex-col justify-start items-start gap-5 lg:w-[520px];
-    }
-
-    .faq__header {
-        @apply self-stretch flex flex-col justify-start items-start gap-4;
-    }
-
-    .faq__badge {
-        @apply px-2 py-1 bg-[#e6eef8] rounded-xl inline-flex justify-center items-center gap-1;
-    }
-
-    .faq__badge-text {
-        @apply justify-start text-[#1e3552] text-xs font-normal font-['Inter'] leading-[14.40px];
-    }
-
-    .faq__title-wrapper {
-        @apply self-stretch justify-start;
-    }
-
-    .faq__title-primary {
-        @apply text-[#1e3552] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
-    }
-
-    .faq__title-secondary {
-        @apply text-[#2c619d] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
-    }
-
-    .faq__description {
-        @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-4;
-    }
-
-    .faq__list {
-        @apply self-stretch flex flex-col justify-start items-start gap-4 lg:w-[630px];
-    }
-
-    /* FAQ Item & Interactive Elements */
-    .faq__item {
-        @apply self-stretch px-4 lg:px-8 py-4 lg:py-6 rounded-3xl bg-white outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col justify-start items-start gap-4;
-        transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .faq__item:hover {
-        background: linear-gradient(267deg, rgba(193, 205, 217, 0.44) -0.89%, rgba(235, 240, 244, 0.44) 97.9%);
-    }
-    .is-open.faq__item:hover {
-        background: linear-gradient(267deg, rgba(235, 240, 244, 0.44) -0.89%, rgba(193, 205, 217, 0.44) 97.9%);
-    }
-    .faq__summary {
-        @apply self-stretch inline-flex justify-start items-center gap-4 cursor-pointer select-none;
-    }
-
-    .faq__icon {
-        @apply size-9 bg-[#f6f6f6] pt-1 rounded-xl flex justify-center items-center gap-2.5 transition-colors flex-shrink-0;
-        transition: background-color 0.4s ease;
-    }
-
-    .faq__icon svg {
-        @apply transition-transform duration-300;
-    }
-
-    .faq__icon svg path {
-        transition: stroke 0.4s ease;
-    }
-
-    .faq__question {
-        @apply flex-1 justify-start text-[#170f49] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
-    }
-
-
-
-    /* Smooth Grid Animation */
-    .faq__answer-wrapper {
-        display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        width: 100%;
-    }
-
-    .faq__answer-inner {
-        overflow: hidden;
-    }
-
-    .faq__answer-container {
-        @apply self-stretch pl-[52px] inline-flex justify-start items-start gap-2.5;
-        padding-top: 0.625rem; /* gap-2.5 equivalent roughly, adding top padding here for spacing */
-    }
-
-    /* Remove gap from parent when closed to prevent jumpiness, or handle spacing differently.
-       Original flex gap-4 handled spacing between summary and answer.
-       When closed, answer height is 0, but gap might remain if not handled.
-       The .faq__item has flex gap-4. If answer-wrapper is 0 height, gap still exists if it has children?
-       Actually, if wrapper is 0 height, gap appears visually.
-       Let's remove gap from .faq__item and use margin on the wrapper or padding inside.
-    */
-    .faq__item {
-        gap: 0; /* Override default gap */
-    }
-
-    .faq__summary {
-        margin-bottom: 0;
-        transition: margin-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .faq__item.is-open .faq__summary {
-        margin-bottom: 1rem; /* gap-4 equivalent */
-    }
-
-    .faq__answer-text {
-        @apply flex-1 justify-start text-slate-900 text-sm lg:text-base font-normal font-['Inter'] leading-5 lg:leading-[22.40px];
-    }
-
-    /* FAQ States */
-    .faq__item.is-open {
-        background: linear-gradient(141deg, rgba(193, 205, 217, 0.4) 0%, rgba(235, 240, 243, 0.4) 100%);
-    }
-
-    .faq__item.is-open .faq__answer-wrapper {
-        grid-template-rows: 1fr;
-    }
-
-    .faq__item.is-open .faq__icon {
-        @apply bg-[#3c7bbb];
-    }
-    .faq__item.is-open:hover .faq__icon {
-        @apply bg-[#244D80];
-    }
-
-
-    .faq__item.is-open .faq__icon svg {
-        @apply rotate-180;
-    }
-
-    .faq__item.is-open .faq__icon svg path {
-        stroke: white;
-    }
-
-    .faq__item.is-open .faq__summary {
-        color: #2c619d;
-        transition: color 0.4s ease;
-    }
-
-    /* SEO Block Component */
-    .seo__section {
-        @apply mb-12;
-    }
-
-    .seo__container {
-        @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
-    }
-
-    .seo__wrapper {
-        @apply w-full lg:w-[1400px] flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-16;
-    }
-
-    .seo__left-column {
-        @apply w-full lg:w-[576px] flex flex-col justify-start items-start gap-8 lg:gap-16;
-    }
-
-    .seo__title {
-        @apply w-full lg:w-[594px] justify-start text-[#1e3552] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
-    }
-
-    .seo__subtitle {
-        @apply w-full justify-start text-[#1e3552] text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
-    }
-
-    .seo__text {
-        @apply w-full lg:w-[694px] justify-start text-slate-500 text-base font-normal font-['Inter'] leading-[22.40px];
-    }
-
-    /* Technology Advantages Component */
-    .tech__section {
-        @apply mb-12;
-    }
-
-    .tech__container {
-        @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
-    }
-
-    .tech__wrapper {
-        @apply w-full lg:w-[1400px] p-6 lg:p-0 rounded-3xl lg:rounded-3xl flex flex-col lg:inline-flex justify-start items-start gap-6 lg:gap-16 lg:py-8;
-    }
-
-    .tech__title {
-        @apply self-stretch justify-start text-[#1e3552] text-lg lg:text-5xl font-medium font-['Inter'] leading-[21.60px] lg:leading-[48px] line-clamp-4;
-    }
-
-    .tech__list {
-        @apply w-full lg:self-stretch flex flex-col xl:flex-row flex-wrap justify-start items-start gap-5 lg:gap-6;
-    }
-
-    .tech__item {
-        @apply flex-1 flex justify-start items-start gap-3;
-    }
-
-    .tech__item--alt {
-        @apply self-stretch lg:flex-1 inline-flex justify-start items-start gap-3;
-    }
-
-    .tech__icon-wrapper {
-        @apply size-7 lg:size-9 bg-[#3c7bbb] rounded-[999px] flex justify-center items-center gap-2.5 flex-shrink-0;
-    }
-
-    .tech__content {
-        @apply flex-1 flex flex-col justify-start items-start gap-2 lg:gap-3;
-    }
-
-    .tech__item-title {
-        @apply self-stretch justify-start text-[#282828] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-4;
-    }
-
-    .tech__item-text {
-        @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-2;
-    }
-
-    /* Calculator Component Styles */
-    /* Calculator background - mobile version */
-    @media screen and (max-width: 767.9px) {
-        .calculator {
-            @apply bg-white rounded-3xl;
-        }
-    }
-
-    /* Calculator calculate button - prevent text wrapping */
-    .calculator__calculate-btn {
-        white-space: nowrap;
-    }
-
-    /* Input States */
-    /* Default state */
-    input[type="text"],
-    input[type="number"],
-    input[type="email"],
-    input[type="tel"],
-    select,
-    textarea {
-        @apply h-12 p-3 bg-[#f6f6f6] rounded-2xl;
-        @apply outline outline-1 outline-offset-[-1px] outline-slate-200;
-        @apply text-slate-500 text-base font-normal font-['Inter'] leading-[22.40px];
-        @apply transition-all duration-200;
-    }
-
-    /* Hover/Focus state */
-    input[type="text"]:hover,
-    input[type="number"]:hover,
-    input[type="email"]:hover,
-    input[type="tel"]:hover,
-    select:hover,
-    textarea:hover,
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus,
-    select:focus,
-    textarea:focus {
-        @apply outline-[#6198cf];
-        @apply text-slate-700;
-    }
-
-    /* Active state (when typing) */
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus,
-    select:focus,
-    textarea:focus {
-        @apply bg-white;
-        @apply text-[#282828];
-    }
-
-    /* Edited state (has value) */
-    input[type="text"]:not(:placeholder-shown),
-    input[type="number"]:not(:placeholder-shown),
-    input[type="email"]:not(:placeholder-shown),
-    input[type="tel"]:not(:placeholder-shown),
-    select:not(:placeholder-shown),
-    textarea:not(:placeholder-shown) {
-        @apply text-[#2d2b2c];
-    }
-
-    /* Disabled state */
-    input[type="text"]:disabled,
-    input[type="number"]:disabled,
-    input[type="email"]:disabled,
-    input[type="tel"]:disabled,
-    select:disabled,
-    textarea:disabled {
-        @apply bg-[#f6f6f6];
-        @apply outline-slate-200;
-        @apply text-slate-500;
-        @apply cursor-not-allowed;
-        @apply opacity-60;
-    }
-
-    /* Button States */
-    /* Filter/Option buttons (used in calculators) */
-    .filter-button,
-    button[class*="filter"],
-    button[class*="option"] {
-        @apply h-11 px-4 py-2 bg-[#f6f6f6] rounded-lg;
-        @apply inline-flex justify-center items-center gap-1;
-        @apply text-[#1e3552] text-sm font-normal font-['Inter'] leading-5;
-        @apply transition-all duration-200;
-        @apply cursor-pointer;
-    }
-
-    /* Hover state for filter buttons */
-    .filter-button:hover,
-    button[class*="filter"]:hover,
-    button[class*="option"]:hover {
-        @apply opacity-50;
-    }
-
-    /* Active state for filter buttons */
-    .filter-button.active,
-    .filter-button[aria-pressed="true"],
-    button[class*="filter"].active,
-    button[class*="option"].active {
-        @apply bg-[#c8dbef];
-        @apply text-[#244d80];
-    }
-
-    /* Active-hover state */
-    .filter-button.active:hover,
-    .filter-button[aria-pressed="true"]:hover,
-    button[class*="filter"].active:hover,
-    button[class*="option"].active:hover {
-        @apply bg-[#3c7bbb];
-        @apply text-white;
-    }
-
-    /* Active pressed state */
-    .filter-button.active:active,
-    button[class*="filter"].active:active,
-    button[class*="option"].active:active {
-        @apply bg-[#244d80];
-        @apply text-white;
-    }
-
-    /* Disabled state for filter buttons */
-    .filter-button:disabled,
-    button[class*="filter"]:disabled,
-    button[class*="option"]:disabled {
-        @apply opacity-50;
-        @apply cursor-not-allowed;
-    }
-
-    /* Primary/Calculate buttons */
-    .calculator__calculate-btn,
-    button[class*="calculate"],
-    button[class*="primary"] {
-        @apply bg-[#3c7bbb];
-        @apply text-white;
-        @apply transition-all duration-200;
-    }
-
-    .calculator__calculate-btn:hover,
-    button[class*="calculate"]:hover,
-    button[class*="primary"]:hover {
-        @apply bg-[#244d80];
-    }
-
-    .calculator__calculate-btn:disabled,
-    button[class*="calculate"]:disabled,
-    button[class*="primary"]:disabled {
-        @apply opacity-50;
-        @apply cursor-not-allowed;
-    }
+/* Ваши кастомные стили ВНЕ слоёв для максимального приоритета */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 12px;
+    max-width: 1424px;
+}
+
+/* FAQ Component */
+.faq__section {
+    @apply mb-12;
+}
+
+.faq__container {
+    @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
+}
+
+.faq__card {
+    @apply self-stretch flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-16 py-4 lg:py-16 px-4 lg:px-16 bg-white rounded-3xl lg:rounded-[32px];
+}
+
+.faq__column-left {
+    @apply flex flex-col justify-start items-start gap-5 lg:w-[520px];
+}
+
+.faq__header {
+    @apply self-stretch flex flex-col justify-start items-start gap-4;
+}
+
+.faq__badge {
+    @apply px-2 py-1 bg-[#e6eef8] rounded-xl inline-flex justify-center items-center gap-1;
+}
+
+.faq__badge-text {
+    @apply justify-start text-[#1e3552] text-xs font-normal font-['Inter'] leading-[14.40px];
+}
+
+.faq__title-wrapper {
+    @apply self-stretch justify-start;
+}
+
+.faq__title-primary {
+    @apply text-[#1e3552] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
+}
+
+.faq__title-secondary {
+    @apply text-[#2c619d] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
+}
+
+.faq__description {
+    @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-4;
+}
+
+.faq__list {
+    @apply self-stretch flex flex-col justify-start items-start gap-4 lg:w-[630px];
+}
+
+/* FAQ Item & Interactive Elements */
+.faq__item {
+    @apply self-stretch px-4 lg:px-8 py-4 lg:py-6 rounded-3xl bg-white outline outline-1 outline-offset-[-1px] outline-slate-200 flex flex-col justify-start items-start gap-4;
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq__item:hover {
+    background: linear-gradient(267deg, rgba(193, 205, 217, 0.44) -0.89%, rgba(235, 240, 244, 0.44) 97.9%);
+}
+.is-open.faq__item:hover {
+    background: linear-gradient(267deg, rgba(235, 240, 244, 0.44) -0.89%, rgba(193, 205, 217, 0.44) 97.9%);
+}
+.faq__summary {
+    @apply self-stretch inline-flex justify-start items-center gap-4 cursor-pointer select-none;
+}
+
+.faq__icon {
+    @apply size-9 bg-[#f6f6f6] pt-1 rounded-xl flex justify-center items-center gap-2.5 transition-colors flex-shrink-0;
+    transition: background-color 0.4s ease;
+}
+
+.faq__icon svg {
+    @apply transition-transform duration-300;
+}
+
+.faq__icon svg path {
+    transition: stroke 0.4s ease;
+}
+
+.faq__question {
+    @apply flex-1 justify-start text-[#170f49] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
+}
+
+
+
+/* Smooth Grid Animation */
+.faq__answer-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.faq__answer-inner {
+    overflow: hidden;
+}
+
+.faq__answer-container {
+    @apply self-stretch pl-[52px] inline-flex justify-start items-start gap-2.5;
+    padding-top: 0.625rem; /* gap-2.5 equivalent roughly, adding top padding here for spacing */
+}
+
+/* Remove gap from parent when closed to prevent jumpiness, or handle spacing differently.
+   Original flex gap-4 handled spacing between summary and answer.
+   When closed, answer height is 0, but gap might remain if not handled.
+   The .faq__item has flex gap-4. If answer-wrapper is 0 height, gap still exists if it has children?
+   Actually, if wrapper is 0 height, gap appears visually.
+   Let's remove gap from .faq__item and use margin on the wrapper or padding inside.
+*/
+.faq__item {
+    gap: 0; /* Override default gap */
+}
+
+.faq__summary {
+    margin-bottom: 0;
+    transition: margin-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq__item.is-open .faq__summary {
+    margin-bottom: 1rem; /* gap-4 equivalent */
+}
+
+.faq__answer-text {
+    @apply flex-1 justify-start text-slate-900 text-sm lg:text-base font-normal font-['Inter'] leading-5 lg:leading-[22.40px];
+}
+
+/* FAQ States */
+.faq__item.is-open {
+    background: linear-gradient(141deg, rgba(193, 205, 217, 0.4) 0%, rgba(235, 240, 243, 0.4) 100%);
+}
+
+.faq__item.is-open .faq__answer-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.faq__item.is-open .faq__icon {
+    @apply bg-[#3c7bbb];
+}
+.faq__item.is-open:hover .faq__icon {
+    @apply bg-[#244D80];
+}
+
+
+.faq__item.is-open .faq__icon svg {
+    @apply rotate-180;
+}
+
+.faq__item.is-open .faq__icon svg path {
+    stroke: white;
+}
+
+.faq__item.is-open .faq__summary {
+    color: #2c619d;
+    transition: color 0.4s ease;
+}
+
+/* SEO Block Component */
+.seo__section {
+    @apply mb-12;
+}
+
+.seo__container {
+    @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
+}
+
+.seo__wrapper {
+    @apply w-full lg:w-[1400px] flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-16;
+}
+
+.seo__left-column {
+    @apply w-full lg:w-[576px] flex flex-col justify-start items-start gap-8 lg:gap-16;
+}
+
+.seo__title {
+    @apply w-full lg:w-[594px] justify-start text-[#1e3552] text-2xl lg:text-5xl font-medium font-['Inter'] leading-6 lg:leading-[48px];
+}
+
+.seo__subtitle {
+    @apply w-full justify-start text-[#1e3552] text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
+}
+
+.seo__text {
+    @apply w-full lg:w-[694px] justify-start text-slate-500 text-base font-normal font-['Inter'] leading-[22.40px];
+}
+
+/* Technology Advantages Component */
+.tech__section {
+    @apply mb-12;
+}
+
+.tech__container {
+    @apply w-full max-w-[1400px] mx-auto px-4 lg:px-0;
+}
+
+.tech__wrapper {
+    @apply w-full lg:w-[1400px] p-6 lg:p-0 rounded-3xl lg:rounded-3xl flex flex-col lg:inline-flex justify-start items-start gap-6 lg:gap-16 lg:py-8;
+}
+
+.tech__title {
+    @apply self-stretch justify-start text-[#1e3552] text-lg lg:text-5xl font-medium font-['Inter'] leading-[21.60px] lg:leading-[48px] line-clamp-4;
+}
+
+.tech__list {
+    @apply w-full lg:self-stretch flex flex-col xl:flex-row flex-wrap justify-start items-start gap-5 lg:gap-6;
+}
+
+.tech__item {
+    @apply flex-1 flex justify-start items-start gap-3;
+}
+
+.tech__item--alt {
+    @apply self-stretch lg:flex-1 inline-flex justify-start items-start gap-3;
+}
+
+.tech__icon-wrapper {
+    @apply size-7 lg:size-9 bg-[#3c7bbb] rounded-[999px] flex justify-center items-center gap-2.5 flex-shrink-0;
+}
+
+.tech__content {
+    @apply flex-1 flex flex-col justify-start items-start gap-2 lg:gap-3;
+}
+
+.tech__item-title {
+    @apply self-stretch justify-start text-[#282828] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-4;
+}
+
+.tech__item-text {
+    @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-2;
+}
+
+/* Calculator Component Styles */
+/* Calculator background - mobile version */
+@media screen and (max-width: 767.9px) {
+    .calculator {
+        @apply bg-white rounded-3xl;
+    }
+}
+
+/* Calculator calculate button - prevent text wrapping */
+.calculator__calculate-btn {
+    white-space: nowrap;
+}
+
+/* Input States */
+/* Default state */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    @apply h-12 p-3 bg-[#f6f6f6] rounded-2xl;
+    @apply outline outline-1 outline-offset-[-1px] outline-slate-200;
+    @apply text-slate-500 text-base font-normal font-['Inter'] leading-[22.40px];
+    @apply transition-all duration-200;
+}
+
+/* Hover/Focus state */
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+select:hover,
+textarea:hover,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+    @apply outline-[#6198cf];
+    @apply text-slate-700;
+}
+
+/* Active state (when typing) */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+    @apply bg-white;
+    @apply text-[#282828];
+}
+
+/* Edited state (has value) */
+input[type="text"]:not(:placeholder-shown),
+input[type="number"]:not(:placeholder-shown),
+input[type="email"]:not(:placeholder-shown),
+input[type="tel"]:not(:placeholder-shown),
+select:not(:placeholder-shown),
+textarea:not(:placeholder-shown) {
+    @apply text-[#2d2b2c];
+}
+
+/* Disabled state */
+input[type="text"]:disabled,
+input[type="number"]:disabled,
+input[type="email"]:disabled,
+input[type="tel"]:disabled,
+select:disabled,
+textarea:disabled {
+    @apply bg-[#f6f6f6];
+    @apply outline-slate-200;
+    @apply text-slate-500;
+    @apply cursor-not-allowed;
+    @apply opacity-60;
+}
+
+/* Button States */
+/* Filter/Option buttons (used in calculators) */
+.filter-button,
+button[class*="filter"],
+button[class*="option"] {
+    @apply h-11 px-4 py-2 bg-[#f6f6f6] rounded-lg;
+    @apply inline-flex justify-center items-center gap-1;
+    @apply text-[#1e3552] text-sm font-normal font-['Inter'] leading-5;
+    @apply transition-all duration-200;
+    @apply cursor-pointer;
+}
+
+/* Hover state for filter buttons */
+.filter-button:hover,
+button[class*="filter"]:hover,
+button[class*="option"]:hover {
+    @apply opacity-50;
+}
+
+/* Active state for filter buttons */
+.filter-button.active,
+.filter-button[aria-pressed="true"],
+button[class*="filter"].active,
+button[class*="option"].active {
+    @apply bg-[#c8dbef];
+    @apply text-[#244d80];
+}
+
+/* Active-hover state */
+.filter-button.active:hover,
+.filter-button[aria-pressed="true"]:hover,
+button[class*="filter"].active:hover,
+button[class*="option"].active:hover {
+    @apply bg-[#3c7bbb];
+    @apply text-white;
+}
+
+/* Active pressed state */
+.filter-button.active:active,
+button[class*="filter"].active:active,
+button[class*="option"].active:active {
+    @apply bg-[#244d80];
+    @apply text-white;
+}
+
+/* Disabled state for filter buttons */
+.filter-button:disabled,
+button[class*="filter"]:disabled,
+button[class*="option"]:disabled {
+    @apply opacity-50;
+    @apply cursor-not-allowed;
+}
+
+/* Primary/Calculate buttons */
+.calculator__calculate-btn,
+button[class*="calculate"],
+button[class*="primary"] {
+    @apply bg-[#3c7bbb];
+    @apply text-white;
+    @apply transition-all duration-200;
+}
+
+.calculator__calculate-btn:hover,
+button[class*="calculate"]:hover,
+button[class*="primary"]:hover {
+    @apply bg-[#244d80];
+}
+
+.calculator__calculate-btn:disabled,
+button[class*="calculate"]:disabled,
+button[class*="primary"]:disabled {
+@apply opacity-50;
+@apply cursor-not-allowed;
 }
