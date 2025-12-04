@@ -83,7 +83,7 @@
           >
             <template #details="{ option, isActive }">
               <div v-if="isActive && option.value === 'Рама'" class="calculator__sub-options">
-                <NumberInput v-model="calculatorData.rama_w" label="Ширина рамы, см" :min="0" :max="500"/>
+                <NumberInput v-model="calculatorData.rama_w" label="Ширина рамы, м" :min="0" :max="5" :step="0.1"/>
                 <FilterButtons
                     v-if="options.color_rama"
                     v-model="calculatorData.color_rama"
@@ -93,8 +93,8 @@
                 />
               </div>
               <div v-if="isActive && option.value === 'Подложка из композита'" class="calculator__sub-options">
-                <NumberInput v-model="calculatorData.wp" label="Ширина подложки, см" :min="0" :max="500"/>
-                <NumberInput v-model="calculatorData.hp" label="Высота подложки, см" :min="0" :max="500"/>
+                <NumberInput v-model="calculatorData.wp" label="Ширина подложки, м" :min="0" :max="5" :step="0.1"/>
+                <NumberInput v-model="calculatorData.hp" label="Высота подложки, м" :min="0" :max="5" :step="0.1"/>
                 <FilterButtons
                     v-if="options.colorp"
                     v-model="calculatorData.colorp"

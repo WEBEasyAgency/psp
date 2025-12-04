@@ -26,8 +26,8 @@
         <!-- Секция 1: Размеры и количество -->
         <div class="calculator__params">
           <div class="calculator__dims-row">
-            <NumberInput v-model="calculatorData.w" label="Ширина, см" :min="10" :max="1000" />
-            <NumberInput v-model="calculatorData.h" label="Высота, см" :min="10" :max="1000" />
+            <NumberInput v-model="calculatorData.w" label="Ширина, м" :min="0.1" :max="10" :step="0.1" />
+            <NumberInput v-model="calculatorData.h" label="Высота, м" :min="0.1" :max="10" :step="0.1" />
           </div>
           <NumberInput v-model="calculatorData.num" label="Количество" :min="1" :max="100" />
         </div>
