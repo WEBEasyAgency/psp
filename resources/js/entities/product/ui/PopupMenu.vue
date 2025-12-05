@@ -72,7 +72,7 @@
             </div>
             <div class="descriptor">Производство наружной и интерьерной рекламы</div>
             <div class="contacts-block">
-                <div class="phone"><a href="tel:+78462113710">+7 (846) 211-3710</a></div>
+                <div class="phone"><a href="tel:+78462129754">+7 (846) 212-97-54</a></div>
                 <div class="mail"><a href="mailto:order@ra-psp.ru">order@ra-psp.ru</a></div>
             </div>
         </div>
@@ -127,8 +127,8 @@
                             </div>
                             <ul>
                                 <li><a href="/product/151">Стенд из пластика с карманами</a></li>
-                                <li><a href="#">Стенд из алюминиевого композита</a></li>
-                                <li><a href="#">Стенд из оргстекла</a></li>
+                                <li><a class="disabled">Стенд из алюминиевого композита (скоро)</a></li>
+                                <li><a class="disabled">Стенд из оргстекла (скоро)</a></li>
                             </ul>
                         </div>
                     </li>
@@ -158,16 +158,16 @@
                                 <span>Баннеры</span>
                             </div>
                             <ul>
-                                <li><a href="#">Баннер с люверсами</a></li>
-                                <li><a href="#">Баннер на раме</a></li>
+                                <li><a class="disabled">Баннер с люверсами (скоро)</a></li>
+                                <li><a class="disabled">Баннер на раме (скоро)</a></li>
                             </ul>
                         </div>
                     </li>
                     <li><a href="/product/154">Наклейки</a></li>
-                    <li><a href="#">Флаги</a></li>
-                    <li><a href="#">Роллапы</a></li>
-                    <li><a href="#">Виндеры</a></li>
-                    <li><a href="#">Режим работы</a></li>
+                    <li><a class="disabled">Флаги (скоро)</a></li>
+                    <li><a class="disabled">Роллапы (скоро)</a></li>
+                    <li><a class="disabled">Виндеры (скоро)</a></li>
+                    <li><a class="disabled">Режим работы (скоро)</a></li>
                 </ul>
             </div>
         </div>
@@ -245,6 +245,14 @@ onUnmounted(() => {
 </script>
 
 <style>
+/* Disabled links */
+a.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+  color: #999 !important;
+}
+
 /* Desktop catalog menu styles */
 .catalog-menu .menu li.parent {
   position: relative;
