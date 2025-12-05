@@ -112,6 +112,9 @@ const options = reactive({
     upakovka: []
 })
 
+// Полные данные mat_select_params из API (для отправки обратно)
+const rawMatSelectParams = ref([])
+
 const calculatorData = reactive({
   w: 100,
   h: 100,
@@ -188,12 +191,25 @@ const calculatePrice = async () => {
         { variable: 'upakovka', type: 5, value: calculatorData.upakovka || 0 },
     ]
 
+    // mat_select_params с обновлённым id на ID выбранного материала
+    const matParams = rawMatSelectParams.value.map(param => {
+        const selectedMaterialId = calculatorData[param.variable]
+        const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
+
+        return {
+            ...param, // Весь объект как пришёл из API
+            id: selectedMaterial ? selectedMaterial.id : param.id, // ID выбранного материала
+            name: selectedMaterial ? selectedMaterial.name : param.name, // Название выбранного материала
+            materials: selectedMaterial ? [selectedMaterial] : param.materials // Только выбранный материал
+        }
+    })
+
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         params: params,
-        mat_select_params: []
+        mat_select_params: matParams
       })
     })
 

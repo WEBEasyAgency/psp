@@ -122,6 +122,9 @@ const options = reactive({
 // Raw API options to map indices back (because type 5 needs index)
 const rawApiOptions = reactive({})
 
+// Полные данные mat_select_params из API (для отправки обратно)
+const rawMatSelectParams = ref([])
+
 const calculatorData = reactive({
   w: 100,
   h: 50,
@@ -204,7 +207,7 @@ const calculatePrice = async () => {
         { variable: 'w', type: 1, value: calculatorData.w },
         { variable: 'h', type: 1, value: calculatorData.h },
         { variable: 'num', type: 1, value: calculatorData.num },
-        
+
         // Type 5 sends Index
         { variable: 'th_acryl', type: 5, value: getIndex('th_acryl', calculatorData.th_acryl) },
         { variable: 'acryl_color', type: 5, value: getIndex('acryl_color', calculatorData.acryl_color) },
@@ -216,12 +219,25 @@ const calculatePrice = async () => {
         { variable: 'round', type: 2, value: calculatorData.round ? 1 : 0 },
     ]
 
+    // mat_select_params с обновлённым id на ID выбранного материала
+    const matParams = rawMatSelectParams.value.map(param => {
+        const selectedMaterialId = calculatorData[param.variable]
+        const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
+
+        return {
+            ...param, // Весь объект как пришёл из API
+            id: selectedMaterial ? selectedMaterial.id : param.id, // ID выбранного материала
+            name: selectedMaterial ? selectedMaterial.name : param.name, // Название выбранного материала
+            materials: selectedMaterial ? [selectedMaterial] : param.materials // Только выбранный материал
+        }
+    })
+
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         params: params,
-        mat_select_params: [] // Empty for 157
+        mat_select_params: matParams
       })
     })
 

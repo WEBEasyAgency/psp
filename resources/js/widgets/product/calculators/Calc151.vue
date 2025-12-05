@@ -128,6 +128,9 @@ const options = reactive({
     mat_select_in3: [] // Материалы
 })
 
+// Полные данные mat_select_params из API (для отправки обратно)
+const rawMatSelectParams = ref([])
+
 // Основные данные калькулятора
 const calculatorData = reactive({
   w: 100,
@@ -195,6 +198,9 @@ const fetchCalculatorParams = async () => {
     // 2. Материалы (mat_select_params)
     // В 156 есть mat_select_in3 (ПВХ пластик)
     if (data.mat_select_params) {
+        // Сохраняем полные данные для отправки обратно в API
+        rawMatSelectParams.value = data.mat_select_params
+
         data.mat_select_params.forEach(p => {
             // Собираем опции для кнопок: { label: '3мм', value: 101 }
             // Имя материала часто длинное "ПВХ пластик 3мм", нам может быть нужно сократить или оставить как есть
@@ -236,14 +242,23 @@ const calculatePrice = async () => {
         { variable: 'perekid', type: 2, value: calculatorData.perekid ? 1 : 0 },
     ]
 
-    // Собираем mat_select_params
-    const matParams = []
+    // Добавляем материал в params с type=3
     if (calculatorData.mat_select_in3) {
-        matParams.push({
-            variable: 'mat_select_in3',
-            value: calculatorData.mat_select_in3
-        })
+        params.push({ variable: 'mat_select_in3', type: 3, value: calculatorData.mat_select_in3 })
     }
+
+    // mat_select_params с обновлённым id на ID выбранного материала
+    const matParams = rawMatSelectParams.value.map(param => {
+        const selectedMaterialId = calculatorData[param.variable]
+        const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
+
+        return {
+            ...param, // Весь объект как пришёл из API
+            id: selectedMaterial ? selectedMaterial.id : param.id, // ID выбранного материала
+            name: selectedMaterial ? selectedMaterial.name : param.name, // Название выбранного материала
+            materials: selectedMaterial ? [selectedMaterial] : param.materials // Только выбранный материал
+        }
+    })
 
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
       method: 'POST',
