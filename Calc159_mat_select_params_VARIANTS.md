@@ -315,3 +315,48 @@ mat_select_param:
 ---
 
 **Пожалуйста, уточните какой формат ожидает ваш API, или предоставьте рабочий пример запроса!**
+
+---
+
+## ✅ РЕШЕНИЕ: ВАРИАНТ 6 (РАБОТАЕТ!)
+
+**Код:** commit ed2c329
+
+**Формат отправки:**
+Материал передаётся **И в `params` И в `mat_select_params`** с обновлёнными полями:
+
+```json
+{
+  "params": [
+    {"variable": "w", "type": 1, "value": 30},
+    {"variable": "h", "type": 1, "value": 12},
+    {"variable": "num", "type": 1, "value": 1},
+    {"variable": "doubleside", "type": 2, "value": 0},
+    {"variable": "round", "type": 2, "value": 0},
+    {"variable": "tape", "type": 2, "value": 0},
+    {"variable": "need_Nielsen", "type": 2, "value": 0},
+    {"variable": "mat_select_in3", "type": 3, "value": 3}
+  ],
+  "mat_select_params": [
+    {
+      "id": 3,
+      "name": "ПВХ пластик 5мм",
+      "in_prop_id": 3,
+      "prop_id": 3,
+      "mat_sel_link": 3,
+      "mat_sel_link2": 0,
+      "prop_type": 3,
+      "variable": "mat_select_in3",
+      "materials": [{"id": 3, "name": "ПВХ пластик 5мм"}]
+    }
+  ]
+}
+```
+
+**Ключевые моменты:**
+1. ✅ Материал добавлен в `params` как обычный параметр с `type: 3`
+2. ✅ В `mat_select_params` объект передаётся полностью (все поля из API)
+3. ✅ `id` и `name` в объекте `mat_select_params` **обновляются** на ID и название выбранного материала
+4. ✅ Массив `materials` содержит только выбранный материал
+
+**Результат:** Цена меняется корректно при выборе разных толщин пластика! ✅
