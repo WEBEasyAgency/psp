@@ -37,8 +37,8 @@
             <div class="mb-12">
                 <div class="container">
                     <calc-{{ $calculatorId }}
-                        :initial-images
-                    ='@json($images)'
+                        :initial-images='@json($images)'
+                        :description='@json($description)'
                     ></calc-{{ $calculatorId }}>
                 </div>
             </div>
