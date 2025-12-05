@@ -39,14 +39,16 @@
                     <div class="copy">© 2025 — Copyright PSP online</div>
                     <div class="policy">
                         <a href="https://ra-psp.ru/policy/" target="_blank">Политика конфиденциальности</a>
-                        <span> | </span>
-                        <a href="https://ra-psp.ru/politika-v-otnoshenii-obrabotki-personalnyh-dannyh/" target="_blank">Политика обработки персональных данных</a>
+                        <span> <br/> </span>
+                        <a href="https://ra-psp.ru/politika-v-otnoshenii-obrabotki-personalnyh-dannyh/" target="_blank">Политика
+                            обработки персональных данных</a>
                     </div>
                 </div>
                 <div class="to-top" id="toTopBtn">
                     <a href="#" id="toTopLink">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 17V7M12 7L8 11M12 7L16 11" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 17V7M12 7L8 11M12 7L16 11" stroke="#94A3B8" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
                 </div>
@@ -56,61 +58,61 @@
 </footer>
 
 <style>
-.to-top {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    cursor: pointer;
-}
+    .to-top {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        cursor: pointer;
+    }
 
-.to-top.visible {
-    opacity: 1;
-    visibility: visible;
-}
+    .to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
 
-.to-top a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-}
+    .to-top a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
 
-.to-top svg {
-    transition: transform 0.2s ease;
-}
+    .to-top svg {
+        transition: transform 0.2s ease;
+    }
 
-.to-top:hover svg {
-    transform: translateY(-2px);
-}
+    .to-top:hover svg {
+        transform: translateY(-2px);
+    }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const toTopBtn = document.getElementById('toTopBtn');
-    const toTopLink = document.getElementById('toTopLink');
+    document.addEventListener('DOMContentLoaded', function () {
+        const toTopBtn = document.getElementById('toTopBtn');
+        const toTopLink = document.getElementById('toTopLink');
 
-    // Show/hide button on scroll
-    function handleScroll() {
-        if (window.scrollY > 300) {
-            toTopBtn.classList.add('visible');
-        } else {
-            toTopBtn.classList.remove('visible');
+        // Show/hide button on scroll
+        function handleScroll() {
+            if (window.scrollY > 300) {
+                toTopBtn.classList.add('visible');
+            } else {
+                toTopBtn.classList.remove('visible');
+            }
         }
-    }
 
-    // Scroll to top on click
-    toTopLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        // Scroll to top on click
+        toTopLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
+
+        // Listen to scroll events
+        window.addEventListener('scroll', handleScroll);
+
+        // Initial check
+        handleScroll();
     });
-
-    // Listen to scroll events
-    window.addEventListener('scroll', handleScroll);
-
-    // Initial check
-    handleScroll();
-});
 </script>
