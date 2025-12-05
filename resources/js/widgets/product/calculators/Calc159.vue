@@ -159,17 +159,18 @@ const fetchCalculatorParams = async () => {
     }
 
     // 2. Материалы (mat_select_params)
-    // В 156 есть mat_select_in3 (ПВХ пластик)
+    // В 159 есть mat_select_in3 (ПВХ пластик)
     if (data.mat_select_params) {
         data.mat_select_params.forEach(p => {
             // Собираем опции для кнопок: { label: '3мм', value: 101 }
             // Имя материала часто длинное "ПВХ пластик 3мм", нам может быть нужно сократить или оставить как есть
             const opts = p.materials.map(m => ({ value: m.id, label: m.name }))
             options[p.variable] = opts
-            
-            // Дефолт
-            if (opts.length > 0) {
+
+            // Дефолт - устанавливаем первое значение
+            if (opts.length > 0 && calculatorData[p.variable] === null) {
                 calculatorData[p.variable] = opts[0].value
+                console.log(`Установлен дефолт для ${p.variable}:`, opts[0].value)
             }
         })
     }
@@ -181,7 +182,13 @@ const fetchCalculatorParams = async () => {
 const calculatePrice = async () => {
   try {
     isCalculating.value = true
-    
+    error.value = ''
+
+    // Проверяем, что толщина выбрана
+    if (!calculatorData.mat_select_in3) {
+        throw new Error('Пожалуйста, выберите толщину пластика')
+    }
+
     // Собираем params
     const params = [
         { variable: 'w', type: 1, value: calculatorData.w },
@@ -194,13 +201,12 @@ const calculatePrice = async () => {
     ]
 
     // Собираем mat_select_params
-    const matParams = []
-    if (calculatorData.mat_select_in3) {
-        matParams.push({
+    const matParams = [
+        {
             variable: 'mat_select_in3',
             value: calculatorData.mat_select_in3
-        })
-    }
+        }
+    ]
 
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
       method: 'POST',
