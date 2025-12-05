@@ -18,6 +18,9 @@
           type="number"
           :value="modelValue"
           @input="updateValue"
+          :step="step"
+          :min="min"
+          :max="max"
           class="number-input__field"
         />
       </div>
@@ -54,24 +57,35 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
+const roundToStep = (value) => {
+  // Определяем количество знаков после запятой на основе step
+  const decimals = props.step < 1 ? 1 : 0;
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+};
+
 const increment = () => {
-  const newValue = props.modelValue + props.step;
+  const newValue = roundToStep(props.modelValue + props.step);
   if (!props.max || newValue <= props.max) {
     emit('update:modelValue', newValue);
   }
 };
 
 const decrement = () => {
-  const newValue = props.modelValue - props.step;
+  const newValue = roundToStep(props.modelValue - props.step);
   if (newValue >= props.min) {
     emit('update:modelValue', newValue);
   }
 };
 
 const updateValue = (e) => {
-  const value = parseInt(e.target.value) || props.min;
-  if (value >= props.min && (!props.max || value <= props.max)) {
-    emit('update:modelValue', value);
+  const value = parseFloat(e.target.value);
+  if (isNaN(value)) {
+    emit('update:modelValue', props.min);
+    return;
+  }
+  const roundedValue = roundToStep(value);
+  if (roundedValue >= props.min && (!props.max || roundedValue <= props.max)) {
+    emit('update:modelValue', roundedValue);
   }
 };
 </script>
