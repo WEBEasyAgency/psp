@@ -508,7 +508,7 @@
 }
 
 .tech__item-text {
-    @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px] line-clamp-2;
+    @apply self-stretch justify-start text-slate-500 text-base lg:text-lg font-normal font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
 }
 
 /* Calculator Component Styles */
