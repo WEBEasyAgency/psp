@@ -299,8 +299,33 @@ pwd  # Output: /home/a/abrobe14/psp.realeasystudio.site/public_html
 
 ### Deployment Workflow
 
-#### Option 1: Manual Deployment via deploy.sh
+**CRITICAL: NEVER manually SSH and pull on the remote server!**
 
+The project uses **automated deployment via GitHub Actions**. When you push to `main` branch:
+1. GitHub Actions automatically builds frontend assets
+2. Commits them to git
+3. SSHs to the server and runs `deploy.sh`
+
+Your workflow should ALWAYS be:
+```bash
+# 1. Make changes locally
+# 2. Build frontend
+npm run build
+
+# 3. Commit and push (deployment happens automatically)
+git add .
+git commit -m "Your changes"
+git push origin main
+# GitHub Actions will automatically deploy to server!
+```
+
+**DO NOT use these commands** (they will fail with permission denied):
+- ❌ `ssh abrobe14_psp@psp.realeasystudio.site 'bash deploy.sh'`
+- ❌ `ssh abrobe14_psp@psp.realeasystudio.site 'git pull'`
+
+#### Manual Deployment via deploy.sh (for emergency only)
+
+If you have SSH access configured:
 ```bash
 # On remote server via SSH
 ssh abrobe14_psp@psp.realeasystudio.site
@@ -315,9 +340,9 @@ The `deploy.sh` script automatically:
 
 **Note:** Frontend assets (`public/build/`) must be built locally and committed to git.
 
-#### Option 2: Automated Deployment (Recommended)
+#### GitHub Actions Configuration
 
-Create a GitHub Action workflow (`.github/workflows/deploy.yml`):
+The project already has `.github/workflows/deploy.yml` configured:
 
 ```yaml
 name: Deploy to Production
@@ -359,27 +384,6 @@ jobs:
           script: |
             cd /home/a/abrobe14/psp.realeasystudio.site/public_html
             bash deploy.sh
-```
-
-#### Option 3: Manual Deployment Steps
-
-```bash
-# 1. Local: Build frontend
-npm run build
-
-# 2. Local: Commit and push (including built assets if not in .gitignore)
-git add .
-git commit -m "Your changes"
-git push origin main
-
-# 3. Remote: Pull and deploy
-ssh abrobe14_psp@psp.realeasystudio.site 'bash deploy.sh'
-
-# Or step-by-step:
-ssh abrobe14_psp@psp.realeasystudio.site
-git pull origin main
-/usr/local/bin/php8.4 ~/bin/composer install --no-dev --optimize-autoloader
-/usr/local/bin/php8.4 artisan config:clear
 ```
 
 ### Running PHP Commands on Remote Server
