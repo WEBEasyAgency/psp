@@ -204,31 +204,16 @@ const calculatePrice = async () => {
         { variable: 'round', type: 2, value: calculatorData.round ? 1 : 0 },
         { variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0 },
         { variable: 'need_Nielsen', type: 2, value: calculatorData.need_Nielsen ? 1 : 0 },
+        // ВАРИАНТ 4: Добавляем материал прямо в params с type=3 (prop_type из mat_select_param)
+        { variable: 'mat_select_in3', type: 3, value: calculatorData.mat_select_in3 },
     ]
-
-    // Собираем mat_select_params - отправляем полные объекты с выбранным материалом
-    const matParams = rawMatSelectParams.value.map(param => {
-        // Находим выбранный материал по ID
-        const selectedMaterialId = calculatorData[param.variable]
-        const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
-
-        // Возвращаем полный объект согласно спецификации API
-        // ВАЖНО: id и name берём из выбранного материала!
-        return {
-            id: selectedMaterial ? selectedMaterial.id : param.id,
-            name: selectedMaterial ? selectedMaterial.name : param.name,
-            prop_type: param.prop_type,
-            variable: param.variable,
-            materials: selectedMaterial ? [selectedMaterial] : []
-        }
-    })
 
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         params: params,
-        mat_select_params: matParams
+        mat_select_params: []
       })
     })
 
