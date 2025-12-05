@@ -103,6 +103,9 @@ const options = reactive({
     mat_select_in3: [] // Материалы
 })
 
+// Полные данные mat_select_params из API (для отправки обратно)
+const rawMatSelectParams = ref([])
+
 // Основные данные калькулятора
 const calculatorData = reactive({
   w: 100,
@@ -161,6 +164,9 @@ const fetchCalculatorParams = async () => {
     // 2. Материалы (mat_select_params)
     // В 159 есть mat_select_in3 (ПВХ пластик)
     if (data.mat_select_params) {
+        // Сохраняем полные данные для отправки обратно в API
+        rawMatSelectParams.value = data.mat_select_params
+
         data.mat_select_params.forEach(p => {
             // Собираем опции для кнопок: { label: '3мм', value: 101 }
             // Имя материала часто длинное "ПВХ пластик 3мм", нам может быть нужно сократить или оставить как есть
@@ -200,13 +206,21 @@ const calculatePrice = async () => {
         { variable: 'need_Nielsen', type: 2, value: calculatorData.need_Nielsen ? 1 : 0 },
     ]
 
-    // Собираем mat_select_params
-    const matParams = [
-        {
-            variable: 'mat_select_in3',
-            value: calculatorData.mat_select_in3
+    // Собираем mat_select_params - отправляем полные объекты с выбранным материалом
+    const matParams = rawMatSelectParams.value.map(param => {
+        // Находим выбранный материал по ID
+        const selectedMaterialId = calculatorData[param.variable]
+        const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
+
+        // Возвращаем полный объект согласно спецификации API
+        return {
+            id: param.id,
+            name: param.name,
+            prop_type: param.prop_type,
+            variable: param.variable,
+            materials: selectedMaterial ? [selectedMaterial] : []
         }
-    ]
+    })
 
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
       method: 'POST',
