@@ -208,14 +208,15 @@ const calculatePrice = async () => {
         { variable: 'mat_select_in3', type: 3, value: calculatorData.mat_select_in3 },
     ]
 
-    // ВАРИАНТ 5: mat_select_params передаём в оригинальном виде как пришло из API
-    // но с отфильтрованным materials (только выбранный материал)
+    // ВАРИАНТ 6: mat_select_params с обновлённым id на ID выбранного материала
     const matParams = rawMatSelectParams.value.map(param => {
         const selectedMaterialId = calculatorData[param.variable]
         const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
 
         return {
             ...param, // Весь объект как пришёл из API
+            id: selectedMaterial ? selectedMaterial.id : param.id, // ID выбранного материала
+            name: selectedMaterial ? selectedMaterial.name : param.name, // Название выбранного материала
             materials: selectedMaterial ? [selectedMaterial] : param.materials // Только выбранный материал
         }
     })
