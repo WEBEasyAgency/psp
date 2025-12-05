@@ -1,6 +1,6 @@
 <template>
   <!-- FAQ (moc3) -->
-    <div class="faq__section">
+    <div v-if="items && items.length" class="faq__section">
         <div class="faq__container">
             <div class="faq__card">
                 <div class="faq__column-left">
@@ -21,9 +21,8 @@
                     <div class="faq__description">Мы собрали самые популярные вопросы и подготовили ответы на них. Если у вас есть дополнительные вопросы, напишите нам.</div>
                 </div>
                 <div class="faq__list">
-                    <!-- FAQ Item 1 -->
-                    <div class="faq__item" :class="{ 'is-open': openItems[0] }">
-                        <div class="faq__summary" @click="toggle(0)">
+                    <div v-for="(item, index) in items" :key="index" class="faq__item" :class="{ 'is-open': openItems[index] }">
+                        <div class="faq__summary" @click="toggle(index)">
                             <div class="faq__icon">
                                 <div data-svg-wrapper class="relative">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,75 +30,12 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="faq__question">Как долго изготавливаются объемные буквы?</div>
+                            <div class="faq__question">{{ item.question }}</div>
                         </div>
                         <div class="faq__answer-wrapper">
                             <div class="faq__answer-inner">
                                 <div class="faq__answer-container">
-                                    <div class="faq__answer-text">Срок изготовления составляет от 5 до 10 рабочих дней в зависимости от сложности и объема заказа.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 2 -->
-                    <div class="faq__item" :class="{ 'is-open': openItems[1] }">
-                        <div class="faq__summary" @click="toggle(1)">
-                            <div class="faq__icon">
-                                <div data-svg-wrapper class="relative">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16 10L12 14L8 10" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="faq__question">Можно ли установить буквы самостоятельно?</div>
-                        </div>
-                        <div class="faq__answer-wrapper">
-                            <div class="faq__answer-inner">
-                                <div class="faq__answer-container">
-                                    <div class="faq__answer-text">Да, мы предоставляем подробную инструкцию по монтажу. Также можем предложить услуги профессиональных монтажников.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 3 -->
-                    <div class="faq__item" :class="{ 'is-open': openItems[2] }">
-                        <div class="faq__summary" @click="toggle(2)">
-                            <div class="faq__icon">
-                                <div data-svg-wrapper class="relative">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16 10L12 14L8 10" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="faq__question">Какая гарантия на изделие?</div>
-                        </div>
-                        <div class="faq__answer-wrapper">
-                            <div class="faq__answer-inner">
-                                <div class="faq__answer-container">
-                                    <div class="faq__answer-text">Гарантия на объемные буквы составляет 12 месяцев с момента установки.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 4 -->
-                    <div class="faq__item" :class="{ 'is-open': openItems[3] }">
-                        <div class="faq__summary" @click="toggle(3)">
-                            <div class="faq__icon">
-                                <div data-svg-wrapper class="relative">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16 10L12 14L8 10" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="faq__question">Какие материалы используются для изготовления?</div>
-                        </div>
-                        <div class="faq__answer-wrapper">
-                            <div class="faq__answer-inner">
-                                <div class="faq__answer-container">
-                                    <div class="faq__answer-text">Используем только высококачественные материалы: акриловое стекло для лицевой части, алюминий для борта и ПВХ пластик для задней части.</div>
+                                    <div class="faq__answer-text">{{ item.answer }}</div>
                                 </div>
                             </div>
                         </div>
@@ -113,9 +49,25 @@
 <script>
 export default {
   name: 'Faq',
+  props: {
+    items: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
-      openItems: [false, false, false, false]
+      openItems: []
+    }
+  },
+  watch: {
+    items: {
+      immediate: true,
+      handler(newVal) {
+        if (newVal) {
+          this.openItems = new Array(newVal.length).fill(false);
+        }
+      }
     }
   },
   methods: {

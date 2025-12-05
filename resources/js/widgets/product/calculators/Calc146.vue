@@ -9,15 +9,7 @@
         </div>
 
         <!-- Текстовый контент под галереей -->
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5">
-          <p class="mb-2"><strong>Объемные буквы с алюминиевым бортом</strong> — это надежное и эстетичное решение для
-            наружной рекламы. Алюминиевый профиль обеспечивает идеальную геометрию букв, высокую прочность и
-            долговечность.</p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Идеально ровный борт</li>
-            <li>Устойчивость к коррозии</li>
-            <li>Возможность покраски в любой цвет RAL</li>
-          </ul>
+        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description">
         </div>
       </div>
 
@@ -133,7 +125,8 @@ import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 
 const props = defineProps({
-  initialImages: {type: Array, default: () => []}
+  initialImages: {type: Array, default: () => []},
+  description: {type: String, default: ''}
 })
 
 const calcId = 146

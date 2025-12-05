@@ -10,13 +10,7 @@
         </div>
 
         <!-- Текстовый контент под галереей -->
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5">
-          <p class="mb-2"><strong>Вывески из алюминиевого композита</strong> — это современное решение для наружной рекламы. Композитные панели сочетают прочность алюминия с легкостью и простотой монтажа.</p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Высокая прочность и долговечность</li>
-            <li>Устойчивость к погодным условиям</li>
-            <li>Разнообразие цветов</li>
-          </ul>
+        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description">
         </div>
       </div>
 
@@ -79,7 +73,8 @@ import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 
 const props = defineProps({
-  initialImages: { type: Array, default: () => [] }
+  initialImages: { type: Array, default: () => [] },
+  description: {type: String, default: ''}
 })
 
 const calcId = 161

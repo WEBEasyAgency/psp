@@ -42,9 +42,9 @@
                     ></calc-{{ $calculatorId }}>
                 </div>
             </div>
-            <x-product.technology-advantages/>
-            <faq></faq>
-            <x-product.seo-block/>
+            <x-product.technology-advantages :advantages="$advantages"/>
+            <faq :items='@json($faq)'></faq>
+            <x-product.seo-block :seo="$seo"/>
             <installation-cases :calc-id="{{ $calculatorId }}"></installation-cases>
         </div>
 
