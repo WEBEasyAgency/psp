@@ -27,7 +27,7 @@
 }
 
 .calculator__title {
-    @apply text-[#1e3552]  text-[32px] leading-8 xl:text-[64px] font-medium font-['Inter'] xl:leading-[64px] xl:whitespace-nowrap bg-white;
+    @apply text-[#1e3552]  text-[32px] leading-8 xl:text-[64px] font-medium font-['Inter'] xl:leading-[64px] bg-white;
     letter-spacing: -1.2px;
 }
 
