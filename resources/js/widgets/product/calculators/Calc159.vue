@@ -213,9 +213,10 @@ const calculatePrice = async () => {
         const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
 
         // Возвращаем полный объект согласно спецификации API
+        // ВАЖНО: id и name берём из выбранного материала!
         return {
-            id: param.id,
-            name: param.name,
+            id: selectedMaterial ? selectedMaterial.id : param.id,
+            name: selectedMaterial ? selectedMaterial.name : param.name,
             prop_type: param.prop_type,
             variable: param.variable,
             materials: selectedMaterial ? [selectedMaterial] : []
