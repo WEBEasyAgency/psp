@@ -19,7 +19,7 @@ input[type="checkbox"] {
     flex-shrink: 0 !important;
 }
 
-    border-color: #3C7BBB !important;
+
 
 input[type="checkbox"]:checked {
     background-color: #3c7bbb !important;
