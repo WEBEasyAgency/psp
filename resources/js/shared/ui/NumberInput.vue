@@ -110,7 +110,7 @@ const updateValue = (e) => {
 }
 
 .number-input__field-wrapper {
-  @apply w-24 inline-flex flex-col items-center justify-center gap-2;
+  @apply xl:w-24 inline-flex flex-col items-center justify-center gap-2;
 }
 
 .number-input__field {

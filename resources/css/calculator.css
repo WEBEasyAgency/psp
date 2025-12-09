@@ -18,7 +18,7 @@
 /* Calculator background - mobile version */
 @media screen and (max-width: 1280px) {
     .calculator {
-        @apply bg-white rounded-3xl p-6;
+        @apply bg-white rounded-3xl p-4;
     }
 }
 
@@ -60,7 +60,7 @@
 }
 
 .calculator__dims-row {
-    @apply self-stretch inline-flex justify-start items-start gap-8;
+    @apply self-stretch inline-flex justify-start items-start gap-8 flex-wrap;
 }
 
 .field {

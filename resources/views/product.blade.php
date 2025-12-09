@@ -15,7 +15,7 @@
     <x-layout.header/>
     <main class="main-page">
         <div class="bg-[#F6F6F6]">
-            <section class="breadcrumbs pt-32">
+            <section class="breadcrumbs pt-25 xl:pt-32">
                 <div class="container">
                     <ul>
                         <li class="main">

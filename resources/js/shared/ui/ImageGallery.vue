@@ -1,6 +1,11 @@
 <template>
   <div class="image-gallery">
-    <div class="image-gallery__main">
+    <div
+        class="image-gallery__main"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+    >
       <img :src="currentImage" alt="" class="image-gallery__main-image" />
     </div>
     <div class="image-gallery__thumbnails">
@@ -49,6 +54,8 @@ const props = defineProps({
 });
 
 const currentIndex = ref(0);
+const touchStartX = ref(0);
+const touchEndX = ref(0);
 
 const currentImage = computed(() => props.images[currentIndex.value] || '');
 
@@ -66,6 +73,25 @@ const nextImage = () => {
   if (currentIndex.value < props.images.length - 1) {
     currentIndex.value++;
   }
+};
+
+const handleTouchStart = (e) => {
+    touchStartX.value = e.touches[0].clientX;
+};
+
+const handleTouchMove = (e) => {
+    touchEndX.value = e.touches[0].clientX;
+};
+
+const handleTouchEnd = () => {
+    if (touchStartX.value - touchEndX.value > 50) {
+        nextImage();
+    }
+    if (touchStartX.value - touchEndX.value < -50) {
+        prevImage();
+    }
+    touchStartX.value = 0;
+    touchEndX.value = 0;
 };
 </script>
 
@@ -91,7 +117,7 @@ const nextImage = () => {
 }
 
 .image-gallery__thumbnails {
-  @apply w-full inline-flex items-center justify-between gap-3;
+  @apply w-full inline-flex items-center justify-between gap-0 lg:gap-3 overflow-hidden;
 }
 
 .image-gallery__arrow {
