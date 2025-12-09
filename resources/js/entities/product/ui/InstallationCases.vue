@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="tabs-body">
         <div class="tab active" style="display: block;">
           <div class="cases-slider-vue">
@@ -106,5 +106,11 @@ const images = computed(() => {
     height: 100%;
     object-fit: cover;
     border-radius: 24px;
+}
+.swiper-wrapper {
+    overflow: visible;
+}
+.swiper.swiper-initialized.swiper-horizontal {
+    overflow: visible;
 }
 </style>
