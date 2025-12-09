@@ -34,7 +34,7 @@
             <div v-if="result" class="result-box">
                 <div class="result-row">
                     <div class="result-label">Итого:</div>
-                    <div class="result-value">{{ result.price_good }} ₽</div>
+                    <div class="result-value">{{ formatPrice(result.price_good) }} ₽</div>
                 </div>
             </div>
 
@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import BaseButton from '@/shared/ui/Button/BaseButton.vue'
 
 const props = defineProps({
@@ -119,6 +119,13 @@ const props = defineProps({
 defineEmits(['calculate'])
 
 const isAddedToCart = ref(false)
+
+const formatPrice = (value) => {
+    if (value === null || value === undefined) {
+        return '';
+    }
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+};
 
 const addToCart = () => {
     console.log('Added to cart')
