@@ -612,11 +612,7 @@ button[class*="option"] {
 }
 
 /* Hover state for filter buttons */
-.filter-button:hover,
-button[class*="filter"]:hover,
-button[class*="option"]:hover {
-    @apply opacity-50;
-}
+
 
 /* Active state for filter buttons */
 .filter-button.active,
@@ -632,7 +628,7 @@ button[class*="option"].active {
 .filter-button[aria-pressed="true"]:hover,
 button[class*="filter"].active:hover,
 button[class*="option"].active:hover {
-    @apply bg-[#3c7bbb];
+    @apply bg-[#3c7bbb]/50;
     @apply text-white;
 }
 

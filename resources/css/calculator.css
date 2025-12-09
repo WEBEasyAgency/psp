@@ -264,7 +264,7 @@
 /* 2. Hover state - голубой с синим текстом */
 .filter-buttons__button:hover:not(.filter-buttons__button--active):not(:disabled) {
     background-color: #c8dbef !important;
-    color: #3c7bbb !important;
+    color: #244D80 !important;
 }
 
 /* 3. Active state - синий с белым текстом */
