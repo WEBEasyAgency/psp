@@ -425,6 +425,15 @@
     @apply rotate-180;
 }
 
+.faq__item:hover .faq__icon svg, .faq__item:hover .faq__icon {
+    @apply bg-[#ffffff];
+    background-color: #fff !important;
+}
+
+.faq__item:hover .faq__icon svg  path {
+    stroke: #3C7BBB;
+}
+
 .faq__item.is-open .faq__icon svg path {
     stroke: white;
 }

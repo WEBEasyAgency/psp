@@ -95,7 +95,7 @@ const selectOption = (value) => {
 }
 
 .radio-group__options {
-  @apply flex flex-col gap-4;
+  @apply flex flex-col;
 }
 
 .radio-group__item {
@@ -103,7 +103,7 @@ const selectOption = (value) => {
 }
 
 .radio-group__option {
-  @apply inline-flex gap-2 text-left items-center;
+  @apply inline-flex gap-2 text-left items-center justify-start;
   background: none;
   border: none;
   padding: 0;
