@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UploadController;
 
 // Proxy для backend API в development режиме
 if (config('app.env') === 'local') {
@@ -411,6 +412,10 @@ Route::get('/thanx', function (Illuminate\Http\Request $request) {
         'client_id' => (int)$client_id
     ]);
 });
+
+// File upload route for order page
+Route::post('/api/upload', [UploadController::class, 'store'])
+    ->name('file.upload');
 
 // Image optimization routes
 // Serve optimized images with WebP support

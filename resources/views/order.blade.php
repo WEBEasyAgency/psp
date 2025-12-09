@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Оформление заказа</title>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<x-layout.favicon />
 
@@ -69,7 +70,7 @@
 /* END Checkbox Overrides for Order Page */
 	</style>
 </head>
-<body>
+<body class="gray-bg">
 	<!-- Header Blade Component -->
 	<x-layout.header />
 
@@ -133,11 +134,6 @@
 									<div class="val" id="totalPrice">{{ number_format($price_good, 0, ',', ' ') }} ₽</div>
 								</div>
 							</div>
-                            <style>
-                                .file {
-                                    display: none !important;
-                                }
-                            </style>
 						</div>
 						<div class="right-block">
 							<div class="name">
@@ -196,6 +192,63 @@
 	{{-- app.min.js: инициализация Swiper слайдеров и другие обработчики --}}
 	<script src="/layout/js/app.min.js"></script>
 	<script>
+	// Хранилище для загруженного файла
+	let uploadedFileUrl = null;
+
+	// Обработка загрузки файла
+	document.getElementById('designFile').addEventListener('change', async function(e) {
+		const file = this.files[0];
+		if (!file) {
+			uploadedFileUrl = null;
+			document.getElementById('fileText').textContent = 'Загрузить дизайн-макет или файл';
+			document.getElementById('fileText').style.color = '';
+			return;
+		}
+
+		// Проверка размера на клиенте (50MB)
+		if (file.size > 50 * 1024 * 1024) {
+			alert('Файл слишком большой. Максимальный размер: 50 МБ');
+			this.value = '';
+			uploadedFileUrl = null;
+			document.getElementById('fileText').textContent = 'Загрузить дизайн-макет или файл';
+			return;
+		}
+
+		const fileText = document.getElementById('fileText');
+		fileText.textContent = 'Загрузка...';
+		fileText.style.color = '#3C7BBB';
+
+		try {
+			const formData = new FormData();
+			formData.append('file', file);
+
+			const response = await fetch('/api/upload', {
+				method: 'POST',
+				body: formData,
+				headers: {
+					'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || ''
+				}
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.message || 'Ошибка загрузки файла');
+			}
+
+			const data = await response.json();
+			uploadedFileUrl = 'https://psp.realeasystudio.site' + data.url;
+			fileText.textContent = '✓ ' + file.name;
+			fileText.style.color = '#10b981'; // Зелёный цвет
+
+		} catch (error) {
+			fileText.textContent = '✗ Ошибка загрузки';
+			fileText.style.color = '#ef4444'; // Красный цвет
+			uploadedFileUrl = null;
+			console.error('Upload error:', error);
+			alert('Не удалось загрузить файл: ' + error.message);
+		}
+	});
+
 	// Обработка формы заказа
 	document.getElementById('orderForm').addEventListener('submit', async function(e) {
 		e.preventDefault();
@@ -269,7 +322,27 @@
 				throw new Error(`Ошибка сохранения заказа: ${errorData}`);
 			}
 
-			// Успех! Перенаправляем на страницу благодарности
+			// 4. Если есть загруженный файл - отправляем ссылку
+			if (uploadedFileUrl) {
+				try {
+					const linkRes = await fetch('/backend/api/calc/addLink', {
+						method: 'POST',
+						headers: {'Content-Type': 'application/json'},
+						body: JSON.stringify({
+							calc_id: calc_id,
+							link: uploadedFileUrl
+						})
+					});
+
+					if (!linkRes.ok) {
+						console.warn('Ошибка отправки ссылки на файл (не критично)', await linkRes.text());
+					}
+				} catch (error) {
+					console.warn('Файл загружен, но не удалось связать с заказом:', error);
+				}
+			}
+
+			// 5. Успех! Перенаправляем на страницу благодарности
 			window.location.href = `/thanx?calc_id=${calc_id}&client_id=${client_id}`;
 
 		} catch (error) {
@@ -281,16 +354,6 @@
 		} finally {
 			submitBtn.disabled = false;
 			submitBtn.textContent = 'Оформить заказ';
-		}
-	});
-
-	// Обработка выбора файла
-	document.getElementById('designFile').addEventListener('change', function() {
-		const fileText = document.getElementById('fileText');
-		if (this.files.length > 0) {
-			fileText.textContent = this.files[0].name;
-		} else {
-			fileText.textContent = 'Загрузить дизайн-макет или файл';
 		}
 	});
 	</script>

@@ -331,7 +331,7 @@ class MockData {
      */
     private static function getMockAddLinkResult($input) {
         return [
-            'result' => 'OK'
+            'status' => 'ok'
         ];
     }
 
