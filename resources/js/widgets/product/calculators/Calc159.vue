@@ -71,7 +71,7 @@
                 <NumberInput v-model="calculatorData.num" label="Количество" :min="1" :max="100"/>
 
                 <div
-                    class="justify-start text-[#2c619d] text-sm font-normal font-['Inter'] leading-5 underline underline-offset-4">
+                    class="justify-start text-[#2c619d] text-sm font-normal font-['Inter'] leading-5 underline underline-offset-4 decoration-dashed">
                     Чем больше,
                     тем дешевле
                 </div>
