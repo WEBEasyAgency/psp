@@ -112,7 +112,9 @@ const selectOption = (value) => {
 .filter-buttons__button-text {
     @apply text-[13px] leading-[18.20px];
 }
-
+.filter-buttons__button:hover .filter-buttons__button-text {
+    color: #244D80 !important;
+}
 .filter-buttons__button--full-width {
     @apply flex-grow;
 }
