@@ -21,8 +21,8 @@
                     <div class="faq__description">Мы собрали самые популярные вопросы и подготовили ответы на них. Если у вас есть дополнительные вопросы, напишите нам.</div>
                 </div>
                 <div class="faq__list">
-                    <div v-for="(item, index) in items" :key="index" class="faq__item" :class="{ 'is-open': openItems[index] }">
-                        <div class="faq__summary" @click="toggle(index)">
+                    <div v-for="(item, index) in items" :key="index" class="faq__item" :class="{ 'is-open': openItems[index] }" @click="toggle(index)">
+                        <div class="faq__summary">
                             <div class="faq__icon">
                                 <div data-svg-wrapper class="relative">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,5 +79,12 @@ export default {
 </script>
 
 <style scoped>
-/* Стили можно добавить здесь, если они специфичны для этого компонента */
+.faq__item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.faq__item:hover {
+    background-color: #f0f5fa; /* A light blue color */
+}
 </style>

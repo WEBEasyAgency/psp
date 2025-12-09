@@ -23,7 +23,7 @@
 }
 
 .calculator__gallery-text {
-    @apply !mt-8;
+    @apply text-slate-800 text-sm font-normal font-['Inter'] leading-5 !mt-8;
 }
 
 .calculator__title {
@@ -268,7 +268,7 @@
 /* 2. Hover state - голубой с синим текстом */
 .filter-buttons__button:hover:not(.filter-buttons__button--active):not(:disabled) {
     background-color: #c8dbef !important;
-    color: #244d80 !important;
+    color: #3C7BBB !important;
 }
 
 /* 3. Active state - синий с белым текстом */
@@ -332,6 +332,48 @@ input[type="checkbox"]:checked::after {
 }
 
 input[type="checkbox"]:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
+/* Radio button styles */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 24px !important;
+    height: 24px !important;
+    background-color: #f6f6f6 !important;
+    border: 1.5px solid #cbd5e1 !important; /* slate-300 */
+    border-radius: 50% !important; /* Makes it a circle */
+    cursor: pointer !important;
+    position: relative !important;
+    transition: all 0.2s !important;
+    flex-shrink: 0 !important;
+}
+
+input[type="radio"]:hover {
+    border-color: #6198cf !important;
+}
+
+input[type="radio"]:checked {
+    background-color: #3c7bbb !important;
+    border-color: #3c7bbb !important;
+}
+
+input[type="radio"]:checked::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 12px !important;
+    height: 12px !important;
+    background-color: white !important;
+    border-radius: 50% !important;
+}
+
+input[type="radio"]:disabled {
     opacity: 0.5 !important;
     cursor: not-allowed !important;
 }

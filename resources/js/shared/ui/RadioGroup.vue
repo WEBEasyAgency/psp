@@ -11,9 +11,9 @@
       </div>
     </div>
     <div class="radio-group__options">
-      <div 
-        v-for="option in options" 
-        :key="option.value" 
+      <div
+        v-for="option in options"
+        :key="option.value"
         class="radio-group__item"
       >
         <button
@@ -36,11 +36,11 @@
             {{ option.label }}
           </div>
         </button>
-        
+
         <!-- Слот для дополнительного контента под опцией -->
-        <slot 
-          name="details" 
-          :option="option" 
+        <slot
+          name="details"
+          :option="option"
           :isActive="modelValue === option.value"
         ></slot>
       </div>
@@ -105,6 +105,7 @@ const selectOption = (value) => {
 .radio-group__option {
   @apply inline-flex bg-none gap-2 text-left items-start justify-start;
   background: none;
+    padding: 0 !important;
 }
 
 .radio-group__option-text {

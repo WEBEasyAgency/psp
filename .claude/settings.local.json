@@ -38,7 +38,9 @@
       "Bash(ls \"public/img/Контент/Контент/7в Режим работы (наклейка)\")",
       "Bash(ls:*)",
       "Bash(node verify-calculators.js:*)",
-      "Bash(for id in 154 155 156 157 158 160 161)"
+      "Bash(for id in 154 155 156 157 158 160 161)",
+      "mcp__figma-remote-mcp__get_screenshot",
+      "mcp__figma-remote-mcp__get_design_context"
     ],
     "deny": [],
     "ask": []
