@@ -100,7 +100,7 @@
 }
 
 .calculator__services-list {
-    @apply flex flex-wrap gap-4;
+    @apply flex flex-wrap gap-4 flex-col;
 }
 
 .calculator__services-label {

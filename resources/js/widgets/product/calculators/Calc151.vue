@@ -45,6 +45,10 @@
         <div class="calculator__params">
           <div class="calculator__services-header">
             <span class="calculator__services-label">Плоские карманы</span>
+            <HelpPopover
+                title="Плоские карманы"
+                description="Это прозрачные карманы из ПВХ для вставки стандартных листов бумаги (А3, А4, А5, А6). Крепятся к лицевой стороне стенда."
+            />
           </div>
           <div class="calculator__dims-row">
             <NumberInput v-model="calculatorData.a4" label="Карман А4" :min="0" :max="50" />
@@ -57,6 +61,10 @@
 
           <div class="calculator__services-header">
             <span class="calculator__services-label">Объемные карманы</span>
+            <HelpPopover
+                title="Объемные карманы"
+                description="Это карманы из прозрачного оргстекла или ПЭТ для размещения пачек листовок, визиток или буклетов. Имеют глубину."
+            />
           </div>
           <div class="calculator__dims-row">
             <NumberInput v-model="calculatorData.a4o" label="Карман А4" :min="0" :max="50" />
@@ -112,6 +120,7 @@ import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
+import HelpPopover from '@/shared/ui/HelpPopover.vue'
 
 const props = defineProps({
   initialImages: { type: Array, default: () => [] },
