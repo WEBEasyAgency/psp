@@ -23,7 +23,8 @@
 }
 
 .calculator__gallery-text {
-    @apply text-slate-800 text-base font-normal font-['Inter'] leading-5 mt-8;
+    @apply xl:text-slate-800 text-slate-700 text-sm
+    leading-5 xl:text-base font-normal font-['Inter'] mt-8;
 }
 
 .calculator__title {
@@ -84,7 +85,7 @@
 }
 
 .calculator__surfaces-row {
-    @apply self-stretch inline-flex justify-start items-start gap-8;
+    @apply self-stretch inline-flex justify-start items-start gap-8 flex-wrap;
 }
 
 .calculator__surface-col {
@@ -262,9 +263,8 @@
 }
 
 /* 2. Hover state - голубой с синим текстом */
-.filter-buttons__button:hover:not(.filter-buttons__button--active):not(:disabled) {
+.filter-buttons__button:hover:not(.filter-buttons__button--active):not(:disabled)  {
     background-color: #c8dbef !important;
-    color: #244D80 !important;
 }
 
 /* 3. Active state - синий с белым текстом */
