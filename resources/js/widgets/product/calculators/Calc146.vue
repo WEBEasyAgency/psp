@@ -9,7 +9,7 @@
         </div>
 
         <!-- Текстовый контент под галереей -->
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description">
+        <div class="calculator__gallery-text" v-html="props.description">
         </div>
       </div>
 
@@ -116,7 +116,7 @@
 </template>
 
 <script setup>
-import {ref, reactive, computed, onMounted} from 'vue'
+import {ref, reactive, computed, onMounted, watch} from 'vue'
 import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
@@ -147,15 +147,15 @@ const rawApiOptions = reactive({})
 const calculatorData = reactive({
   text: '',
   sr_h: 30,
-  num: null,
+  num: 4,
   face: null,
   bort: null,
   brand: null,
   ustanovka: null,
-  rama_w: null,
+  rama_w: 1.0,
   color_rama: null,
-  wp: null,
-  hp: null,
+  wp: 1.0,
+  hp: 1.0,
   colorp: null,
   services: {
     design: false,
@@ -173,6 +173,13 @@ const actualLetterCount = computed(() => {
     return calculatorData.text.trim().length
   }
   return calculatorData.num || 1
+})
+
+// Автоматически обновляем количество букв при изменении текста
+watch(() => calculatorData.text, (newText) => {
+  if (newText && newText.trim().length > 0) {
+    calculatorData.num = newText.trim().length
+  }
 })
 
 const getLetterWord = (count) => {
