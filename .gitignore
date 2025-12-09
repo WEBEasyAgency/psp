@@ -30,3 +30,6 @@ GITHUB_DEPLOY_KEY.txt
 
 # Symlink to legacy layout
 /public/layout
+
+.gemini/
+gha-creds-*.json
