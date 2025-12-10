@@ -101,11 +101,7 @@
                 </div>
                 -->
                 <NumberInput v-model="calculatorData.num" label="Количество" :min="1" :max="100"/>
-                <div
-                    class="justify-start text-[#2c619d] text-sm font-normal font-['Inter'] leading-5 underline underline-offset-4 decoration-dashed">
-                    Чем больше,
-                    тем дешевле
-                </div>
+                <InfoTooltip />
                 <!-- Итого и Кнопки -->
                 <CalculatorAction
                     :result="calculationResult"
@@ -127,6 +123,7 @@ import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import HelpPopover from '@/shared/ui/HelpPopover.vue'
+import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 
 const props = defineProps({
     initialImages: {type: Array, default: () => []},
