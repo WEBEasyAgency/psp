@@ -116,7 +116,7 @@
 </template>
 
 <script setup>
-import {ref, reactive, computed, onMounted} from 'vue'
+import {ref, reactive, computed, onMounted, watch} from 'vue'
 import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
@@ -150,7 +150,7 @@ const rawMatSelectParams = ref([])
 const calculatorData = reactive({
   text: '',
   sr_h: 30,
-  num: null,
+  num: 4,
   face: null,
   bort: null,
   brand: null,
@@ -176,6 +176,13 @@ const actualLetterCount = computed(() => {
     return calculatorData.text.trim().length
   }
   return calculatorData.num || 1
+})
+
+// Автоматически обновляем количество букв при изменении текста
+watch(() => calculatorData.text, (newText) => {
+  if (newText && newText.trim().length > 0) {
+    calculatorData.num = newText.trim().length
+  }
 })
 
 const getLetterWord = (count) => {

@@ -278,6 +278,11 @@
     padding: 0 12px;
     max-width: 1424px;
 }
+@media only screen and (max-width: 900px) {
+    .container {
+        padding: 0;
+    }
+}
 
 /* FAQ Component */
 .faq__section {

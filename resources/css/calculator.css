@@ -24,7 +24,7 @@
 
 .calculator__gallery-text {
     @apply xl:text-slate-800 text-slate-700 text-sm
-    leading-5 xl:text-base font-normal font-['Inter'] mt-8;
+    leading-5 xl:text-base font-normal font-['Inter'] mt-[27px] pr-5 lg:mt-8 mb-4;
 }
 
 .calculator__title {
@@ -41,11 +41,11 @@
 }
 
 .calculator__right {
-    @apply flex flex-col w-full xl:w-[630px] gap-8;
+    @apply flex flex-col w-full xl:w-[630px] gap-6 lg:gap-8;
 }
 
 .calculator__params {
-    @apply flex flex-col gap-8;
+    @apply flex flex-col gap-[23px] lg:gap-8;
 }
 
 .calculator__text-section {
@@ -81,11 +81,11 @@
 }
 
 .calculator__options {
-    @apply flex flex-col gap-8;
+    @apply flex flex-col gap-6 lg:gap-8;
 }
 
 .calculator__surfaces-row {
-    @apply self-stretch inline-flex justify-start items-start gap-8 flex-wrap;
+    @apply self-stretch inline-flex justify-start items-start gap-6 lg:gap-8 flex-wrap flex-col xl:flex-row;
 }
 
 .calculator__surface-col {
@@ -93,7 +93,7 @@
 }
 
 .calculator__sub-options {
-    @apply flex flex-col justify-between xl:flex-row flex-wrap gap-4 pl-4 mt-2 mb-4;
+    @apply flex flex-col justify-between xl:flex-row flex-wrap gap-4 mt-2 mb-4;
 }
 
 .calculator__services {

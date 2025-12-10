@@ -102,7 +102,7 @@ const updateValue = (e) => {
 }
 
 .number-input__wrapper {
-  @apply bg-[#f6f6f6] rounded-2xl max-w-[191px] xl:max-w-full outline outline-offset-[-1px] outline-slate-200 inline-flex items-center justify-between overflow-hidden;
+  @apply bg-[#f6f6f6] rounded-2xl min-w-[194px] max-w-[194px] xl:max-w-full outline outline-offset-[-1px] outline-slate-200 inline-flex items-center justify-between overflow-hidden;
 }
 
 .number-input__button {

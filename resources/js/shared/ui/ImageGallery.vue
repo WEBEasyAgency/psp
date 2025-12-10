@@ -103,7 +103,7 @@ const handleTouchEnd = () => {
 }
 
 .image-gallery__main {
-  @apply h-[332px] relative bg-white rounded-2xl overflow-hidden;
+  @apply h-[200px] lg:h-[332px] relative bg-white rounded-2xl overflow-hidden;
 }
 
 @media (min-width: 1280px) {

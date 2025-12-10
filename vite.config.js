@@ -46,6 +46,7 @@ export default defineConfig({
         },
     },
     server: {
+        host: '127.0.0.1', // Force IPv4 instead of IPv6 to avoid VPN issues
         proxy: {
             '/backend': {
                 target: 'https://psp.realeasystudio.site',

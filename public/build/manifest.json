@@ -1,40 +1,36 @@
 {
-  "_CalculatorAction-Ch9Bvxce.js": {
-    "file": "assets/CalculatorAction-Ch9Bvxce.js",
+  "_CalculatorAction-BN-ahIlY.css": {
+    "file": "assets/CalculatorAction-BN-ahIlY.css",
+    "src": "_CalculatorAction-BN-ahIlY.css"
+  },
+  "_CalculatorAction-jTG3Nsn6.js": {
+    "file": "assets/CalculatorAction-jTG3Nsn6.js",
     "name": "CalculatorAction",
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js"
+      "_InstallationCases-B6fkJvsU.js"
     ],
     "css": [
-      "assets/CalculatorAction-tGu5P7oB.css"
+      "assets/CalculatorAction-BN-ahIlY.css"
     ]
   },
-  "_CalculatorAction-tGu5P7oB.css": {
-    "file": "assets/CalculatorAction-tGu5P7oB.css",
-    "src": "_CalculatorAction-tGu5P7oB.css"
-  },
-  "_FilterButtons-FeGCVbDA.js": {
-    "file": "assets/FilterButtons-FeGCVbDA.js",
+  "_FilterButtons-v2FzXcs0.js": {
+    "file": "assets/FilterButtons-v2FzXcs0.js",
     "name": "FilterButtons",
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_InstallationCases-CK0PtCjb.js"
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_InstallationCases-B6fkJvsU.js"
     ]
   },
-  "_InstallationCases-C0ioFPje.css": {
-    "file": "assets/InstallationCases-C0ioFPje.css",
-    "src": "_InstallationCases-C0ioFPje.css"
-  },
-  "_InstallationCases-CK0PtCjb.js": {
-    "file": "assets/InstallationCases-CK0PtCjb.js",
+  "_InstallationCases-B6fkJvsU.js": {
+    "file": "assets/InstallationCases-B6fkJvsU.js",
     "name": "InstallationCases",
     "imports": [
       "_swiper-6xR0uXJD.js"
     ],
     "css": [
-      "assets/InstallationCases-C0ioFPje.css"
+      "assets/InstallationCases-vzgzp76C.css"
     ],
     "assets": [
       "assets/Inter-Regular-6EfshmZx.woff2",
@@ -43,28 +39,33 @@
       "assets/how-order-DMdsaM4h.png"
     ]
   },
-  "_RadioGroup-BJEK_AEV.css": {
-    "file": "assets/RadioGroup-BJEK_AEV.css",
-    "src": "_RadioGroup-BJEK_AEV.css"
+  "_InstallationCases-vzgzp76C.css": {
+    "file": "assets/InstallationCases-vzgzp76C.css",
+    "src": "_InstallationCases-vzgzp76C.css"
   },
-  "_RadioGroup-BuaDQIZG.js": {
-    "file": "assets/RadioGroup-BuaDQIZG.js",
+  "_RadioGroup-CCKhKVe5.js": {
+    "file": "assets/RadioGroup-CCKhKVe5.js",
     "name": "RadioGroup",
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js"
+      "_FilterButtons-v2FzXcs0.js",
+      "_InstallationCases-B6fkJvsU.js"
     ],
     "css": [
-      "assets/RadioGroup-BJEK_AEV.css"
+      "assets/RadioGroup-Dj-enKwk.css"
     ]
   },
-  "_ToggleSwitch-DOc7kH1E.js": {
-    "file": "assets/ToggleSwitch-DOc7kH1E.js",
+  "_RadioGroup-Dj-enKwk.css": {
+    "file": "assets/RadioGroup-Dj-enKwk.css",
+    "src": "_RadioGroup-Dj-enKwk.css"
+  },
+  "_ToggleSwitch-CyXXYh0w.js": {
+    "file": "assets/ToggleSwitch-CyXXYh0w.js",
     "name": "ToggleSwitch",
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_InstallationCases-CK0PtCjb.js"
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_InstallationCases-B6fkJvsU.js"
     ]
   },
   "_swiper-6xR0uXJD.js": {
@@ -95,7 +96,7 @@
     "src": "layout/img/dest/how-order.png"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DGzCniDo.css",
+    "file": "assets/app-CikvibHX.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -122,7 +123,7 @@
     ]
   },
   "resources/css/product.css": {
-    "file": "assets/product-BI1JPg1m.css",
+    "file": "assets/product-JyUFQ6wg.css",
     "src": "resources/css/product.css",
     "isEntry": true,
     "name": "product",
@@ -155,142 +156,142 @@
     ]
   },
   "resources/js/pages/product-146.js": {
-    "file": "assets/product-146-DRU4-4os.js",
+    "file": "assets/product-146-BWtYtCy2.js",
     "name": "product-146",
     "src": "resources/js/pages/product-146.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_RadioGroup-BuaDQIZG.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_RadioGroup-CCKhKVe5.js"
     ]
   },
   "resources/js/pages/product-151.js": {
-    "file": "assets/product-151-wvtaV3pv.js",
+    "file": "assets/product-151-Du0kOGcL.js",
     "name": "product-151",
     "src": "resources/js/pages/product-151.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/product-154.js": {
-    "file": "assets/product-154-6Gmvtspd.js",
+    "file": "assets/product-154-DUD3EocF.js",
     "name": "product-154",
     "src": "resources/js/pages/product-154.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/product-155.js": {
-    "file": "assets/product-155-opnIH4jC.js",
+    "file": "assets/product-155-BN3PB6Rv.js",
     "name": "product-155",
     "src": "resources/js/pages/product-155.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_RadioGroup-BuaDQIZG.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_RadioGroup-CCKhKVe5.js"
     ]
   },
   "resources/js/pages/product-156.js": {
-    "file": "assets/product-156-CQ2toV6z.js",
+    "file": "assets/product-156-DpaoDjf6.js",
     "name": "product-156",
     "src": "resources/js/pages/product-156.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/product-157.js": {
-    "file": "assets/product-157-xu0ljfhD.js",
+    "file": "assets/product-157-D4e-mFIA.js",
     "name": "product-157",
     "src": "resources/js/pages/product-157.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/product-158.js": {
-    "file": "assets/product-158-BHvX-fbw.js",
+    "file": "assets/product-158-C0QvbODm.js",
     "name": "product-158",
     "src": "resources/js/pages/product-158.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/product-159.js": {
-    "file": "assets/product-159-CxdwUrTR.js",
+    "file": "assets/product-159-CMk-LM6D.js",
     "name": "product-159",
     "src": "resources/js/pages/product-159.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/product-160.js": {
-    "file": "assets/product-160-CR4WOZ6v.js",
+    "file": "assets/product-160-CBK4SqCO.js",
     "name": "product-160",
     "src": "resources/js/pages/product-160.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_FilterButtons-FeGCVbDA.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_FilterButtons-v2FzXcs0.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/product-161.js": {
-    "file": "assets/product-161-BjW7X2Q_.js",
+    "file": "assets/product-161-CbVz_MI-.js",
     "name": "product-161",
     "src": "resources/js/pages/product-161.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js",
-      "_CalculatorAction-Ch9Bvxce.js",
-      "_ToggleSwitch-DOc7kH1E.js"
+      "_InstallationCases-B6fkJvsU.js",
+      "_CalculatorAction-jTG3Nsn6.js",
+      "_ToggleSwitch-CyXXYh0w.js"
     ]
   },
   "resources/js/pages/welcome.js": {
-    "file": "assets/welcome-nJwHTnlk.js",
+    "file": "assets/welcome-DVtEyVDX.js",
     "name": "welcome",
     "src": "resources/js/pages/welcome.js",
     "isEntry": true,
     "imports": [
       "_swiper-6xR0uXJD.js",
-      "_InstallationCases-CK0PtCjb.js"
+      "_InstallationCases-B6fkJvsU.js"
     ],
     "css": [
       "assets/welcome-BxGjvLkK.css"
