@@ -49,7 +49,16 @@
 							Заказ успешно создан, в ближайшее время менеджер свяжется с вами для уточнения подробностей
 						@endif
 					</div>
-					<div class="btn-block"><a href="/" class="btn btn-white">На главную</a></div>
+
+					<a href="/" class="btn ">На главную</a>
+                    <style>
+                        .btn {
+                            margin-top: 32px;
+                            display: inline-flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    </style>
 				</div>
 			</div>
 		</section>
