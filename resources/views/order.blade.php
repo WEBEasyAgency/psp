@@ -119,16 +119,27 @@
 										<span class="label">Заказать услуги дизайнера</span>
 									</label>
 								</div>
-								<label class="file">
-									<input type="file" name="file" id="designFile">
-									<span class="text" id="fileText">Загрузить дизайн-макет или файл</span>
-									<span class="btn">
-										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M4 8H8M8 8H12M8 8V12M8 8V4" stroke="#F6F6F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-										</svg>
-										Выбрать файл
-									</span>
-								</label>
+								<div id="fileUploadSection">
+									<label class="file">
+										<input type="file" name="file" id="designFile">
+										<span class="text" id="fileText">Загрузить дизайн-макет или файл</span>
+										<span class="btn">
+											<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M4 8H8M8 8H12M8 8V12M8 8V4" stroke="#F6F6F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+											Выбрать файл
+										</span>
+									</label>
+									<div class="file-info" style="margin-top: 12px; padding: 12px; background-color: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+										<div style="color: #64748b; font-size: 13px; line-height: 1.6;">
+											<div style="font-weight: 500; color: #475569; margin-bottom: 6px;">Допустимые форматы:</div>
+											<div>• Графические: JPG, PNG, GIF, BMP, SVG, WebP</div>
+											<div>• Векторные: AI, EPS, PDF, CDR</div>
+											<div>• Архивы: ZIP, RAR</div>
+											<div style="margin-top: 8px;"><strong>Максимальный размер файла:</strong> 50 МБ</div>
+										</div>
+									</div>
+								</div>
 								<div class="all-price">
 									<div class="caption">Итого</div>
 									<div class="val" id="totalPrice">{{ number_format($price_good, 0, ',', ' ') }} ₽</div>
@@ -195,6 +206,35 @@
 	// Хранилище для загруженного файла
 	let uploadedFileUrl = null;
 
+	// Управление видимостью формы загрузки файла
+	function toggleFileUpload() {
+		const designRadios = document.querySelectorAll('input[name="design"]');
+		const fileUploadSection = document.getElementById('fileUploadSection');
+		const selectedValue = document.querySelector('input[name="design"]:checked').value;
+
+		if (selectedValue === 'own') {
+			fileUploadSection.style.display = 'block';
+		} else {
+			fileUploadSection.style.display = 'none';
+			// Очищаем загруженный файл при переключении
+			const fileInput = document.getElementById('designFile');
+			fileInput.value = '';
+			uploadedFileUrl = null;
+			document.getElementById('fileText').textContent = 'Загрузить дизайн-макет или файл';
+			document.getElementById('fileText').style.color = '';
+		}
+	}
+
+	// Инициализация при загрузке страницы
+	document.addEventListener('DOMContentLoaded', function() {
+		toggleFileUpload();
+
+		// Добавляем обработчики на radio buttons
+		document.querySelectorAll('input[name="design"]').forEach(radio => {
+			radio.addEventListener('change', toggleFileUpload);
+		});
+	});
+
 	// Обработка загрузки файла
 	document.getElementById('designFile').addEventListener('change', async function(e) {
 		const file = this.files[0];
@@ -202,6 +242,24 @@
 			uploadedFileUrl = null;
 			document.getElementById('fileText').textContent = 'Загрузить дизайн-макет или файл';
 			document.getElementById('fileText').style.color = '';
+			return;
+		}
+
+		// Проверка формата файла
+		const allowedExtensions = [
+			'jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp', // Графические
+			'ai', 'eps', 'pdf', 'cdr', // Векторные
+			'zip', 'rar' // Архивы
+		];
+		const fileExtension = file.name.split('.').pop().toLowerCase();
+		if (!allowedExtensions.includes(fileExtension)) {
+			alert('Недопустимый формат файла. Пожалуйста, выберите файл одного из следующих форматов:\n\n' +
+				'Графические: JPG, PNG, GIF, BMP, SVG, WebP\n' +
+				'Векторные: AI, EPS, PDF, CDR\n' +
+				'Архивы: ZIP, RAR');
+			this.value = '';
+			uploadedFileUrl = null;
+			document.getElementById('fileText').textContent = 'Загрузить дизайн-макет или файл';
 			return;
 		}
 
