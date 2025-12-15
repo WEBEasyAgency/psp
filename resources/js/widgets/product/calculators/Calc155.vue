@@ -103,11 +103,15 @@
 
 
         <!-- Итого -->
-        <CalculatorAction 
-            :result="calculationResult" 
-            :loading="isCalculating" 
-            :order-link="orderLink" 
-            @calculate="calculatePrice" 
+        <CalculatorAction
+            :result="calculationResult"
+            :loading="isCalculating"
+            :order-link="orderLink"
+            :calculator-id="calcId"
+            :calculator-data="calculatorDataForCart"
+            :description="cartItemDescription"
+            :image="cartItemImage"
+            @calculate="calculatePrice"
         />
         <div v-if="error" class="calculator__error">{{ error }}</div>
       </div>
@@ -199,6 +203,37 @@ const orderLink = computed(() => {
     desc: `Объемные буквы (${actualLetterCount.value} ${getLetterWord(actualLetterCount.value)}, высота ${calculatorData.sr_h}см)`
   })
   return `/order?${params.toString()}`
+})
+
+// Данные для корзины
+const cartItemDescription = computed(() => {
+  return `Объемные буквы со световым бортом (${actualLetterCount.value} ${getLetterWord(actualLetterCount.value)}, ${calculatorData.sr_h}см)`
+})
+
+const cartItemImage = computed(() => {
+  return props.initialImages && props.initialImages.length > 0
+    ? props.initialImages[0]
+    : '/img/dest/cart-img.jpg'
+})
+
+const calculatorDataForCart = computed(() => {
+  return {
+    params: [
+      {variable: 'sr_h', type: 1, value: calculatorData.sr_h},
+      {variable: 'num', type: 1, value: actualLetterCount.value},
+      {variable: 'rama_w', type: 1, value: calculatorData.rama_w},
+      {variable: 'wp', type: 1, value: calculatorData.wp},
+      {variable: 'hp', type: 1, value: calculatorData.hp},
+      {variable: 'face', type: 5, value: calculatorData.face},
+      {variable: 'bort', type: 5, value: calculatorData.bort},
+      {variable: 'brand', type: 5, value: calculatorData.brand},
+      {variable: 'ustanovka', type: 5, value: calculatorData.ustanovka},
+      {variable: 'color_rama', type: 5, value: calculatorData.color_rama},
+      {variable: 'colorp', type: 5, value: calculatorData.colorp},
+    ],
+    mat_select_params: [],
+    text: calculatorData.text
+  }
 })
 
 const fetchCalculatorParams = async () => {

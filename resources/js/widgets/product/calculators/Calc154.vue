@@ -76,11 +76,15 @@
         -->
 
         <!-- Итого и Кнопки -->
-        <CalculatorAction 
-            :result="calculationResult" 
-            :loading="isCalculating" 
-            :order-link="orderLink" 
-            @calculate="calculatePrice" 
+        <CalculatorAction
+            :result="calculationResult"
+            :loading="isCalculating"
+            :order-link="orderLink"
+            :calculator-id="calcId"
+            :calculator-data="calculatorDataForCart"
+            :description="cartItemDescription"
+            :image="cartItemImage"
+            @calculate="calculatePrice"
         />
          <div v-if="error" class="calculator__error">{{ error }}</div>
       </div>
@@ -144,6 +148,33 @@ const orderLink = computed(() => {
     desc: `Наклейки ${calculatorData.w}x${calculatorData.h}мм, ${calculatorData.num}шт`
   })
   return `/order?${params.toString()}`
+})
+
+// Данные для корзины
+const cartItemDescription = computed(() => {
+  return `Наклейки ${calculatorData.w}x${calculatorData.h}мм (${calculatorData.num} шт)`
+})
+
+const cartItemImage = computed(() => {
+  return props.initialImages && props.initialImages.length > 0
+    ? props.initialImages[0]
+    : '/img/dest/cart-img.jpg'
+})
+
+const calculatorDataForCart = computed(() => {
+  return {
+    params: [
+      {variable: 'w', type: 1, value: calculatorData.w},
+      {variable: 'h', type: 1, value: calculatorData.h},
+      {variable: 'num', type: 1, value: calculatorData.num},
+      {variable: 'plenka_color', type: 5, value: calculatorData.plenka_color || 0},
+      {variable: 'print', type: 5, value: calculatorData.print || 0},
+      {variable: 'need_plotter', type: 2, value: calculatorData.need_plotter ? 1 : 0},
+      {variable: 'vivorka', type: 2, value: calculatorData.vivorka ? 1 : 0},
+      {variable: 'upakovka', type: 5, value: calculatorData.upakovka || 0}
+    ],
+    mat_select_params: []
+  }
 })
 
 const fetchCalculatorParams = async () => {

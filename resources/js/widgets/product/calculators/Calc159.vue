@@ -76,6 +76,10 @@
                     :result="calculationResult"
                     :loading="isCalculating"
                     :order-link="orderLink"
+                    :calculator-id="calcId"
+                    :calculator-data="calculatorDataForCart"
+                    :description="cartItemDescription"
+                    :image="cartItemImage"
                     @calculate="calculatePrice"
                 />
                 <div v-if="error" class="calculator__error">{{ error }}</div>
@@ -141,6 +145,42 @@ const orderLink = computed(() => {
         desc: `Пластиковая табличка ${calculatorData.w}x${calculatorData.h}см`
     })
     return `/order?${params.toString()}`
+})
+
+// Данные для корзины
+const cartItemDescription = computed(() => {
+    return `Пластиковая табличка ${calculatorData.w}x${calculatorData.h}см (${calculatorData.num} шт)`
+})
+
+const cartItemImage = computed(() => {
+    return props.initialImages && props.initialImages.length > 0
+        ? props.initialImages[0]
+        : '/img/dest/cart-img.jpg'
+})
+
+const calculatorDataForCart = computed(() => {
+    return {
+        params: [
+            {variable: 'w', type: 1, value: calculatorData.w},
+            {variable: 'h', type: 1, value: calculatorData.h},
+            {variable: 'num', type: 1, value: calculatorData.num},
+            {variable: 'mat_select_in3', type: 3, value: calculatorData.mat_select_in3},
+            {variable: 'doubleside', type: 2, value: calculatorData.doubleside ? 1 : 0},
+            {variable: 'round', type: 2, value: calculatorData.round ? 1 : 0},
+            {variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0},
+            {variable: 'need_Nielsen', type: 2, value: calculatorData.need_Nielsen ? 1 : 0}
+        ],
+        mat_select_params: rawMatSelectParams.value.map(param => {
+            const selectedMaterialId = calculatorData[param.variable]
+            const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
+            return {
+                ...param,
+                id: selectedMaterial ? selectedMaterial.id : param.id,
+                name: selectedMaterial ? selectedMaterial.name : param.name,
+                materials: selectedMaterial ? [selectedMaterial] : param.materials
+            }
+        })
+    }
 })
 
 const fetchCalculatorParams = async () => {

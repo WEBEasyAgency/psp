@@ -88,6 +88,10 @@
                     :result="calculationResult"
                     :loading="isCalculating"
                     :order-link="orderLink"
+                    :calculator-id="calcId"
+                    :calculator-data="calculatorDataForCart"
+                    :description="cartItemDescription"
+                    :image="cartItemImage"
                     @calculate="calculatePrice"
                 />
                 <div v-if="error" class="calculator__error">{{ error }}</div>
@@ -159,6 +163,34 @@ const orderLink = computed(() => {
         desc: `Акриловая вывеска ${calculatorData.w}x${calculatorData.h}см`
     })
     return `/order?${params.toString()}`
+})
+
+// Данные для корзины
+const cartItemDescription = computed(() => {
+    return `Акриловая вывеска ${calculatorData.w}x${calculatorData.h}м (${calculatorData.num} шт)`
+})
+
+const cartItemImage = computed(() => {
+    return props.initialImages && props.initialImages.length > 0
+        ? props.initialImages[0]
+        : '/img/dest/cart-img.jpg'
+})
+
+const calculatorDataForCart = computed(() => {
+    return {
+        params: [
+            {variable: 'w', type: 1, value: calculatorData.w},
+            {variable: 'h', type: 1, value: calculatorData.h},
+            {variable: 'num', type: 1, value: calculatorData.num},
+            {variable: 'th_acryl', type: 5, value: calculatorData.th_acryl},
+            {variable: 'acryl_color', type: 5, value: calculatorData.acryl_color},
+            {variable: 'dist_derzh', type: 5, value: calculatorData.dist_derzh},
+            {variable: 'tape', type: 2, value: calculatorData.tape ? 1 : 0},
+            {variable: 'drills', type: 2, value: calculatorData.drills ? 1 : 0},
+            {variable: 'round', type: 2, value: calculatorData.round ? 1 : 0}
+        ],
+        mat_select_params: []
+    }
 })
 
 const fetchCalculatorParams = async () => {

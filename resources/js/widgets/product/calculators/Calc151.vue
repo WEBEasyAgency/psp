@@ -107,6 +107,10 @@
                     :result="calculationResult"
                     :loading="isCalculating"
                     :order-link="orderLink"
+                    :calculator-id="calcId"
+                    :calculator-data="calculatorDataForCart"
+                    :description="cartItemDescription"
+                    :image="cartItemImage"
                     @calculate="calculatePrice"
                 />
                 <div v-if="error" class="calculator__error">{{ error }}</div>
@@ -182,6 +186,48 @@ const orderLink = computed(() => {
         desc: `Стенд с карманами ${calculatorData.w}x${calculatorData.h}см`
     })
     return `/order?${params.toString()}`
+})
+
+// Данные для корзины
+const cartItemDescription = computed(() => {
+    return `Стенд с карманами ${calculatorData.w}x${calculatorData.h}см (${calculatorData.num} шт)`
+})
+
+const cartItemImage = computed(() => {
+    return props.initialImages && props.initialImages.length > 0
+        ? props.initialImages[0]
+        : '/img/dest/cart-img.jpg'
+})
+
+const calculatorDataForCart = computed(() => {
+    return {
+        params: [
+            {variable: 'w', type: 1, value: calculatorData.w},
+            {variable: 'h', type: 1, value: calculatorData.h},
+            {variable: 'num', type: 1, value: calculatorData.num},
+            {variable: 'a4', type: 1, value: calculatorData.a4},
+            {variable: 'a3', type: 1, value: calculatorData.a3},
+            {variable: 'a5', type: 1, value: calculatorData.a5},
+            {variable: 'a6', type: 1, value: calculatorData.a6},
+            {variable: 'a4o', type: 1, value: calculatorData.a4o},
+            {variable: 'a5o', type: 1, value: calculatorData.a5o},
+            {variable: 'aEo', type: 1, value: calculatorData.aEo},
+            {variable: 'aVo', type: 1, value: calculatorData.aVo},
+            {variable: 'mat_select_in3', type: 3, value: calculatorData.mat_select_in3},
+            {variable: 'need_Nielsen', type: 2, value: calculatorData.need_Nielsen ? 1 : 0},
+            {variable: 'perekid', type: 2, value: calculatorData.perekid ? 1 : 0}
+        ],
+        mat_select_params: rawMatSelectParams.value.map(param => {
+            const selectedMaterialId = calculatorData[param.variable]
+            const selectedMaterial = param.materials.find(m => m.id === selectedMaterialId)
+            return {
+                ...param,
+                id: selectedMaterial ? selectedMaterial.id : param.id,
+                name: selectedMaterial ? selectedMaterial.name : param.name,
+                materials: selectedMaterial ? [selectedMaterial] : param.materials
+            }
+        })
+    }
 })
 
 const fetchCalculatorParams = async () => {
