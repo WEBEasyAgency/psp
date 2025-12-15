@@ -56,35 +56,8 @@
             </div>
 
             <div class="quantity-price flex">
-              <div class="number-input__wrapper">
-                <button
-                  type="button"
-                  class="number-input__button"
-                  @click="decreaseQuantity(item)"
-                  :disabled="item.quantity <= 1"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 12H18" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </button>
-                <div class="number-input__field-wrapper">
-                  <input
-                    type="number"
-                    class="number-input__field"
-                    :value="item.quantity"
-                    @input="updateQuantityInput(item, $event)"
-                    min="1"
-                  >
-                </div>
-                <button
-                  type="button"
-                  class="number-input__button"
-                  @click="increaseQuantity(item)"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="#334155" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </button>
+              <div class="quantity-display">
+                Количество: {{ item.quantity }} шт
               </div>
               <div class="price">
                 <span class="val">{{ formatPrice(item.price_good * item.quantity) }}</span>
@@ -121,7 +94,7 @@
 import { computed } from 'vue'
 import { useCart } from '@/shared/composables/useCart'
 
-const { cartItems, updateQuantity, removeItem: removeCartItem, clearCart } = useCart()
+const { cartItems, removeItem: removeCartItem, clearCart } = useCart()
 
 const items = computed(() => cartItems.value)
 
@@ -138,25 +111,6 @@ function formatPrice(value) {
     return '0'
   }
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-}
-
-function increaseQuantity(item) {
-  updateQuantity(item.id, item.quantity + 1)
-}
-
-function decreaseQuantity(item) {
-  if (item.quantity > 1) {
-    updateQuantity(item.id, item.quantity - 1)
-  }
-}
-
-function updateQuantityInput(item, event) {
-  const value = parseInt(event.target.value)
-  if (value > 0) {
-    updateQuantity(item.id, value)
-  } else {
-    event.target.value = item.quantity
-  }
 }
 
 function removeItem(itemId) {
@@ -263,5 +217,11 @@ function getFormattedParams(item) {
 .empty-cart .btn {
   display: inline-block;
   padding: 12px 32px;
+}
+
+.quantity-display {
+  font-size: 16px;
+  color: #334155;
+  font-weight: 500;
 }
 </style>
