@@ -5,6 +5,22 @@ a.disabled {
     cursor: default;
     color: #999 !important;
 }
+@media only screen and (max-width: 768px) {
+    .clients-block .clients-slider .swiper-slide {
+        max-width: 104px !important;
+        height: 53px;
+    }
+    .clients-block .clients-slider .swiper-wrapper {
+        overflow: hidden !important;
+    }
+    .feed-popup .inner {
+        min-width: 94%;
+    }
+    .feed-popup .inner .text {
+        max-height: unset !important;
+    }
+
+}
 </style>
 
 <header>
@@ -129,7 +145,7 @@ a.disabled {
                         </a>
                     </div>
                     <div class="item mini-cart">
-                        <a href="/cart" style="position: relative; display: inline-block;">
+                        <a href="/cart" style="position: relative;">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.5 6.5H6.72362C7.11844 6.5 7.31619 6.5 7.47722 6.57123C7.6192 6.63403 7.74059 6.73515 7.82812 6.86336C7.92724 7.00855 7.96304 7.20241 8.03448 7.58939L9.83337 17.3334L18.5182 17.3333C18.8958 17.3333 19.0853 17.3333 19.2417 17.2666C19.3799 17.2077 19.4991 17.1122 19.5876 16.9908C19.6877 16.8535 19.7301 16.6697 19.8148 16.3026L19.8154 16.3L21.1231 10.6333L21.1234 10.6321C21.2519 10.0751 21.3164 9.79596 21.2456 9.57699C21.1835 9.38485 21.0529 9.22195 20.8797 9.11827C20.682 9 20.3965 9 19.8239 9H8.58333M19 21.5C18.5398 21.5 18.1667 21.1269 18.1667 20.6667C18.1667 20.2064 18.5398 19.8333 19 19.8333C19.4602 19.8333 19.8333 20.2064 19.8333 20.6667C19.8333 21.1269 19.4602 21.5 19 21.5ZM10.6667 21.5C10.2064 21.5 9.83333 21.1269 9.83333 20.6667C9.83333 20.2064 10.2064 19.8333 10.6667 19.8333C11.1269 19.8333 11.5 20.2064 11.5 20.6667C11.5 21.1269 11.1269 21.5 10.6667 21.5Z" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>

@@ -128,6 +128,7 @@ import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import HelpPopover from '@/shared/ui/HelpPopover.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
+import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
     initialImages: {type: Array, default: () => []},
@@ -135,6 +136,7 @@ const props = defineProps({
 })
 
 const calcId = 151 // Жестко задаем ID
+const { isEditMode, restoreParams } = useEditMode(calcId)
 const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
@@ -340,6 +342,11 @@ const calculatePrice = async () => {
     }
 }
 
-onMounted(fetchCalculatorParams)
+onMounted(async () => {
+    await fetchCalculatorParams()
+    if (isEditMode.value) {
+        restoreParams(calculatorData, rawMatSelectParams)
+    }
+})
 </script>
 

@@ -128,6 +128,7 @@ import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import RadioGroup from '@/shared/ui/RadioGroup.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
+import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
   initialImages: {type: Array, default: () => []},
@@ -135,6 +136,7 @@ const props = defineProps({
 })
 
 const calcId = 146
+const { isEditMode, restoreParams } = useEditMode(calcId)
 const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
@@ -148,6 +150,7 @@ const options = reactive({
   colorp: []
 })
 const rawApiOptions = reactive({})
+const rawMatSelectParams = ref([])
 
 const calculatorData = reactive({
   text: '',
@@ -175,15 +178,16 @@ const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages :
 
 const actualLetterCount = computed(() => {
   if (calculatorData.text && calculatorData.text.trim().length > 0) {
-    return calculatorData.text.trim().length
+    // Убираем все пробелы перед подсчетом
+    return calculatorData.text.replace(/\s/g, '').length
   }
   return calculatorData.num || 1
 })
 
-// Автоматически обновляем количество букв при изменении текста
+// Автоматически обновляем количество букв при изменении текста (без пробелов)
 watch(() => calculatorData.text, (newText) => {
   if (newText && newText.trim().length > 0) {
-    calculatorData.num = newText.trim().length
+    calculatorData.num = newText.replace(/\s/g, '').length
   }
 })
 
@@ -249,6 +253,8 @@ const fetchCalculatorParams = async () => {
     if (data.params) {
       data.params.forEach(p => {
         if (p.type === 1 && calculatorData[p.variable] !== undefined) {
+          // Не перезаписываем num из API, используем начальное значение 4
+          if (p.variable === 'num') return
           calculatorData[p.variable] = parseInt(p.default) || calculatorData[p.variable]
         }
                     if (p.type === 5 && p.options && options[p.variable] !== undefined) {
@@ -348,6 +354,11 @@ const loadEditData = async (editData) => {
   await calculatePrice()
 }
 
-onMounted(fetchCalculatorParams)
+onMounted(async () => {
+    await fetchCalculatorParams()
+    if (isEditMode.value) {
+        restoreParams(calculatorData, rawMatSelectParams)
+    }
+})
 </script>
 

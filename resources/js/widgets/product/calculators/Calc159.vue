@@ -46,13 +46,36 @@
                 <div class="calculator__services">
                     <div class="calculator__services-header">
                         <span class="calculator__services-label">Параметры изготовления</span>
+                        <HelpPopover
+                            title="Параметры изготовления"
+                            description="Выберите дополнительные опции для вашей пластиковой таблички: двусторонняя печать, скругление углов, скотч для крепления или обрамление профилем Нильсен."
+                        />
                     </div>
                     <div class="calculator__services-list">
-                        <ToggleSwitch v-model="calculatorData.doubleside" label="Изображение с двух сторон"/>
-                        <ToggleSwitch v-model="calculatorData.round" label="Скругление углов"/>
-                        <ToggleSwitch v-model="calculatorData.tape" label="Двусторонний скотч"/>
-                        <ToggleSwitch v-model="calculatorData.need_Nielsen"
-                                      label="Обрамление профилем Нильсен по периметру"/>
+                        <ToggleSwitch
+                            v-model="calculatorData.doubleside"
+                            label="Изображение с двух сторон"
+                            help-title="Изображение с двух сторон"
+                            help-description="Полноцветная УФ-печать с обеих сторон пластиковой таблички. Подходит для подвесных конструкций."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.round"
+                            label="Скругление углов"
+                            help-title="Скругление углов"
+                            help-description="Скругление острых углов пластика радиусом 10мм. Придает законченный вид и повышает безопасность."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.tape"
+                            label="Двусторонний скотч"
+                            help-title="Двусторонний скотч"
+                            help-description="Прочный двусторонний скотч 3М для крепления таблички к стене. Подходит для гладких поверхностей."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.need_Nielsen"
+                            label="Обрамление профилем Нильсен по периметру"
+                            help-title="Обрамление профилем Нильсен"
+                            help-description="Алюминиевая рамка Nielsen по периметру таблички. Придает презентабельный вид и защищает края."
+                        />
                     </div>
                 </div>
 
@@ -96,6 +119,8 @@ import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
+import HelpPopover from '@/shared/ui/HelpPopover.vue'
+import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
     initialImages: {type: Array, default: () => []},
@@ -103,6 +128,7 @@ const props = defineProps({
 })
 
 const calcId = 159 // Жестко задаем ID
+const { isEditMode, restoreParams } = useEditMode(calcId)
 const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
@@ -288,6 +314,11 @@ const calculatePrice = async () => {
     }
 }
 
-onMounted(fetchCalculatorParams)
+onMounted(async () => {
+    await fetchCalculatorParams()
+    if (isEditMode.value) {
+        restoreParams(calculatorData, rawMatSelectParams)
+    }
+})
 </script>
 

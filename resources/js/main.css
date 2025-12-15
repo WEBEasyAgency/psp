@@ -278,10 +278,21 @@
     padding: 0 12px;
     max-width: 1424px;
 }
+
 @media only screen and (max-width: 900px) {
     .container {
         padding: 0;
     }
+
+    header .container, .cases-block .container, .feedback-block .container {
+        padding: 0 12px;
+    }
+
+}
+
+header {
+    position: relative !important;
+    background: #F6F6F6;
 }
 
 /* FAQ Component */
@@ -342,9 +353,11 @@
 .faq__item:hover {
     background: linear-gradient(267deg, rgba(193, 205, 217, 0.44) -0.89%, rgba(235, 240, 244, 0.44) 97.9%);
 }
+
 .is-open.faq__item:hover {
     background: linear-gradient(267deg, rgba(235, 240, 244, 0.44) -0.89%, rgba(193, 205, 217, 0.44) 97.9%);
 }
+
 .faq__summary {
     @apply self-stretch inline-flex justify-start items-center gap-4 cursor-pointer select-none;
 }
@@ -365,7 +378,6 @@
 .faq__question {
     @apply flex-1 justify-start text-[#170f49] text-base lg:text-lg font-medium font-['Inter'] leading-[22.40px] lg:leading-[25.20px];
 }
-
 
 
 /* Smooth Grid Animation */
@@ -421,6 +433,7 @@
 .faq__item.is-open .faq__icon {
     @apply bg-[#3c7bbb];
 }
+
 .faq__item.is-open:hover .faq__icon {
     @apply bg-[#244D80];
 }
@@ -435,7 +448,7 @@
     background-color: #fff !important;
 }
 
-.faq__item:hover .faq__icon svg  path {
+.faq__item:hover .faq__icon svg path {
     stroke: #3C7BBB;
 }
 
@@ -493,10 +506,18 @@
 .tech__title {
     @apply self-stretch justify-start text-[#1e3552] text-2xl leading-6  lg:text-5xl font-medium font-['Inter'] lg:!leading-[48px] line-clamp-4;
 }
+
 .feedback-block .feedback-slider .swiper-slide {
     max-width: 459px;
     height: 264px !important;
 }
+
+@media only screen and (max-width: 1000px) {
+    .cases-block {
+        padding: 32px 0 0 !important;
+    }
+}
+
 .tech__list {
     @apply w-full lg:self-stretch flex flex-col xl:flex-row flex-wrap justify-start items-start gap-5 lg:gap-6;
 }
@@ -671,7 +692,7 @@ button[class*="primary"]:hover {
 .calculator__calculate-btn:disabled,
 button[class*="calculate"]:disabled,
 button[class*="primary"]:disabled {
-@apply opacity-50;
-@apply cursor-not-allowed;
+    @apply opacity-50;
+    @apply cursor-not-allowed;
 }
 

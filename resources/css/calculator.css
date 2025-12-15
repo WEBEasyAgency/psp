@@ -6,7 +6,7 @@
 @import "tailwindcss/utilities" layer(utilities);
 /* Основные стили калькулятора */
 .calculator {
-    @apply self-stretch inline-flex flex-col justify-start items-start gap-6 mt-8;
+    @apply self-stretch inline-flex flex-col justify-start items-start gap-6 mt-5 xl:mt-8;
 }
 
 @media (min-width: 1280px) {
@@ -23,8 +23,8 @@
 }
 
 .calculator__gallery-text {
-    @apply xl:text-slate-800 text-slate-700 text-sm
-    leading-5 xl:text-base font-normal font-['Inter'] mt-[27px] pr-5 lg:mt-8 mb-4;
+    @apply xl:text-slate-800 text-slate-700 !text-sm
+    leading-5 xl:!text-base font-normal font-['Inter'] mt-[27px] pr-5 lg:mt-8 mb-4;
 }
 
 .calculator__title {

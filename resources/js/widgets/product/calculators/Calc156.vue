@@ -46,13 +46,37 @@
                 <div class="calculator__services">
                     <div class="calculator__services-header">
                         <span class="calculator__services-label">Параметры изготовления</span>
+                        <HelpPopover
+                            title="Параметры изготовления"
+                            description="Выберите дополнительные опции для вашей вывески: скотч для крепления, отверстия для монтажа, печать с обеих сторон или обрамление профилем Nielsen."
+                        />
                     </div>
                     <div class="calculator__services-list">
                         <!-- Жестко прописанные тогглы, привязанные к данным -->
-                        <ToggleSwitch v-model="calculatorData.tape" label="Двусторонний скотч"/>
-                        <ToggleSwitch v-model="calculatorData.drills" label="Отверстия по углам"/>
-                        <ToggleSwitch v-model="calculatorData.doubleside" label="Двусторонняя печать"/>
-                        <ToggleSwitch v-model="calculatorData.need_Nielsen" label="Профиль Nielsen"/>
+                        <ToggleSwitch
+                            v-model="calculatorData.tape"
+                            label="Двусторонний скотч"
+                            help-title="Двусторонний скотч"
+                            help-description="Прочный двусторонний скотч 3М для крепления вывески к стене. Подходит для гладких поверхностей."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.drills"
+                            label="Отверстия по углам"
+                            help-title="Отверстия по углам"
+                            help-description="Сверление отверстий диаметром 5мм в углах вывески для крепления на саморезы или дистанционные держатели."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.doubleside"
+                            label="Двусторонняя печать"
+                            help-title="Двусторонняя печать"
+                            help-description="Полноцветная УФ-печать с обеих сторон вывески. Подходит для подвесных конструкций, видимых с двух сторон."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.need_Nielsen"
+                            label="Профиль Nielsen"
+                            help-title="Профиль Nielsen"
+                            help-description="Алюминиевая рамка Nielsen по периметру. Придает завершенный вид и защищает края от сколов."
+                        />
                     </div>
                 </div>
 
@@ -95,6 +119,8 @@ import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
+import HelpPopover from '@/shared/ui/HelpPopover.vue'
+import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
 
@@ -108,6 +134,9 @@ const calcId = 156 // Жестко задаем ID
 const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
+
+// Режим редактирования товара из корзины
+const { isEditMode, restoreParams } = useEditMode(calcId)
 
 // Опции для селектов/кнопок, загружаемые с бека
 const options = reactive({
@@ -287,6 +316,14 @@ const calculatePrice = async () => {
     }
 }
 
-onMounted(fetchCalculatorParams)
+onMounted(async () => {
+    // Сначала загружаем параметры с API (чтобы получить options и defaults)
+    await fetchCalculatorParams()
+
+    // Затем восстанавливаем сохраненные значения если есть
+    if (isEditMode.value) {
+        restoreParams(calculatorData, rawMatSelectParams)
+    }
+})
 </script>
 

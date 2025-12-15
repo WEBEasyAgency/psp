@@ -55,10 +55,24 @@
         <div class="calculator__services">
             <div class="calculator__services-header">
               <span class="calculator__services-label">Параметры изготовления</span>
+              <HelpPopover
+                  title="Параметры изготовления"
+                  description="Выберите способ обработки наклеек: плоттерная резка для точного контура или выборка для удаления лишней пленки."
+              />
             </div>
             <div class="calculator__services-list">
-                <ToggleSwitch v-model="calculatorData.need_plotter" label="Плоттерная резка" />
-                <ToggleSwitch v-model="calculatorData.vivorka" label="Выборка" />
+                <ToggleSwitch
+                    v-model="calculatorData.need_plotter"
+                    label="Плоттерная резка"
+                    help-title="Плоттерная резка"
+                    help-description="Точная вырезка наклеек по контуру на режущем плоттере. Позволяет создавать наклейки любой формы."
+                />
+                <ToggleSwitch
+                    v-model="calculatorData.vivorka"
+                    label="Выборка"
+                    help-title="Выборка"
+                    help-description="Удаление лишней пленки вокруг наклейки вручную. Оставляет только готовое изображение на подложке."
+                />
             </div>
         </div>
 
@@ -99,6 +113,8 @@ import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
+import HelpPopover from '@/shared/ui/HelpPopover.vue'
+import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
   initialImages: { type: Array, default: () => [] },
@@ -106,6 +122,7 @@ const props = defineProps({
 })
 
 const calcId = 154
+const { isEditMode, restoreParams } = useEditMode(calcId)
 const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
@@ -257,6 +274,11 @@ const calculatePrice = async () => {
   }
 }
 
-onMounted(fetchCalculatorParams)
+onMounted(async () => {
+    await fetchCalculatorParams()
+    if (isEditMode.value) {
+        restoreParams(calculatorData, rawMatSelectParams)
+    }
+})
 </script>
 

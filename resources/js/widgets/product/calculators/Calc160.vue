@@ -61,12 +61,36 @@
                 <div class="calculator__services">
                     <div class="calculator__services-header">
                         <span class="calculator__services-label">Параметры изготовления</span>
+                        <HelpPopover
+                            title="Параметры изготовления"
+                            description="Выберите дополнительные опции для вашей акриловой таблички: скотч для крепления, отверстия для монтажа, скругленные углы или двусторонняя печать."
+                        />
                     </div>
                     <div class="calculator__services-list">
-                        <ToggleSwitch v-model="calculatorData.tape" label="Двусторонний скотч"/>
-                        <ToggleSwitch v-model="calculatorData.drills" label="Отверстия по углам"/>
-                        <ToggleSwitch v-model="calculatorData.round" label="Скругление углов"/>
-                        <ToggleSwitch v-model="calculatorData.doubleside" label="Изображение с двух сторон"/>
+                        <ToggleSwitch
+                            v-model="calculatorData.tape"
+                            label="Двусторонний скотч"
+                            help-title="Двусторонний скотч"
+                            help-description="Прочный двусторонний скотч 3М для крепления таблички к стене. Подходит для гладких поверхностей."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.drills"
+                            label="Отверстия по углам"
+                            help-title="Отверстия по углам"
+                            help-description="Сверление отверстий диаметром 5мм в углах таблички для крепления на саморезы или дистанционные держатели."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.round"
+                            label="Скругление углов"
+                            help-title="Скругление углов"
+                            help-description="Скругление острых углов акрила радиусом 10мм. Придает законченный вид и повышает безопасность."
+                        />
+                        <ToggleSwitch
+                            v-model="calculatorData.doubleside"
+                            label="Изображение с двух сторон"
+                            help-title="Изображение с двух сторон"
+                            help-description="Полноцветная УФ-печать с обеих сторон акриловой таблички. Идеально для подвесных конструкций."
+                        />
                     </div>
                 </div>
 
@@ -109,6 +133,8 @@ import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
+import HelpPopover from '@/shared/ui/HelpPopover.vue'
+import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
     initialImages: {type: Array, default: () => []},
@@ -116,6 +142,7 @@ const props = defineProps({
 })
 
 const calcId = 160
+const { isEditMode, restoreParams } = useEditMode(calcId)
 const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
@@ -293,6 +320,11 @@ const calculatePrice = async () => {
     }
 }
 
-onMounted(fetchCalculatorParams)
+onMounted(async () => {
+    await fetchCalculatorParams()
+    if (isEditMode.value) {
+        restoreParams(calculatorData, rawMatSelectParams)
+    }
+})
 </script>
 
