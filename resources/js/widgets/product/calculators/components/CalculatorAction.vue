@@ -127,6 +127,10 @@ const props = defineProps({
     description: {
         type: String,
         default: ''
+    },
+    image: {
+        type: String,
+        default: '/img/dest/cart-img.jpg'
     }
 })
 
@@ -184,6 +188,7 @@ const addToCart = async () => {
             description: props.description,
             params: props.calculatorData.params || [],
             mat_select_params: props.calculatorData.mat_select_params || [],
+            image: props.image,
             quantity: 1
         })
 

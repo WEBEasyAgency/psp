@@ -110,6 +110,7 @@
             :calculator-id="calcId"
             :calculator-data="calculatorDataForCart"
             :description="cartItemDescription"
+            :image="cartItemImage"
             @calculate="calculatePrice"
         />
         <div v-if="error" class="calculator__error">{{ error }}</div>
@@ -204,6 +205,13 @@ const orderLink = computed(() => {
 // Описание товара для корзины
 const cartItemDescription = computed(() => {
   return `Объемные буквы с бортом из алюминия (${actualLetterCount.value} ${getLetterWord(actualLetterCount.value)}, ${calculatorData.sr_h}см)`
+})
+
+// Изображение товара для корзины (первое из массива)
+const cartItemImage = computed(() => {
+  return props.initialImages && props.initialImages.length > 0
+    ? props.initialImages[0]
+    : '/img/dest/cart-img.jpg'
 })
 
 // Данные калькулятора для сохранения в корзину

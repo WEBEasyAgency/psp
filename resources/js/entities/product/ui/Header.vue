@@ -173,20 +173,21 @@ const { cartCount } = useCart()
 <style scoped>
 .cart-badge {
     position: absolute;
-    top: -4px;
-    right: -4px;
-    background-color: #ef4444;
+    top: 0;
+    right: 0;
+    background-color: #22c55e;
     color: white;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 10px;
-    min-width: 18px;
-    height: 18px;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    padding: 2px;
+    border-radius: 999px;
+    min-width: 14px;
+    height: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .relative {

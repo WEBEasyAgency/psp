@@ -45,6 +45,16 @@
               </a>
             </div>
 
+            <!-- Параметры товара -->
+            <div v-if="item.params && item.params.length > 0" class="parameters-block grid">
+              <div v-for="(param, index) in getFormattedParams(item)" :key="index" class="parameter">
+                <div v-for="(p, pIndex) in param" :key="pIndex" class="item">
+                  <span class="caption">{{ p.label }}</span>
+                  <span class="val">{{ p.value }}</span>
+                </div>
+              </div>
+            </div>
+
             <div class="quantity-price flex">
               <div class="number-input__wrapper">
                 <button
@@ -171,6 +181,64 @@ function goToCheckout() {
   // TODO: После ответа клиента на вопросы 2, 4, 6
   // Пока просто переход на order с флагом
   window.location.href = '/order?from_cart=1'
+}
+
+// Маппинг переменных калькулятора в человекочитаемые названия
+const paramLabels = {
+  // Calc146 - Объемные буквы с бортом
+  sr_h: 'Высота, см',
+  num: 'Кол-во букв',
+  rama_w: 'Толщина рамы',
+  wp: 'Ширина, см',
+  hp: 'Высота подложки, см',
+  face: 'Лицевая поверхность',
+  bort: 'Боковая поверхность',
+  brand: 'Подсветка',
+  ustanovka: 'Монтаж',
+  color_rama: 'Основа для букв',
+  colorp: 'Цвет подложки',
+  text: 'Текст',
+  // Можно добавить для других калькуляторов
+}
+
+// Форматирование параметров товара для отображения
+function getFormattedParams(item) {
+  if (!item.params || item.params.length === 0) {
+    return []
+  }
+
+  const formatted = []
+  const group = []
+
+  item.params.forEach(param => {
+    const label = paramLabels[param.variable] || param.variable
+    let value = param.value
+
+    // Форматирование булевых значений
+    if (param.type === 2) {
+      value = value ? 'Да' : 'Нет'
+    }
+
+    // Пропускаем текстовое поле если пусто
+    if (param.variable === 'text' && !value) {
+      return
+    }
+
+    group.push({ label, value })
+
+    // Группируем по 2-3 параметра как в макете
+    if (group.length >= 2) {
+      formatted.push([...group])
+      group.length = 0
+    }
+  })
+
+  // Добавляем оставшиеся параметры
+  if (group.length > 0) {
+    formatted.push(group)
+  }
+
+  return formatted
 }
 </script>
 

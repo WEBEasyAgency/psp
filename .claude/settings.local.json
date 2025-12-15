@@ -41,7 +41,10 @@
       "Bash(for id in 154 155 156 157 158 160 161)",
       "mcp__figma-remote-mcp__get_screenshot",
       "mcp__figma-remote-mcp__get_design_context",
-      "Bash(xargs:*)"
+      "Bash(xargs:*)",
+      "mcp__figma-desktop__get_design_context",
+      "mcp__figma-desktop__get_screenshot",
+      "mcp__figma-desktop__get_metadata"
     ],
     "deny": [],
     "ask": []
