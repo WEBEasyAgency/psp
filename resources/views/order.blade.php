@@ -142,7 +142,7 @@
 								</div>
 								<div class="all-price">
 									<div class="caption">Итого</div>
-									<div class="val" id="totalPrice">{{ number_format($price_good, 0, ',', ' ') }} ₽</div>
+									<div class="val" id="totalPrice">{{ $from_cart ? '0' : number_format($price_good, 0, ',', ' ') }} ₽</div>
 								</div>
 							</div>
 						</div>
@@ -155,6 +155,7 @@
 								<!-- Скрытые поля с данными заказа -->
 								<input type="hidden" name="calc_position_id" value="{{ $calc_position_id }}">
 								<input type="hidden" name="price_good" value="{{ $price_good }}">
+								<input type="hidden" name="from_cart" value="{{ $from_cart ? '1' : '0' }}">
 
 								<div class="form-field required">
 									<div class="caption">Введите имя</div>
@@ -233,7 +234,43 @@
 		document.querySelectorAll('input[name="design"]').forEach(radio => {
 			radio.addEventListener('change', toggleFileUpload);
 		});
+
+		// Если заказ из корзины, загружаем и отображаем данные
+		const fromCart = document.querySelector('input[name="from_cart"]').value === '1';
+		if (fromCart) {
+			loadCartData();
+		}
 	});
+
+	// Загрузка данных корзины из localStorage
+	function loadCartData() {
+		try {
+			const cartItemsJson = localStorage.getItem('psp_cart_items');
+			if (!cartItemsJson) {
+				alert('Корзина пуста. Пожалуйста, добавьте товары в корзину.');
+				window.location.href = '/cart';
+				return;
+			}
+
+			const cartItems = JSON.parse(cartItemsJson);
+			if (!cartItems || cartItems.length === 0) {
+				alert('Корзина пуста. Пожалуйста, добавьте товары в корзину.');
+				window.location.href = '/cart';
+				return;
+			}
+
+			// Вычисляем общую сумму
+			const totalPrice = cartItems.reduce((sum, item) => sum + (item.price_good * item.quantity), 0);
+
+			// Обновляем отображение итоговой суммы
+			const totalPriceElement = document.getElementById('totalPrice');
+			totalPriceElement.textContent = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+		} catch (error) {
+			console.error('Error loading cart data:', error);
+			alert('Ошибка при загрузке данных корзины');
+			window.location.href = '/cart';
+		}
+	}
 
 	// Обработка загрузки файла
 	document.getElementById('designFile').addEventListener('change', async function(e) {
@@ -319,8 +356,7 @@
 		const fio = formData.get('fio');
 		const phone = formData.get('phone');
 		const email = formData.get('email');
-		const calc_position_id = parseInt(formData.get('calc_position_id'));
-		const price_good = parseInt(formData.get('price_good'));
+		const fromCart = formData.get('from_cart') === '1';
 
 		// Дизайн
 		const designType = document.querySelector('input[name="design"]:checked').value;
@@ -348,60 +384,133 @@
 			const contactData = await contactRes.json();
 			const client_id = contactData.client_id;
 
-			// 2. Добавляем расчёт в калькуляцию
-			const calcRes = await fetch('/backend/api/calc/addCalc', {
-				method: 'POST',
-				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({
-					calc_position_id,
-					price_good
-				})
-			});
+			// 2. Обрабатываем заказ в зависимости от источника
+			if (fromCart) {
+				// Заказ из корзины - обрабатываем каждый товар
+				const cartItemsJson = localStorage.getItem('psp_cart_items');
+				if (!cartItemsJson) {
+					throw new Error('Корзина пуста');
+				}
 
-			if (!calcRes.ok) {
-				const errorData = await calcRes.text();
-				throw new Error(`Ошибка добавления расчёта: ${errorData}`);
-			}
-			const calcData = await calcRes.json();
-			const calc_id = calcData.calc_id;
+				const cartItems = JSON.parse(cartItemsJson);
+				if (!cartItems || cartItems.length === 0) {
+					throw new Error('Корзина пуста');
+				}
 
-			// 3. Сохраняем калькуляцию
-			const saveRes = await fetch('/backend/api/calc/saveCalc', {
-				method: 'POST',
-				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({
-					calc_id: calc_id,
-					client_id: client_id
-				})
-			});
+				// Обрабатываем каждый товар в корзине
+				for (const item of cartItems) {
+					// Добавляем расчёт
+					const calcRes = await fetch('/backend/api/calc/addCalc', {
+						method: 'POST',
+						headers: {'Content-Type': 'application/json'},
+						body: JSON.stringify({
+							calc_position_id: item.calc_position_id,
+							price_good: item.price_good * item.quantity
+						})
+					});
 
-			if (!saveRes.ok) {
-				const errorData = await saveRes.text();
-				throw new Error(`Ошибка сохранения заказа: ${errorData}`);
-			}
+					if (!calcRes.ok) {
+						const errorData = await calcRes.text();
+						throw new Error(`Ошибка добавления расчёта: ${errorData}`);
+					}
+					const calcData = await calcRes.json();
+					const calc_id = calcData.calc_id;
 
-			// 4. Если есть загруженный файл - отправляем ссылку
-			if (uploadedFileUrl) {
-				try {
-					const linkRes = await fetch('/backend/api/calc/addLink', {
+					// Сохраняем калькуляцию
+					const saveRes = await fetch('/backend/api/calc/saveCalc', {
 						method: 'POST',
 						headers: {'Content-Type': 'application/json'},
 						body: JSON.stringify({
 							calc_id: calc_id,
-							link: uploadedFileUrl
+							client_id: client_id
 						})
 					});
 
-					if (!linkRes.ok) {
-						console.warn('Ошибка отправки ссылки на файл (не критично)', await linkRes.text());
+					if (!saveRes.ok) {
+						const errorData = await saveRes.text();
+						throw new Error(`Ошибка сохранения заказа: ${errorData}`);
 					}
-				} catch (error) {
-					console.warn('Файл загружен, но не удалось связать с заказом:', error);
+
+					// Если есть загруженный файл - отправляем ссылку (только для первого товара)
+					if (uploadedFileUrl && item === cartItems[0]) {
+						try {
+							await fetch('/backend/api/calc/addLink', {
+								method: 'POST',
+								headers: {'Content-Type': 'application/json'},
+								body: JSON.stringify({
+									calc_id: calc_id,
+									link: uploadedFileUrl
+								})
+							});
+						} catch (error) {
+							console.warn('Файл загружен, но не удалось связать с заказом:', error);
+						}
+					}
+				}
+
+				// Очищаем корзину после успешного оформления
+				localStorage.removeItem('psp_cart_items');
+				localStorage.removeItem('psp_calc_id');
+			} else {
+				// Прямой заказ с калькулятора
+				const calc_position_id = parseInt(formData.get('calc_position_id'));
+				const price_good = parseInt(formData.get('price_good'));
+
+				// Добавляем расчёт в калькуляцию
+				const calcRes = await fetch('/backend/api/calc/addCalc', {
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({
+						calc_position_id,
+						price_good
+					})
+				});
+
+				if (!calcRes.ok) {
+					const errorData = await calcRes.text();
+					throw new Error(`Ошибка добавления расчёта: ${errorData}`);
+				}
+				const calcData = await calcRes.json();
+				const calc_id = calcData.calc_id;
+
+				// 3. Сохраняем калькуляцию
+				const saveRes = await fetch('/backend/api/calc/saveCalc', {
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({
+						calc_id: calc_id,
+						client_id: client_id
+					})
+				});
+
+				if (!saveRes.ok) {
+					const errorData = await saveRes.text();
+					throw new Error(`Ошибка сохранения заказа: ${errorData}`);
+				}
+
+				// 4. Если есть загруженный файл - отправляем ссылку
+				if (uploadedFileUrl) {
+					try {
+						const linkRes = await fetch('/backend/api/calc/addLink', {
+							method: 'POST',
+							headers: {'Content-Type': 'application/json'},
+							body: JSON.stringify({
+								calc_id: calc_id,
+								link: uploadedFileUrl
+							})
+						});
+
+						if (!linkRes.ok) {
+							console.warn('Ошибка отправки ссылки на файл (не критично)', await linkRes.text());
+						}
+					} catch (error) {
+						console.warn('Файл загружен, но не удалось связать с заказом:', error);
+					}
 				}
 			}
 
 			// 5. Успех! Перенаправляем на страницу благодарности
-			window.location.href = `/thanx?calc_id=${calc_id}&client_id=${client_id}`;
+			window.location.href = `/thanx?client_id=${client_id}`;
 
 		} catch (error) {
 			messageDiv.style.display = 'block';

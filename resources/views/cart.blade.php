@@ -269,5 +269,9 @@
     </section>
 </main>
 <x-product.footer/>
+{{-- Библиотеки (Swiper и др.) --}}
+<script src="/layout/js/libs.min.js"></script>
+{{-- app.min.js: инициализация Swiper слайдеров и другие обработчики --}}
+<script src="/layout/js/app.min.js"></script>
 </body>
 </html>

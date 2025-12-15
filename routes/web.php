@@ -385,19 +385,22 @@ Route::get('/product/{id}', function ($id) {
 
 // Страница оформления заказа
 Route::get('/order', function (Illuminate\Http\Request $request) {
+    $from_cart = $request->get('from_cart', false);
     $calc_position_id = $request->get('calc_position_id', 0);
     $price_good = $request->get('price', 0);
     $description = $request->get('desc', 'Заказ');
 
     // Проверка обязательных параметров
-    if (!$calc_position_id || !$price_good) {
+    // Если заказ из корзины, параметры не требуются (данные берутся из localStorage на фронтенде)
+    if (!$from_cart && (!$calc_position_id || !$price_good)) {
         abort(400, 'Ошибка: отсутствуют данные заказа.');
     }
 
     return view('order', [
-        'calc_position_id' => (int)$calc_position_id,
-        'price_good' => (int)$price_good,
-        'description' => htmlspecialchars($description)
+        'calc_position_id' => $from_cart ? 0 : (int)$calc_position_id,
+        'price_good' => $from_cart ? 0 : (int)$price_good,
+        'description' => $from_cart ? 'Заказ из корзины' : htmlspecialchars($description),
+        'from_cart' => (bool)$from_cart
     ]);
 });
 
