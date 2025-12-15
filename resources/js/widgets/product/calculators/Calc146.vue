@@ -112,6 +112,7 @@
             :description="cartItemDescription"
             :image="cartItemImage"
             @calculate="calculatePrice"
+            @loadEditData="loadEditData"
         />
         <div v-if="error" class="calculator__error">{{ error }}</div>
       </div>
@@ -319,6 +320,32 @@ const calculatePrice = async () => {
   } finally {
     isCalculating.value = false
   }
+}
+
+// Загрузка данных для редактирования из корзины
+const loadEditData = async (editData) => {
+  console.log('Loading edit data:', editData)
+
+  // Ждем загрузки параметров из API
+  await fetchCalculatorParams()
+
+  // Применяем параметры из корзины
+  if (editData.params) {
+    editData.params.forEach(param => {
+      if (param.variable === 'text' && param.value) {
+        calculatorData.text = param.value
+      } else if (param.type === 1 && calculatorData[param.variable] !== undefined) {
+        // Числовые параметры
+        calculatorData[param.variable] = param.value
+      } else if (param.type === 5 && calculatorData[param.variable] !== undefined) {
+        // Select параметры
+        calculatorData[param.variable] = param.value
+      }
+    })
+  }
+
+  // Автоматически пересчитываем цену
+  await calculatePrice()
 }
 
 onMounted(fetchCalculatorParams)

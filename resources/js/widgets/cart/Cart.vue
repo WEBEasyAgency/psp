@@ -126,8 +126,17 @@ function confirmClearCart() {
 }
 
 function editItem(item) {
-  // TODO: После ответа клиента на вопрос 3
-  // Пока просто переход на страницу калькулятора
+  // Сохраняем данные товара для редактирования в localStorage
+  localStorage.setItem('psp_edit_item', JSON.stringify({
+    id: item.id,
+    calculator_id: item.calculator_id,
+    calc_position_id: item.calc_position_id,
+    params: item.params,
+    mat_select_params: item.mat_select_params,
+    quantity: item.quantity
+  }))
+
+  // Переходим на страницу калькулятора
   window.location.href = `/product/${item.calculator_id}`
 }
 

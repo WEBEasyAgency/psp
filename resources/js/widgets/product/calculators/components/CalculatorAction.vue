@@ -134,12 +134,38 @@ const props = defineProps({
     }
 })
 
-defineEmits(['calculate'])
+import { onMounted } from 'vue'
 
-const { getCartId, saveCartId, addItem } = useCart()
+const emit = defineEmits(['calculate', 'loadEditData'])
+
+const { getCartId, saveCartId, addItem, updateItem } = useCart()
 
 const isAddedToCart = ref(false)
 const isAddingToCart = ref(false)
+const editingItem = ref(null)
+
+// Проверяем, редактируем ли мы товар из корзины
+const checkEditMode = () => {
+    try {
+        const editData = localStorage.getItem('psp_edit_item')
+        if (editData) {
+            editingItem.value = JSON.parse(editData)
+            return editingItem.value
+        }
+    } catch (error) {
+        console.error('Error loading edit data:', error)
+    }
+    return null
+}
+
+// Проверяем при монтировании компонента и уведомляем родителя
+onMounted(() => {
+    const editData = checkEditMode()
+    if (editData) {
+        // Передаем данные редактирования в родительский компонент калькулятора
+        emit('loadEditData', editData)
+    }
+})
 
 const formatPrice = (value) => {
     if (value === null || value === undefined) {
@@ -154,6 +180,8 @@ const addToCart = async () => {
     isAddingToCart.value = true
 
     try {
+        const isEditMode = !!editingItem.value
+
         // Получаем текущий calc_id из корзины (или 0 для создания нового)
         const currentCalcId = getCartId() || 0
 
@@ -180,17 +208,31 @@ const addToCart = async () => {
         // Сохраняем calc_id корзины
         saveCartId(data.calc_id)
 
-        // Добавляем товар в localStorage
-        addItem({
-            calc_position_id: props.result.calc_position_id,
-            calculator_id: props.calculatorId,
-            price_good: props.result.price_good,
-            description: props.description,
-            params: props.calculatorData.params || [],
-            mat_select_params: props.calculatorData.mat_select_params || [],
-            image: props.image,
-            quantity: 1
-        })
+        if (isEditMode) {
+            // Обновляем существующий товар в корзине
+            updateItem(editingItem.value.id, {
+                calc_position_id: props.result.calc_position_id,
+                price_good: props.result.price_good,
+                params: props.calculatorData.params || [],
+                mat_select_params: props.calculatorData.mat_select_params || []
+            })
+
+            // Очищаем данные редактирования
+            localStorage.removeItem('psp_edit_item')
+            editingItem.value = null
+        } else {
+            // Добавляем новый товар в localStorage
+            addItem({
+                calc_position_id: props.result.calc_position_id,
+                calculator_id: props.calculatorId,
+                price_good: props.result.price_good,
+                description: props.description,
+                params: props.calculatorData.params || [],
+                mat_select_params: props.calculatorData.mat_select_params || [],
+                image: props.image,
+                quantity: 1
+            })
+        }
 
         // Показываем кнопку "Перейти в корзину"
         isAddedToCart.value = true
