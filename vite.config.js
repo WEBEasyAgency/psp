@@ -26,6 +26,7 @@ export default defineConfig({
                 'resources/js/pages/product-159.js',
                 'resources/js/pages/product-160.js',
                 'resources/js/pages/product-161.js',
+                'resources/js/pages/cart.js',
             ],
             refresh: true,
         }),

@@ -401,6 +401,11 @@ Route::get('/order', function (Illuminate\Http\Request $request) {
     ]);
 });
 
+// Страница корзины
+Route::get('/cart', function () {
+    return view('cart');
+});
+
 // Страница благодарности
 Route::get('/thanx', function (Illuminate\Http\Request $request) {
     $calc_id = $request->get('calc_id', 0);
