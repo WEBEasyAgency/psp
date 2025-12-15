@@ -51,6 +51,9 @@ export function useCart() {
             } else {
                 localStorage.removeItem(STORAGE_KEY_CALC_ID)
             }
+
+            // Отправляем событие для обновления badge в header
+            window.dispatchEvent(new CustomEvent('cart-updated'))
         } catch (error) {
             console.error('Error saving cart to localStorage:', error)
         }
