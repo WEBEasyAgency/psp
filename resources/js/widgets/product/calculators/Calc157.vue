@@ -182,14 +182,14 @@ const orderLink = computed(() => {
     const params = new URLSearchParams({
         calc_position_id: calculationResult.value.calc_position_id,
         price: calculationResult.value.price_good,
-        desc: `Акриловая вывеска ${calculatorData.w}x${calculatorData.h}см`
+        desc: `Акриловые вывески`
     })
     return `/order?${params.toString()}`
 })
 
 // Данные для корзины
 const cartItemDescription = computed(() => {
-    return `Акриловая вывеска ${calculatorData.w}x${calculatorData.h}м (${calculatorData.num} шт)`
+    return `Акриловые вывески`
 })
 
 const cartItemImage = computed(() => {

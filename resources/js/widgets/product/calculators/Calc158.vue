@@ -173,14 +173,14 @@ const orderLink = computed(() => {
     const params = new URLSearchParams({
         calc_position_id: calculationResult.value.calc_position_id,
         price: calculationResult.value.price_good,
-        desc: `Вывеска из композита ${calculatorData.w}x${calculatorData.h}м`
+        desc: `Плоские вывески из алюминиевого композита`
     })
     return `/order?${params.toString()}`
 })
 
 // Данные для корзины
 const cartItemDescription = computed(() => {
-    return `Вывеска из композита ${calculatorData.w}x${calculatorData.h}м (${calculatorData.num} шт)`
+    return `Плоские вывески из алюминиевого композита`
 })
 
 const cartItemImage = computed(() => {

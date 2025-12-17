@@ -185,14 +185,14 @@ const orderLink = computed(() => {
     const params = new URLSearchParams({
         calc_position_id: calculationResult.value.calc_position_id,
         price: calculationResult.value.price_good,
-        desc: `Стенд с карманами ${calculatorData.w}x${calculatorData.h}см`
+        desc: `Стенд из пластика с карманами`
     })
     return `/order?${params.toString()}`
 })
 
 // Данные для корзины
 const cartItemDescription = computed(() => {
-    return `Стенд с карманами ${calculatorData.w}x${calculatorData.h}см (${calculatorData.num} шт)`
+    return `Стенд из пластика с карманами`
 })
 
 const cartItemImage = computed(() => {

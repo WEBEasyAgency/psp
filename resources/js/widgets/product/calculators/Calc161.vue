@@ -140,14 +140,14 @@ const orderLink = computed(() => {
     const params = new URLSearchParams({
         calc_position_id: calculationResult.value.calc_position_id,
         price: calculationResult.value.price_good,
-        desc: `Табличка из композита ${calculatorData.w}x${calculatorData.h}м`
+        desc: `Табличка из композита`
     })
     return `/order?${params.toString()}`
 })
 
 // Данные для корзины
 const cartItemDescription = computed(() => {
-    return `Табличка из композита ${calculatorData.w}x${calculatorData.h}м (${calculatorData.num} шт)`
+    return `Табличка из композита`
 })
 
 const cartItemImage = computed(() => {

@@ -189,14 +189,14 @@ const orderLink = computed(() => {
     const params = new URLSearchParams({
         calc_position_id: calculationResult.value.calc_position_id,
         price: calculationResult.value.price_good,
-        desc: `Акриловая табличка ${calculatorData.w}x${calculatorData.h}см`
+        desc: `Акриловые таблички`
     })
     return `/order?${params.toString()}`
 })
 
 // Данные для корзины
 const cartItemDescription = computed(() => {
-    return `Акриловая табличка ${calculatorData.w}x${calculatorData.h}см (${calculatorData.num} шт)`
+    return `Акриловые таблички`
 })
 
 const cartItemImage = computed(() => {

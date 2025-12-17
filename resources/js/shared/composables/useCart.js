@@ -26,7 +26,12 @@ export function useCart() {
             const calcIdValue = localStorage.getItem(STORAGE_KEY_CALC_ID)
 
             if (itemsJson) {
-                cartItems.value = JSON.parse(itemsJson)
+                cartItems.value = JSON.parse(itemsJson).map(item => {
+                    if (item.description) {
+                        item.description = item.description.split('(')[0].trim()
+                    }
+                    return item
+                })
             }
 
             if (calcIdValue) {
@@ -85,7 +90,7 @@ export function useCart() {
             calculator_id: item.calculator_id,
             price_good: item.price_good,
             quantity: item.quantity || 1,
-            description: item.description || 'Товар',
+            description: (item.description || 'Товар').split('(')[0].trim(),
             params: item.params || [],
             mat_select_params: item.mat_select_params || [],
             image: item.image || '/img/dest/cart-img.jpg'

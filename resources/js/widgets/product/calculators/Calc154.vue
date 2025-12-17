@@ -162,14 +162,14 @@ const orderLink = computed(() => {
   const params = new URLSearchParams({
     calc_position_id: calculationResult.value.calc_position_id,
     price: calculationResult.value.price_good,
-    desc: `Наклейки ${calculatorData.w}x${calculatorData.h}мм, ${calculatorData.num}шт`
+        desc: `Маленькие наклейки`
   })
   return `/order?${params.toString()}`
 })
 
 // Данные для корзины
 const cartItemDescription = computed(() => {
-  return `Наклейки ${calculatorData.w}x${calculatorData.h}мм (${calculatorData.num} шт)`
+  return `Маленькие наклейки`
 })
 
 const cartItemImage = computed(() => {

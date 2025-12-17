@@ -185,12 +185,19 @@ const actualLetterCount = computed(() => {
   return calculatorData.num || 1
 })
 
-// Автоматически обновляем количество букв при изменении текста (без пробелов)
-watch(() => calculatorData.text, (newText) => {
-  if (newText && newText.trim().length > 0) {
-    calculatorData.num = newText.replace(/\s/g, '').length
+// Watcher to reset sub-parameters when 'ustanovka' changes
+watch(() => calculatorData.ustanovka, (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    // Reset all sub-parameters to their default states
+    calculatorData.rama_w = 1.0;
+    calculatorData.color_rama = null;
+    calculatorData.wp = 1.0;
+    calculatorData.hp = 1.0;
+    calculatorData.colorp = null;
+    // Note: The actual display of these sub-parameters is handled by v-if in the template
+    // and their values will be re-initialized by the components if they become active again.
   }
-})
+});
 
 const getLetterWord = (count) => {
   const cases = [2, 0, 1, 1, 1, 2]
@@ -203,14 +210,14 @@ const orderLink = computed(() => {
   const params = new URLSearchParams({
     calc_position_id: calculationResult.value.calc_position_id,
     price: calculationResult.value.price_good,
-    desc: `Объемные буквы (${actualLetterCount.value} ${getLetterWord(actualLetterCount.value)}, высота ${calculatorData.sr_h}см)`
+    desc: `Объемные буквы со световым бортом`
   })
   return `/order?${params.toString()}`
 })
 
 // Данные для корзины
 const cartItemDescription = computed(() => {
-  return `Объемные буквы со световым бортом (${actualLetterCount.value} ${getLetterWord(actualLetterCount.value)}, ${calculatorData.sr_h}см)`
+  return `Объемные буквы со световым бортом`
 })
 
 const cartItemImage = computed(() => {
@@ -220,24 +227,34 @@ const cartItemImage = computed(() => {
 })
 
 const calculatorDataForCart = computed(() => {
-  return {
-    params: [
-      {variable: 'sr_h', type: 1, value: calculatorData.sr_h},
-      {variable: 'num', type: 1, value: actualLetterCount.value},
+  const params = [
+    {variable: 'sr_h', type: 1, value: calculatorData.sr_h},
+    {variable: 'num', type: 1, value: actualLetterCount.value},
+    {variable: 'face', type: 5, value: calculatorData.face},
+    {variable: 'bort', type: 5, value: calculatorData.bort},
+    {variable: 'brand', type: 5, value: calculatorData.brand},
+    {variable: 'ustanovka', type: 5, value: calculatorData.ustanovka},
+  ];
+
+  if (calculatorData.ustanovka === 'Рама') {
+    params.push(
       {variable: 'rama_w', type: 1, value: calculatorData.rama_w},
+      {variable: 'color_rama', type: 5, value: calculatorData.color_rama}
+    );
+  } else if (calculatorData.ustanovka === 'Подложка из композита') {
+    params.push(
       {variable: 'wp', type: 1, value: calculatorData.wp},
       {variable: 'hp', type: 1, value: calculatorData.hp},
-      {variable: 'face', type: 5, value: calculatorData.face},
-      {variable: 'bort', type: 5, value: calculatorData.bort},
-      {variable: 'brand', type: 5, value: calculatorData.brand},
-      {variable: 'ustanovka', type: 5, value: calculatorData.ustanovka},
-      {variable: 'color_rama', type: 5, value: calculatorData.color_rama},
-      {variable: 'colorp', type: 5, value: calculatorData.colorp},
-    ],
+      {variable: 'colorp', type: 5, value: calculatorData.colorp}
+    );
+  }
+
+  return {
+    params: params,
     mat_select_params: [],
     text: calculatorData.text
-  }
-})
+  };
+});
 
 const fetchCalculatorParams = async () => {
   try {
