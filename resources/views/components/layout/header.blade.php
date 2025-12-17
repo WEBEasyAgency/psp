@@ -5,6 +5,53 @@ a.disabled {
     cursor: default;
     color: #999 !important;
 }
+
+/* Dropdown Menu Styles */
+.menu nav ul li.has-dropdown {
+    position: relative;
+}
+
+.header-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
+    padding: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 280px;
+    z-index: 1000;
+}
+
+.menu nav ul li.has-dropdown:hover .header-dropdown {
+    display: flex;
+}
+
+.header-dropdown a {
+    display: flex;
+    align-items: center;
+    height: 54px;
+    padding: 16px;
+    color: #282828;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.header-dropdown a:hover {
+    background: #f6f6f6;
+    color: #244d80;
+}
+
 @media only screen and (max-width: 768px) {
     .clients-block .clients-slider .swiper-slide {
         max-width: 105px !important;
@@ -112,9 +159,35 @@ a.disabled {
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a href="/product/146">Объемные буквы</a></li>
-                            <li><a href="/product/151">Стенды</a></li>
-                            <li><a href="/product/159">Таблички</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Вывески</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/156">Вывеска из ПВХ-пластика</a>
+                                    <a href="/product/158">Вывеска из алюминиевого композита</a>
+                                    <a href="/product/157">Вывеска из оргстекла</a>
+                                </div>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Объемные буквы</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/146">С бортом из алюминия</a>
+                                    <a href="/product/155">Со световым бортом</a>
+                                </div>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Стенды</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/151">Стенд из пластика с карманами</a>
+                                </div>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Таблички</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/159">Пластиковые таблички</a>
+                                    <a href="/product/160">Акриловые таблички</a>
+                                    <a href="/product/161">Таблички из композита</a>
+                                </div>
+                            </li>
                             <li><a href="/product/154">Наклейки</a></li>
                         </ul>
                     </nav>
