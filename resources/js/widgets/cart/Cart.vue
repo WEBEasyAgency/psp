@@ -229,6 +229,14 @@ function getFormattedParams(item) {
             value = value ? 'Да' : 'Нет'
         }
 
+        // Для материалов (type: 3) берем название из mat_select_params
+        if (param.type === 3 && item.mat_select_params && item.mat_select_params.length > 0) {
+            const matParam = item.mat_select_params.find(m => m.variable === param.variable)
+            if (matParam && matParam.name) {
+                value = matParam.name
+            }
+        }
+
         // Пропускаем текстовое поле если пусто
         if (param.variable === 'text' && !value) {
             return
@@ -293,5 +301,11 @@ function getFormattedParams(item) {
 .cart-page .cart-block .product-list-block .product-list .product-item .parameters-block .parameter {
     column-gap: 32px;
 }
-
+.caption {
+    white-space: nowrap;
+}
+.parameter {
+    flex-wrap: wrap;
+    row-gap: 12px;
+}
 </style>
