@@ -12,3 +12,70 @@
 }
 /* Глобальные стили калькуляторов - применяются ко ВСЕМ калькуляторам */
 @import "./calculator.css";
+
+/* Header Dropdown Menu - чистое CSS решение */
+.menu nav ul li.has-dropdown {
+    position: relative;
+}
+
+/* Невидимая зона между пунктом меню и дропдауном */
+.menu nav ul li.has-dropdown::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 12px;
+    z-index: 999;
+}
+
+.header-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
+    padding: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 280px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, display 0.2s allow-discrete;
+}
+
+@supports (transition-behavior: allow-discrete) {
+    .header-dropdown {
+        transition: opacity 0.2s ease, transform 0.2s ease, display 0.2s allow-discrete;
+    }
+}
+
+.menu nav ul li.has-dropdown:hover .header-dropdown {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header-dropdown a {
+    display: flex;
+    align-items: center;
+    min-height: 54px;
+    padding: 16px;
+    color: #282828;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    white-space: normal;
+}
+
+.header-dropdown a:hover {
+    background: #f6f6f6;
+    color: #244d80;
+}
