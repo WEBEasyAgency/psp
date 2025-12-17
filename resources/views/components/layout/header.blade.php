@@ -7,12 +7,10 @@ a.disabled {
 }
 @media only screen and (max-width: 768px) {
     .clients-block .clients-slider .swiper-slide {
-        max-width: 104px !important;
+        max-width: 105px !important;
         height: 53px;
     }
-    .clients-block .clients-slider .swiper-wrapper {
-        overflow: hidden !important;
-    }
+
     .feed-popup .inner {
         min-width: 94%;
     }
