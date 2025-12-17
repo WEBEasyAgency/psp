@@ -1,71 +1,76 @@
 <style>
-a.disabled {
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: default;
-    color: #999 !important;
-}
-
-/* Dropdown Menu Styles */
-.menu nav ul li.has-dropdown {
-    position: relative;
-}
-
-.header-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 8px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
-    padding: 16px;
-    display: none;
-    flex-direction: column;
-    gap: 12px;
-    min-width: 280px;
-    z-index: 1000;
-}
-
-.menu nav ul li.has-dropdown:hover .header-dropdown {
-    display: flex;
-}
-
-.header-dropdown a {
-    display: flex;
-    align-items: center;
-    height: 54px;
-    padding: 16px;
-    color: #282828;
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.4;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.header-dropdown a:hover {
-    background: #f6f6f6;
-    color: #244d80;
-}
-
-@media only screen and (max-width: 768px) {
-    .clients-block .clients-slider .swiper-slide {
-        max-width: 105px !important;
-        height: 53px;
+    a.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: default;
+        color: #999 !important;
     }
 
-    .feed-popup .inner {
-        min-width: 94%;
-    }
-    .feed-popup .inner .text {
-        max-height: unset !important;
+    /* Dropdown Menu Styles */
+    .menu nav ul li.has-dropdown {
+        position: relative;
     }
 
-}
+    .header-dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
+        padding: 16px;
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 280px;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .header-dropdown.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .header-dropdown a {
+        display: flex;
+        align-items: center;
+        height: 54px;
+        padding: 16px;
+        color: #282828;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .header-dropdown a:hover {
+        background: #f6f6f6;
+        color: #244d80;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .clients-block .clients-slider .swiper-slide {
+            max-width: 105px !important;
+            height: 53px;
+        }
+
+        .feed-popup .inner {
+            min-width: 94%;
+        }
+
+        .feed-popup .inner .text {
+            max-height: unset !important;
+        }
+
+    }
 </style>
 
 <header>
@@ -77,8 +82,10 @@ a.disabled {
                     <div class="city">
                         <a href="#">
                             <span>Самара</span>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16 10L12 14L8 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 10L12 14L8 10" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
@@ -86,14 +93,18 @@ a.disabled {
                 <div class="catalog-btn">
                     <a href="#" class="btn btn-catalog">
                         <span class="b-catalog">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 17H13M5 12H19M5 7H13" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 17H13M5 12H19M5 7H13" stroke="#3C7BBB" stroke-width="1.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
                         Каталог
                         <span class="close">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16" stroke="#3C7BBB"
+                                      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
                     </a>
@@ -195,7 +206,9 @@ a.disabled {
                 <div class="phone">
                     <a href="tel:+78462129754">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.91872 3.54768C7.66561 2.91492 7.05276 2.5 6.37126 2.5H4.07895C3.20692 2.5 2.5 3.20675 2.5 4.07878C2.5 11.491 8.50898 17.5 15.9212 17.5C16.7933 17.5 17.5 16.793 17.5 15.921L17.5004 13.6283C17.5004 12.9468 17.0856 12.334 16.4528 12.0809L14.2558 11.2024C13.6874 10.9751 13.0402 11.0774 12.57 11.4693L12.0029 11.9422C11.3407 12.4941 10.3664 12.4502 9.75683 11.8407L8.16018 10.2425C7.55066 9.63302 7.50561 8.65945 8.05745 7.99724L8.53027 7.43025C8.92218 6.95996 9.02541 6.31263 8.79805 5.74424L7.91872 3.54768Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path
+                                d="M7.91872 3.54768C7.66561 2.91492 7.05276 2.5 6.37126 2.5H4.07895C3.20692 2.5 2.5 3.20675 2.5 4.07878C2.5 11.491 8.50898 17.5 15.9212 17.5C16.7933 17.5 17.5 16.793 17.5 15.921L17.5004 13.6283C17.5004 12.9468 17.0856 12.334 16.4528 12.0809L14.2558 11.2024C13.6874 10.9751 13.0402 11.0774 12.57 11.4693L12.0029 11.9422C11.3407 12.4941 10.3664 12.4502 9.75683 11.8407L8.16018 10.2425C7.55066 9.63302 7.50561 8.65945 8.05745 7.99724L8.53027 7.43025C8.92218 6.95996 9.02541 6.31263 8.79805 5.74424L7.91872 3.54768Z"
+                                stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         +7 (846) 212-97-54
                     </a>
@@ -203,39 +216,59 @@ a.disabled {
                 <div class="icons">
                     <div class="item account">
                         <a href="#">
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19.8337 21.5C19.8337 18.2783 17.222 15.6667 14.0003 15.6667C10.7787 15.6667 8.16699 18.2783 8.16699 21.5M14.0003 13.1667C12.1594 13.1667 10.667 11.6743 10.667 9.83333C10.667 7.99238 12.1594 6.5 14.0003 6.5C15.8413 6.5 17.3337 7.99238 17.3337 9.83333C17.3337 11.6743 15.8413 13.1667 14.0003 13.1667Z" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19.8337 21.5C19.8337 18.2783 17.222 15.6667 14.0003 15.6667C10.7787 15.6667 8.16699 18.2783 8.16699 21.5M14.0003 13.1667C12.1594 13.1667 10.667 11.6743 10.667 9.83333C10.667 7.99238 12.1594 6.5 14.0003 6.5C15.8413 6.5 17.3337 7.99238 17.3337 9.83333C17.3337 11.6743 15.8413 13.1667 14.0003 13.1667Z"
+                                    stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
                     <div class="item search">
                         <a href="#">
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.5 16.5L21.5 21.5M12.3333 18.1667C9.11167 18.1667 6.5 15.555 6.5 12.3333C6.5 9.11167 9.11167 6.5 12.3333 6.5C15.555 6.5 18.1667 9.11167 18.1667 12.3333C18.1667 15.555 15.555 18.1667 12.3333 18.1667Z" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.5 16.5L21.5 21.5M12.3333 18.1667C9.11167 18.1667 6.5 15.555 6.5 12.3333C6.5 9.11167 9.11167 6.5 12.3333 6.5C15.555 6.5 18.1667 9.11167 18.1667 12.3333C18.1667 15.555 15.555 18.1667 12.3333 18.1667Z"
+                                    stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </div>
                     <div class="item mini-cart">
                         <a href="/cart" style="position: relative;">
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6.5 6.5H6.72362C7.11844 6.5 7.31619 6.5 7.47722 6.57123C7.6192 6.63403 7.74059 6.73515 7.82812 6.86336C7.92724 7.00855 7.96304 7.20241 8.03448 7.58939L9.83337 17.3334L18.5182 17.3333C18.8958 17.3333 19.0853 17.3333 19.2417 17.2666C19.3799 17.2077 19.4991 17.1122 19.5876 16.9908C19.6877 16.8535 19.7301 16.6697 19.8148 16.3026L19.8154 16.3L21.1231 10.6333L21.1234 10.6321C21.2519 10.0751 21.3164 9.79596 21.2456 9.57699C21.1835 9.38485 21.0529 9.22195 20.8797 9.11827C20.682 9 20.3965 9 19.8239 9H8.58333M19 21.5C18.5398 21.5 18.1667 21.1269 18.1667 20.6667C18.1667 20.2064 18.5398 19.8333 19 19.8333C19.4602 19.8333 19.8333 20.2064 19.8333 20.6667C19.8333 21.1269 19.4602 21.5 19 21.5ZM10.6667 21.5C10.2064 21.5 9.83333 21.1269 9.83333 20.6667C9.83333 20.2064 10.2064 19.8333 10.6667 19.8333C11.1269 19.8333 11.5 20.2064 11.5 20.6667C11.5 21.1269 11.1269 21.5 10.6667 21.5Z" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.5 6.5H6.72362C7.11844 6.5 7.31619 6.5 7.47722 6.57123C7.6192 6.63403 7.74059 6.73515 7.82812 6.86336C7.92724 7.00855 7.96304 7.20241 8.03448 7.58939L9.83337 17.3334L18.5182 17.3333C18.8958 17.3333 19.0853 17.3333 19.2417 17.2666C19.3799 17.2077 19.4991 17.1122 19.5876 16.9908C19.6877 16.8535 19.7301 16.6697 19.8148 16.3026L19.8154 16.3L21.1231 10.6333L21.1234 10.6321C21.2519 10.0751 21.3164 9.79596 21.2456 9.57699C21.1835 9.38485 21.0529 9.22195 20.8797 9.11827C20.682 9 20.3965 9 19.8239 9H8.58333M19 21.5C18.5398 21.5 18.1667 21.1269 18.1667 20.6667C18.1667 20.2064 18.5398 19.8333 19 19.8333C19.4602 19.8333 19.8333 20.2064 19.8333 20.6667C19.8333 21.1269 19.4602 21.5 19 21.5ZM10.6667 21.5C10.2064 21.5 9.83333 21.1269 9.83333 20.6667C9.83333 20.2064 10.2064 19.8333 10.6667 19.8333C11.1269 19.8333 11.5 20.2064 11.5 20.6667C11.5 21.1269 11.1269 21.5 10.6667 21.5Z"
+                                    stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span id="cart-badge" style="display: none; position: absolute; top: 0; right: 0; background-color: #22c55e; color: white; font-size: 10px; font-weight: 400; font-family: 'Inter', sans-serif; padding: 2px; border-radius: 999px; min-width: 14px; height: 14px; text-align: center; line-height: 10px;"></span>
+                            <span id="cart-badge"
+                                  style="display: none; position: absolute; top: 0; right: 0; background-color: #22c55e; color: white; font-size: 10px; font-weight: 400; font-family: 'Inter', sans-serif; padding: 2px; border-radius: 999px; min-width: 14px; height: 14px; text-align: center; line-height: 10px;"></span>
                         </a>
                     </div>
                 </div>
                 <div class="burger">
                     <span class="normal">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 5.67578C3 5.26157 3.33579 4.92578 3.75 4.92578H20.25C20.6642 4.92578 21 5.26157 21 5.67578C21 6.08999 20.6642 6.42578 20.25 6.42578H3.75C3.33579 6.42578 3 6.08999 3 5.67578Z" fill="#2C619D"/>
-                            <path d="M3 11.6758C3 11.2616 3.33579 10.9258 3.75 10.9258H20.25C20.6642 10.9258 21 11.2616 21 11.6758C21 12.09 20.6642 12.4258 20.25 12.4258H3.75C3.33579 12.4258 3 12.09 3 11.6758Z" fill="#2C619D"/>
-                            <path d="M3 18.6758C3 18.2616 3.33579 17.9258 3.75 17.9258H20.25C20.6642 17.9258 21 18.2616 21 18.6758C21 19.09 20.6642 19.4258 20.25 19.4258H3.75C3.33579 19.4258 3 19.09 3 18.6758Z" fill="#2C619D"/>
+                            <path
+                                d="M3 5.67578C3 5.26157 3.33579 4.92578 3.75 4.92578H20.25C20.6642 4.92578 21 5.26157 21 5.67578C21 6.08999 20.6642 6.42578 20.25 6.42578H3.75C3.33579 6.42578 3 6.08999 3 5.67578Z"
+                                fill="#2C619D"/>
+                            <path
+                                d="M3 11.6758C3 11.2616 3.33579 10.9258 3.75 10.9258H20.25C20.6642 10.9258 21 11.2616 21 11.6758C21 12.09 20.6642 12.4258 20.25 12.4258H3.75C3.33579 12.4258 3 12.09 3 11.6758Z"
+                                fill="#2C619D"/>
+                            <path
+                                d="M3 18.6758C3 18.2616 3.33579 17.9258 3.75 17.9258H20.25C20.6642 17.9258 21 18.2616 21 18.6758C21 19.09 20.6642 19.4258 20.25 19.4258H3.75C3.33579 19.4258 3 19.09 3 18.6758Z"
+                                fill="#2C619D"/>
                         </svg>
                     </span>
                     <span class="close">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.46967 5.45611C5.76256 5.16322 6.23744 5.16322 6.53033 5.45611L18.1976 17.1234C18.4905 17.4163 18.4905 17.8911 18.1976 18.184C17.9047 18.4769 17.4298 18.4769 17.1369 18.184L5.46967 6.51677C5.17678 6.22388 5.17678 5.749 5.46967 5.45611Z" fill="white"/>
-                            <path d="M5.53033 18.4561C5.23744 18.1632 5.23744 17.6883 5.53033 17.3955L17.1976 5.72819C17.4905 5.4353 17.9654 5.4353 18.2583 5.72819C18.5511 6.02108 18.5511 6.49596 18.2583 6.78885L6.59099 18.4561C6.2981 18.749 5.82322 18.749 5.53033 18.4561Z" fill="white"/>
+                            <path
+                                d="M5.46967 5.45611C5.76256 5.16322 6.23744 5.16322 6.53033 5.45611L18.1976 17.1234C18.4905 17.4163 18.4905 17.8911 18.1976 18.184C17.9047 18.4769 17.4298 18.4769 17.1369 18.184L5.46967 6.51677C5.17678 6.22388 5.17678 5.749 5.46967 5.45611Z"
+                                fill="white"/>
+                            <path
+                                d="M5.53033 18.4561C5.23744 18.1632 5.23744 17.6883 5.53033 17.3955L17.1976 5.72819C17.4905 5.4353 17.9654 5.4353 18.2583 5.72819C18.5511 6.02108 18.5511 6.49596 18.2583 6.78885L6.59099 18.4561C6.2981 18.749 5.82322 18.749 5.53033 18.4561Z"
+                                fill="white"/>
                         </svg>
                     </span>
                 </div>
@@ -245,40 +278,73 @@ a.disabled {
 </header>
 
 <script>
-// Обновление счётчика корзины из localStorage
-(function() {
-    function updateCartBadge() {
-        try {
-            const cartItems = JSON.parse(localStorage.getItem('psp_cart_items') || '[]');
-            const totalQuantity = cartItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
-            const badge = document.getElementById('cart-badge');
+    // Обновление счётчика корзины из localStorage
+    (function () {
+        function updateCartBadge() {
+            try {
+                const cartItems = JSON.parse(localStorage.getItem('psp_cart_items') || '[]');
+                const totalQuantity = cartItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
+                const badge = document.getElementById('cart-badge');
 
-            if (badge) {
-                if (totalQuantity > 0) {
-                    badge.textContent = totalQuantity;
-                    badge.style.display = 'flex';
-                    badge.style.alignItems = 'center';
-                    badge.style.justifyContent = 'center';
-                } else {
-                    badge.style.display = 'none';
+                if (badge) {
+                    if (totalQuantity > 0) {
+                        badge.textContent = totalQuantity;
+                        badge.style.display = 'flex';
+                        badge.style.alignItems = 'center';
+                        badge.style.justifyContent = 'center';
+                    } else {
+                        badge.style.display = 'none';
+                    }
                 }
+            } catch (e) {
+                console.error('Error updating cart badge:', e);
             }
-        } catch (e) {
-            console.error('Error updating cart badge:', e);
         }
-    }
 
-    // Обновляем при загрузке
-    updateCartBadge();
+        // Обновляем при загрузке
+        updateCartBadge();
 
-    // Обновляем при изменениях в localStorage (для синхронизации между вкладками)
-    window.addEventListener('storage', function(e) {
-        if (e.key === 'psp_cart_items') {
-            updateCartBadge();
-        }
-    });
+        // Обновляем при изменениях в localStorage (для синхронизации между вкладками)
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'psp_cart_items') {
+                updateCartBadge();
+            }
+        });
 
-    // Обновляем при кастомном событии (для обновления в той же вкладке)
-    window.addEventListener('cart-updated', updateCartBadge);
-})();
+        // Обновляем при кастомном событии (для обновления в той же вкладке)
+        window.addEventListener('cart-updated', updateCartBadge);
+    })();
+
+    // Dropdown Menu Logic
+    (function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownItems = document.querySelectorAll('.menu nav ul li.has-dropdown');
+
+            dropdownItems.forEach(function (item) {
+                const dropdown = item.querySelector('.header-dropdown');
+                if (!dropdown) return;
+
+                let hideTimeout;
+
+                function showDropdown() {
+                    clearTimeout(hideTimeout);
+                    dropdown.classList.add('show');
+                }
+
+                function hideDropdown() {
+                    hideTimeout = setTimeout(function () {
+                        dropdown.classList.remove('show');
+                    }, 100);
+                }
+
+                // Показываем при наведении на li
+                item.addEventListener('mouseenter', showDropdown);
+                item.addEventListener('mouseleave', hideDropdown);
+
+                // Показываем при наведении на сам dropdown
+                dropdown.addEventListener('mouseenter', showDropdown);
+                dropdown.addEventListener('mouseleave', hideDropdown);
+            });
+        });
+    })();
 </script>
