@@ -161,10 +161,10 @@ const calculatorData = reactive({
   bort: null,
   brand: null,
   ustanovka: null,
-  rama_w: null,
+  rama_w: 1.0,
   color_rama: null,
-  wp: null,
-  hp: null,
+  wp: 1.0,
+  hp: 1.0,
   colorp: null,
   services: {
     design: false,
