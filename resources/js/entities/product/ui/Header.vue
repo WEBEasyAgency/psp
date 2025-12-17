@@ -90,12 +90,37 @@
                 <div class="menu">
                     <nav>
                         <ul>
-                            <li><a href="/product/146">Объемные буквы</a></li>
-                            <li><a href="/product/151">Стенды</a></li>
-                            <li><a href="/product/159">Таблички</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Вывески</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/156" class="dropdown-item">Вывеска из ПВХ-пластика</a>
+                                    <a href="/product/158" class="dropdown-item">Вывеска из алюминиевого композита</a>
+                                    <a href="/product/157" class="dropdown-item">Вывеска из оргстекла</a>
+                                </div>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Объемные буквы</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/146" class="dropdown-item">С бортом из алюминия</a>
+                                    <a href="/product/155" class="dropdown-item">Со световым бортом</a>
+                                </div>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Стенды</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/151" class="dropdown-item">Стенд из пластика с карманами</a>
+                                </div>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Таблички</a>
+                                <div class="header-dropdown">
+                                    <a href="/product/159" class="dropdown-item">Пластиковые таблички</a>
+                                    <a href="/product/160" class="dropdown-item">Акриловые таблички</a>
+                                    <a href="/product/161" class="dropdown-item">Таблички из композита</a>
+                                </div>
+                            </li>
                             <li><a href="/product/154">Наклейки</a></li>
                             <li><a href="#">Баннеры</a></li>
-                            <li><a href="#">Флаги</a></li>
                             <li class="more-btn">
                                 <a href="#">
                                     Еще
@@ -108,6 +133,7 @@
                             </li>
                         </ul>
                         <ul class="more">
+                            <li><a href="#">Флаги</a></li>
                             <li><a href="#">Роллапы</a></li>
                             <li><a href="#">Виндеры</a></li>
                             <li><a href="#">Режим работы</a></li>
@@ -193,6 +219,52 @@ const { cartCount } = useCart()
 .relative {
     position: relative;
     display: inline-block;
+}
+
+/* Dropdown Menu Styles */
+.menu nav ul li.has-dropdown {
+    position: relative;
+}
+
+.header-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0px 0px 10px rgba(193, 205, 217, 0.25);
+    padding: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 280px;
+    z-index: 1000;
+}
+
+.menu nav ul li.has-dropdown:hover .header-dropdown {
+    display: flex;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    height: 54px;
+    padding: 16px;
+    color: #282828;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background: #f6f6f6;
+    color: #244d80;
 }
 </style>
 
