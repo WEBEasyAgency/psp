@@ -67,9 +67,9 @@
                         </div>
 
                         <div class="quantity-price flex">
-                            <div class="quantity-display">
-                                Количество: {{ item.quantity }} шт
-                            </div>
+<!--                            <div class="quantity-display">-->
+<!--                                Количество: {{ item.quantity }} шт-->
+<!--                            </div>-->
                             <div class="price">
                                 <span class="val">{{ formatPrice(item.price_good * item.quantity) }}</span>
                                 <span class="currency">₽</span>
@@ -291,7 +291,7 @@ function getFormattedParams(item) {
 
 @media only screen and (max-width: 768px) {
     .name-block .flex .text {
-        max-width: 150px;
+        max-width: 155px !important;
     }
 }
 

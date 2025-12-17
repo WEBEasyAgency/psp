@@ -32,6 +32,9 @@
         background: transparent;
     }
 }
+header {
+    padding-top: 16px;
+}
 
 /* Продублируем медиа-запросы из app.min.css на слое ниже utilities */
 /* Мобильная версия (max-width: 767.9px) */
@@ -284,10 +287,22 @@
         padding: 0;
     }
 
-    header .container, .cases-block .container, .feedback-block .container {
+    header .container, .cases-block .container, .feedback-block .container, footer .container {
         padding: 0 12px;
     }
 
+}
+
+@media only screen and (max-width: 600px) {
+    footer .footer-bot .footer-bot-right {
+        align-items: flex-start;
+    }
+}
+
+.policy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 header {
@@ -368,11 +383,11 @@ header {
 }
 
 .faq__icon svg {
-    @apply transition-transform duration-300;
+    @apply transition-all duration-300;
 }
 
 .faq__icon svg path {
-    transition: stroke 0.4s ease;
+    transition: stroke 0.2s ease;
 }
 
 .faq__question {
@@ -510,6 +525,25 @@ header {
 .feedback-block .feedback-slider .swiper-slide {
     max-width: 459px;
     height: 264px !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .feedback-block .feedback-slider .swiper-slide {
+        max-width: 214px;
+        height: 222px !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .feed-popup .inner .text {
+        max-height: unset !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .feed-popup .inner {
+        min-width: 94%;
+    }
 }
 
 @media only screen and (max-width: 1000px) {

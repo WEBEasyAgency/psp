@@ -1,5 +1,5 @@
 <template>
-  <section id="construction-slider" class="construction-type">
+  <section id="construction-slider" class="construction-type ">
     <div class="container">
       <div class="title-block">
         <h2>Выберите тип конструкции для расчета стоимости</h2>
@@ -143,3 +143,9 @@ const constructionTypes = [
   }
 ]
 </script>
+
+<style scoped>
+.swiper {
+    overflow: visible !important;
+}
+</style>

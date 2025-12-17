@@ -11,6 +11,7 @@
     @vite(['resources/js/pages/home.js'])
     <link rel="stylesheet" href="/layout/css/libs.min.css">
     <link rel="stylesheet" href="/layout/css/app.min.css">
+
 </head>
 <body>
     <div class="main-page">

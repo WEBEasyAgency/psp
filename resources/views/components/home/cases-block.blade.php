@@ -1,3 +1,8 @@
+<style>
+    .cases-block {
+        padding: 64px 0 0;
+    }
+</style>
 <section class="cases-block">
     <div class="container">
         <div class="title-block">
