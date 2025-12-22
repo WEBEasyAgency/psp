@@ -296,7 +296,7 @@ function getFormattedParams(item) {
 }
 
 .name-block .flex .text {
-    max-width: 500px;
+    max-width: 650px;
 }
 .cart-page .cart-block .product-list-block .product-list .product-item .parameters-block .parameter {
     column-gap: 32px;
