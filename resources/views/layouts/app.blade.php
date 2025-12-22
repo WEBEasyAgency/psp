@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
 
     {{-- Vite стили и скрипты --}}
-    @vite(['resources/css/app.css'])
+    @assets('resources/css/app.css')
 
     <style>
         a.disabled {

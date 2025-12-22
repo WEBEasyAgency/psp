@@ -7,8 +7,8 @@
 
     <x-layout.favicon/>
 
-    {{-- Vite для Tailwind БЕЗ Preflight (libs и app в @layer components) --}}
-    @vite('resources/css/product.css')
+    {{-- Load CSS from manifest --}}
+    @assets('resources/css/product.css')
 
     {{-- Skeleton Loader Styles (inline для мгновенной загрузки) --}}
     <style>
@@ -467,6 +467,6 @@
 </script>
 
 {{-- Vue приложение --}}
-@vite('resources/js/pages/product-' . $calculatorId . '.js')
+@assets('resources/js/pages/product-' . $calculatorId . '.js')
 </body>
 </html>

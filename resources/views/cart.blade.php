@@ -11,7 +11,7 @@
     {{-- Сторонние CSS --}}
     <link rel="stylesheet" href="/layout/css/libs.min.css">
     <link rel="stylesheet" href="/layout/css/app.min.css">
-    @vite(['resources/js/pages/cart.js'])
+    @assets('resources/js/pages/cart.js')
 </head>
 <body class="gray-bg">
 <!-- Header Blade Component -->
