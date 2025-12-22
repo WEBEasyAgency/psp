@@ -45,6 +45,10 @@ echo "📊 Verifying storage permissions..."
 chmod -R 775 storage bootstrap/cache 2>/dev/null || true
 
 echo ""
+echo "🔧 Removing dev server markers..."
+rm -f public/hot 2>/dev/null || true
+
+echo ""
 echo "🔗 Creating symlinks for static resources..."
 # Remove old symlinks if they exist
 rm -f img css js fonts build 2>/dev/null || true
