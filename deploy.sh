@@ -15,21 +15,9 @@ echo "🚀 Starting deployment on BeGet hosting..."
 
 # Пути к правильным версиям инструментов
 PHP="/usr/local/bin/php8.4"
-COMPOSER="$HOME/bin/composer"
-
-# Проверка наличия необходимых инструментов
-if [ ! -f "$PHP" ]; then
-    echo "❌ Error: PHP 8.4 not found at $PHP"
-    exit 1
-fi
-
-if [ ! -f "$COMPOSER" ]; then
-    echo "❌ Error: Composer not found at $COMPOSER"
-    exit 1
-fi
+COMPOSER="./composer2"
 
 echo "✅ PHP version: $($PHP -v | head -1)"
-echo "✅ Composer version: $($PHP $COMPOSER --version --no-ansi | head -1)"
 
 echo ""
 echo "📥 Updating code from git..."
