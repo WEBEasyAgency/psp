@@ -8,7 +8,7 @@
     <x-layout.favicon/>
 
     {{-- Load CSS from manifest --}}
-    @assets('resources/css/product.css')
+    @vite('resources/css/product.css')
 
     {{-- Skeleton Loader Styles (inline для мгновенной загрузки) --}}
     <style>
@@ -467,6 +467,6 @@
 </script>
 
 {{-- Vue приложение --}}
-@assets('resources/js/pages/product-' . $calculatorId . '.js')
+@vite('resources/js/pages/product-' . $calculatorId . '.js')
 </body>
 </html>

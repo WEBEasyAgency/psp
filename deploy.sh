@@ -25,6 +25,7 @@ git fetch origin main
 git reset --hard origin/main
 
 echo ""
+
 echo "📦 Installing/updating Composer dependencies..."
 $PHP $COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
@@ -33,11 +34,6 @@ echo "📦 Installing backend API dependencies..."
 $PHP $COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev --working-dir=backend
 
 echo ""
-echo "🔧 Ensuring production environment..."
-if grep -q "APP_ENV=local" .env; then
-    sed -i 's/APP_ENV=local/APP_ENV=production/' .env
-fi
-
 echo "🔧 Clearing Laravel caches..."
 $PHP artisan config:clear
 $PHP artisan route:clear

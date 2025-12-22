@@ -8,7 +8,7 @@
     <x-layout.favicon />
 
     {{-- Load JS from manifest --}}
-    @assets('resources/js/pages/home.js')
+    @vite('resources/js/pages/home.js')
     <link rel="stylesheet" href="/layout/css/libs.min.css">
     <link rel="stylesheet" href="/layout/css/app.min.css">
 

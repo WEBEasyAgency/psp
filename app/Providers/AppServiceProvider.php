@@ -19,8 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \Blade::directive('assets', function ($entry) {
-            return "<?php echo \\App\\Helpers\\AssetHelper::render({$entry}); ?>";
-        });
+        //
     }
 }
