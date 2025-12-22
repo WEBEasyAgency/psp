@@ -29,6 +29,10 @@ echo "📦 Installing/updating Composer dependencies..."
 $PHP $COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 echo ""
+echo "📦 Installing backend API dependencies..."
+$PHP $COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev --working-dir=backend
+
+echo ""
 echo "🔧 Clearing Laravel caches..."
 $PHP artisan config:clear
 $PHP artisan route:clear
