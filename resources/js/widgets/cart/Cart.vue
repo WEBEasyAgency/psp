@@ -291,7 +291,7 @@ function getFormattedParams(item) {
 
 @media only screen and (max-width: 768px) {
     .name-block .flex .text {
-        max-width: 155px !important;
+        max-width: 185px !important;
     }
 }
 
