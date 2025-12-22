@@ -15,9 +15,9 @@ jobs:
       - name: Deploy to BeGet server
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: psponline.beget.tech
-          username: psponline_monkey
+          host: psp.realeasystudio.site
+          username: abrobe14_psp
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/p/psponline/psponline.beget.tech/public_html
+            cd /home/a/abrobe14/psp.realeasystudio.site/public_html
             bash deploy.sh
