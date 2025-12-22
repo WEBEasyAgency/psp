@@ -23,12 +23,12 @@ class UploadController extends Controller
                     'required',
                     'file',
                     'max:51200', // 50MB в килобайтах
-                    'mimes:pdf,doc,docx,jpg,jpeg,png,svg,zip,rar,ai,psd,cdr'
+                    'extensions:pdf,doc,docx,jpg,jpeg,png,svg,zip,rar,ai,psd,cdr'
                 ]
             ], [
                 'file.required' => 'Файл не выбран',
                 'file.max' => 'Файл слишком большой. Максимальный размер: 50 МБ',
-                'file.mimes' => 'Недопустимый тип файла. Разрешены: PDF, DOC, DOCX, JPG, PNG, SVG, ZIP, RAR, AI, PSD, CDR'
+                'file.extensions' => 'Недопустимый тип файла. Разрешены: PDF, DOC, DOCX, JPG, PNG, SVG, ZIP, RAR, AI, PSD, CDR'
             ]);
 
             $file = $request->file('file');
