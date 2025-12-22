@@ -11,7 +11,7 @@
 
 set -e  # Остановка при ошибке
 
-echo "🚀 Starting deployment on BeGet hosting..."
+echo "🚀 Starting deployment on BeGet hosting (psponline.beget.tech)..."
 
 # Пути к правильным версиям инструментов
 PHP="/usr/local/bin/php8.4"
