@@ -44,7 +44,15 @@
       "Bash(xargs:*)",
       "mcp__figma-desktop__get_design_context",
       "mcp__figma-desktop__get_screenshot",
-      "mcp__figma-desktop__get_metadata"
+      "mcp__figma-desktop__get_metadata",
+      "Bash(rsync:*)",
+      "Bash(tar:*)",
+      "Bash(ping:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(scp:*)",
+      "Bash(cd:*)",
+      "Bash(gh run:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
