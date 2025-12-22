@@ -15,7 +15,7 @@ echo "🚀 Starting deployment on BeGet hosting..."
 
 # Пути к правильным версиям инструментов
 PHP="/usr/local/bin/php8.4"
-COMPOSER="./composer2"
+COMPOSER="/usr/local/bin/composer"
 
 echo "✅ PHP version: $($PHP -v | head -1)"
 
