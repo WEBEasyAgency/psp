@@ -15,7 +15,7 @@ echo "🚀 Starting deployment on BeGet hosting..."
 
 # Пути к правильным версиям инструментов
 PHP="/usr/local/bin/php8.4"
-COMPOSER="/usr/local/bin/composer"
+COMPOSER_PHAR="/usr/local/bin/composer-phar"
 
 echo "✅ PHP version: $($PHP -v | head -1)"
 
@@ -26,7 +26,7 @@ git reset --hard origin/main
 
 echo ""
 echo "📦 Installing/updating Composer dependencies..."
-$PHP $COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+$PHP $COMPOSER_PHAR install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 echo ""
 echo "🔧 Clearing Laravel caches..."
