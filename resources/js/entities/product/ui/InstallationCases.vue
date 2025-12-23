@@ -75,7 +75,7 @@ const images = computed(() => {
 
 <style scoped>
 /* Стили скопированы и адаптированы из оригинального CSS/LESS */
-@media only screen and (max-width:768px){
+@media only screen and (min-width:1280px){
     .cases-block {
         padding: 64px 0 0 !important;
         /* Ensure visibility if global styles rely on tabs */
