@@ -3,7 +3,7 @@
 @section('title', 'PSP - Онлайн калькулятор рекламных конструкций')
 
 @section('content')
-<div class="main-page">
+<div class="main-page 123">
     <div class="container">
         <section class="py-12">
             <h1 class="text-4xl font-bold mb-8 text-center">Добро пожаловать в PSP Online</h1>
