@@ -14,7 +14,7 @@
 
 </head>
 <body>
-    <div class="main-page">
+    <div class="main-page  123">
         <!-- Header Blade Component -->
         <x-layout.header />
 
