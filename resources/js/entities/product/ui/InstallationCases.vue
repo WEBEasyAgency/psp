@@ -75,9 +75,14 @@ const images = computed(() => {
 
 <style scoped>
 /* Стили скопированы и адаптированы из оригинального CSS/LESS */
-.cases-block {
-    /* Ensure visibility if global styles rely on tabs */
+@media only screen and (max-width:768px){
+    .cases-block {
+        padding: 64px 0 0 !important;
+        /* Ensure visibility if global styles rely on tabs */
+    }
+
 }
+
 .tab.active {
     display: block;
 }
