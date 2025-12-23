@@ -184,6 +184,13 @@ const actualLetterCount = computed(() => {
   return calculatorData.num || 1
 })
 
+// Watcher to automatically update num when text changes
+watch(() => calculatorData.text, (newText) => {
+  if (newText && newText.trim().length > 0) {
+    calculatorData.num = newText.replace(/\s/g, '').length
+  }
+});
+
 // Watcher to reset sub-parameters when 'ustanovka' changes
 watch(() => calculatorData.ustanovka, (newValue, oldValue) => {
   if (newValue !== oldValue) {
