@@ -36,6 +36,14 @@ header {
     padding-top: 16px;
 }
 
+@media only screen and (max-width:768px){
+    .cases-block {
+        padding: 64px 0 0 !important;
+        /* Ensure visibility if global styles rely on tabs */
+    }
+
+}
+
 /* Продублируем медиа-запросы из app.min.css на слое ниже utilities */
 /* Мобильная версия (max-width: 767.9px) */
 @layer utilities {
