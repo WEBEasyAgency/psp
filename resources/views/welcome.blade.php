@@ -6,6 +6,7 @@
     <title>PSP Calc - Онлайн калькулятор рекламных конструкций</title>
 
     <x-layout.favicon />
+    <x-layout.metrika/>
 
     {{-- Load JS from manifest --}}
     @vite('resources/js/pages/home.js')

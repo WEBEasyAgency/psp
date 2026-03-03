@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'PSP - Производство рекламы')</title>
 
+    <x-layout.metrika/>
+
     {{-- Существующие стили из layout --}}
     <link rel="stylesheet" href="{{ asset('css/libs.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">

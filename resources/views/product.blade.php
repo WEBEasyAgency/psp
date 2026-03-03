@@ -6,6 +6,7 @@
     <title>{{ $title }}</title>
 
     <x-layout.favicon/>
+    <x-layout.metrika/>
 
     {{-- Load CSS from manifest --}}
     @vite('resources/css/product.css')

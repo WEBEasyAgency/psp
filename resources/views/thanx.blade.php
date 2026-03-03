@@ -6,6 +6,7 @@
     <title>Спасибо за заказ</title>
 
     <x-layout.favicon/>
+    <x-layout.metrika/>
 
     {{-- Сторонние CSS --}}
     <link rel="stylesheet" href="/layout/css/libs.min.css">

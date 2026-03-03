@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <x-layout.favicon/>
+    <x-layout.metrika/>
 
     {{-- Сторонние CSS --}}
     <link rel="stylesheet" href="/layout/css/libs.min.css">
