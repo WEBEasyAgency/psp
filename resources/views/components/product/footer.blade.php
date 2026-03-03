@@ -36,7 +36,7 @@
             <div class="flex">
                 <div class="descriptor">Платформа онлайн расчета рекламных конструкций</div>
                 <div class="footer-bot-right">
-                    <div class="copy">© 2025 — Copyright PSP online</div>
+                    <div class="copy">© 2025–2026 — Copyright PSP online</div>
                     <div class="policy">
                         <a href="https://ra-psp.ru/policy/" target="_blank">Политика конфиденциальности</a>
                         <a href="https://ra-psp.ru/politika-v-otnoshenii-obrabotki-personalnyh-dannyh/" target="_blank">Политика
