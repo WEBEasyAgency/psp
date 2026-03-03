@@ -24,7 +24,8 @@ Homestead.yaml
 Thumbs.db
 GITHUB_SECRET_UPDATE.txt
 GITHUB_DEPLOY_KEY.txt
-
+.idea/
+.idea/**
 # Legacy layout directory (managed separately by another developer)
 /layout
 
