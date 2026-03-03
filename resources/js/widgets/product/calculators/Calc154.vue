@@ -213,7 +213,10 @@ const fetchCalculatorParams = async () => {
                 calculatorData[p.variable] = !!parseInt(p.default)
             }
             if (p.type === 5 && p.options && options[p.variable] !== undefined) {
-                const opts = p.options.map((o, idx) => ({ value: idx, label: o }))
+                const opts = p.options.map((o, idx) => ({
+                    value: idx,
+                    label: o === 'Форматы A3' ? 'Формат A3' : o
+                }))
                 options[p.variable] = opts
                 if (opts.length > 0) calculatorData[p.variable] = opts[0].value
             }

@@ -149,20 +149,6 @@
                     </a>
                 </div>
                 <div class="icons">
-                    <div class="item account">
-                        <a href="#">
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19.8337 21.5C19.8337 18.2783 17.222 15.6667 14.0003 15.6667C10.7787 15.6667 8.16699 18.2783 8.16699 21.5M14.0003 13.1667C12.1594 13.1667 10.667 11.6743 10.667 9.83333C10.667 7.99238 12.1594 6.5 14.0003 6.5C15.8413 6.5 17.3337 7.99238 17.3337 9.83333C17.3337 11.6743 15.8413 13.1667 14.0003 13.1667Z" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="item search">
-                        <a href="#">
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.5 16.5L21.5 21.5M12.3333 18.1667C9.11167 18.1667 6.5 15.555 6.5 12.3333C6.5 9.11167 9.11167 6.5 12.3333 6.5C15.555 6.5 18.1667 9.11167 18.1667 12.3333C18.1667 15.555 15.555 18.1667 12.3333 18.1667Z" stroke="#3C7BBB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </div>
                     <div class="item mini-cart">
                         <a href="/cart" class="relative">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">

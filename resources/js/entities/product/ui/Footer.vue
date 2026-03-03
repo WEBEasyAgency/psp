@@ -30,7 +30,6 @@
                         <div class="menu">
                             <div class="caption">Покупателю</div>
                             <ul>
-                                <li><a href="#">Личный кабинет</a></li>
                                 <li><a href="#">Как заказывать</a></li>
                                 <li><a href="#">Гарантия</a></li>
                                 <li><a href="#">Доставка</a></li>
@@ -52,7 +51,7 @@
                 <div class="flex">
                     <div class="descriptor">Платформа онлайн расчета рекламных конструкций</div>
                     <div class="footer-bot-right">
-                        <div class="copy">© 2025 — Copyright PSP online</div>
+                        <div class="copy">© 2025–2026 — Copyright PSP online</div>
                         <div class="policy"><a href="#" target="_blank">Политика конфиденциальности</a></div>
                     </div>
                     <div class="to-top" :class="{ visible: showToTop }" ref="toTopBtn">

@@ -129,6 +129,7 @@ const arrowClasses = computed(() => {
 
 .help-popover {
     @apply relative inline-flex items-center;
+    display: none;
 }
 
 .help-popover__icon {
