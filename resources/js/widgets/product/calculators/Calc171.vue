@@ -1,23 +1,38 @@
 <template>
-  <div class="calculator">
+  <div class="calculator calculator--v2">
     <h1 class="calculator__title">Пластиковые буквы</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
-        <div class="calculator__params">
+        <div class="letters-block">
           <TextInput
               v-model="textValue"
               label="Текст надписи"
-              placeholder="Введите текст"
+              placeholder="Кафе"
+              class="letters-block__text"
           />
-          <NumberInput v-model="calculatorData.h" label="Высота букв, мм" :min="30" :max="2000" />
+          <NumberInput
+              v-model="calculatorData.num"
+              label="Количество букв"
+              :min="1"
+              :max="100"
+              class="letters-block__count"
+          />
+          <div class="letters-block__or">или</div>
+          <NumberInput
+              v-model="calculatorData.h"
+              label="Высота букв, мм"
+              :min="30"
+              :max="2000"
+              class="letters-block__height"
+          />
         </div>
 
         <div class="calculator__options">
@@ -48,7 +63,6 @@
           />
         </div>
 
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -73,7 +87,6 @@ import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import TextInput from '@/shared/ui/TextInput.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
-import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
@@ -236,6 +249,46 @@ onMounted(async () => {
 
 <style scoped>
 @import "tailwindcss" reference;
+
+.letters-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+  grid-template-areas:
+    "text text"
+    "or or"
+    "count height";
+}
+
+@media (min-width: 1280px) {
+  .letters-block {
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+    grid-template-areas:
+      "text count"
+      "or or"
+      "height height";
+  }
+}
+
+.letters-block__text {
+  grid-area: text;
+}
+
+.letters-block__count {
+  grid-area: count;
+}
+
+.letters-block__or {
+  grid-area: or;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.letters-block__height {
+  grid-area: height;
+}
 
 .calculator__row {
   @apply flex flex-col gap-6;

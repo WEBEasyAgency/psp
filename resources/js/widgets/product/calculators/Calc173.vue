@@ -1,13 +1,13 @@
 <template>
-  <div class="calculator">
+  <div class="calculator calculator--v2">
     <h1 class="calculator__title">Режим работы пластиковый</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
@@ -35,16 +35,16 @@
 
         <div class="calculator__toggles">
           <ToggleSwitch
-              v-model="calculatorData.round"
-              label="Скругление углов"
-              help-title="Скругление углов"
-              help-description="Скругление острых углов пластика."
-          />
-          <ToggleSwitch
               v-model="calculatorData.skotch"
               label="Двусторонний скотч"
               help-title="Двусторонний скотч"
               help-description="Прочный двусторонний скотч для крепления таблички к стене."
+          />
+          <ToggleSwitch
+              v-model="calculatorData.round"
+              label="Скругление углов"
+              help-title="Скругление углов"
+              help-description="Скругление острых углов пластика."
           />
           <ToggleSwitch
               v-model="calculatorData.profil"
@@ -54,12 +54,10 @@
           />
         </div>
 
-        <div class="calculator__quantity">
-          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="100" />
-          <span class="calculator__hint">Чем больше, тем дешевле</span>
+        <div class="quantity-block">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт" :min="1" :max="100" />
+          <InfoTooltip />
         </div>
-
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -101,9 +99,9 @@ const rawMatSelectParams = ref([])
 const activePreset = ref(null)
 
 const sizePresets = [
-  { label: 'A5', w: 15, h: 21 },
-  { label: 'A4', w: 21, h: 30 },
-  { label: 'A3', w: 30, h: 42 }
+  { label: '20x30см', w: 20, h: 30 },
+  { label: '30x40см', w: 30, h: 40 },
+  { label: '40x60см', w: 40, h: 60 }
 ]
 
 const options = reactive({
@@ -113,8 +111,8 @@ const options = reactive({
 const rawApiOptions = reactive({})
 
 const calculatorData = reactive({
-  w: 20,
-  h: 30,
+  w: 30,
+  h: 40,
   num: 1,
   thick: null,
   round: true,
@@ -242,7 +240,8 @@ onMounted(async () => {
   @apply flex flex-col gap-4;
 }
 
-.calculator__hint {
-  @apply text-slate-400 text-sm mt-1;
+.quantity-block {
+  @apply flex flex-col;
+  gap: 12px;
 }
 </style>

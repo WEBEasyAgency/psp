@@ -1,13 +1,13 @@
 <template>
-  <div class="calculator">
-    <h1 class="calculator__title">Режим работы (наклейка на стекло)</h1>
+  <div class="calculator calculator--v2">
+    <h1 class="calculator__title">Режим работы (наклейка)</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
@@ -26,24 +26,25 @@
 
         <div class="calculator__options">
           <FilterButtons
-              v-if="options.num_colors"
-              v-model="calculatorData.num_colors"
-              label="Количество цветов"
-              :options="options.num_colors"
+              v-if="options.side && options.side.length"
+              v-model="calculatorData.side"
+              label="Будет клеится на стекло"
+              :options="options.side"
           />
         </div>
 
-        <ToggleSwitch
-            v-model="calculatorData.rakel"
-            label="Приложить инструмент для монтажа (ракель)"
-        />
-
-        <div class="calculator__quantity">
-          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="100" />
-          <span class="calculator__hint">Чем больше, тем дешевле</span>
+        <div class="toggle-section">
+          <div class="toggle-section__label">Инструмент для монтажа</div>
+          <ToggleSwitch
+              v-model="calculatorData.rakel"
+              label="Приложить инструмент для монтажа (ракель)"
+          />
         </div>
 
-        <InfoTooltip />
+        <div class="quantity-block">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт" :min="1" :max="100" />
+          <InfoTooltip />
+        </div>
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -85,9 +86,9 @@ const rawMatSelectParams = ref([])
 const activePreset = ref(null)
 
 const sizePresets = [
-  { label: 'A5', w: 15, h: 21 },
-  { label: 'A4', w: 21, h: 30 },
-  { label: 'A3', w: 30, h: 42 }
+  { label: '20x30см', w: 20, h: 30 },
+  { label: '30x40см', w: 30, h: 40 },
+  { label: '40x60см', w: 40, h: 60 }
 ]
 
 const options = reactive({
@@ -99,8 +100,8 @@ const options = reactive({
 const rawApiOptions = reactive({})
 
 const calculatorData = reactive({
-  w: 20,
-  h: 30,
+  w: 30,
+  h: 40,
   num: 1,
   num_colors: null,
   side: null,
@@ -120,12 +121,12 @@ const orderLink = computed(() => {
   const params = new URLSearchParams({
     calc_position_id: calculationResult.value.calc_position_id,
     price: calculationResult.value.price_good,
-    desc: 'Режим работы (наклейка на стекло)'
+    desc: 'Режим работы (наклейка)'
   })
   return `/order?${params.toString()}`
 })
 
-const cartItemDescription = computed(() => 'Режим работы (наклейка на стекло)')
+const cartItemDescription = computed(() => 'Режим работы (наклейка)')
 
 const cartItemImage = computed(() => {
   return props.initialImages && props.initialImages.length > 0 ? props.initialImages[0] : '/img/dest/cart-img.jpg'
@@ -224,7 +225,20 @@ onMounted(async () => {
 <style scoped>
 @import "tailwindcss" reference;
 
-.calculator__hint {
-  @apply text-slate-400 text-sm mt-1;
+.toggle-section {
+  @apply flex flex-col;
+  gap: 16px;
+}
+
+.toggle-section__label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #282828;
+  line-height: 1.4;
+}
+
+.quantity-block {
+  @apply flex flex-col;
+  gap: 12px;
 }
 </style>

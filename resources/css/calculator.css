@@ -525,6 +525,12 @@ input[type="radio"]:disabled {
     border-width: 0 !important;
 }
 
+/* CheckboxGroup: checkmark = border 1px #cbd5e1 (Figma) */
+.calculator--v2 .checkbox-group__checkmark {
+    border-width: 1px !important;
+    border-color: #cbd5e1 !important;
+}
+
 /* CheckboxGroup: option gap=8px, text = 16px #282828 */
 .calculator--v2 .checkbox-group__option {
     gap: 8px !important;
@@ -555,6 +561,40 @@ input[type="radio"]:disabled {
     font-size: 14px !important;
     color: #2c619d !important;
     line-height: 1.4 !important;
+}
+
+/* SizePresets: match FilterButtons sizing for v2 */
+.calculator--v2 .size-presets {
+    gap: 16px !important;
+}
+
+.calculator--v2 .size-presets__label {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #282828 !important;
+    line-height: 1.4 !important;
+}
+
+.calculator--v2 .size-presets__options {
+    gap: 12px !important;
+}
+
+.calculator--v2 .size-presets__button {
+    height: 44px !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+}
+
+.calculator--v2 .size-presets__button-text {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+}
+
+/* SizePresets active state = same as FilterButtons active */
+.calculator--v2 .size-presets__button--active {
+    background-color: transparent !important;
+    color: #2c619d !important;
+    border: 1px solid #3c7bbb !important;
 }
 
 /* Стили для label.checkbox (legacy layout) */

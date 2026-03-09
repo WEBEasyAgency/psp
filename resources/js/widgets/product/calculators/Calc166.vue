@@ -1,13 +1,13 @@
 <template>
-  <div class="calculator">
-    <h1 class="calculator__title">Плакат для лайтбоксов (бэклит)</h1>
+  <div class="calculator calculator--v2">
+    <h1 class="calculator__title">Плакат для лайтбоксов</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
@@ -16,10 +16,12 @@
             <NumberInput v-model="calculatorData.w" label="Ширина, мм" :min="100" :max="5000" />
             <NumberInput v-model="calculatorData.h" label="Высота, мм" :min="100" :max="5000" />
           </div>
-          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="1000" />
         </div>
 
-        <InfoTooltip />
+        <div class="quantity-block">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт" :min="1" :max="1000" />
+          <InfoTooltip />
+        </div>
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -69,12 +71,12 @@ const orderLink = computed(() => {
   const params = new URLSearchParams({
     calc_position_id: calculationResult.value.calc_position_id,
     price: calculationResult.value.price_good,
-    desc: 'Плакат для лайтбоксов (бэклит)'
+    desc: 'Плакат для лайтбоксов'
   })
   return `/order?${params.toString()}`
 })
 
-const cartItemDescription = computed(() => 'Плакат для лайтбоксов (бэклит)')
+const cartItemDescription = computed(() => 'Плакат для лайтбоксов')
 
 const cartItemImage = computed(() => {
   return props.initialImages && props.initialImages.length > 0 ? props.initialImages[0] : '/img/dest/cart-img.jpg'
@@ -146,3 +148,12 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@import "tailwindcss" reference;
+
+.quantity-block {
+  @apply flex flex-col;
+  gap: 12px;
+}
+</style>

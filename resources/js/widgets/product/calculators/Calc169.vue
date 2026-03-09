@@ -1,13 +1,13 @@
 <template>
-  <div class="calculator">
-    <h1 class="calculator__title">Панель-кронштейн круглый</h1>
+  <div class="calculator calculator--v2">
+    <h1 class="calculator__title">Панель-кронштейн световой круглый</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
@@ -17,25 +17,21 @@
               v-model="calculatorData.d"
               label="Диаметр"
               :options="options.d"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.bok"
               v-model="calculatorData.bok"
-              label="Цвет боковой поверхности"
+              label="Боковая поверхность"
               :options="options.bok"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.color"
               v-model="calculatorData.color"
               label="Цвет кронштейна"
               :options="options.color"
-              :has-help="true"
           />
         </div>
 
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -57,7 +53,6 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
-import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
@@ -93,12 +88,12 @@ const orderLink = computed(() => {
   const params = new URLSearchParams({
     calc_position_id: calculationResult.value.calc_position_id,
     price: calculationResult.value.price_good,
-    desc: 'Панель-кронштейн круглый'
+    desc: 'Панель-кронштейн световой круглый'
   })
   return `/order?${params.toString()}`
 })
 
-const cartItemDescription = computed(() => 'Панель-кронштейн круглый')
+const cartItemDescription = computed(() => 'Панель-кронштейн световой круглый')
 
 const cartItemImage = computed(() => {
   return props.initialImages && props.initialImages.length > 0 ? props.initialImages[0] : '/img/dest/cart-img.jpg'

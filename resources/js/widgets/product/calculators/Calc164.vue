@@ -1,13 +1,13 @@
 <template>
-  <div class="calculator">
+  <div class="calculator calculator--v2">
     <h1 class="calculator__title">Плакат на постерной бумаге</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
@@ -28,17 +28,15 @@
           <FilterButtons
               v-if="options.finish"
               v-model="calculatorData.finish"
-              label="Подрезка"
+              label="Итоговый вид"
               :options="options.finish"
           />
         </div>
 
-        <div class="calculator__quantity">
-          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="1000" />
-          <span class="calculator__hint">Чем больше, тем дешевле</span>
+        <div class="quantity-block">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт" :min="1" :max="1000" />
+          <InfoTooltip />
         </div>
-
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -79,10 +77,10 @@ const rawMatSelectParams = ref([])
 const activePreset = ref(null)
 
 const sizePresets = [
-  { label: 'A4 (297x420)', w: 297, h: 420 },
-  { label: 'A3 (420x297)', w: 420, h: 297 },
-  { label: '500x700', w: 500, h: 700 },
-  { label: '700x1000', w: 700, h: 1000 }
+  { label: 'A3 (297x420мм)', w: 297, h: 420 },
+  { label: 'A2 (420x594мм)', w: 420, h: 594 },
+  { label: 'A1 (594x841мм)', w: 594, h: 841 },
+  { label: 'A0 (841x1189мм)', w: 841, h: 1189 }
 ]
 
 const options = reactive({
@@ -205,7 +203,8 @@ onMounted(async () => {
 <style scoped>
 @import "tailwindcss" reference;
 
-.calculator__hint {
-  @apply text-slate-400 text-sm mt-1;
+.quantity-block {
+  @apply flex flex-col;
+  gap: 12px;
 }
 </style>

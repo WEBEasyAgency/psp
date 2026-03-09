@@ -1,20 +1,20 @@
 <template>
-  <div class="calculator">
+  <div class="calculator calculator--v2">
     <h1 class="calculator__title">Световой короб (лайтбокс)</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
         <div class="calculator__params">
           <div class="calculator__dims-row">
-            <NumberInput v-model="calculatorData.w" label="Ширина, мм" :min="100" :max="5000" />
-            <NumberInput v-model="calculatorData.h" label="Высота, мм" :min="100" :max="5000" />
+            <NumberInput v-model="calculatorData.w" label="Ширина, м" :min="0.3" :max="50" :step="0.1" />
+            <NumberInput v-model="calculatorData.h" label="Высота, м" :min="0.3" :max="50" :step="0.1" />
           </div>
         </div>
 
@@ -24,25 +24,21 @@
               v-model="calculatorData.type"
               label="Форма"
               :options="options.type"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.bok"
               v-model="calculatorData.bok"
-              label="Цвет боковой поверхности"
+              label="Боковая поверхность"
               :options="options.bok"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.light"
               v-model="calculatorData.light"
-              label="Светодиодная подсветка"
+              label="Вариант подсветки"
               :options="options.light"
-              :has-help="true"
           />
         </div>
 
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -65,7 +61,6 @@ import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
-import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({
@@ -89,8 +84,8 @@ const options = reactive({
 const rawApiOptions = reactive({})
 
 const calculatorData = reactive({
-  w: 600,
-  h: 600,
+  w: 1,
+  h: 1,
   type: null,
   bok: null,
   light: null

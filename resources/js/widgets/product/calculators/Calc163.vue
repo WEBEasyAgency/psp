@@ -1,13 +1,13 @@
 <template>
-  <div class="calculator">
+  <div class="calculator calculator--v2">
     <h1 class="calculator__title">Баннер на раме</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
@@ -42,18 +42,17 @@
           <FilterButtons
               v-if="options.profil_color"
               v-model="calculatorData.profil_color"
-              label="Покраска рамы"
+              label="Цвет профиля"
               :options="options.profil_color"
           />
           <FilterButtons
               v-if="options.metall_color"
               v-model="calculatorData.metall_color"
-              label="Цвет кронштейна"
+              label="Цвет металлокаркаса"
               :options="options.metall_color"
           />
         </div>
 
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -77,7 +76,7 @@ import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
-import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
+
 import { useEditMode } from '@/shared/composables/useEditMode'
 
 const props = defineProps({

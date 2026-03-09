@@ -1,20 +1,20 @@
 <template>
-  <div class="calculator">
+  <div class="calculator calculator--v2">
     <h1 class="calculator__title">Аппликация на стекло</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
         <div class="calculator__params">
           <div class="calculator__dims-row">
-            <NumberInput v-model="calculatorData.w" label="Ширина, м" :min="0.1" :max="10" :step="0.1" />
-            <NumberInput v-model="calculatorData.h" label="Высота, м" :min="0.1" :max="10" :step="0.1" />
+            <NumberInput v-model="calculatorData.w" label="Ширина, мм" :min="100" :max="5000" />
+            <NumberInput v-model="calculatorData.h" label="Высота, мм" :min="100" :max="5000" />
           </div>
         </div>
 
@@ -22,13 +22,13 @@
           <FilterButtons
               v-if="options.plenka"
               v-model="calculatorData.plenka"
-              label="Плёнка"
+              label="Пленка"
               :options="options.plenka"
           />
           <FilterButtons
               v-if="options.sposob"
               v-model="calculatorData.sposob"
-              label="Способ наклейки"
+              label="Способ наклеивания"
               :options="options.sposob"
           />
         </div>
@@ -38,12 +38,10 @@
             label="Вырезать по контуру"
         />
 
-        <div class="calculator__quantity">
-          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="1000" />
-          <span class="calculator__hint">Чем больше, тем дешевле</span>
+        <div class="quantity-block">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт" :min="1" :max="1000" />
+          <InfoTooltip />
         </div>
-
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -90,8 +88,8 @@ const options = reactive({
 const rawApiOptions = reactive({})
 
 const calculatorData = reactive({
-  w: 1,
-  h: 1,
+  w: 100,
+  h: 100,
   num: 1,
   plenka: null,
   sposob: null,
@@ -207,7 +205,8 @@ onMounted(async () => {
 <style scoped>
 @import "tailwindcss" reference;
 
-.calculator__hint {
-  @apply text-slate-400 text-sm mt-1;
+.quantity-block {
+  @apply flex flex-col;
+  gap: 12px;
 }
 </style>
