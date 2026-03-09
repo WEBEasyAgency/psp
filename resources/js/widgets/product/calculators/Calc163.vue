@@ -24,43 +24,33 @@
               v-model="calculatorData.banner"
               label="Баннерная ткань"
               :options="options.banner"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.print"
               v-model="calculatorData.print"
               label="Печать"
               :options="options.print"
-              :has-help="true"
           />
+        </div>
+
+        <ToggleSwitch
+            v-model="calculatorData.need_profil"
+            label="Обрамление алюминиевым профилем"
+        />
+
+        <div class="calculator__options">
           <FilterButtons
               v-if="options.profil_color"
               v-model="calculatorData.profil_color"
-              label="Цвет профиля"
+              label="Покраска рамы"
               :options="options.profil_color"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.metall_color"
               v-model="calculatorData.metall_color"
-              label="Цвет металлокаркаса"
+              label="Цвет кронштейна"
               :options="options.metall_color"
-              :has-help="true"
           />
-        </div>
-
-        <div class="calculator__services">
-          <div class="calculator__services-header">
-            <span class="calculator__services-label">Параметры изготовления</span>
-          </div>
-          <div class="calculator__services-list">
-            <ToggleSwitch
-                v-model="calculatorData.need_profil"
-                label="Обрамление профилем"
-                help-title="Обрамление профилем"
-                help-description="Алюминиевый профиль по периметру баннера для жёсткости конструкции."
-            />
-          </div>
         </div>
 
         <InfoTooltip />
@@ -111,7 +101,6 @@ const options = reactive({
 
 const rawApiOptions = reactive({})
 const apiParamTypes = reactive({})
-// Map cleaned variable names to original API variable names (for {} issue)
 const apiVariableNames = reactive({})
 
 const calculatorData = reactive({
@@ -125,6 +114,8 @@ const calculatorData = reactive({
 })
 
 const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages : ['https://placehold.co/343x257'])
+
+const cleanVariable = (name) => name.replace(/[{}]/g, '')
 
 const orderLink = computed(() => {
   if (!calculationResult.value) return '#'
@@ -155,9 +146,6 @@ const calculatorDataForCart = computed(() => ({
   mat_select_params: []
 }))
 
-// Strip curly braces from API variable names
-const cleanVariable = (name) => name.replace(/[{}]/g, '')
-
 const fetchCalculatorParams = async () => {
   try {
     error.value = ''
@@ -171,7 +159,6 @@ const fetchCalculatorParams = async () => {
     if (data.params) {
       data.params.forEach(p => {
         const cleanVar = cleanVariable(p.variable)
-        // Store mapping: clean name → original API name
         apiVariableNames[cleanVar] = p.variable
         apiParamTypes[cleanVar] = p.type
 
@@ -204,7 +191,6 @@ const calculatePrice = async () => {
       return idx === -1 ? 0 : idx
     }
 
-    // Use original API variable names (with {} if present)
     const params = [
       { variable: apiVariableNames.w || 'w', type: 1, value: calculatorData.w },
       { variable: apiVariableNames.h || 'h', type: 1, value: calculatorData.h },

@@ -12,38 +12,39 @@
 
       <div class="calculator__right">
         <div class="calculator__params">
-          <NumberInput v-model="calculatorData.num" label="Кол-во букв, шт." :min="1" :max="100" />
+          <TextInput
+              v-model="textValue"
+              label="Текст надписи"
+              placeholder="Введите текст"
+          />
           <NumberInput v-model="calculatorData.h" label="Высота букв, мм" :min="30" :max="2000" />
         </div>
 
         <div class="calculator__options">
-          <FilterButtons
-              v-if="options.thick"
-              v-model="calculatorData.thick"
-              label="Толщина пластика"
-              :options="options.thick"
-              :has-help="true"
-          />
-          <FilterButtons
-              v-if="options.color"
-              v-model="calculatorData.color"
-              label="Цвет лицевой поверхности"
-              :options="options.color"
-              :has-help="true"
-          />
-          <FilterButtons
-              v-if="options.scotch"
-              v-model="calculatorData.scotch"
+          <div class="calculator__row">
+            <FilterButtons
+                v-if="options.thick"
+                v-model="calculatorData.thick"
+                label="Толщина пластика"
+                :options="options.thick"
+            />
+            <FilterButtons
+                v-if="options.color"
+                v-model="calculatorData.color"
+                label="Цвет лицевой поверхности букв"
+                :options="options.color"
+            />
+          </div>
+        </div>
+
+        <div class="calculator__toggles">
+          <ToggleSwitch
+              v-model="scotchToggle"
               label="Двусторонний скотч"
-              :options="options.scotch"
-              :has-help="true"
           />
-          <FilterButtons
-              v-if="options.shablon"
-              v-model="calculatorData.shablon"
+          <ToggleSwitch
+              v-model="shablonToggle"
               label="Шаблон для монтажа"
-              :options="options.shablon"
-              :has-help="true"
           />
         </div>
 
@@ -65,10 +66,12 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, watch, onMounted } from 'vue'
 import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
+import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
+import TextInput from '@/shared/ui/TextInput.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
@@ -84,6 +87,10 @@ const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
+
+const textValue = ref('')
+const scotchToggle = ref(false)
+const shablonToggle = ref(false)
 
 const options = reactive({
   thick: [],
@@ -101,6 +108,27 @@ const calculatorData = reactive({
   color: null,
   scotch: null,
   shablon: null
+})
+
+// When text changes, update num (character count)
+watch(textValue, (val) => {
+  const chars = val.replace(/\s/g, '').length
+  if (chars > 0) {
+    calculatorData.num = chars
+  }
+})
+
+// Map toggle on/off to first/second option from API
+watch(scotchToggle, (val) => {
+  if (options.scotch.length >= 2) {
+    calculatorData.scotch = val ? options.scotch[1].value : options.scotch[0].value
+  }
+})
+
+watch(shablonToggle, (val) => {
+  if (options.shablon.length >= 2) {
+    calculatorData.shablon = val ? options.shablon[1].value : options.shablon[0].value
+  }
 })
 
 const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages : ['https://placehold.co/343x257'])
@@ -205,3 +233,21 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@import "tailwindcss" reference;
+
+.calculator__row {
+  @apply flex flex-col gap-6;
+}
+
+@media (min-width: 1280px) {
+  .calculator__row {
+    @apply flex-row gap-6 items-end;
+  }
+}
+
+.calculator__toggles {
+  @apply flex flex-col gap-4;
+}
+</style>

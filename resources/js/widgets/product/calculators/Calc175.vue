@@ -11,10 +11,16 @@
       </div>
 
       <div class="calculator__right">
+        <SizePresets
+            v-model="activePreset"
+            :presets="sizePresets"
+            @select="applyPreset"
+        />
+
         <div class="calculator__params">
           <div class="calculator__dims-row">
-            <NumberInput v-model="calculatorData.w" label="Ширина, см" :min="5" :max="200" />
-            <NumberInput v-model="calculatorData.h" label="Высота, см" :min="5" :max="200" />
+            <NumberInput v-model="calculatorData.w" label="Ширина, см" :min="5" :max="200" @update:modelValue="activePreset = null" />
+            <NumberInput v-model="calculatorData.h" label="Высота, см" :min="5" :max="200" @update:modelValue="activePreset = null" />
           </div>
         </div>
 
@@ -22,41 +28,21 @@
           <FilterButtons
               v-if="options.num_colors"
               v-model="calculatorData.num_colors"
-              label="Кол-во цветов пленки"
+              label="Количество цветов"
               :options="options.num_colors"
-              :has-help="true"
-          />
-          <FilterButtons
-              v-if="options.side"
-              v-model="calculatorData.side"
-              label="Сторона клеения"
-              :options="options.side"
-              :has-help="true"
-          />
-          <FilterButtons
-              v-if="options.dist_derzh"
-              v-model="calculatorData.dist_derzh"
-              label="Дистанционные держатели"
-              :options="options.dist_derzh"
-              :has-help="true"
           />
         </div>
 
-        <div class="calculator__services">
-          <div class="calculator__services-header">
-            <span class="calculator__services-label">Параметры изготовления</span>
-          </div>
-          <div class="calculator__services-list">
-            <ToggleSwitch
-                v-model="calculatorData.rakel"
-                label="Инструмент монтажа"
-                help-title="Инструмент монтажа"
-                help-description="Ракель для самостоятельного монтажа наклейки без пузырей."
-            />
-          </div>
+        <ToggleSwitch
+            v-model="calculatorData.rakel"
+            label="Приложить инструмент для монтажа (ракель)"
+        />
+
+        <div class="calculator__quantity">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="100" />
+          <span class="calculator__hint">Чем больше, тем дешевле</span>
         </div>
 
-        <NumberInput v-model="calculatorData.num" label="Количество" :min="1" :max="100" />
         <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
@@ -80,6 +66,7 @@ import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
+import SizePresets from '@/shared/ui/SizePresets.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
@@ -95,6 +82,13 @@ const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
+const activePreset = ref(null)
+
+const sizePresets = [
+  { label: 'A5', w: 15, h: 21 },
+  { label: 'A4', w: 21, h: 30 },
+  { label: 'A3', w: 30, h: 42 }
+]
 
 const options = reactive({
   num_colors: [],
@@ -113,6 +107,11 @@ const calculatorData = reactive({
   dist_derzh: null,
   rakel: false
 })
+
+const applyPreset = ({ w, h }) => {
+  calculatorData.w = w
+  calculatorData.h = h
+}
 
 const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages : ['https://placehold.co/343x257'])
 
@@ -221,3 +220,11 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@import "tailwindcss" reference;
+
+.calculator__hint {
+  @apply text-slate-400 text-sm mt-1;
+}
+</style>

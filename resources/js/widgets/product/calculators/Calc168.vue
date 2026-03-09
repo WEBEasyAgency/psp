@@ -29,14 +29,14 @@
           <FilterButtons
               v-if="options.bok"
               v-model="calculatorData.bok"
-              label="Боковая поверхность"
+              label="Цвет боковой поверхности"
               :options="options.bok"
               :has-help="true"
           />
           <FilterButtons
               v-if="options.light"
               v-model="calculatorData.light"
-              label="Вариант подсветки"
+              label="Светодиодная подсветка"
               :options="options.light"
               :has-help="true"
           />

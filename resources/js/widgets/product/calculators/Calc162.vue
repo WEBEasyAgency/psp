@@ -24,56 +24,45 @@
               v-model="calculatorData.banner"
               label="Баннерная ткань"
               :options="options.banner"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.print"
               v-model="calculatorData.print"
               label="Печать"
               :options="options.print"
-              :has-help="true"
           />
+        </div>
+
+        <ToggleSwitch
+            v-model="calculatorData.need_prokleyka"
+            label="Усиление края по периметру"
+        />
+
+        <div class="calculator__options">
           <FilterButtons
               v-if="options.luvers_space"
               v-model="calculatorData.luvers_space"
-              label="Шаг люверсов"
+              label="Шаг установки люверсов"
               :options="options.luvers_space"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.zagib"
               v-model="calculatorData.zagib"
-              label="Загиб"
+              label="Загиб баннера в карман"
               :options="options.zagib"
-              :has-help="true"
-          />
-          <FilterButtons
-              v-if="options.added"
-              v-model="calculatorData.added"
-              label="Дополнительно"
-              :options="options.added"
-              :has-help="true"
           />
         </div>
 
-        <div class="calculator__services">
-          <div class="calculator__services-header">
-            <span class="calculator__services-label">Параметры изготовления</span>
-          </div>
-          <div class="calculator__services-list">
-            <ToggleSwitch
-                v-model="calculatorData.need_prokleyka"
-                label="Усиление края"
-                help-title="Усиление края"
-                help-description="Дополнительная проклейка края баннера для увеличения прочности."
-            />
-            <ToggleSwitch
-                v-model="calculatorData.need_luvers"
-                label="Люверсы"
-                help-title="Люверсы"
-                help-description="Металлические кольца по периметру баннера для крепления."
-            />
-          </div>
+        <CheckboxGroup
+            v-if="options.added && options.added.length > 0"
+            v-model="selectedAdded"
+            label="Дополнительно"
+            :options="addedCheckboxOptions"
+        />
+
+        <div class="calculator__quantity">
+          <NumberInput v-model="calculatorData.added_num" label="Количество, шт." :min="1" :max="1000" />
+          <span class="calculator__hint">Чем больше, тем дешевле</span>
         </div>
 
         <InfoTooltip />
@@ -99,6 +88,7 @@ import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
+import CheckboxGroup from '@/shared/ui/CheckboxGroup.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
@@ -115,6 +105,8 @@ const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
 
+const selectedAdded = ref([])
+
 const options = reactive({
   banner: [],
   print: [],
@@ -124,7 +116,6 @@ const options = reactive({
 })
 
 const rawApiOptions = reactive({})
-// Store the original API type for each variable (needed for type=4)
 const apiParamTypes = reactive({})
 
 const calculatorData = reactive({
@@ -136,7 +127,15 @@ const calculatorData = reactive({
   need_luvers: false,
   luvers_space: null,
   zagib: null,
-  added: null
+  added: null,
+  added_num: 1
+})
+
+const addedCheckboxOptions = computed(() => {
+  return options.added.map(opt => ({
+    value: opt.value,
+    label: opt.label
+  }))
 })
 
 const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages : ['https://placehold.co/343x257'])
@@ -184,7 +183,6 @@ const fetchCalculatorParams = async () => {
 
     if (data.params) {
       data.params.forEach(p => {
-        // Store original API type
         apiParamTypes[p.variable] = p.type
 
         if (p.type === 1 && calculatorData[p.variable] !== undefined) {
@@ -193,7 +191,6 @@ const fetchCalculatorParams = async () => {
         if (p.type === 2 && calculatorData[p.variable] !== undefined) {
           calculatorData[p.variable] = !!parseInt(p.default)
         }
-        // type=4 (material) and type=5 (select) — both render as FilterButtons
         if ((p.type === 4 || p.type === 5) && p.options && options[p.variable] !== undefined) {
           rawApiOptions[p.variable] = p.options
           const opts = p.options.map(o => ({ value: o, label: o }))
@@ -217,14 +214,18 @@ const calculatePrice = async () => {
       return idx === -1 ? 0 : idx
     }
 
+    // Determine need_luvers from luvers_space (if not "Нет", luvers are needed)
+    const luversIndex = getIndex('luvers_space', calculatorData.luvers_space)
+    const needLuvers = luversIndex > 0 ? 1 : 0
+
     const params = [
       { variable: 'w', type: 1, value: calculatorData.w },
       { variable: 'h', type: 1, value: calculatorData.h },
       { variable: 'banner', type: apiParamTypes.banner || 4, value: getIndex('banner', calculatorData.banner) },
       { variable: 'print', type: 5, value: getIndex('print', calculatorData.print) },
       { variable: 'need_prokleyka', type: 2, value: calculatorData.need_prokleyka ? 1 : 0 },
-      { variable: 'need_luvers', type: 2, value: calculatorData.need_luvers ? 1 : 0 },
-      { variable: 'luvers_space', type: 5, value: getIndex('luvers_space', calculatorData.luvers_space) },
+      { variable: 'need_luvers', type: 2, value: needLuvers },
+      { variable: 'luvers_space', type: 5, value: luversIndex },
       { variable: 'zagib', type: 5, value: getIndex('zagib', calculatorData.zagib) },
       { variable: 'added', type: 5, value: getIndex('added', calculatorData.added) }
     ]
@@ -254,3 +255,11 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@import "tailwindcss" reference;
+
+.calculator__hint {
+  @apply text-slate-400 text-sm mt-1;
+}
+</style>

@@ -11,22 +11,31 @@
       </div>
 
       <div class="calculator__right">
+        <SizePresets
+            v-model="activePreset"
+            :presets="sizePresets"
+            @select="applyPreset"
+        />
+
         <div class="calculator__params">
           <div class="calculator__dims-row">
-            <NumberInput v-model="calculatorData.w" label="Ширина, мм" :min="100" :max="5000" />
-            <NumberInput v-model="calculatorData.h" label="Высота, мм" :min="100" :max="5000" />
+            <NumberInput v-model="calculatorData.w" label="Ширина, мм" :min="100" :max="5000" @update:modelValue="activePreset = null" />
+            <NumberInput v-model="calculatorData.h" label="Высота, мм" :min="100" :max="5000" @update:modelValue="activePreset = null" />
           </div>
-          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="1000" />
         </div>
 
         <div class="calculator__options">
           <FilterButtons
               v-if="options.finish"
               v-model="calculatorData.finish"
-              label="Итоговый вид"
+              label="Подрезка"
               :options="options.finish"
-              :has-help="true"
           />
+        </div>
+
+        <div class="calculator__quantity">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="1000" />
+          <span class="calculator__hint">Чем больше, тем дешевле</span>
         </div>
 
         <InfoTooltip />
@@ -51,6 +60,7 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
+import SizePresets from '@/shared/ui/SizePresets.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
@@ -66,6 +76,14 @@ const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
+const activePreset = ref(null)
+
+const sizePresets = [
+  { label: 'A4 (297x420)', w: 297, h: 420 },
+  { label: 'A3 (420x297)', w: 420, h: 297 },
+  { label: '500x700', w: 500, h: 700 },
+  { label: '700x1000', w: 700, h: 1000 }
+]
 
 const options = reactive({
   finish: []
@@ -74,11 +92,16 @@ const options = reactive({
 const rawApiOptions = reactive({})
 
 const calculatorData = reactive({
-  w: 210,
-  h: 297,
+  w: 297,
+  h: 420,
   num: 1,
   finish: null
 })
+
+const applyPreset = ({ w, h }) => {
+  calculatorData.w = w
+  calculatorData.h = h
+}
 
 const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages : ['https://placehold.co/343x257'])
 
@@ -178,3 +201,11 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@import "tailwindcss" reference;
+
+.calculator__hint {
+  @apply text-slate-400 text-sm mt-1;
+}
+</style>

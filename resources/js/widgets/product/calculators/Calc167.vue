@@ -16,38 +16,31 @@
             <NumberInput v-model="calculatorData.w" label="Ширина, м" :min="0.1" :max="10" :step="0.1" />
             <NumberInput v-model="calculatorData.h" label="Высота, м" :min="0.1" :max="10" :step="0.1" />
           </div>
-          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="1000" />
         </div>
 
         <div class="calculator__options">
           <FilterButtons
               v-if="options.plenka"
               v-model="calculatorData.plenka"
-              label="Пленка"
+              label="Плёнка"
               :options="options.plenka"
-              :has-help="true"
           />
           <FilterButtons
               v-if="options.sposob"
               v-model="calculatorData.sposob"
-              label="Способ наклеивания"
+              label="Способ наклейки"
               :options="options.sposob"
-              :has-help="true"
           />
         </div>
 
-        <div class="calculator__services">
-          <div class="calculator__services-header">
-            <span class="calculator__services-label">Параметры изготовления</span>
-          </div>
-          <div class="calculator__services-list">
-            <ToggleSwitch
-                v-model="calculatorData.cut"
-                label="Вырезать по контуру"
-                help-title="Вырезать по контуру"
-                help-description="Контурная резка аппликации по форме изображения."
-            />
-          </div>
+        <ToggleSwitch
+            v-model="calculatorData.cut"
+            label="Вырезать по контуру"
+        />
+
+        <div class="calculator__quantity">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="1000" />
+          <span class="calculator__hint">Чем больше, тем дешевле</span>
         </div>
 
         <InfoTooltip />
@@ -210,3 +203,11 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@import "tailwindcss" reference;
+
+.calculator__hint {
+  @apply text-slate-400 text-sm mt-1;
+}
+</style>

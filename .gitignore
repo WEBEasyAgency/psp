@@ -34,3 +34,7 @@ GITHUB_DEPLOY_KEY.txt
 
 .gemini/
 gha-creds-*.json
+
+# Temporary files
+/new-images/
+PENDING_TASKS.md

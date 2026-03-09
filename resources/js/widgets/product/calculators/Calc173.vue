@@ -11,10 +11,16 @@
       </div>
 
       <div class="calculator__right">
+        <SizePresets
+            v-model="activePreset"
+            :presets="sizePresets"
+            @select="applyPreset"
+        />
+
         <div class="calculator__params">
           <div class="calculator__dims-row">
-            <NumberInput v-model="calculatorData.w" label="Ширина, см" :min="5" :max="200" />
-            <NumberInput v-model="calculatorData.h" label="Высота, см" :min="5" :max="200" />
+            <NumberInput v-model="calculatorData.w" label="Ширина, см" :min="5" :max="200" @update:modelValue="activePreset = null" />
+            <NumberInput v-model="calculatorData.h" label="Высота, см" :min="5" :max="200" @update:modelValue="activePreset = null" />
           </div>
         </div>
 
@@ -24,37 +30,35 @@
               v-model="calculatorData.thick"
               label="Толщина пластика"
               :options="options.thick"
-              :has-help="true"
           />
         </div>
 
-        <div class="calculator__services">
-          <div class="calculator__services-header">
-            <span class="calculator__services-label">Параметры изготовления</span>
-          </div>
-          <div class="calculator__services-list">
-            <ToggleSwitch
-                v-model="calculatorData.round"
-                label="Скругление углов"
-                help-title="Скругление углов"
-                help-description="Скругление острых углов пластика."
-            />
-            <ToggleSwitch
-                v-model="calculatorData.skotch"
-                label="Двусторонний скотч"
-                help-title="Двусторонний скотч"
-                help-description="Прочный двусторонний скотч для крепления таблички к стене."
-            />
-            <ToggleSwitch
-                v-model="calculatorData.profil"
-                label="Профиль Nielsen"
-                help-title="Профиль Nielsen"
-                help-description="Обрамление декоративным алюминиевым профилем Nielsen со скрытым креплением."
-            />
-          </div>
+        <div class="calculator__toggles">
+          <ToggleSwitch
+              v-model="calculatorData.round"
+              label="Скругление углов"
+              help-title="Скругление углов"
+              help-description="Скругление острых углов пластика."
+          />
+          <ToggleSwitch
+              v-model="calculatorData.skotch"
+              label="Двусторонний скотч"
+              help-title="Двусторонний скотч"
+              help-description="Прочный двусторонний скотч для крепления таблички к стене."
+          />
+          <ToggleSwitch
+              v-model="calculatorData.profil"
+              label="Обрамление алюминиевым профилем"
+              help-title="Обрамление профилем"
+              help-description="Обрамление декоративным алюминиевым профилем по периметру."
+          />
         </div>
 
-        <NumberInput v-model="calculatorData.num" label="Количество" :min="1" :max="100" />
+        <div class="calculator__quantity">
+          <NumberInput v-model="calculatorData.num" label="Количество, шт." :min="1" :max="100" />
+          <span class="calculator__hint">Чем больше, тем дешевле</span>
+        </div>
+
         <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
@@ -78,6 +82,7 @@ import ImageGallery from '@/shared/ui/ImageGallery.vue'
 import NumberInput from '@/shared/ui/NumberInput.vue'
 import FilterButtons from '@/shared/ui/FilterButtons.vue'
 import ToggleSwitch from '@/shared/ui/ToggleSwitch.vue'
+import SizePresets from '@/shared/ui/SizePresets.vue'
 import CalculatorAction from './components/CalculatorAction.vue'
 import InfoTooltip from '@/shared/ui/InfoTooltip.vue'
 import { useEditMode } from '@/shared/composables/useEditMode'
@@ -93,6 +98,13 @@ const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
+const activePreset = ref(null)
+
+const sizePresets = [
+  { label: 'A5', w: 15, h: 21 },
+  { label: 'A4', w: 21, h: 30 },
+  { label: 'A3', w: 30, h: 42 }
+]
 
 const options = reactive({
   thick: []
@@ -109,6 +121,11 @@ const calculatorData = reactive({
   skotch: true,
   profil: false
 })
+
+const applyPreset = ({ w, h }) => {
+  calculatorData.w = w
+  calculatorData.h = h
+}
 
 const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages : ['https://placehold.co/343x257'])
 
@@ -217,3 +234,15 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@import "tailwindcss" reference;
+
+.calculator__toggles {
+  @apply flex flex-col gap-4;
+}
+
+.calculator__hint {
+  @apply text-slate-400 text-sm mt-1;
+}
+</style>
