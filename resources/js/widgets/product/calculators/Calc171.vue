@@ -12,27 +12,31 @@
 
       <div class="calculator__right">
         <div class="letters-block">
-          <TextInput
-              v-model="textValue"
-              label="Текст надписи"
-              placeholder="Кафе"
-              class="letters-block__text"
-          />
-          <NumberInput
-              v-model="calculatorData.num"
-              label="Количество букв"
-              :min="1"
-              :max="100"
-              class="letters-block__count"
-          />
-          <div class="letters-block__or">или</div>
-          <NumberInput
-              v-model="calculatorData.h"
-              label="Высота букв, мм"
-              :min="30"
-              :max="2000"
-              class="letters-block__height"
-          />
+          <div class="letters-block__top">
+            <TextInput
+                v-model="calculatorData.text"
+                label="Текст надписи"
+                placeholder="Кафе"
+                class="letters-block__text"
+            />
+            <div class="letters-block__or">или</div>
+            <NumberInput
+                v-model="calculatorData.num"
+                label="Количество букв"
+                :min="1"
+                :max="100"
+                class="letters-block__count"
+            />
+          </div>
+          <div class="letters-block__bottom">
+            <NumberInput
+                v-model="calculatorData.h"
+                label="Высота букв, мм"
+                :min="30"
+                :max="2000"
+                class="letters-block__height"
+            />
+          </div>
         </div>
 
         <div class="calculator__options">
@@ -101,7 +105,6 @@ const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
 
-const textValue = ref('')
 const scotchToggle = ref(false)
 const shablonToggle = ref(false)
 
@@ -115,7 +118,8 @@ const options = reactive({
 const rawApiOptions = reactive({})
 
 const calculatorData = reactive({
-  num: 5,
+  text: '',
+  num: 4,
   h: 50,
   thick: null,
   color: null,
@@ -123,11 +127,17 @@ const calculatorData = reactive({
   shablon: null
 })
 
+const actualLetterCount = computed(() => {
+  if (calculatorData.text && calculatorData.text.trim().length > 0) {
+    return calculatorData.text.replace(/\s/g, '').length
+  }
+  return calculatorData.num || 1
+})
+
 // When text changes, update num (character count)
-watch(textValue, (val) => {
-  const chars = val.replace(/\s/g, '').length
-  if (chars > 0) {
-    calculatorData.num = chars
+watch(() => calculatorData.text, (val) => {
+  if (val && val.trim().length > 0) {
+    calculatorData.num = val.replace(/\s/g, '').length
   }
 })
 
@@ -164,14 +174,15 @@ const cartItemImage = computed(() => {
 
 const calculatorDataForCart = computed(() => ({
   params: [
-    { variable: 'num', type: 1, value: calculatorData.num },
+    { variable: 'num', type: 1, value: actualLetterCount.value },
     { variable: 'h', type: 1, value: calculatorData.h },
     { variable: 'thick', type: 5, value: calculatorData.thick },
     { variable: 'color', type: 5, value: calculatorData.color },
     { variable: 'scotch', type: 5, value: calculatorData.scotch },
     { variable: 'shablon', type: 5, value: calculatorData.shablon }
   ],
-  mat_select_params: []
+  mat_select_params: [],
+  text: calculatorData.text
 }))
 
 const fetchCalculatorParams = async () => {
@@ -187,6 +198,8 @@ const fetchCalculatorParams = async () => {
     if (data.params) {
       data.params.forEach(p => {
         if (p.type === 1 && calculatorData[p.variable] !== undefined) {
+          // Не перезаписываем num из API, используем начальное значение 4
+          if (p.variable === 'num') return
           calculatorData[p.variable] = parseInt(p.default) || calculatorData[p.variable]
         }
         if (p.type === 5 && p.options && options[p.variable] !== undefined) {
@@ -213,7 +226,7 @@ const calculatePrice = async () => {
     }
 
     const params = [
-      { variable: 'num', type: 1, value: calculatorData.num },
+      { variable: 'num', type: 1, value: actualLetterCount.value },
       { variable: 'h', type: 1, value: calculatorData.h },
       { variable: 'thick', type: 5, value: getIndex('thick', calculatorData.thick) },
       { variable: 'color', type: 5, value: getIndex('color', calculatorData.color) },
@@ -251,43 +264,52 @@ onMounted(async () => {
 @import "tailwindcss" reference;
 
 .letters-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 12px;
-  grid-template-areas:
-    "text text"
-    "or or"
-    "count height";
+  @apply flex flex-col;
+  gap: 8px;
+}
+
+.letters-block__top {
+  @apply flex flex-col;
+  gap: 8px;
 }
 
 @media (min-width: 1280px) {
-  .letters-block {
-    grid-template-columns: 1fr auto;
-    gap: 8px 12px;
-    grid-template-areas:
-      "text count"
-      "or or"
-      "height height";
+  .letters-block__top {
+    @apply flex-row items-end;
+    gap: 12px;
   }
 }
 
 .letters-block__text {
-  grid-area: text;
-}
-
-.letters-block__count {
-  grid-area: count;
+  @apply flex-1;
 }
 
 .letters-block__or {
-  grid-area: or;
   font-size: 14px;
   color: #64748b;
   line-height: 1.4;
+  flex-shrink: 0;
 }
 
-.letters-block__height {
-  grid-area: height;
+@media (min-width: 1280px) {
+  .letters-block__or {
+    padding-bottom: 12px;
+  }
+}
+
+.letters-block__count {
+  flex-shrink: 0;
+}
+
+.letters-block__bottom {
+  @apply flex flex-row;
+  gap: 12px;
+}
+
+@media (max-width: 1279px) {
+  .letters-block__bottom {
+    max-width: 50%;
+  }
 }
 
 .calculator__row {
