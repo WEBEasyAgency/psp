@@ -27,6 +27,15 @@
     leading-5 xl:!text-base font-normal font-['Inter'] mt-[27px] pr-5 lg:mt-8 mb-4;
 }
 
+/* V2: описание по Figma — цвет #64748b, 16px, line-height 1.4 */
+.calculator--v2 .calculator__gallery-text {
+    color: #64748b !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0 !important;
+    padding-right: 0 !important;
+}
+
 .calculator__title {
     @apply text-[#1e3552]  text-[32px] leading-8 xl:text-[64px] font-medium font-['Inter'] xl:leading-[64px] bg-white;
     letter-spacing: -1.2px;
@@ -62,6 +71,12 @@
 
 .calculator__dims-row {
     @apply self-stretch inline-flex justify-start items-start gap-8 flex-wrap;
+}
+
+/* V2: W+H gap=12px, always one row */
+.calculator--v2 .calculator__dims-row {
+    gap: 12px !important;
+    flex-wrap: nowrap !important;
 }
 
 .field {
@@ -280,6 +295,22 @@
     opacity: 1 !important;
 }
 
+/* V2: Active state — border 1px #3c7bbb, bg transparent, text #2c619d */
+.calculator--v2 .filter-buttons__button--active {
+    background-color: transparent !important;
+    color: #2c619d !important;
+    border: 1px solid #3c7bbb !important;
+    outline: none !important;
+}
+
+.calculator--v2 .filter-buttons__button--active:hover:not(:disabled) {
+    background-color: #f0f4fa !important;
+    color: #2c619d !important;
+    border: 1px solid #3c7bbb !important;
+    outline: none !important;
+    opacity: 1 !important;
+}
+
 /* 5. Disable state - серый полупрозрачный */
 .filter-buttons__button:disabled {
     background-color: #f6f6f6 !important;
@@ -372,6 +403,158 @@ input[type="radio"]:checked::after {
 input[type="radio"]:disabled {
     opacity: 0.5 !important;
     cursor: not-allowed !important;
+}
+
+/* ================================================================
+   V2 OVERRIDES — Pixel-perfect стили для новых калькуляторов (162+)
+   Все значения из Figma node 512:2061
+   ================================================================ */
+
+/* Right column: w-624px, left column gap for description */
+@media (min-width: 1280px) {
+    .calculator--v2 .calculator__right {
+        width: 624px !important;
+    }
+    .calculator--v2 .calculator__left {
+        gap: 32px !important;
+    }
+    .calculator--v2 .calculator__gallery-text {
+        margin-top: 0 !important;
+    }
+}
+
+/* NumberInput: flex-grow равномерно в dims-row */
+.calculator--v2 .number-input {
+    width: auto !important;
+    flex: 1 0 0 !important;
+}
+
+.calculator--v2 .number-input {
+    align-items: flex-start !important;
+}
+
+.calculator--v2 .number-input__wrapper {
+    max-width: none !important;
+    align-self: flex-start !important;
+}
+
+/* ImageGallery: main h-319px на десктопе */
+@media (min-width: 1280px) {
+    .calculator--v2 .image-gallery__main {
+        height: 319px !important;
+    }
+}
+
+/* ImageGallery: thumbnails gap=12px, fixed width 73px */
+.calculator--v2 .image-gallery__thumbnails {
+    gap: 12px !important;
+}
+
+.calculator--v2 .image-gallery__thumbnail {
+    width: 73px !important;
+    flex: 0 0 73px !important;
+    height: auto !important;
+    aspect-ratio: 97/57 !important;
+}
+
+.calculator--v2 .image-gallery__thumbnail--active {
+    border: 3px solid #f6f6f6 !important;
+    outline: none !important;
+}
+
+/* FilterButtons: gap=16px между label и кнопками */
+.calculator--v2 .filter-buttons {
+    gap: 16px !important;
+}
+
+/* FilterButtons: label = 18px, medium, #282828 */
+.calculator--v2 .filter-buttons__label {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #282828 !important;
+    line-height: 1.4 !important;
+}
+
+/* FilterButtons: options gap=12px */
+.calculator--v2 .filter-buttons__options {
+    gap: 12px !important;
+}
+
+/* FilterButtons: button = h-44px, px-16px, py-8px, rounded-8px */
+.calculator--v2 .filter-buttons__button {
+    height: 44px !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+}
+
+/* FilterButtons: button text = 14px */
+.calculator--v2 .filter-buttons__button-text {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+}
+
+/* CheckboxGroup: gap=16px между label и чекбоксами */
+.calculator--v2 .checkbox-group {
+    gap: 16px !important;
+}
+
+/* CheckboxGroup: label = 18px, medium, #282828 */
+.calculator--v2 .checkbox-group__label {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #282828 !important;
+    line-height: 1.4 !important;
+}
+
+/* CheckboxGroup: options gap=12px */
+.calculator--v2 .checkbox-group__options {
+    gap: 12px !important;
+}
+
+/* CheckboxGroup: скрыть нативный чекбокс (sr-only), т.к. глобальный
+   input[type="checkbox"] ставит position:relative !important */
+.calculator--v2 .checkbox-group__input {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border-width: 0 !important;
+}
+
+/* CheckboxGroup: option gap=8px, text = 16px #282828 */
+.calculator--v2 .checkbox-group__option {
+    gap: 8px !important;
+}
+
+.calculator--v2 .checkbox-group__text {
+    font-size: 16px !important;
+    color: #282828 !important;
+    line-height: 1.4 !important;
+}
+
+/* ToggleSwitch: text = 16px #282828 */
+.calculator--v2 .toggle-switch__label {
+    font-size: 16px !important;
+    color: #282828 !important;
+    line-height: 1.4 !important;
+}
+
+/* ToggleSwitch wrapper: h-44px, items-center */
+.calculator--v2 .toggle-switch-wrapper {
+    height: 44px !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+/* InfoTooltip: text style match */
+.calculator--v2 .info-tooltip__text {
+    font-size: 14px !important;
+    color: #2c619d !important;
+    line-height: 1.4 !important;
 }
 
 /* Стили для label.checkbox (legacy layout) */

@@ -1,16 +1,17 @@
 <template>
-  <div class="calculator">
+  <div class="calculator calculator--v2">
     <h1 class="calculator__title">Баннер с люверсами</h1>
 
     <div class="calculator__content">
       <div class="calculator__left">
         <div class="calculator__gallery">
-          <ImageGallery :images="galleryImages" />
+          <ImageGallery :images="galleryImages" :max-visible="6" />
         </div>
-        <div class="calculator__gallery-text text-slate-500 text-sm font-normal font-['Inter'] leading-5" v-html="props.description"></div>
+        <div class="calculator__gallery-text" v-html="props.description"></div>
       </div>
 
       <div class="calculator__right">
+        <!-- Ширина + Высота -->
         <div class="calculator__params">
           <div class="calculator__dims-row">
             <NumberInput v-model="calculatorData.w" label="Ширина, м" :min="0.3" :max="50" :step="0.1" />
@@ -18,54 +19,60 @@
           </div>
         </div>
 
+        <!-- Баннерная ткань + Печать -->
         <div class="calculator__options">
           <FilterButtons
-              v-if="options.banner"
+              v-if="options.banner.length"
               v-model="calculatorData.banner"
               label="Баннерная ткань"
               :options="options.banner"
           />
           <FilterButtons
-              v-if="options.print"
+              v-if="options.print.length"
               v-model="calculatorData.print"
               label="Печать"
               :options="options.print"
           />
         </div>
 
-        <ToggleSwitch
-            v-model="calculatorData.need_prokleyka"
-            label="Усиление края по периметру"
-        />
+        <!-- Усиление края по периметру -->
+        <div class="toggle-section">
+          <div class="toggle-section__label">Усиление края по периметру</div>
+          <ToggleSwitch
+              v-model="calculatorData.need_prokleyka"
+              label="Усилить"
+          />
+        </div>
 
+        <!-- Шаг установки люверсов + Загиб -->
         <div class="calculator__options">
           <FilterButtons
-              v-if="options.luvers_space"
-              v-model="calculatorData.luvers_space"
+              v-if="luversOptions.length"
+              v-model="selectedLuvers"
               label="Шаг установки люверсов"
-              :options="options.luvers_space"
+              :options="luversOptions"
           />
           <FilterButtons
-              v-if="options.zagib"
+              v-if="options.zagib.length"
               v-model="calculatorData.zagib"
-              label="Загиб баннера в карман"
+              label="Загиб баннера в карман:"
               :options="options.zagib"
           />
         </div>
 
+        <!-- Дополнительно (чекбоксы без "Нет") -->
         <CheckboxGroup
-            v-if="options.added && options.added.length > 0"
+            v-if="addedCheckboxOptions.length > 0"
             v-model="selectedAdded"
             label="Дополнительно"
             :options="addedCheckboxOptions"
         />
 
-        <div class="calculator__quantity">
-          <NumberInput v-model="calculatorData.added_num" label="Количество, шт." :min="1" :max="1000" />
-          <span class="calculator__hint">Чем больше, тем дешевле</span>
+        <!-- Количество -->
+        <div class="quantity-block">
+          <NumberInput v-model="calculatorData.added_num" label="Количество, шт" :min="1" :max="1000" />
+          <InfoTooltip />
         </div>
-
-        <InfoTooltip />
         <CalculatorAction
             :result="calculationResult"
             :loading="isCalculating"
@@ -105,6 +112,9 @@ const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
 
+// Виртуальная опция "Нет" для люверсов (не из API)
+const LUVERS_NONE = '__none__'
+const selectedLuvers = ref(LUVERS_NONE)
 const selectedAdded = ref([])
 
 const options = reactive({
@@ -131,11 +141,16 @@ const calculatorData = reactive({
   added_num: 1
 })
 
+// Люверсы: "Нет" + опции из API
+const luversOptions = computed(() => {
+  return [{ value: LUVERS_NONE, label: 'Нет' }, ...options.luvers_space]
+})
+
+// Чекбоксы "Дополнительно": фильтруем "Нет" из API опций
 const addedCheckboxOptions = computed(() => {
-  return options.added.map(opt => ({
-    value: opt.value,
-    label: opt.label
-  }))
+  return options.added
+    .filter(opt => opt.value !== 'Нет')
+    .map(opt => ({ value: opt.value, label: opt.label }))
 })
 
 const galleryImages = ref(props.initialImages.length > 0 ? props.initialImages : ['https://placehold.co/343x257'])
@@ -163,10 +178,10 @@ const calculatorDataForCart = computed(() => ({
     { variable: 'banner', type: apiParamTypes.banner || 4, value: calculatorData.banner },
     { variable: 'print', type: 5, value: calculatorData.print },
     { variable: 'need_prokleyka', type: 2, value: calculatorData.need_prokleyka ? 1 : 0 },
-    { variable: 'need_luvers', type: 2, value: calculatorData.need_luvers ? 1 : 0 },
-    { variable: 'luvers_space', type: 5, value: calculatorData.luvers_space },
+    { variable: 'need_luvers', type: 2, value: selectedLuvers.value !== LUVERS_NONE ? 1 : 0 },
+    { variable: 'luvers_space', type: 5, value: selectedLuvers.value !== LUVERS_NONE ? selectedLuvers.value : null },
     { variable: 'zagib', type: 5, value: calculatorData.zagib },
-    { variable: 'added', type: 5, value: calculatorData.added }
+    { variable: 'added', type: 5, value: selectedAdded.value.length > 0 ? selectedAdded.value[selectedAdded.value.length - 1] : 'Нет' }
   ],
   mat_select_params: []
 }))
@@ -195,7 +210,10 @@ const fetchCalculatorParams = async () => {
           rawApiOptions[p.variable] = p.options
           const opts = p.options.map(o => ({ value: o, label: o }))
           options[p.variable] = opts
-          if (opts.length > 0) calculatorData[p.variable] = opts[0].value
+          // luvers_space: не устанавливаем default, "Нет" выбран по умолчанию
+          if (p.variable !== 'luvers_space') {
+            if (opts.length > 0) calculatorData[p.variable] = opts[0].value
+          }
         }
       })
     }
@@ -214,9 +232,14 @@ const calculatePrice = async () => {
       return idx === -1 ? 0 : idx
     }
 
-    // Determine need_luvers from luvers_space (if not "Нет", luvers are needed)
-    const luversIndex = getIndex('luvers_space', calculatorData.luvers_space)
-    const needLuvers = luversIndex > 0 ? 1 : 0
+    // need_luvers и luvers_space из selectedLuvers
+    const needLuvers = selectedLuvers.value !== LUVERS_NONE ? 1 : 0
+    const luversIndex = needLuvers ? getIndex('luvers_space', selectedLuvers.value) : 0
+
+    // added: из selectedAdded чекбоксов
+    const addedValue = selectedAdded.value.length > 0
+      ? selectedAdded.value[selectedAdded.value.length - 1]
+      : 'Нет'
 
     const params = [
       { variable: 'w', type: 1, value: calculatorData.w },
@@ -227,7 +250,7 @@ const calculatePrice = async () => {
       { variable: 'need_luvers', type: 2, value: needLuvers },
       { variable: 'luvers_space', type: 5, value: luversIndex },
       { variable: 'zagib', type: 5, value: getIndex('zagib', calculatorData.zagib) },
-      { variable: 'added', type: 5, value: getIndex('added', calculatorData.added) }
+      { variable: 'added', type: 5, value: getIndex('added', addedValue) }
     ]
 
     const response = await fetch(`/backend/api/calc/${calcId}/run`, {
@@ -259,7 +282,20 @@ onMounted(async () => {
 <style scoped>
 @import "tailwindcss" reference;
 
-.calculator__hint {
-  @apply text-slate-400 text-sm mt-1;
+.toggle-section {
+  @apply flex flex-col;
+  gap: 16px;
+}
+
+.toggle-section__label {
+  font-size: 18px;
+  font-weight: 500;
+  color: #282828;
+  line-height: 1.4;
+}
+
+.quantity-block {
+  @apply flex flex-col;
+  gap: 12px;
 }
 </style>
