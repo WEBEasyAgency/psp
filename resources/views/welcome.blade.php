@@ -47,5 +47,31 @@
     <script src="/layout/js/libs.min.js"></script>
     {{-- app.min.js: инициализация Swiper слайдеров и другие обработчики --}}
     <script src="/layout/js/app.min.js"></script>
+    {{-- Пересоздаём Blade-слайдеры с поддержкой mousewheel (тачпад/трекпад) --}}
+    <script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            var mw = { forceToAxis: true, releaseOnEdges: true };
+            var fm = { enabled: true, sticky: false };
+            var reinit = function(selector, nav) {
+                var el = document.querySelector(selector);
+                if (!el || !el.swiper) return;
+                var sw = el.swiper;
+                var opts = {
+                    slidesPerView: sw.params.slidesPerView,
+                    spaceBetween: sw.params.spaceBetween,
+                    mousewheel: mw,
+                    freeMode: fm,
+                    navigation: nav
+                };
+                sw.destroy(true, true);
+                new Swiper(selector, opts);
+            };
+            reinit('.cases-slider', { nextEl: '.cases-block .next', prevEl: '.cases-block .prev' });
+            reinit('.feedback-slider', { nextEl: '.feedback-block .next', prevEl: '.feedback-block .prev' });
+            reinit('.clients-slider', { nextEl: '.clients-block .next', prevEl: '.clients-block .prev' });
+        }, 0);
+    });
+    </script>
 </body>
 </html>
