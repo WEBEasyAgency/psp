@@ -31,6 +31,8 @@
         :modules="modules"
         :slides-per-view="'auto'"
         :space-between="12"
+        :mousewheel="{ forceToAxis: true, releaseOnEdges: true }"
+        :free-mode="{ enabled: true, sticky: false }"
         class="feedback-slider"
         @swiper="onSwiper"
       >
@@ -64,10 +66,10 @@
 <script setup>
 import { ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Mousewheel, FreeMode } from 'swiper/modules'
 import 'swiper/css'
 
-const modules = [Navigation]
+const modules = [Navigation, Mousewheel, FreeMode]
 const swiperInstance = ref(null)
 
 const onSwiper = (swiper) => {

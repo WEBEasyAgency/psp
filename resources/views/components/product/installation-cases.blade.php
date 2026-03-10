@@ -198,6 +198,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 new Swiper(activeSlider, {
                     slidesPerView: 1,
                     spaceBetween: 16,
+                    mousewheel: { forceToAxis: true, releaseOnEdges: true },
+                    freeMode: { enabled: true, sticky: false },
                     navigation: {
                         nextEl: '.cases-next',
                         prevEl: '.cases-prev',

@@ -24,6 +24,8 @@
               :modules="modules"
               :slides-per-view="'auto'"
               :space-between="12"
+              :mousewheel="{ forceToAxis: true, releaseOnEdges: true }"
+              :free-mode="{ enabled: true, sticky: false }"
               @swiper="onSwiper"
             >
               <SwiperSlide v-for="(imgSrc, index) in images" :key="index">
@@ -42,7 +44,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Mousewheel, FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import { installationCasesImages } from '@/shared/data/installationCasesImages.js'
 
@@ -53,7 +55,7 @@ const props = defineProps({
   }
 })
 
-const modules = [Navigation]
+const modules = [Navigation, Mousewheel, FreeMode]
 const swiperInstance = ref(null)
 
 const onSwiper = (swiper) => {

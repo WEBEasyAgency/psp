@@ -139,6 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
         new Swiper(feedbackSlider, {
             slidesPerView: 1,
             spaceBetween: 16,
+            mousewheel: { forceToAxis: true, releaseOnEdges: true },
+            freeMode: { enabled: true, sticky: false },
             navigation: {
                 nextEl: '.feedback-next',
                 prevEl: '.feedback-prev',
