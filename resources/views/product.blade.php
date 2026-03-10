@@ -32,14 +32,9 @@
             pointer-events: none;
         }
 
-        /* Hide Vue app initially */
+        /* App visible for FCP; skeleton covers visually */
         #app {
-            opacity: 0;
             transition: opacity 0.3s ease-in;
-        }
-
-        #app.loaded {
-            opacity: 1;
         }
 
         .skeleton {
@@ -408,9 +403,6 @@
             if (!header || !calculator) return;
 
             skeletonHidden = true;
-
-            // Показываем приложение
-            app.classList.add('loaded');
 
             // Скрываем skeleton
             skeleton.classList.add('hidden');
