@@ -131,7 +131,7 @@ const handleTouchEnd = () => {
 @import "tailwindcss" reference;
 
 .image-gallery {
-  @apply flex flex-col gap-3;
+  @apply flex flex-col gap-3 overflow-hidden max-w-full;
 }
 
 .image-gallery__main {
@@ -149,7 +149,7 @@ const handleTouchEnd = () => {
 }
 
 .image-gallery__thumbnails {
-  @apply w-full inline-flex items-center gap-2 lg:gap-3;
+  @apply w-full flex items-center gap-2 lg:gap-3 overflow-hidden;
 }
 
 .image-gallery__arrow {

@@ -451,10 +451,15 @@ input[type="radio"]:disabled {
 }
 
 .calculator--v2 .image-gallery__thumbnail {
-    width: 73px !important;
-    flex: 0 0 73px !important;
     height: auto !important;
     aspect-ratio: 97/57 !important;
+}
+
+@media (min-width: 1280px) {
+    .calculator--v2 .image-gallery__thumbnail {
+        width: 73px !important;
+        flex: 0 0 73px !important;
+    }
 }
 
 .calculator--v2 .image-gallery__thumbnail--active {
