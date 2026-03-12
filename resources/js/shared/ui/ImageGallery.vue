@@ -7,9 +7,9 @@
         @touchend="handleTouchEnd"
     >
       <img
-          :src="optimizedSrc(currentImage, 768)"
+          :src="optimizedSrc(currentImage, 480)"
           :srcset="mainSrcset"
-          sizes="(max-width: 768px) 100vw, 700px"
+          sizes="(max-width: 1279px) calc(100vw - 24px), 568px"
           alt=""
           class="image-gallery__main-image"
           fetchpriority="high"
@@ -76,7 +76,7 @@ const effectiveMax = computed(() => {
 });
 
 const currentImage = computed(() => props.images[currentIndex.value] || '');
-const mainSrcset = computed(() => optimizedSrcset(currentImage.value, [480, 768, 1024]));
+const mainSrcset = computed(() => optimizedSrcset(currentImage.value, [480, 768, 1200]));
 
 const visibleImages = computed(() => {
   return props.images.slice(thumbOffset.value, thumbOffset.value + effectiveMax.value);
