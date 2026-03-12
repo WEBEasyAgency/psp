@@ -815,3 +815,6 @@ Route::get('/optimized-img/{path}', [ImageController::class, 'serveOptimized'])
 // Admin route to batch convert all gallery images to WebP
 Route::get('/admin/generate-webp', [ImageController::class, 'generateWebPBatch'])
     ->name('image.generate-webp');
+
+// Diagnostic: check WebP support on server
+Route::get('/admin/webp-diagnose', [ImageController::class, 'diagnose']);

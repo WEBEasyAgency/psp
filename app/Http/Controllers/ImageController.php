@@ -3,88 +3,77 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Laravel\Facades\Image;
 
 class ImageController extends Controller
 {
     /**
-     * Serve optimized WebP image with fallback to original format
+     * Serve optimized WebP image with resize support
      */
     public function serveOptimized(Request $request, $path)
     {
-        // Decode the path (handle Cyrillic characters)
         $path = urldecode($path);
-
-        // Full path to original image
         $originalPath = public_path('img/' . $path);
 
-        // Check if original exists
         if (!file_exists($originalPath)) {
-            abort(404, 'Image not found');
+            abort(404, 'Image not found: ' . $path);
         }
 
-        // Get requested params
         $width = $request->get('w', null);
-        $quality = (int) $request->get('q', 80);
-
-        // Check if WebP is supported by browser
+        $quality = (int) $request->get('q', 90);
         $acceptsWebP = str_contains($request->header('Accept', ''), 'image/webp');
 
-        // Try WebP conversion, fall back to original on any error
+        // Build WebP cache path
+        $suffix = $width ? ".{$width}w" : '';
+        $webpPath = public_path('storage/webp/' . preg_replace('/\.(jpg|jpeg|png)$/i', "{$suffix}.q{$quality}.webp", $path));
+
+        // Create cache directory
+        $webpDir = dirname($webpPath);
+        if (!is_dir($webpDir)) {
+            mkdir($webpDir, 0775, true);
+        }
+
+        // Serve cached WebP if fresh
+        if ($acceptsWebP && file_exists($webpPath) && filemtime($webpPath) >= filemtime($originalPath)) {
+            return response()->file($webpPath, [
+                'Content-Type' => 'image/webp',
+                'Cache-Control' => 'public, max-age=31536000, immutable',
+            ]);
+        }
+
+        // Convert to WebP
         if ($acceptsWebP) {
-            try {
-                // Build WebP cache path
-                $suffix = $width ? ".{$width}w" : '';
-                $webpPath = public_path('storage/webp/' . preg_replace('/\.(jpg|jpeg|png)$/i', "{$suffix}.webp", $path));
+            $image = Image::read($originalPath);
 
-                // Create directory if needed
-                $webpDir = dirname($webpPath);
-                if (!is_dir($webpDir)) {
-                    @mkdir($webpDir, 0775, true);
-                }
-
-                // If cached WebP exists and is fresh, serve it
-                if (file_exists($webpPath) && filemtime($webpPath) >= filemtime($originalPath)) {
-                    return $this->serveWebP($webpPath);
-                }
-
-                // Convert if directory is writable
-                if (is_dir($webpDir) && is_writable($webpDir)) {
-                    $image = \Intervention\Image\Laravel\Facades\Image::read($originalPath);
-
-                    if ($width && is_numeric($width)) {
-                        $image->scale(width: (int) $width);
-                    }
-
-                    $image->toWebp($quality)->save($webpPath);
-
-                    return $this->serveWebP($webpPath);
-                }
-            } catch (\Throwable $e) {
-                \Log::warning('WebP conversion failed for ' . $path . ': ' . $e->getMessage());
-            }
-        }
-
-        // Serve resized original if width requested (without WebP)
-        if ($width && is_numeric($width)) {
-            try {
-                $image = \Intervention\Image\Laravel\Facades\Image::read($originalPath);
+            if ($width && is_numeric($width)) {
                 $image->scale(width: (int) $width);
-                $mimeType = mime_content_type($originalPath);
-                $ext = pathinfo($originalPath, PATHINFO_EXTENSION);
-                $encoded = match (strtolower($ext)) {
-                    'png' => $image->toPng(),
-                    default => $image->toJpeg($quality),
-                };
-
-                return response($encoded->toString())
-                    ->header('Content-Type', $mimeType)
-                    ->header('Cache-Control', 'public, max-age=31536000, immutable');
-            } catch (\Throwable $e) {
-                // Fall through to serve original
             }
+
+            $image->toWebp($quality)->save($webpPath);
+
+            return response()->file($webpPath, [
+                'Content-Type' => 'image/webp',
+                'Cache-Control' => 'public, max-age=31536000, immutable',
+            ]);
         }
 
-        // Ultimate fallback: serve original file as-is
+        // No WebP support — serve resized original
+        if ($width && is_numeric($width)) {
+            $image = Image::read($originalPath);
+            $image->scale(width: (int) $width);
+
+            $ext = strtolower(pathinfo($originalPath, PATHINFO_EXTENSION));
+            $encoded = match ($ext) {
+                'png' => $image->toPng(),
+                default => $image->toJpeg($quality),
+            };
+
+            return response($encoded->toString())
+                ->header('Content-Type', mime_content_type($originalPath))
+                ->header('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+
+        // No resize, no WebP — serve original as-is
         return response()->file($originalPath, [
             'Content-Type' => mime_content_type($originalPath),
             'Cache-Control' => 'public, max-age=31536000, immutable',
@@ -92,18 +81,51 @@ class ImageController extends Controller
     }
 
     /**
-     * Serve a WebP file with proper headers
+     * Diagnostic: check if WebP conversion is possible on this server
      */
-    private function serveWebP(string $path)
+    public function diagnose()
     {
-        return response()->file($path, [
-            'Content-Type' => 'image/webp',
-            'Cache-Control' => 'public, max-age=31536000, immutable',
-        ]);
+        $checks = [];
+
+        // GD
+        $checks['gd_loaded'] = extension_loaded('gd');
+        $checks['gd_info'] = function_exists('gd_info') ? gd_info() : 'gd_info() not available';
+        $checks['gd_webp'] = function_exists('gd_info') && !empty(gd_info()['WebP Support']);
+
+        // Intervention Image
+        try {
+            $class = \Intervention\Image\Laravel\Facades\Image::getFacadeRoot();
+            $checks['intervention_loaded'] = $class !== null;
+            $checks['intervention_class'] = get_class($class);
+        } catch (\Throwable $e) {
+            $checks['intervention_loaded'] = false;
+            $checks['intervention_error'] = $e->getMessage();
+        }
+
+        // Storage writable
+        $webpDir = public_path('storage/webp');
+        $checks['webp_dir_exists'] = is_dir($webpDir);
+        $checks['webp_dir_writable'] = is_dir($webpDir) && is_writable($webpDir);
+
+        // Test conversion
+        $testImage = public_path('img/dest/type1.jpg');
+        $checks['test_image_exists'] = file_exists($testImage);
+        if (file_exists($testImage)) {
+            try {
+                $img = Image::read($testImage);
+                $img->scale(width: 100);
+                $webp = $img->toWebp(90);
+                $checks['test_conversion'] = 'OK, size: ' . strlen($webp->toString()) . ' bytes';
+            } catch (\Throwable $e) {
+                $checks['test_conversion'] = 'FAILED: ' . $e->getMessage();
+            }
+        }
+
+        return response()->json($checks, 200, [], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     /**
-     * Generate all WebP versions for gallery images (admin endpoint)
+     * Batch convert all gallery images to WebP
      */
     public function generateWebPBatch()
     {
@@ -131,15 +153,15 @@ class ImageController extends Controller
 
                     $webpDir = dirname($webpPath);
                     if (!is_dir($webpDir)) {
-                        @mkdir($webpDir, 0775, true);
+                        mkdir($webpDir, 0775, true);
                     }
 
                     if (file_exists($webpPath) && filemtime($webpPath) >= filemtime($originalPath)) {
                         continue;
                     }
 
-                    $image = \Intervention\Image\Laravel\Facades\Image::read($originalPath);
-                    $image->toWebp(80)->save($webpPath);
+                    $image = Image::read($originalPath);
+                    $image->toWebp(90)->save($webpPath);
 
                     $processed[] = $relativePath;
                 } catch (\Throwable $e) {

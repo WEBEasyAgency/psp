@@ -31,8 +31,8 @@
               <SwiperSlide v-for="(imgSrc, index) in images" :key="index">
                 <div class="img">
                   <img
-                      :src="optimizedSrc(imgSrc, 320)"
-                      :srcset="optimizedSrcset(imgSrc, [320, 480, 768])"
+                      :src="optimizedSrc(imgSrc, 768)"
+                      :srcset="optimizedSrcset(imgSrc, [320, 768])"
                       sizes="(max-width: 768px) 241px, 692px"
                       alt="Пример установки"
                       loading="lazy"

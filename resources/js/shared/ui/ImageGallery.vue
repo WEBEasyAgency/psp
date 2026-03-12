@@ -7,7 +7,7 @@
         @touchend="handleTouchEnd"
     >
       <img
-          :src="optimizedSrc(currentImage, 480)"
+          :src="optimizedSrc(currentImage, 768)"
           :srcset="mainSrcset"
           sizes="(max-width: 768px) 100vw, 700px"
           alt=""
