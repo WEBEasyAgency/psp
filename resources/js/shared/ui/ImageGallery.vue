@@ -6,14 +6,14 @@
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
     >
-      <picture>
-        <source
-            type="image/webp"
-            :srcset="mainSrcset"
-            sizes="(max-width: 768px) 100vw, 50vw"
-        />
-        <img :src="optimizedSrc(currentImage, 768)" alt="" class="image-gallery__main-image" />
-      </picture>
+      <img
+          :src="optimizedSrc(currentImage, 480)"
+          :srcset="mainSrcset"
+          sizes="(max-width: 768px) 100vw, 700px"
+          alt=""
+          class="image-gallery__main-image"
+          fetchpriority="high"
+      />
     </div>
     <div class="image-gallery__thumbnails">
       <button
@@ -33,7 +33,7 @@
         :class="currentIndex === (thumbOffset + localIdx) ? 'image-gallery__thumbnail--active' : ''"
         @click="selectImage(thumbOffset + localIdx)"
       >
-        <img :src="optimizedSrc(image, 100)" alt="" class="image-gallery__thumbnail-image" />
+        <img :src="optimizedSrc(image, 100)" alt="" class="image-gallery__thumbnail-image" loading="lazy" />
       </div>
 
       <button

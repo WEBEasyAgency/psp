@@ -30,14 +30,13 @@
             >
               <SwiperSlide v-for="(imgSrc, index) in images" :key="index">
                 <div class="img">
-                  <picture>
-                    <source
-                        type="image/webp"
-                        :srcset="optimizedSrcset(imgSrc, [320, 480, 768])"
-                        sizes="(max-width: 768px) 241px, 692px"
-                    />
-                    <img :src="optimizedSrc(imgSrc, 768)" alt="Пример установки">
-                  </picture>
+                  <img
+                      :src="optimizedSrc(imgSrc, 320)"
+                      :srcset="optimizedSrcset(imgSrc, [320, 480, 768])"
+                      sizes="(max-width: 768px) 241px, 692px"
+                      alt="Пример установки"
+                      loading="lazy"
+                  >
                 </div>
               </SwiperSlide>
             </Swiper>

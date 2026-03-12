@@ -30,10 +30,7 @@
             <div class="name-block">
               <div class="name">{{ item.name }}</div>
               <div class="img">
-                <picture>
-                  <source type="image/webp" :srcset="optimizedSrc(item.image, 300)" />
-                  <img :src="optimizedSrc(item.image, 300)" alt="">
-                </picture>
+                <img :src="optimizedSrc(item.image, 300)" alt="">
               </div>
             </div>
             <div class="text">
