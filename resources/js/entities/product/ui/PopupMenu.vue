@@ -105,6 +105,7 @@
                             <ul>
                                 <li><a href="/product/146">С бортом из алюминия</a></li>
                                 <li><a href="/product/155">Со световым бортом</a></li>
+                                <li><a href="/product/171">Пластиковые буквы</a></li>
                             </ul>
                         </div>
                     </li>
@@ -150,16 +151,63 @@
                                 <span>Баннеры</span>
                             </div>
                             <ul>
-                                <li><a class="disabled">Баннер с люверсами (скоро)</a></li>
-                                <li><a class="disabled">Баннер на раме (скоро)</a></li>
+                                <li><a href="/product/162">Баннер с люверсами</a></li>
+                                <li><a href="/product/163">Баннер на раме</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="parent">
+                        <a href="#">Плакаты</a>
+                        <div class="child">
+                            <div class="child-back">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Плакаты</span>
+                            </div>
+                            <ul>
+                                <li><a href="/product/164">Плакат на постерной бумаге</a></li>
+                                <li><a href="/product/166">Плакат для лайтбоксов</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="parent">
+                        <a href="#">Панели</a>
+                        <div class="child">
+                            <div class="child-back">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Панели</span>
+                            </div>
+                            <ul>
+                                <li><a href="/product/169">Панель-кронштейн круглый</a></li>
+                                <li><a href="/product/170">Панель-кронштейн прямоугольный</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="parent">
+                        <a href="#">Режим работы</a>
+                        <div class="child">
+                            <div class="child-back">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 19L8 12L15 5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Режим работы</span>
+                            </div>
+                            <ul>
+                                <li><a href="/product/172">Акриловый Премиум</a></li>
+                                <li><a href="/product/173">Пластиковый</a></li>
+                                <li><a href="/product/175">Наклейка</a></li>
                             </ul>
                         </div>
                     </li>
                     <li><a href="/product/154">Наклейки</a></li>
+                    <li><a href="/product/167">Аппликация на стекло</a></li>
+                    <li><a href="/product/168">Световой короб</a></li>
                     <li><a class="disabled">Флаги (скоро)</a></li>
                     <li><a class="disabled">Роллапы (скоро)</a></li>
                     <li><a class="disabled">Виндеры (скоро)</a></li>
-                    <li><a class="disabled">Режим работы (скоро)</a></li>
                 </ul>
             </div>
         </div>

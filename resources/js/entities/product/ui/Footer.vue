@@ -15,16 +15,17 @@
                         <div class="menu categories-menu">
                             <div class="caption">Категории</div>
                             <ul>
-                                <li><a href="#">Несветовые вывески</a></li>
-                                <li><a href="#">Постеры</a></li>
-                                <li><a href="#">Режим работы</a></li>
-                                <li><a href="#">Объемные буквы</a></li>
-                                <li><a href="#">Таблички</a></li>
-                                <li><a href="#">Флаги</a></li>
-                                <li><a href="#">Баннер</a></li>
-                                <li><a href="#">Роллапы</a></li>
-                                <li><a href="#">Наклейки</a></li>
-                                <li><a href="#">Виндеры</a></li>
+                                <li><a href="/product/156">Вывески</a></li>
+                                <li><a href="/product/146">Объемные буквы</a></li>
+                                <li><a href="/product/151">Стенды</a></li>
+                                <li><a href="/product/159">Таблички</a></li>
+                                <li><a href="/product/162">Баннеры</a></li>
+                                <li><a href="/product/164">Плакаты</a></li>
+                                <li><a href="/product/169">Панели</a></li>
+                                <li><a href="/product/172">Режим работы</a></li>
+                                <li><a href="/product/154">Наклейки</a></li>
+                                <li><a href="/product/167">Аппликация на стекло</a></li>
+                                <li><a href="/product/168">Световой короб</a></li>
                             </ul>
                         </div>
                         <div class="menu">

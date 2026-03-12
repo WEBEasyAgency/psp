@@ -6,7 +6,14 @@
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
     >
-      <img :src="currentImage" alt="" class="image-gallery__main-image" />
+      <picture>
+        <source
+            type="image/webp"
+            :srcset="mainSrcset"
+            sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        <img :src="optimizedSrc(currentImage, 768)" alt="" class="image-gallery__main-image" />
+      </picture>
     </div>
     <div class="image-gallery__thumbnails">
       <button
@@ -26,7 +33,7 @@
         :class="currentIndex === (thumbOffset + localIdx) ? 'image-gallery__thumbnail--active' : ''"
         @click="selectImage(thumbOffset + localIdx)"
       >
-        <img :src="image" alt="" class="image-gallery__thumbnail-image" />
+        <img :src="optimizedSrc(image, 100)" alt="" class="image-gallery__thumbnail-image" />
       </div>
 
       <button
@@ -44,6 +51,7 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue';
+import { optimizedSrc, optimizedSrcset } from '@/shared/composables/useOptimizedImage';
 
 const props = defineProps({
   images: {
@@ -68,6 +76,7 @@ const effectiveMax = computed(() => {
 });
 
 const currentImage = computed(() => props.images[currentIndex.value] || '');
+const mainSrcset = computed(() => optimizedSrcset(currentImage.value, [480, 768, 1024]));
 
 const visibleImages = computed(() => {
   return props.images.slice(thumbOffset.value, thumbOffset.value + effectiveMax.value);

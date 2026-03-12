@@ -30,7 +30,14 @@
             >
               <SwiperSlide v-for="(imgSrc, index) in images" :key="index">
                 <div class="img">
-                  <img :src="imgSrc" alt="Пример установки">
+                  <picture>
+                    <source
+                        type="image/webp"
+                        :srcset="optimizedSrcset(imgSrc, [320, 480, 768])"
+                        sizes="(max-width: 768px) 241px, 692px"
+                    />
+                    <img :src="optimizedSrc(imgSrc, 768)" alt="Пример установки">
+                  </picture>
                 </div>
               </SwiperSlide>
             </Swiper>
@@ -43,6 +50,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { optimizedSrc, optimizedSrcset } from '@/shared/composables/useOptimizedImage'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Mousewheel, FreeMode } from 'swiper/modules'
 import 'swiper/css'

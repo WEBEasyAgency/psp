@@ -44,8 +44,9 @@
                                 <a href="#">Объемные буквы</a>
                                 <div class="child">
                                     <ul>
-                                        <li class="li"><a href="/product/146">С бортом из алюминия</a></li>
-                                        <li class="li"><a href="/product/155">Со световым бортом</a></li>
+                                        <li><a href="/product/146">С бортом из алюминия</a></li>
+                                        <li><a href="/product/155">Со световым бортом</a></li>
+                                        <li><a href="/product/171">Пластиковые буквы</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -54,8 +55,8 @@
                                 <div class="child">
                                     <ul>
                                         <li><a href="/product/151">Стенд из пластика с карманами</a></li>
-                                        <li><a href="#">Стенд из алюминиевого композита</a></li>
-                                        <li><a href="#">Стенд из оргстекла</a></li>
+                                        <li><a class="disabled">Стенд из алюминиевого композита (скоро)</a></li>
+                                        <li><a class="disabled">Стенд из оргстекла (скоро)</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -73,16 +74,45 @@
                                 <a href="#">Баннеры</a>
                                 <div class="child">
                                     <ul>
-                                        <li class="li"><a href="#">Баннер с люверсами</a></li>
-                                        <li class="li"><a href="#">Баннер на раме</a></li>
+                                        <li><a href="/product/162">Баннер с люверсами</a></li>
+                                        <li><a href="/product/163">Баннер на раме</a></li>
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="#">Найлейки</a></li>
-                            <li><a href="#">Флаги</a></li>
-                            <li><a href="#">Роллапы</a></li>
-                            <li><a href="#">Виндеры</a></li>
-                            <li><a href="#">Режим работы</a></li>
+                            <li class="parent">
+                                <a href="#">Плакаты</a>
+                                <div class="child">
+                                    <ul>
+                                        <li><a href="/product/164">Плакат на постерной бумаге</a></li>
+                                        <li><a href="/product/166">Плакат для лайтбоксов</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="parent">
+                                <a href="#">Панели</a>
+                                <div class="child">
+                                    <ul>
+                                        <li><a href="/product/169">Панель-кронштейн круглый</a></li>
+                                        <li><a href="/product/170">Панель-кронштейн прямоугольный</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="parent">
+                                <a href="#">Режим работы</a>
+                                <div class="child">
+                                    <ul>
+                                        <li><a href="/product/172">Акриловый Премиум</a></li>
+                                        <li><a href="/product/173">Пластиковый</a></li>
+                                        <li><a href="/product/175">Наклейка</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="/product/154">Наклейки</a></li>
+                            <li><a href="/product/167">Аппликация на стекло</a></li>
+                            <li><a href="/product/168">Световой короб</a></li>
+                            <li><a class="disabled">Флаги (скоро)</a></li>
+                            <li><a class="disabled">Роллапы (скоро)</a></li>
+                            <li><a class="disabled">Виндеры (скоро)</a></li>
                         </ul>
                     </div>
                     <div class="popup-bg"></div>
@@ -99,16 +129,18 @@
                                 </div>
                             </li>
                             <li class="has-dropdown">
-                                <a href="#">Объемные буквы</a>
+                                <a href="#">Буквы</a>
                                 <div class="header-dropdown">
                                     <a href="/product/146" class="dropdown-item">С бортом из алюминия</a>
                                     <a href="/product/155" class="dropdown-item">Со световым бортом</a>
+                                    <a href="/product/171" class="dropdown-item">Пластиковые буквы</a>
                                 </div>
                             </li>
                             <li class="has-dropdown">
-                                <a href="#">Стенды</a>
+                                <a href="#">Баннеры</a>
                                 <div class="header-dropdown">
-                                    <a href="/product/151" class="dropdown-item">Стенд из пластика с карманами</a>
+                                    <a href="/product/162" class="dropdown-item">Баннер с люверсами</a>
+                                    <a href="/product/163" class="dropdown-item">Баннер на раме</a>
                                 </div>
                             </li>
                             <li class="has-dropdown">
@@ -120,23 +152,6 @@
                                 </div>
                             </li>
                             <li><a href="/product/154">Наклейки</a></li>
-                            <li><a href="#">Баннеры</a></li>
-                            <li class="more-btn">
-                                <a href="#">
-                                    Еще
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M17 12C17 12.5523 17.4477 13 18 13C18.5523 13 19 12.5523 19 12C19 11.4477 18.5523 11 18 11C17.4477 11 17 11.4477 17 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M5 12C5 12.5523 5.44772 13 6 13C6.55228 13 7 12.5523 7 12C7 11.4477 6.55228 11 6 11C5.44772 11 5 11.4477 5 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="more">
-                            <li><a href="#">Флаги</a></li>
-                            <li><a href="#">Роллапы</a></li>
-                            <li><a href="#">Виндеры</a></li>
-                            <li><a href="#">Режим работы</a></li>
                         </ul>
                     </nav>
                 </div>

@@ -126,6 +126,7 @@
                                     <ul>
                                         <li><a href="/product/146">С бортом из алюминия</a></li>
                                         <li><a href="/product/155">Со световым бортом</a></li>
+                                        <li><a href="/product/171">Пластиковые буквы</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -153,16 +154,45 @@
                                 <a href="#">Баннеры</a>
                                 <div class="child">
                                     <ul>
-                                        <li><a class="disabled">Баннер с люверсами (скоро)</a></li>
-                                        <li><a class="disabled">Баннер на раме (скоро)</a></li>
+                                        <li><a href="/product/162">Баннер с люверсами</a></li>
+                                        <li><a href="/product/163">Баннер на раме</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="parent">
+                                <a href="#">Плакаты</a>
+                                <div class="child">
+                                    <ul>
+                                        <li><a href="/product/164">Плакат на постерной бумаге</a></li>
+                                        <li><a href="/product/166">Плакат для лайтбоксов</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="parent">
+                                <a href="#">Панели</a>
+                                <div class="child">
+                                    <ul>
+                                        <li><a href="/product/169">Панель-кронштейн круглый</a></li>
+                                        <li><a href="/product/170">Панель-кронштейн прямоугольный</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="parent">
+                                <a href="#">Режим работы</a>
+                                <div class="child">
+                                    <ul>
+                                        <li><a href="/product/172">Акриловый Премиум</a></li>
+                                        <li><a href="/product/173">Пластиковый</a></li>
+                                        <li><a href="/product/175">Наклейка</a></li>
                                     </ul>
                                 </div>
                             </li>
                             <li><a href="/product/154">Наклейки</a></li>
+                            <li><a href="/product/167">Аппликация на стекло</a></li>
+                            <li><a href="/product/168">Световой короб</a></li>
                             <li><a class="disabled">Флаги (скоро)</a></li>
                             <li><a class="disabled">Роллапы (скоро)</a></li>
                             <li><a class="disabled">Виндеры (скоро)</a></li>
-                            <li><a class="disabled">Режим работы (скоро)</a></li>
                         </ul>
                     </div>
                     <div class="popup-bg"></div>
@@ -179,16 +209,18 @@
                                 </div>
                             </li>
                             <li class="has-dropdown">
-                                <a href="#">Объемные буквы</a>
+                                <a href="#">Буквы</a>
                                 <div class="header-dropdown">
                                     <a href="/product/146">С бортом из алюминия</a>
                                     <a href="/product/155">Со световым бортом</a>
+                                    <a href="/product/171">Пластиковые буквы</a>
                                 </div>
                             </li>
                             <li class="has-dropdown">
-                                <a href="#">Стенды</a>
+                                <a href="#">Баннеры</a>
                                 <div class="header-dropdown">
-                                    <a href="/product/151">Стенд из пластика с карманами</a>
+                                    <a href="/product/162">Баннер с люверсами</a>
+                                    <a href="/product/163">Баннер на раме</a>
                                 </div>
                             </li>
                             <li class="has-dropdown">

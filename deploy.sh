@@ -45,6 +45,11 @@ echo "📊 Verifying storage permissions..."
 chmod -R 775 storage bootstrap/cache 2>/dev/null || true
 
 echo ""
+echo "📸 Creating WebP cache directory..."
+mkdir -p public/storage/webp
+chmod -R 775 public/storage/webp 2>/dev/null || true
+
+echo ""
 echo "🔧 Removing dev server markers..."
 rm -f public/hot 2>/dev/null || true
 

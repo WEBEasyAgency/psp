@@ -29,7 +29,12 @@
           <div class="inner">
             <div class="name-block">
               <div class="name">{{ item.name }}</div>
-              <div class="img"><img :src="item.image" alt=""></div>
+              <div class="img">
+                <picture>
+                  <source type="image/webp" :srcset="optimizedSrc(item.image, 300)" />
+                  <img :src="optimizedSrc(item.image, 300)" alt="">
+                </picture>
+              </div>
             </div>
             <div class="text">
               <ul>
@@ -48,6 +53,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { optimizedSrc } from '@/shared/composables/useOptimizedImage'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Mousewheel, FreeMode } from 'swiper/modules'
 import 'swiper/css'
