@@ -104,7 +104,7 @@ const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
-const activePreset = ref('20x30см')
+const activePreset = ref('30x40см')
 
 const sizePresets = [
   { label: '20x30см', w: 20, h: 30 },
@@ -122,8 +122,8 @@ const options = reactive({
 const rawApiOptions = reactive({})
 
 const calculatorData = reactive({
-  w: 20,
-  h: 30,
+  w: 30,
+  h: 40,
   num: 1,
   thick: null,
   acryl_color: null,
