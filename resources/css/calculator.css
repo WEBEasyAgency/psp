@@ -594,6 +594,7 @@ input[type="radio"]:disabled {
 .calculator--v2 .size-presets__button-text {
     font-size: 14px !important;
     line-height: 1.4 !important;
+    color: #1e3552!important
 }
 
 /* SizePresets active state = same as FilterButtons active */
