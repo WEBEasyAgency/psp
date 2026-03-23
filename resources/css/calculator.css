@@ -278,7 +278,7 @@
 }
 
 /* 2. Hover state - голубой с синим текстом */
-.filter-buttons__button:hover:not(.filter-buttons__button--active):not(:disabled)  {
+.filter-buttons__button:hover:not(.filter-buttons__button--active):not(:disabled) {
     background-color: #c8dbef !important;
 }
 
@@ -415,9 +415,11 @@ input[type="radio"]:disabled {
     .calculator--v2 .calculator__right {
         width: 624px !important;
     }
+
     .calculator--v2 .calculator__left {
         gap: 32px !important;
     }
+
     .calculator--v2 .calculator__gallery-text {
         margin-top: 0 !important;
     }
@@ -492,6 +494,7 @@ input[type="radio"]:disabled {
     border-radius: 8px !important;
     border: 1px solid transparent !important;
 }
+
 .calculator--v2 .filter-buttons__button.filter-buttons__button--active {
     border-color: #3c7bbb !important;
 }
@@ -545,17 +548,17 @@ input[type="radio"]:disabled {
     gap: 8px !important;
 }
 
-.calculator--v2 .checkbox-group__text {
-    font-size: 16px !important;
+.calculator--v2 .checkbox-group__text, .calculator--v2 .toggle-switch__label {
+    font-size: 16px;
     color: #282828 !important;
     line-height: 1.4 !important;
 }
 
-/* ToggleSwitch: text = 16px #282828 */
-.calculator--v2 .toggle-switch__label {
-    font-size: 16px !important;
-    color: #282828 !important;
-    line-height: 1.4 !important;
+@media (max-width: 1280px) {
+    .calculator--v2 .checkbox-group__text, .calculator--v2 .toggle-switch__label {
+        font-size: 14px !important;
+        text-align: left;
+    }
 }
 
 /* ToggleSwitch wrapper: h-44px, items-center */
