@@ -303,13 +303,7 @@
     outline: none !important;
 }
 
-.calculator--v2 .filter-buttons__button--active:hover:not(:disabled), .calculator--v2 .size-presets__button--active:hover:not(:disabled)  {
-    background-color: #f0f4fa !important;
-    color: #2c619d !important;
-    border: 1px solid #3c7bbb !important;
-    outline: none !important;
-    opacity: 1 !important;
-}
+
 
 /* 5. Disable state - серый полупрозрачный */
 .filter-buttons__button:disabled {
@@ -614,4 +608,12 @@ input[type="radio"]:disabled {
 /* Стили для label.checkbox (legacy layout) */
 .checkbox input[type="checkbox"] + .check {
     display: none !important; /* Скрываем старую кастомную галочку */
+}
+
+.calculator--v2 .filter-buttons__button--active:hover:not(:disabled), .calculator--v2 .size-presets__button--active:hover:not(:disabled)  {
+    background-color: #f0f4fa !important;
+    color: #2c619d !important;
+    border: 1px solid #3c7bbb !important;
+    outline: none !important;
+    opacity: 1 !important;
 }
