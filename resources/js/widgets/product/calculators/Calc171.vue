@@ -12,14 +12,14 @@
 
       <div class="calculator__right">
         <div class="letters-block">
-          <div class="letters-block__top">
-            <TextInput
-                v-model="calculatorData.text"
-                label="Текст надписи"
-                placeholder="Кафе"
-                class="letters-block__text"
-            />
-            <div class="letters-block__or">или</div>
+          <TextInput
+              v-model="calculatorData.text"
+              label="Текст надписи"
+              placeholder="Кафе"
+              class="letters-block__text"
+          />
+          <div class="letters-block__or">или</div>
+          <div class="letters-block__numbers">
             <NumberInput
                 v-model="calculatorData.num"
                 label="Количество букв"
@@ -27,8 +27,6 @@
                 :max="100"
                 class="letters-block__count"
             />
-          </div>
-          <div class="letters-block__bottom">
             <NumberInput
                 v-model="calculatorData.h"
                 label="Высота букв, мм"
