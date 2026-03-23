@@ -104,7 +104,7 @@ const isCalculating = ref(false)
 const error = ref('')
 const calculationResult = ref(null)
 const rawMatSelectParams = ref([])
-const activePreset = ref('30x40см')
+const activePreset = ref(null)
 
 const sizePresets = [
   { label: '20x30см', w: 20, h: 30 },
@@ -239,11 +239,17 @@ const calculatePrice = async () => {
   }
 }
 
+const syncPreset = () => {
+  const match = sizePresets.find(p => p.w === calculatorData.w && p.h === calculatorData.h)
+  activePreset.value = match ? match.label : null
+}
+
 onMounted(async () => {
   await fetchCalculatorParams()
   if (isEditMode.value) {
     restoreParams(calculatorData, rawMatSelectParams)
   }
+  syncPreset()
 })
 </script>
 
