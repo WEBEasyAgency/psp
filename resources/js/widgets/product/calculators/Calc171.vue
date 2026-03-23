@@ -266,18 +266,6 @@ onMounted(async () => {
   gap: 8px;
 }
 
-.letters-block__top {
-  @apply flex flex-col;
-  gap: 8px;
-}
-
-@media (min-width: 1280px) {
-  .letters-block__top {
-    @apply flex-row items-end;
-    gap: 12px;
-  }
-}
-
 .letters-block__text {
   @apply flex-1;
 }
@@ -289,24 +277,40 @@ onMounted(async () => {
   flex-shrink: 0;
 }
 
+.letters-block__numbers {
+  @apply flex flex-row;
+  gap: 10px;
+}
+
+.letters-block__count,
+.letters-block__height {
+  flex: 1;
+  min-width: 0;
+}
+
 @media (min-width: 1280px) {
+  .letters-block {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    column-gap: 12px;
+    row-gap: 8px;
+    align-items: end;
+  }
+
   .letters-block__or {
     padding-bottom: 12px;
   }
-}
 
-.letters-block__count {
-  flex-shrink: 0;
-}
+  .letters-block__numbers {
+    display: contents;
+  }
 
-.letters-block__bottom {
-  @apply flex flex-row;
-  gap: 12px;
-}
+  .letters-block__count {
+    flex-shrink: 0;
+  }
 
-@media (max-width: 1279px) {
-  .letters-block__bottom {
-    max-width: 50%;
+  .letters-block__height {
+    grid-column: 1;
   }
 }
 
