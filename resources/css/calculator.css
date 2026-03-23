@@ -303,7 +303,7 @@
     outline: none !important;
 }
 
-.calculator--v2 .filter-buttons__button--active:hover:not(:disabled) {
+.calculator--v2 .filter-buttons__button--active:hover:not(:disabled), .calculator--v2 .size-presets__button--active:hover:not(:disabled)  {
     background-color: #f0f4fa !important;
     color: #2c619d !important;
     border: 1px solid #3c7bbb !important;
@@ -608,6 +608,8 @@ input[type="radio"]:disabled {
     color: #2c619d !important;
     border: 1px solid #3c7bbb !important;
 }
+
+
 
 /* Стили для label.checkbox (legacy layout) */
 .checkbox input[type="checkbox"] + .check {
