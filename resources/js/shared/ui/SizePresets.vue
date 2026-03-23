@@ -67,7 +67,9 @@ const selectPreset = (preset) => {
     @apply h-11 px-4 py-2;
   }
 }
-
+.size-presets__button:hover:not(:disabled) {
+    background-color: #c8dbef !important;
+}
 .size-presets__button-text {
   @apply text-[13px] leading-[18.20px];
 }
