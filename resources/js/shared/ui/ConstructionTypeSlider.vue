@@ -152,4 +152,16 @@ const constructionTypes = [
 .swiper {
     overflow: visible !important;
 }
+
+.name-block .img {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+}
+
+.name-block .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 </style>
