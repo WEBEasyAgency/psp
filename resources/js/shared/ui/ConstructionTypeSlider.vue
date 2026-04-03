@@ -30,7 +30,7 @@
             <div class="name-block">
               <div class="name">{{ item.name }}</div>
               <div class="img">
-                <img :src="optimizedSrc(item.image, 300)" alt="">
+                <img :src="item.image" alt="">
               </div>
             </div>
             <div class="text">
@@ -50,7 +50,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import { optimizedSrc } from '@/shared/composables/useOptimizedImage'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Mousewheel, FreeMode } from 'swiper/modules'
 import 'swiper/css'
