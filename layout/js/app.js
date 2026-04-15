@@ -86,7 +86,10 @@ $(document).ready(function(){
 			var tab = $(this).attr('href');
 			$('.cases-type-list .item').removeClass('active');
 			$('.cases-block .tab').hide(300);
-			$(this).addClass('active').parents('.cases-block').find('.tab'+tab).show(300);
+			var $tab = $(this).addClass('active').parents('.cases-block').find('.tab'+tab);
+			$tab.show(300);
+			var swiperEl = $tab.find('.cases-slider')[0];
+			if(swiperEl && swiperEl.swiper) swiperEl.swiper.slideTo(0, 0);
 		}
 		return false;
 	})

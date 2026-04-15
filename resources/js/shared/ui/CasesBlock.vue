@@ -24,7 +24,7 @@
             href="#"
             class="item"
             :class="{ active: activeTab === index }"
-            @click.prevent="activeTab = index"
+            @click.prevent="setActiveTab(index)"
           >
             <div class="name">{{ category.name }}</div>
             <div class="val">{{ category.count }}</div>
@@ -69,6 +69,12 @@ const swiperInstances = ref([])
 
 const onSwiper = (swiper, index) => {
   swiperInstances.value[index] = swiper
+}
+
+const setActiveTab = (index) => {
+  activeTab.value = index
+  const swiper = swiperInstances.value[index]
+  if (swiper) swiper.slideTo(0, 0)
 }
 
 const slidePrev = () => {
