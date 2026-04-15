@@ -2,6 +2,19 @@
     .cases-block {
         padding: 64px 0 0;
     }
+    .cases-block .tab.active {
+        animation: casesReveal 0.4s ease-out;
+    }
+    @keyframes casesReveal {
+        from {
+            clip-path: inset(0 100% 100% 0);
+            opacity: 0;
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+        }
+    }
 </style>
 <section class="cases-block">
     <div class="container">

@@ -72,16 +72,23 @@
             reinit('.clients-slider', { nextEl: '.clients-block .next', prevEl: '.clients-block .prev' });
         }, 0);
 
-        $('.cases-type-list .item').on('click', function() {
+        $('.cases-type-list .item').off('click').on('click', function(e) {
+            e.preventDefault();
+            if ($(this).hasClass('active')) return;
+
             var tab = $(this).attr('href');
-            var $tab = $('.cases-block').find('.tab' + tab);
-            $tab.promise().done(function() {
-                var el = $tab.find('.cases-slider')[0];
-                if (el && el.swiper) {
-                    el.swiper.update();
-                    el.swiper.slideTo(0, 0);
-                }
-            });
+            $('.cases-type-list .item').removeClass('active');
+            $(this).addClass('active');
+
+            $('.cases-block .tab').stop(true, true).removeClass('active');
+            var $tab = $(this).parents('.cases-block').find('.tab' + tab);
+            $tab.addClass('active');
+
+            var el = $tab.find('.cases-slider')[0];
+            if (el && el.swiper) {
+                el.swiper.update();
+                el.swiper.slideTo(0, 0);
+            }
         });
     });
     </script>
