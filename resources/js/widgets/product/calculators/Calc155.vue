@@ -282,18 +282,7 @@ const fetchCalculatorParams = async () => {
         }
                     if (p.type === 5 && p.options && options[p.variable] !== undefined) {
                         rawApiOptions[p.variable] = p.options
-                        let opts;
-                        if (p.variable === 'brand') {
-                            opts = p.options.map(o => {
-                                let label = o;
-                                if (o === 'ECO') label = 'ECO (гарантия 1 год)';
-                                else if (o === 'NORM') label = 'NORM (гарантия 3 года)';
-                                else if (o === 'PREMIUM') label = 'PREMIUM (гарантия 5 лет)';
-                                return { value: o, label: label };
-                            });
-                        } else {
-                            opts = p.options.map(o => ({ value: o, label: o }));
-                        }
+                        let opts = p.options.map(o => ({ value: o, label: o }));
                         options[p.variable] = opts
                         if (opts.length > 0) calculatorData[p.variable] = opts[0].value
                     }

@@ -12,6 +12,11 @@
     @vite('resources/js/pages/home.js')
     <link rel="stylesheet" href="/layout/css/libs.min.css">
     <link rel="stylesheet" href="/layout/css/app.min.css">
+    <style>
+        .construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner {
+            height: 298px;
+        }
+    </style>
 
 </head>
 <body>
