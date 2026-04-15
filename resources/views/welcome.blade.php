@@ -71,6 +71,18 @@
             reinit('.feedback-slider', { nextEl: '.feedback-block .next', prevEl: '.feedback-block .prev' });
             reinit('.clients-slider', { nextEl: '.clients-block .next', prevEl: '.clients-block .prev' });
         }, 0);
+
+        $('.cases-type-list .item').on('click', function() {
+            var tab = $(this).attr('href');
+            var $tab = $('.cases-block').find('.tab' + tab);
+            $tab.promise().done(function() {
+                var el = $tab.find('.cases-slider')[0];
+                if (el && el.swiper) {
+                    el.swiper.update();
+                    el.swiper.slideTo(0, 0);
+                }
+            });
+        });
     });
     </script>
 </body>
