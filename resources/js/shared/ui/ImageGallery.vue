@@ -61,7 +61,7 @@ const props = defineProps({
   },
   maxVisible: {
     type: Number,
-    default: 0 // 0 = show all (backward compat)
+    default: 6
   }
 });
 
