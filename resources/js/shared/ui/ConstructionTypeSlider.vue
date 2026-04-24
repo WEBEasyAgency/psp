@@ -40,7 +40,6 @@
                 </li>
               </ul>
             </div>
-            <div class="num">{{ String(index + 1).padStart(2, '0') }}</div>
           </div>
         </SwiperSlide>
       </Swiper>
@@ -163,5 +162,77 @@ const constructionTypes = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+</style>
+
+<style>
+.construction-type .construction-slider .swiper-slide {
+    height: 298px;
+}
+
+.construction-type .construction-slider .swiper-slide .inner,
+.construction-type .construction-slider .swiper-slide.swiper-slide-active .inner,
+.construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner {
+    height: 298px;
+    transition: none;
+}
+
+.construction-type .construction-slider .swiper-slide .inner:hover {
+    height: 298px;
+    background-color: var(--light-gray);
+}
+
+@media only screen and (max-width: 768px) {
+    .construction-type .construction-slider .swiper-slide {
+        height: 239px;
+    }
+    .construction-type .construction-slider .swiper-slide .inner,
+    .construction-type .construction-slider .swiper-slide.swiper-slide-active .inner,
+    .construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner,
+    .construction-type .construction-slider .swiper-slide .inner:hover {
+        height: 100%;
+    }
+}
+
+.construction-type .construction-slider .inner .text {
+    margin-top: auto;
+}
+
+.construction-type .construction-slider .inner .text ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.construction-type .construction-slider .inner .text li {
+    margin: 0;
+}
+
+.construction-type .construction-slider .inner .text li a {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border: 1px solid #94a3b8;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #282828;
+    text-decoration: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.construction-type .construction-slider .inner .text li a:hover {
+    border-color: #1e3552;
+    background-color: #1e3552;
+    color: #ffffff;
+}
+
+@media only screen and (max-width: 768px) {
+    .construction-type .construction-slider .inner .text li a {
+        font-size: 14px;
+    }
 }
 </style>
