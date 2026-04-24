@@ -71,7 +71,7 @@ const slideNext = () => {
 const constructionTypes = [
   {
     name: 'Вывески',
-    image: '/img/dest/type1.jpg',
+    image: '/img/dest/construction/1.png',
     links: [
       { text: 'из оргстекла', url: '/product/157' },
       { text: 'из ПВХ-пластика', url: '/product/156' },
@@ -80,7 +80,7 @@ const constructionTypes = [
   },
   {
     name: 'Объемные буквы',
-    image: '/img/dest/type7.jpg',
+    image: '/img/dest/construction/2.png',
     links: [
       { text: 'с бортом из алюминия', url: '/product/146' },
       { text: 'со световым бортом', url: '/product/155' }
@@ -88,7 +88,7 @@ const constructionTypes = [
   },
   {
     name: 'Наклейки',
-    image: '/img/dest/type5.jpg',
+    image: '/img/dest/construction/3.png',
     links: [
       { text: 'маленькие наклейки', url: '/product/154' },
       { text: 'аппликация на стекло', url: '#' }
@@ -96,7 +96,7 @@ const constructionTypes = [
   },
   {
     name: 'Баннеры',
-    image: '/img/dest/type4.jpg',
+    image: '/img/dest/construction/4.png',
     links: [
       { text: 'баннер с люверсами', url: '#' },
       { text: 'баннер на раме', url: '#' }
@@ -104,7 +104,7 @@ const constructionTypes = [
   },
   {
     name: 'Режим работы',
-    image: '/img/dest/type2.jpg',
+    image: '/img/dest/construction/5.png',
     links: [
       { text: 'из акрила Премиум', url: '#' },
       { text: 'пластиковый', url: '#' },
@@ -113,7 +113,7 @@ const constructionTypes = [
   },
   {
     name: 'Плакаты и постеры',
-    image: '/img/dest/type6.jpg',
+    image: '/img/dest/construction/6.png',
     links: [
       { text: 'плакат на постерной бумаге', url: '#' },
       { text: 'плакат для лайтбоксов (бэклит)', url: '#' }
@@ -121,7 +121,7 @@ const constructionTypes = [
   },
   {
     name: 'Таблички',
-    image: '/img/dest/type3.jpg',
+    image: '/img/dest/construction/7.png',
     links: [
       { text: 'пластиковые', url: '/product/159' },
       { text: 'акриловые', url: '/product/160' },
@@ -130,21 +130,21 @@ const constructionTypes = [
   },
   {
     name: 'Стенды',
-    image: '/img/dest/type8.jpg',
+    image: '/img/dest/construction/8.png',
     links: [
       { text: 'стенд из пластика с карманами', url: '/product/151' }
     ]
   },
   {
     name: 'Световые короба',
-    image: '/img/dest/type9.jpg',
+    image: '/img/dest/construction/9.png',
     links: [
       { text: 'световой короб (лайтбокс)', url: '#' }
     ]
   },
   {
     name: 'Панель-кронштейны',
-    image: '/img/dest/type10.jpg',
+    image: '/img/dest/construction/10.png',
     links: [
       { text: 'круглый', url: '#' },
       { text: 'прямоугольный', url: '#' }
@@ -152,7 +152,7 @@ const constructionTypes = [
   },
   {
     name: 'Пластиковые буквы',
-    image: '/img/dest/type1.jpg',
+    image: '/img/dest/construction/11.png',
     links: [
       { text: 'пластиковые буквы', url: '#' }
     ]
