@@ -91,32 +91,32 @@ const constructionTypes = [
     image: '/img/dest/construction/3.png',
     links: [
       { text: 'маленькие наклейки', url: '/product/154' },
-      { text: 'аппликация на стекло', url: '#' }
+      { text: 'аппликация на стекло', url: '/product/167' }
     ]
   },
   {
     name: 'Баннеры',
     image: '/img/dest/construction/4.png',
     links: [
-      { text: 'баннер с люверсами', url: '#' },
-      { text: 'баннер на раме', url: '#' }
+      { text: 'баннер с люверсами', url: '/product/162' },
+      { text: 'баннер на раме', url: '/product/163' }
     ]
   },
   {
     name: 'Режим работы',
     image: '/img/dest/construction/5.png',
     links: [
-      { text: 'из акрила Премиум', url: '#' },
-      { text: 'пластиковый', url: '#' },
-      { text: 'наклейка на стекло', url: '#' }
+      { text: 'из акрила Премиум', url: '/product/172' },
+      { text: 'пластиковый', url: '/product/173' },
+      { text: 'наклейка на стекло', url: '/product/175' }
     ]
   },
   {
     name: 'Плакаты и постеры',
     image: '/img/dest/construction/6.png',
     links: [
-      { text: 'плакат на постерной бумаге', url: '#' },
-      { text: 'плакат для лайтбоксов (бэклит)', url: '#' }
+      { text: 'плакат на постерной бумаге', url: '/product/164' },
+      { text: 'плакат для лайтбоксов (бэклит)', url: '/product/166' }
     ]
   },
   {
@@ -139,22 +139,22 @@ const constructionTypes = [
     name: 'Световые короба',
     image: '/img/dest/construction/9.png',
     links: [
-      { text: 'световой короб (лайтбокс)', url: '#' }
+      { text: 'световой короб (лайтбокс)', url: '/product/168' }
     ]
   },
   {
     name: 'Панель-кронштейны',
     image: '/img/dest/construction/10.png',
     links: [
-      { text: 'круглый', url: '#' },
-      { text: 'прямоугольный', url: '#' }
+      { text: 'круглый', url: '/product/169' },
+      { text: 'прямоугольный', url: '/product/170' }
     ]
   },
   {
     name: 'Пластиковые буквы',
     image: '/img/dest/construction/11.png',
     links: [
-      { text: 'пластиковые буквы', url: '#' }
+      { text: 'пластиковые буквы', url: '/product/171' }
     ]
   }
 ]

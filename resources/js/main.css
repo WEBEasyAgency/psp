@@ -8,8 +8,8 @@
 @import "tailwindcss/utilities";
 
 /* Оригинальные CSS в слое components для низкого приоритета */
-@import "../../layout/css/libs.min.css" layer(components);
-@import "../../layout/css/app.min.css" layer(components);
+@import "../css/libs.min.css" layer(components);
+@import "../css/app.min.css" layer(components);
 
 /* Проблемные reset-селекторы в Tailwind layer для низкого приоритета */
 @layer utilities {
