@@ -26,7 +26,7 @@
         @swiper="onSwiper"
       >
         <SwiperSlide v-for="(item, index) in constructionTypes" :key="index">
-          <div class="inner">
+          <div class="inner" @click="goTo(item.links[0].url)">
             <div class="name-block">
               <div class="name">{{ item.name }}</div>
               <div class="img">
@@ -36,7 +36,7 @@
             <div class="text">
               <ul>
                 <li v-for="(link, i) in item.links" :key="i">
-                  <a :href="link.url">{{ link.text }}</a>
+                  <a :href="link.url" @click.stop>{{ link.text }}</a>
                 </li>
               </ul>
             </div>
@@ -66,6 +66,10 @@ const slidePrev = () => {
 
 const slideNext = () => {
   swiperInstance.value?.slideNext()
+}
+
+const goTo = (url) => {
+  if (url && url !== '#') window.location.href = url
 }
 
 const constructionTypes = [
@@ -169,6 +173,10 @@ const constructionTypes = [
     flex-shrink: 0;
     width: 96px;
     height: 96px;
+}
+
+.construction-type .construction-slider .swiper-slide .inner {
+    cursor: pointer;
 }
 
 .name-block .img img {
