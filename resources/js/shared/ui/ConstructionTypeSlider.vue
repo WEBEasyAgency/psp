@@ -185,11 +185,15 @@ const constructionTypes = [
 
 .construction-type .construction-slider .swiper-slide .inner,
 .construction-type .construction-slider .swiper-slide.swiper-slide-active .inner,
-.construction-type .construction-slider .swiper-slide .inner:hover,
 .construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner {
     height: 298px !important;
     background-color: var(--light-gray) !important;
-    transition: none !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.construction-type .construction-slider .swiper-slide .inner:hover {
+    height: 298px !important;
+    background-color: #E6EEF8 !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -241,7 +245,7 @@ const constructionTypes = [
 .construction-type .construction-slider .swiper-slide .inner .text li a:hover {
     border-color: transparent;
     background-color: #ffffff;
-    color: #1e3552;
+    color: #2C619D;
 }
 
 @media only screen and (max-width: 768px) {
