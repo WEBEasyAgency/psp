@@ -100,7 +100,7 @@ const images = computed(() => {
     margin-top: 32px;
 }
 .cases-slider-vue :deep(.swiper-slide) {
-    max-width: 692px;
+    max-width: 458px;
 }
 @media only screen and (max-width: 768px) {
     .cases-slider-vue :deep(.swiper-slide) {
@@ -108,7 +108,7 @@ const images = computed(() => {
     }
 }
 .cases-slider-vue :deep(.swiper-slide .img) {
-    height: 460px;
+    height: 305px;
 }
 @media only screen and (max-width: 768px) {
     .cases-slider-vue :deep(.swiper-slide .img) {

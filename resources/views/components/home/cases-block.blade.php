@@ -15,6 +15,20 @@
             opacity: 1;
         }
     }
+    .cases-block .cases-slider .swiper-slide {
+        max-width: 458px;
+    }
+    .cases-block .cases-slider .swiper-slide .img {
+        height: 305px;
+    }
+    @media only screen and (max-width: 768px) {
+        .cases-block .cases-slider .swiper-slide {
+            max-width: 241px;
+        }
+        .cases-block .cases-slider .swiper-slide .img {
+            height: 160px;
+        }
+    }
 </style>
 <section class="cases-block">
     <div class="container">
