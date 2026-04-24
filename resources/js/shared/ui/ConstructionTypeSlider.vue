@@ -184,14 +184,14 @@ const constructionTypes = [
 }
 
 .construction-type .construction-slider .swiper-slide .inner,
-.construction-type .construction-slider .swiper-slide.swiper-slide-active .inner,
-.construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner {
+.construction-type .construction-slider .swiper-slide.swiper-slide-active .inner {
     height: 298px !important;
     background-color: var(--light-gray) !important;
     transition: background-color 0.2s ease !important;
 }
 
-.construction-type .construction-slider .swiper-slide .inner:hover {
+.construction-type .construction-slider .swiper-slide .inner:hover,
+.construction-type .construction-slider .swiper-slide.swiper-slide-active .inner:hover {
     height: 298px !important;
     background-color: #E6EEF8 !important;
 }
@@ -203,7 +203,7 @@ const constructionTypes = [
     .construction-type .construction-slider .swiper-slide .inner,
     .construction-type .construction-slider .swiper-slide.swiper-slide-active .inner,
     .construction-type .construction-slider .swiper-slide .inner:hover,
-    .construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner {
+    .construction-type .construction-slider .swiper-slide.swiper-slide-active .inner:hover {
         height: 100% !important;
     }
 }
