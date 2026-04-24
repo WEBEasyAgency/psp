@@ -70,78 +70,91 @@ const slideNext = () => {
 
 const constructionTypes = [
   {
-    name: 'Несветовые вывески',
+    name: 'Вывески',
     image: '/img/dest/type1.jpg',
     links: [
-      { text: 'Вывеска из ПВХ-пластика', url: '/product/156' },
-      { text: 'Вывеска из алюминиевого композита', url: '/product/158' },
-      { text: 'Вывеска из оргстекла', url: '/product/157' }
-    ]
-  },
-  {
-    name: 'Режим работы',
-    image: '/img/dest/type2.jpg',
-    links: [
-      { text: 'Режим работы (скоро)', url: '#' }
-    ]
-  },
-  {
-    name: 'Таблички',
-    image: '/img/dest/type3.jpg',
-    links: [
-      { text: 'Пластиковые таблички', url: '/product/159' },
-      { text: 'Акриловые таблички', url: '/product/160' },
-      { text: 'Таблички из композита', url: '/product/161' }
-    ]
-  },
-  {
-    name: 'Баннеры',
-    image: '/img/dest/type4.jpg',
-    links: [
-      { text: 'Баннеры (скоро)', url: '#' }
-    ]
-  },
-  {
-    name: 'Наклейки',
-    image: '/img/dest/type5.jpg',
-    links: [
-      { text: 'Маленькие наклейки', url: '/product/154' }
-    ]
-  },
-  {
-    name: 'Постеры',
-    image: '/img/dest/type6.jpg',
-    links: [
-      { text: 'Постеры (скоро)', url: '#' }
+      { text: 'из оргстекла', url: '/product/157' },
+      { text: 'из ПВХ-пластика', url: '/product/156' },
+      { text: 'из алюминиевого композита', url: '/product/158' }
     ]
   },
   {
     name: 'Объемные буквы',
     image: '/img/dest/type7.jpg',
     links: [
-      { text: 'С бортом из алюминия', url: '/product/146' },
-      { text: 'Со световым бортом', url: '/product/155' }
+      { text: 'с бортом из алюминия', url: '/product/146' },
+      { text: 'со световым бортом', url: '/product/155' }
     ]
   },
   {
-    name: 'Флаги',
+    name: 'Наклейки',
+    image: '/img/dest/type5.jpg',
+    links: [
+      { text: 'маленькие наклейки', url: '/product/154' },
+      { text: 'аппликация на стекло', url: '#' }
+    ]
+  },
+  {
+    name: 'Баннеры',
+    image: '/img/dest/type4.jpg',
+    links: [
+      { text: 'баннер с люверсами', url: '#' },
+      { text: 'баннер на раме', url: '#' }
+    ]
+  },
+  {
+    name: 'Режим работы',
+    image: '/img/dest/type2.jpg',
+    links: [
+      { text: 'из акрила Премиум', url: '#' },
+      { text: 'пластиковый', url: '#' },
+      { text: 'наклейка на стекло', url: '#' }
+    ]
+  },
+  {
+    name: 'Плакаты и постеры',
+    image: '/img/dest/type6.jpg',
+    links: [
+      { text: 'плакат на постерной бумаге', url: '#' },
+      { text: 'плакат для лайтбоксов (бэклит)', url: '#' }
+    ]
+  },
+  {
+    name: 'Таблички',
+    image: '/img/dest/type3.jpg',
+    links: [
+      { text: 'пластиковые', url: '/product/159' },
+      { text: 'акриловые', url: '/product/160' },
+      { text: 'из композита', url: '/product/161' }
+    ]
+  },
+  {
+    name: 'Стенды',
     image: '/img/dest/type8.jpg',
     links: [
-      { text: 'Флаги (скоро)', url: '#' }
+      { text: 'стенд из пластика с карманами', url: '/product/151' }
     ]
   },
   {
-    name: 'Роллапы',
+    name: 'Световые короба',
     image: '/img/dest/type9.jpg',
     links: [
-      { text: 'Роллапы (скоро)', url: '#' }
+      { text: 'световой короб (лайтбокс)', url: '#' }
     ]
   },
   {
-    name: 'Виндеры',
+    name: 'Панель-кронштейны',
     image: '/img/dest/type10.jpg',
     links: [
-      { text: 'Виндеры (скоро)', url: '#' }
+      { text: 'круглый', url: '#' },
+      { text: 'прямоугольный', url: '#' }
+    ]
+  },
+  {
+    name: 'Пластиковые буквы',
+    image: '/img/dest/type1.jpg',
+    links: [
+      { text: 'пластиковые буквы', url: '#' }
     ]
   }
 ]
@@ -167,51 +180,51 @@ const constructionTypes = [
 
 <style>
 .construction-type .construction-slider .swiper-slide {
-    height: 298px;
+    height: 298px !important;
 }
 
 .construction-type .construction-slider .swiper-slide .inner,
 .construction-type .construction-slider .swiper-slide.swiper-slide-active .inner,
+.construction-type .construction-slider .swiper-slide .inner:hover,
 .construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner {
-    height: 298px;
-    transition: none;
-}
-
-.construction-type .construction-slider .swiper-slide .inner:hover {
-    height: 298px;
-    background-color: var(--light-gray);
+    height: 298px !important;
+    background-color: var(--light-gray) !important;
+    transition: none !important;
 }
 
 @media only screen and (max-width: 768px) {
     .construction-type .construction-slider .swiper-slide {
-        height: 239px;
+        height: 239px !important;
     }
     .construction-type .construction-slider .swiper-slide .inner,
     .construction-type .construction-slider .swiper-slide.swiper-slide-active .inner,
-    .construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner,
-    .construction-type .construction-slider .swiper-slide .inner:hover {
-        height: 100%;
+    .construction-type .construction-slider .swiper-slide .inner:hover,
+    .construction-type .construction-slider:has(.inner:hover) .swiper-slide-active .inner {
+        height: 100% !important;
     }
 }
 
-.construction-type .construction-slider .inner .text {
+.construction-type .construction-slider .swiper-slide .inner .text {
     margin-top: auto;
 }
 
-.construction-type .construction-slider .inner .text ul {
-    display: flex;
+.construction-type .construction-slider .swiper-slide .inner .text ul {
+    display: flex !important;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: 8px;
     padding: 0;
     margin: 0;
     list-style: none;
+    width: 100%;
 }
 
-.construction-type .construction-slider .inner .text li {
-    margin: 0;
+.construction-type .construction-slider .swiper-slide .inner .text li {
+    margin: 0 !important;
+    list-style: none;
 }
 
-.construction-type .construction-slider .inner .text li a {
+.construction-type .construction-slider .swiper-slide .inner .text li a {
     display: inline-flex;
     align-items: center;
     padding: 4px 8px;
@@ -221,17 +234,18 @@ const constructionTypes = [
     line-height: 1.4;
     color: #282828;
     text-decoration: none;
+    background-color: transparent;
     transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
-.construction-type .construction-slider .inner .text li a:hover {
-    border-color: #1e3552;
-    background-color: #1e3552;
-    color: #ffffff;
+.construction-type .construction-slider .swiper-slide .inner .text li a:hover {
+    border-color: transparent;
+    background-color: #ffffff;
+    color: #1e3552;
 }
 
 @media only screen and (max-width: 768px) {
-    .construction-type .construction-slider .inner .text li a {
+    .construction-type .construction-slider .swiper-slide .inner .text li a {
         font-size: 14px;
     }
 }
